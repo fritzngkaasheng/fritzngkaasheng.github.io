@@ -16,18 +16,11 @@ function printPDF() {
 	   }
 	});
 }
+	
+const jsPDFBtn = document.getElementById("jspdf-btn");
+	
+jsPDFBtn.addEventListener("click", printPDF);
 
 helloWorld.addEventListener("click", () => {
-	invContainer.innerHTML = invContainer.innerHTML !== "" ? "" : `
-		<div>PHP [GitHub Pages does not support server-side languages]</div>
-		<div class="sass-element">SASS</div>
-		<div>JavaScript</div>
-		<button id="jspdf-btn">jsPDF</button>
-		<br/>
-		<button id="bootstrap-btn" class="btn btn-primary">Bootstrap</button>
-	`;
-	
-	const jsPDFBtn = document.getElementById("jspdf-btn");
-	
-	jsPDFBtn.addEventListener("click", printPDF);
+	invContainer.classList = invContainer.classList.contains("d-block") ? "d-none" : "d-block";
 });
