@@ -23,6 +23,8 @@ helloWorld.addEventListener("click", () => {
 		<div class="sass-element">SASS</div>
 		<div>JavaScript</div>
 		<button id="jspdf-btn">jsPDF</button>
+		<br/>
+		<button id="bootstrap-btn" class="btn btn-primary">Bootstrap</button>
 	`;
 	
 	const jsPDFBtn = document.getElementById("jspdf-btn");
