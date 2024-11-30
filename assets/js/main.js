@@ -2,8 +2,10 @@ const { jsPDF } = window.jspdf;
 
 const helloWorld = document.getElementById("hello-world");
 const invContainer = document.getElementById("inv-container");
+const jsPDFBtn = document.getElementById("jspdf-btn");
+const htmlDocxJsBtn = document.getElementById("html-docx-js-btn");
 
-function printPDF() {	
+function downloadPDF() {	
 	var doc = new jsPDF({
 		orientation: "portrait",
 		unit: "mm",
@@ -15,11 +17,16 @@ function printPDF() {
 		 doc.save("a4.pdf");
 	   }
 	});
+};
+
+jsPDFBtn.addEventListener("click", downloadPDF);
+
+function downloadDOCX() {
+	var converted = htmlDocx.asBlob(document.querySelector("html").outerHTML);
+	saveAs(converted, 'a4.docx');
 }
-	
-const jsPDFBtn = document.getElementById("jspdf-btn");
-	
-jsPDFBtn.addEventListener("click", printPDF);
+
+htmlDocxJsBtn.addEventListener("click", downloadDOCX);
 
 helloWorld.addEventListener("click", () => {
 	invContainer.classList = invContainer.classList.contains("d-block") ? "d-none" : "d-block";
