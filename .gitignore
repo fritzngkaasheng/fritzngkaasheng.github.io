@@ -24,6 +24,3 @@ sketch
 *.scss.map
 
 # End of https://www.toptal.com/developers/gitignore/api/react,sass
-
-### other javascript libraries ###
-jspdf.umd.min.js
