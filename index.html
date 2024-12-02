@@ -4,15 +4,15 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<script>
-		  //const isProd = window.location.hostname === "fritzngkaasheng.github.io";
-		  const isProd = false;
+		  const isUsingMinified = false;
 
 		  const cssPath = "./assets/stylesheets/build/"
 		  const jsPath = "./assets/js/";
 
-		  const cssFile = isProd ? cssPath + "main.min.css" : cssPath + "main.css";
-		  const jsFile = isProd ? jsPath + "main.min.js" : jsPath + "main.js";
+		  const cssFile = isUsingMinified ? cssPath + "main.min.css" : cssPath + "main.css";
+		  const jsFile = isUsingMinified ? jsPath + "main.min.js" : jsPath + "main.js";
 
 		  const link = document.createElement("link");
 		  link.rel = "stylesheet";
@@ -23,15 +23,41 @@
 	<body>
 		<h1 id="hello-world">Hello World</h1>
 		<p>I'm hosted with GitHub Pages.</p>
-		<div id="inv-container"></div>
+		<div id="inv-container" class="d-none">
+      <div><s>PHP</s> [GitHub Pages does not support server-side languages]</div>
+      <div class="sass-element">SASS</div>
+      <div>JavaScript</div>
+      <button id="jspdf-btn">jsPDF</button>
+      <br/>
+			<button id="html-docx-js-btn">html-docx-js</button>
+      <br/>
+      <button id="bootstrap-btn" class="btn btn-primary">Bootstrap</button>
+      <div id="react-element"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.2/babel.min.js" integrity="sha512-E93kfMJX6tlvTH0N0TmwNePkccFJAz+Lw8A2N+YDkHgKQazBZrM/XgdLoZKfnm5+vjEPkua04/KhqQZm/zbEJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.development.js" integrity="sha512-YFI6ChaPQ5hH9o8Q4n5ZzDHrhrwZ3dhgZSQ2JC/pgmYuD0QtG0iwQgfFa1J+o4jvklsKBupcHz5Tx1yqa25FFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.development.min.js" integrity="sha512-aTIGujEp0xIZSXrXXFjXL3YiozmMRYjKmll3rLYTmUIGaaidsrQNn+ii04E+VwlpIUNZOF3UBoXRmNQBEdD/qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.jsdelivr.net/npm/html-docx-js@0.3.1/dist/html-docx.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/24.0.2/i18next.min.js" integrity="sha512-gPfFz64ijjoBcvrP03DyLCExHxhVQ5Ubj7mjbrEugLBboYsD9NOyjMEP6+u1ESZBYcJnzxvqPNnzNAwbEGFpjw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@3.0.1/i18nextHttpBackend.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/react-i18next@15.1.3/dist/umd/react-i18next.min.js"></script>
+
 		<script>
 		  let script = {};
 		  
 		  script = document.createElement("script");
 		  script.type = "module";
 		  script.src = jsFile;
+		  document.body.appendChild(script);
+
+      script = document.createElement("script");
+      script.type = "text/babel";
+		  script.src = jsPath + "components.js";
 		  document.body.appendChild(script);
 		</script>
 	</body>
