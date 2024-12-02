@@ -1,5 +1,7 @@
 const { jsPDF } = window.jspdf;
 
+const fontPath = "./assets/fonts/";
+
 const helloWorld = document.getElementById("hello-world");
 const invContainer = document.getElementById("inv-container");
 const jsPDFBtn = document.getElementById("jspdf-btn");
@@ -10,6 +12,9 @@ const pdfSizeUnit = "px";
 // const a4SizeInPx = [width, height];
 const a4SizeInPx = [595, 842];
 const windowInnerWidth = window.innerWidth;
+
+const topMiddlePos = [(a4SizeInPx[0] / 2) - 20, 20];
+const helloWorldZhStr = "你好，世界！";
 
 const pdfExt = ".pdf";
 const docxExt = ".docx";
@@ -24,11 +29,15 @@ function downloadPDF() {
 		format: a4SizeInPx
 	});   
 
-	doc.html(document.body, {
+	doc.html(document.querySelector("html"), {
 		html2canvas: {
 			scale: (a4SizeInPx[0] / windowInnerWidth)
 		},
 		callback: function (doc) {
+			doc.addFont(fontPath + "NotoSansSC-VariableFont_wght.ttf", "NotoSansSC", "normal");
+			doc.setFont("NotoSansSC", "normal");
+
+			doc.text(helloWorldZhStr, topMiddlePos[0], topMiddlePos[1]);
 			doc.save(docName + pdfExt);
 	  }
 	});
