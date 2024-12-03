@@ -1,54 +1,69 @@
 const { jsPDF } = window.jspdf;
 
-const fontPath = "./assets/fonts/";
-
 const helloWorld = document.getElementById("hello-world");
 const invContainer = document.getElementById("inv-container");
 const jsPDFBtn = document.getElementById("jspdf-btn");
+const html2pdfBtn = document.getElementById("html2pdf-btn");
 const htmlDocxJsBtn = document.getElementById("html-docx-js-btn");
 
 const pdfOrientation = "portrait";
 const pdfSizeUnit = "px";
-// const a4SizeInPx = [width, height];
-const a4SizeInPx = [595, 842];
+// const a4Size72DPIPx = [width, height];
+const a4Size72DPIPx = [595, 842];
+// const a4Size300DPIPx = [width, height];
+const a4Size300DPIPx = [2480, 3508];
+// const a4ScaledToHDDimensionsPx = [width, height];
+const a4ScaledToHD720pDimensionsPx = [1280, (1280 / a4Size300DPIPx[0] * a4Size300DPIPx[1])];
 const windowInnerWidth = window.innerWidth;
 
-const topMiddlePos = [(a4SizeInPx[0] / 2) - 20, 20];
-const helloWorldZhStr = "你好，世界！";
+let docName = "a4";
 
 const pdfExt = ".pdf";
 const docxExt = ".docx";
 const doctypeDeclaration = "<!DOCTYPE html>";
 
-function downloadPDF() {	
-	let docName = "a4";
-
-	var doc = new jsPDF({
+function downloadPDFUsingJsPDF() {	
+	let doc = new jsPDF({
 		orientation: pdfOrientation,
 		unit: pdfSizeUnit,
-		format: a4SizeInPx
-	});   
+		format: a4Size72DPIPx
+	});
 
 	doc.html(document.querySelector("html"), {
 		html2canvas: {
-			scale: (a4SizeInPx[0] / windowInnerWidth)
+			scale: (a4Size72DPIPx[0] / windowInnerWidth)
 		},
 		callback: function (doc) {
-			doc.addFont(fontPath + "NotoSansSC-VariableFont_wght.ttf", "NotoSansSC", "normal");
-			doc.setFont("NotoSansSC", "normal");
-
-			doc.text(helloWorldZhStr, topMiddlePos[0], topMiddlePos[1]);
 			doc.save(docName + pdfExt);
 	  }
 	});
 };
 
-jsPDFBtn.addEventListener("click", downloadPDF);
+jsPDFBtn.addEventListener("click", downloadPDFUsingJsPDF);
+
+function downloadPDFUsingHtml2pdf() {	
+	let element = document.querySelector("html");
+	let opt = {
+		filename:     docName + pdfExt,
+		image:        { type: 'jpeg', quality: 0.98 },
+		html2canvas:  {
+			width: a4ScaledToHD720pDimensionsPx[0],
+			height: a4ScaledToHD720pDimensionsPx[1]
+		},
+		jsPDF:        {
+			orientation: pdfOrientation,
+			unit: pdfSizeUnit,
+			format: a4ScaledToHD720pDimensionsPx
+		}
+	};
+	 
+	html2pdf().from(element).set(opt).save();
+};
+
+html2pdfBtn.addEventListener("click", downloadPDFUsingHtml2pdf);
 
 function downloadDOCX() {
-	let docName = "a4";
-
-	var converted = htmlDocx.asBlob(doctypeDeclaration + document.querySelector("html").outerHTML);
+	let converted = htmlDocx.asBlob(doctypeDeclaration + document.querySelector("html").outerHTML);
 	saveAs(converted, docName + docxExt);
 }
 
