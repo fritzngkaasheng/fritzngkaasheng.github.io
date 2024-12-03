@@ -6,13 +6,17 @@
 		<title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<script>
-		  const isUsingMinified = false;
+		  const isUsingMinified = true;
 
 		  const cssPath = "./assets/stylesheets/build/"
 		  const jsPath = "./assets/js/";
 
-		  const cssFile = isUsingMinified ? cssPath + "main.min.css" : cssPath + "main.css";
-		  const jsFile = isUsingMinified ? jsPath + "main.min.js" : jsPath + "main.js";
+			const cssExt = isUsingMinified ? ".min.css" : ".css";
+			const jsExt = isUsingMinified ? ".min.js" : ".js";
+
+		  const cssFile = cssPath + "main" + cssExt;
+		  const jsMainFile = jsPath + "main" + jsExt;
+			const jsComponentsFile = jsPath + "components" + jsExt;
 
 		  const link = document.createElement("link");
 		  link.rel = "stylesheet";
@@ -58,12 +62,12 @@
 		  
 		  script = document.createElement("script");
 		  script.type = "module";
-		  script.src = jsFile;
+		  script.src = jsMainFile;
 		  document.body.appendChild(script);
 
       script = document.createElement("script");
       script.type = "text/babel";
-		  script.src = jsPath + "components.js";
+			script.src = jsComponentsFile;
 		  document.body.appendChild(script);
 		</script>
 	</body>
