@@ -26,12 +26,14 @@ function downloadPDFUsingJsPDF() {
 	let doc = new jsPDF({
 		orientation: pdfOrientation,
 		unit: pdfSizeUnit,
-		format: a4Size72DPIPx
+		format: a4ScaledToHD720pDimensionsPx
 	});
 
 	doc.html(document.querySelector("html"), {
+		width: a4ScaledToHD720pDimensionsPx[0],
+		windowWidth: a4ScaledToHD720pDimensionsPx[0],
 		html2canvas: {
-			scale: (a4Size72DPIPx[0] / windowInnerWidth)
+			windowWidth: a4ScaledToHD720pDimensionsPx[0]
 		},
 		callback: function (doc) {
 			doc.save(docName + pdfExt);
@@ -48,7 +50,8 @@ function downloadPDFUsingHtml2pdf() {
 		image:        { type: 'jpeg', quality: 0.98 },
 		html2canvas:  {
 			width: a4ScaledToHD720pDimensionsPx[0],
-			height: a4ScaledToHD720pDimensionsPx[1]
+			height: a4ScaledToHD720pDimensionsPx[1],
+			windowWidth: a4ScaledToHD720pDimensionsPx[0]
 		},
 		jsPDF:        {
 			orientation: pdfOrientation,
