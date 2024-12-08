@@ -1,27 +1,10 @@
-const i18n = window.i18next;
-const { useTranslation, initReactI18next } = window.ReactI18next;
-const Backend = window.i18nextHttpBackend;
+"use strict";
 
-const lngs = {
-  en: { nativeName: 'English' },
-  zh: { nativeName: '中文' }
-};
-
-i18n
-	.use(initReactI18next)
-  .use(Backend)
-	.init({
-    backend: {
-      loadPath: './locales/{{lng}}/{{ns}}.json',
-      addPath: './locales/add/{{lng}}/{{ns}}',
-    },
-		lng: "en",
-		fallbackLng: "en",
-
-		interpolation: {
-			escapeValue: false
-		}
-	});
+import {
+  i18n,
+  useTranslation,
+  lngs
+} from "./src/js/main.js";
 
 const AppReactI18next = () => {
   const { t } = useTranslation();
