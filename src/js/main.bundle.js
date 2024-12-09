@@ -14,18 +14,18 @@ const { useTranslation, initReactI18next } = window.ReactI18next;
 const Backend = window.i18nextHttpBackend;
 
 const lngs = {
-  en: { nativeName: 'English' },
-  zh: { nativeName: '中文' }
+	en: { nativeName: 'English' },
+	zh: { nativeName: '中文' }
 };
 
 i18n
 	.use(initReactI18next)
-  .use(Backend)
+	.use(Backend)
 	.init({
-    backend: {
-      loadPath: './locales/{{lng}}/{{ns}}.json',
-      addPath: './locales/add/{{lng}}/{{ns}}',
-    },
+		backend: {
+			loadPath: './locales/{{lng}}/{{ns}}.json',
+			addPath: './locales/add/{{lng}}/{{ns}}',
+		},
 		lng: "en",
 		fallbackLng: "en",
 
@@ -104,7 +104,91 @@ helloWorld.addEventListener("click", () => {
 	invContainer.classList = invContainer.classList.contains("d-block") ? "d-none" : "d-block";
 });
 
+/* From pages/Layout.transpiled.js */
+const { Outlet, Link } = window.ReactRouterDOM;
+
+const Layout = () => {
+  return React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "nav",
+      null,
+      React.createElement(
+        "ul",
+        null,
+        React.createElement(
+          "li",
+          null,
+          React.createElement(
+            Link,
+            { to: "/" },
+            "Home"
+          )
+        ),
+        React.createElement(
+          "li",
+          null,
+          React.createElement(
+            Link,
+            { to: "/blogs" },
+            "Blogs"
+          )
+        ),
+        React.createElement(
+          "li",
+          null,
+          React.createElement(
+            Link,
+            { to: "/contact" },
+            "Contact"
+          )
+        )
+      )
+    ),
+    React.createElement(Outlet, null)
+  );
+};
+
+/* From pages/Home.transpiled.js */
+const Home = () => {
+  return React.createElement(
+    "h1",
+    null,
+    "Home"
+  );
+};
+
+/* From pages/Blogs.transpiled.js */
+const Blogs = () => {
+  return React.createElement(
+    "h1",
+    null,
+    "Blog Articles"
+  );
+};
+
+/* From pages/Contact.transpiled.js */
+const Contact = () => {
+  return React.createElement(
+    "h1",
+    null,
+    "Contact Me"
+  );
+};
+
+/* From pages/NoPage.transpiled.js */
+const NoPage = () => {
+  return React.createElement(
+    "h1",
+    null,
+    "404"
+  );
+};
+
 /* From transpiled components.js */
+const { BrowserRouter, Routes, Route } = window.ReactRouterDOM;
+
 const AppReactI18next = () => {
   const { t } = useTranslation();
   return React.createElement(
@@ -127,6 +211,25 @@ const AppReactI18next = () => {
   );
 };
 
+const ReactRouterDemo = () => {
+  return React.createElement(
+    BrowserRouter,
+    null,
+    React.createElement(
+      Routes,
+      null,
+      React.createElement(
+        Route,
+        { path: "/", element: React.createElement(Layout, null) },
+        React.createElement(Route, { index: true, element: React.createElement(Home, null) }),
+        React.createElement(Route, { path: "blogs", element: React.createElement(Blogs, null) }),
+        React.createElement(Route, { path: "contact", element: React.createElement(Contact, null) }),
+        React.createElement(Route, { path: "*", element: React.createElement(NoPage, null) })
+      )
+    )
+  );
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -140,7 +243,8 @@ class App extends React.Component {
         null,
         "React"
       ),
-      React.createElement(AppReactI18next, null)
+      React.createElement(AppReactI18next, null),
+      React.createElement(ReactRouterDemo, null)
     );
   }
 };

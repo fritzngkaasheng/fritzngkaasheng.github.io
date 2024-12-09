@@ -6,6 +6,14 @@ import {
   lngs
 } from "./src/js/main.js";
 
+const { BrowserRouter, Routes, Route } = window.ReactRouterDOM;
+
+import Layout from "./src/js/pages/Layout.transpiled.js";
+import Home from "./src/js/pages/Home.transpiled.js";
+import Blogs from "./src/js/pages/Blogs.transpiled.js";
+import Contact from "./src/js/pages/Contact.transpiled.js";
+import NoPage from "./src/js/pages/NoPage.transpiled.js";
+
 const AppReactI18next = () => {
   const { t } = useTranslation();
   return (
@@ -20,6 +28,21 @@ const AppReactI18next = () => {
   );
 };
 
+const ReactRouterDemo = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="blogs" element={<Blogs />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -29,6 +52,7 @@ class App extends React.Component {
       <div>
         <div>React</div>
         <AppReactI18next />
+        <ReactRouterDemo />
       </div>
     );
   }
