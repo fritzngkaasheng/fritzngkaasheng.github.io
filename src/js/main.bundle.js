@@ -187,7 +187,7 @@ const NoPage = () => {
 };
 
 /* From transpiled components.js */
-const { BrowserRouter, Routes, Route } = window.ReactRouterDOM;
+const { HashRouter, Routes, Route } = window.ReactRouterDOM;
 
 const AppReactI18next = () => {
   const { t } = useTranslation();
@@ -213,7 +213,7 @@ const AppReactI18next = () => {
 
 const ReactRouterDemo = () => {
   return React.createElement(
-    BrowserRouter,
+    HashRouter,
     null,
     React.createElement(
       Routes,

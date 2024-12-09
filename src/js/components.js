@@ -6,7 +6,7 @@ import {
   lngs
 } from "./src/js/main.js";
 
-const { BrowserRouter, Routes, Route } = window.ReactRouterDOM;
+const { HashRouter, Routes, Route } = window.ReactRouterDOM;
 
 import Layout from "./src/js/pages/Layout.transpiled.js";
 import Home from "./src/js/pages/Home.transpiled.js";
@@ -30,7 +30,7 @@ const AppReactI18next = () => {
 
 const ReactRouterDemo = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -39,7 +39,7 @@ const ReactRouterDemo = () => {
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
