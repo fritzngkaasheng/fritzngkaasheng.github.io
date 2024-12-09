@@ -8,12 +8,13 @@
 		<script>
 			const isProduction = true;
 			const isUsingBundleInDev = true;
+			const appVersion = "0.0.8";
 
 			const cssPath = "./" + (isProduction ? "dist" : "src") + "/stylesheets/build/";
 
 			const cssExt = (isProduction ? ".min" : "") + ".css";
 
-			const cssFile = cssPath + "main" + cssExt;
+			const cssFile = cssPath + "main" + cssExt + (isProduction ? "?ver=" + appVersion : "");
 
 			const link = document.createElement("link");
 			link.rel = "stylesheet";
@@ -63,7 +64,7 @@
 			if (isProduction) {
 				script = document.createElement("script");
 				script.type = "module";
-				script.src = "./dist/js/main.bundle.min.js";
+				script.src = "./dist/js/main.bundle.min.js?ver=" + appVersion;
 				document.body.appendChild(script);
 			}
 
