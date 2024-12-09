@@ -18,7 +18,7 @@ const Layout = () => {
           React.createElement(
             Link,
             { to: "/" },
-            "Home"
+            "Home (react-router-dom)"
           )
         ),
         React.createElement(

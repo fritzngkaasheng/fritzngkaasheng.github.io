@@ -6,7 +6,7 @@ const Layout = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/">Home (react-router-dom)</Link>
           </li>
           <li>
             <Link to="/blogs">Blogs</Link>
