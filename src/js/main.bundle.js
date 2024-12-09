@@ -9,31 +9,6 @@ const jsPDFBtn = document.getElementById("jspdf-btn");
 const html2pdfBtn = document.getElementById("html2pdf-btn");
 const htmlDocxJsBtn = document.getElementById("html-docx-js-btn");
 
-const i18n = window.i18next;
-const { useTranslation, initReactI18next } = window.ReactI18next;
-const Backend = window.i18nextHttpBackend;
-
-const lngs = {
-	en: { nativeName: 'English' },
-	zh: { nativeName: '中文' }
-};
-
-i18n
-	.use(initReactI18next)
-	.use(Backend)
-	.init({
-		backend: {
-			loadPath: './locales/{{lng}}/{{ns}}.json',
-			addPath: './locales/add/{{lng}}/{{ns}}',
-		},
-		lng: "en",
-		fallbackLng: "en",
-
-		interpolation: {
-			escapeValue: false
-		}
-	});
-
 const pdfOrientation = "portrait";
 const pdfSizeUnit = "px";
 // const a4Size72DPIPx = [width, height];
@@ -103,6 +78,33 @@ htmlDocxJsBtn.addEventListener("click", downloadDOCX);
 helloWorld.addEventListener("click", () => {
 	invContainer.classList = invContainer.classList.contains("d-block") ? "d-none" : "d-block";
 });
+
+/* From i18n.js */
+const i18n = window.i18next;
+const { useTranslation, initReactI18next } = window.ReactI18next;
+const LanguageDetector = window.i18nextBrowserLanguageDetector;
+const Backend = window.i18nextHttpBackend;
+
+const lngs = {
+  en: { nativeName: 'English' },
+  zh: { nativeName: '中文' }
+};
+
+i18n
+  .use(initReactI18next)
+  .use(LanguageDetector)
+  .use(Backend)
+  .init({
+    backend: {
+      loadPath: './locales/{{lng}}/{{ns}}.json',
+      addPath: './locales/add/{{lng}}/{{ns}}',
+    },
+    fallbackLng: "en",
+
+    interpolation: {
+      escapeValue: false
+    }
+  });
 
 /* From pages/Layout.transpiled.js */
 const { Outlet, Link } = window.ReactRouterDOM;

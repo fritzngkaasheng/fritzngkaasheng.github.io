@@ -4,7 +4,7 @@ import {
   i18n,
   useTranslation,
   lngs
-} from "./src/js/main.js";
+} from "./src/js/i18n.js";
 
 const { HashRouter, Routes, Route } = window.ReactRouterDOM;
 
