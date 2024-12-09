@@ -13,18 +13,18 @@ const { useTranslation, initReactI18next } = window.ReactI18next;
 const Backend = window.i18nextHttpBackend;
 
 const lngs = {
-  en: { nativeName: 'English' },
-  zh: { nativeName: '中文' }
+	en: { nativeName: 'English' },
+	zh: { nativeName: '中文' }
 };
 
 i18n
 	.use(initReactI18next)
-  .use(Backend)
+	.use(Backend)
 	.init({
-    backend: {
-      loadPath: './locales/{{lng}}/{{ns}}.json',
-      addPath: './locales/add/{{lng}}/{{ns}}',
-    },
+		backend: {
+			loadPath: './locales/{{lng}}/{{ns}}.json',
+			addPath: './locales/add/{{lng}}/{{ns}}',
+		},
 		lng: "en",
 		fallbackLng: "en",
 

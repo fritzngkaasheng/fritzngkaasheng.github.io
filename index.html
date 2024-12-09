@@ -6,19 +6,19 @@
 		<title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<script>
-		  const isProduction = true;
+			const isProduction = true;
 			const isUsingBundleInDev = true;
 
-		  const cssPath = "./" + (isProduction ? "dist" : "src") + "/stylesheets/build/";
+			const cssPath = "./" + (isProduction ? "dist" : "src") + "/stylesheets/build/";
 
 			const cssExt = (isProduction ? ".min" : "") + ".css";
 
-		  const cssFile = cssPath + "main" + cssExt;
+			const cssFile = cssPath + "main" + cssExt;
 
-		  const link = document.createElement("link");
-		  link.rel = "stylesheet";
-		  link.href = cssFile;
-		  document.head.appendChild(link);
+			const link = document.createElement("link");
+			link.rel = "stylesheet";
+			link.href = cssFile;
+			document.head.appendChild(link);
 		</script>
 	</head>
 	<body>
@@ -53,10 +53,13 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/24.0.2/i18next.min.js" integrity="sha512-gPfFz64ijjoBcvrP03DyLCExHxhVQ5Ubj7mjbrEugLBboYsD9NOyjMEP6+u1ESZBYcJnzxvqPNnzNAwbEGFpjw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@3.0.1/i18nextHttpBackend.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/react-i18next@15.1.3/dist/umd/react-i18next.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@remix-run/router@1.21.0/dist/router.umd.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/6.28.0/react-router.production.min.js" integrity="sha512-QIMTqBiQl8VH+/ei3TpwlOlm08c4Ch3LASMFz4S8JuHSJAUN1xLRvJHNlOjHkBjuPTcUD41L7cmac7UryhgqUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/6.28.0/react-router-dom.production.min.js" integrity="sha512-UhGSZ81Jg7IcSupeBdACb2Xx92AnsTeKKwNsNm9ssqt+VZJfO1PQDLCO3BzYvJGwMPD3JXwx1xMRzIiaReLlYg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 		<script>
-		  let script = {};
-		  
+			let script = {};
+			
 			if (isProduction) {
 				script = document.createElement("script");
 				script.type = "module";
@@ -70,20 +73,38 @@
 
 					const jsExt = (isProduction ? ".min" : "") + ".js";
 
-					const jsMainFile = jsPath + "main" + jsExt;
-					const jsComponentsFile = jsPath + "components" + jsExt;
+					const jsFileList = [
+						{
+							name: "main",
+							type: "module"
+						},
+						/*{
+							name: "pages/Layout",
+							type: "text/babel"
+						},*/
+						{
+							name: "components",
+							type: "text/babel"
+						},
+					];
 
-					script = document.createElement("script");
-					script.type = "module";
-					script.src = jsMainFile;
-					document.body.appendChild(script);
+					jsFileList.map((jsFile) => {
+						if (jsFile.type == "module") {
+							script = document.createElement("script");
+							script.type = "module";
+							script.src = jsPath + jsFile.name + jsExt;
+							document.body.appendChild(script);
+						}
 
-					script = document.createElement("script");
-					script.type = "text/babel";
-					script.setAttribute("data-presets", "react");
-					script.setAttribute("data-type", "module");
-					script.src = jsComponentsFile;
-					document.body.appendChild(script);
+						if (jsFile.type == "text/babel") {
+							script = document.createElement("script");
+							script.type = "text/babel";
+							script.setAttribute("data-presets", "react");
+							script.setAttribute("data-type", "module");
+							script.src = jsPath + jsFile.name + jsExt;
+							document.body.appendChild(script);
+						}
+					});
 				}
 
 				if (isUsingBundleInDev) {
