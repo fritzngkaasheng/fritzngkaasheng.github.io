@@ -2,14 +2,16 @@
 
 /* From main.js */
 
-/* From pages/Layout.transpiled.js */
+/* From i18n.js */
 
-/* From pages/Home.transpiled.js */
+/* From pages/Layout.js */
 
-/* From pages/Blogs.transpiled.js */
+/* From pages/Home.js */
 
-/* From pages/Contact.transpiled.js */
+/* From pages/Blogs.js */
 
-/* From pages/NoPage.transpiled.js */
+/* From pages/Contact.js */
 
-/* From transpiled components.js */
+/* From pages/NoPage.js */
+
+/* From components.js */
