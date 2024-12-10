@@ -1,5 +1,4 @@
 const Contact = () => {
-  return <h1>Contact Me</h1>;
+  return /*#__PURE__*/React.createElement("h1", null, "Contact Me");
 };
-
-export default Contact;
+export default Contact; 

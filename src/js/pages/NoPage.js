@@ -1,5 +1,4 @@
 const NoPage = () => {
-  return <h1>404</h1>;
+  return /*#__PURE__*/React.createElement("h1", null, "404");
 };
-
-export default NoPage;
+export default NoPage; 
