@@ -1,11 +1,7 @@
 "use strict";
 
 const NoPage = () => {
-  return React.createElement(
-    "h1",
-    null,
-    "404"
-  );
+  return <h1>404</h1>;
 };
 
 export default NoPage;
