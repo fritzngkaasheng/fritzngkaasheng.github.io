@@ -1,5 +1,4 @@
 const Home = () => {
-  return <h1>Home</h1>;
+  return /*#__PURE__*/React.createElement("h1", null, "Home");
 };
-
-export default Home;
+export default Home; 

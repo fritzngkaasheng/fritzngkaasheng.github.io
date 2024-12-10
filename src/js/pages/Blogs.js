@@ -1,5 +1,4 @@
 const Blogs = () => {
-  return <h1>Blog Articles</h1>;
+  return /*#__PURE__*/React.createElement("h1", null, "Blog Articles");
 };
-
-export default Blogs;
+export default Blogs; 
