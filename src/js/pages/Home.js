@@ -1,3 +1,5 @@
+"use strict";
+
 const Home = () => {
   return /*#__PURE__*/React.createElement("h1", null, "Home");
 };
