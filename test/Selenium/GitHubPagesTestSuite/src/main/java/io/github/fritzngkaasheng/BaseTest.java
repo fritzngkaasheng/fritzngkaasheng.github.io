@@ -49,23 +49,8 @@ public abstract class BaseTest {
     }
 
     @Test(priority = 1)
-    public void testHelloWorld() throws InterruptedException {
-        new TestHelloWorld().testHelloWorld(driver);
-    }
-
-    @Test(priority = 2)
-    public void testMiniPageTitleHome() throws InterruptedException {
-        new TestMiniPageTitleHome().testMiniPageTitleHome(driver);
-    }
-
-    @Test(priority = 3)
-    public void testBlogsNavigation() throws InterruptedException {
-        new TestBlogsNavigation().testBlogsNavigation(driver);
-    }
-
-    @Test(priority = 4)
-    public void testPageRefresh() throws InterruptedException {
-        new TestPageRefresh().testPageRefresh(driver);
+    public void homePage() throws InterruptedException {
+        new HomePage().homePage(driver);
     }
 
     @AfterTest

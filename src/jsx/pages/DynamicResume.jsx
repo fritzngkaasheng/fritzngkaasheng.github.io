@@ -2,8 +2,8 @@
 
 import MainContainer from "/src/js/components/MainContainer.js";
 
-const Home = () => {
+const DynamicResume = () => {
   return <MainContainer />;
 };
 
-export default Home;
+export default DynamicResume;

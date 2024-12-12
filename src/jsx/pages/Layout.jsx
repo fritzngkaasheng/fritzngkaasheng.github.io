@@ -1,26 +1,17 @@
 "use strict";
 
-const { Outlet, Link } = window.ReactRouterDOM;
+const { Outlet } = window.ReactRouterDOM;
+
+import Header from "/src/js/components/Header.js";
+import LanguageSwitcher from "/src/js/components/LanguageSwitcher.js";
 
 const Layout = () => {
   return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home (react-router-dom)</Link>
-          </li>
-          <li>
-            <Link to="/blogs">Blogs</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-        </ul>
-      </nav>
-
+    <>
+      <Header />
+      <LanguageSwitcher />
       <Outlet />
-    </div>
+    </>
   )
 };
 
