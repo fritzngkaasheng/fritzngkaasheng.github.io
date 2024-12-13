@@ -6,7 +6,7 @@ const ComingSoonSection = () => {
     t
   } = useTranslation();
   return /*#__PURE__*/React.createElement("div", {
-    class: "coming-soon-section"
+    className: "coming-soon-section"
   }, /*#__PURE__*/React.createElement("h1", {
     id: "coming-soon-title"
   }, t('Coming Soon')));

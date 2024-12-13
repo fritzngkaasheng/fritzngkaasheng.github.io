@@ -1,9 +1,9 @@
 "use strict";
 
-import MainContainer from "/src/js/components/MainContainer.js";
+import A4Container from "/src/js/components/A4Container.js";
 
 const AcademicCV = () => {
-  return <MainContainer />;
+  return <A4Container />;
 };
 
 export default AcademicCV;

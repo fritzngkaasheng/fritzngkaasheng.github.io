@@ -1,13 +1,7 @@
-$border-color: #00FF00;
-
 :root {
 	--bs-body-font-family: Arial, "Helvetica Neue", Helvetica, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-@mixin sass-element-border {
-	border: 1px solid $border-color;
-}
-
-.sass-element {
-	@include sass-element-border;
+header.navbar {
+	left: unset;
 }
