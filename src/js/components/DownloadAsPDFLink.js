@@ -1,7 +1,7 @@
 "use strict";
 
 import { pdfOrientation, pdfSizeUnit, a4ScaledToHD720pDimensionsPx, docName, pdfExt, useEffect } from "/src/js/main.js";
-const DownloadAsPDFButton = () => {
+const DownloadAsPDFLink = () => {
   useEffect(() => {
     const {
       jsPDF
@@ -26,7 +26,12 @@ const DownloadAsPDFButton = () => {
       });
     }
     ;
+
+    /*
+    TODO: Check which Download PDF button has a higher ATS score
     jsPDFBtn.addEventListener("click", downloadPDFUsingJsPDF);
+    */
+
     function downloadPDFUsingHtml2pdf() {
       let element = document.querySelector("html");
       let opt = {
@@ -58,10 +63,10 @@ const DownloadAsPDFButton = () => {
   const cleanupEventListener = (element, listener) => {
     element.removeEventListener("click", listener);
   };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
-    id: "jspdf-btn"
-  }, "jsPDF"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("button", {
-    id: "html2pdf-btn"
-  }, "html2pdf"));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("a", {
+    id: "html2pdf-btn",
+    className: "dropdown-item",
+    href: "#"
+  }, "Download .PDF"));
 };
-export default DownloadAsPDFButton; 
+export default DownloadAsPDFLink; 

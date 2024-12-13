@@ -9,7 +9,7 @@ import {
   useEffect
 } from "/src/js/main.js";
 
-const DownloadAsPDFButton = () => {
+const DownloadAsPDFLink = () => {
   useEffect(() => {
     const { jsPDF } = window.jspdf;
 
@@ -35,7 +35,10 @@ const DownloadAsPDFButton = () => {
       });
     };
     
+    /*
+    TODO: Check which Download PDF button has a higher ATS score
     jsPDFBtn.addEventListener("click", downloadPDFUsingJsPDF);
+    */
     
     function downloadPDFUsingHtml2pdf() {	
       let element = document.querySelector("html");
@@ -71,11 +74,15 @@ const DownloadAsPDFButton = () => {
 
   return (
     <>
+      <a id="html2pdf-btn" className="dropdown-item" href="#">Download .PDF</a>
+      {/*
+      TODO: Check which Download PDF button has a higher ATS score
       <button id="jspdf-btn">jsPDF</button>
         <br/>
       <button id="html2pdf-btn">html2pdf</button>
+      */}
     </>
   );
 };
 
-export default DownloadAsPDFButton;
+export default DownloadAsPDFLink;

@@ -7,7 +7,7 @@ import {
   useEffect
 } from "/src/js/main.js";
 
-const DownloadAsDocxButton = () => {
+const DownloadAsDocxLink = () => {
   useEffect(() => {
     const htmlDocxJsBtn = document.getElementById("html-docx-js-btn");
 
@@ -26,8 +26,8 @@ const DownloadAsDocxButton = () => {
   };
 
   return (
-    <button id="html-docx-js-btn">html-docx-js</button>
+    <a id="html-docx-js-btn" className="dropdown-item" href="#">Download .DOCX</a>
   );
 };
 
-export default DownloadAsDocxButton;
+export default DownloadAsDocxLink;

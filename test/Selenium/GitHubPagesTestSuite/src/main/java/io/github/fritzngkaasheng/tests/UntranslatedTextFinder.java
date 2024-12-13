@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class UntranslatedTextFinder {
     public void findUntranslatedText(WebDriver driver) throws InterruptedException {
-        WebElement languageSwitcherBtn = driver.findElement(By.id("language-switcher-btn"));
+        WebElement languageSwitcherBtn = driver.findElement(By.id("language-switcher-dropstart"));
         languageSwitcherBtn.click();
 
         WebElement translateToChineseBtn = driver.findElement(By.cssSelector("#language-switcher > li:nth-child(2) > button"));

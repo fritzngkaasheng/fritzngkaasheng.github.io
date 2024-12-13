@@ -1,7 +1,7 @@
 "use strict";
 
 import { docName, docxExt, doctypeDeclaration, useEffect } from "/src/js/main.js";
-const DownloadAsDocxButton = () => {
+const DownloadAsDocxLink = () => {
   useEffect(() => {
     const htmlDocxJsBtn = document.getElementById("html-docx-js-btn");
     function downloadDOCX() {
@@ -14,8 +14,10 @@ const DownloadAsDocxButton = () => {
   const cleanupEventListener = (element, listener) => {
     element.removeEventListener("click", listener);
   };
-  return /*#__PURE__*/React.createElement("button", {
-    id: "html-docx-js-btn"
-  }, "html-docx-js");
+  return /*#__PURE__*/React.createElement("a", {
+    id: "html-docx-js-btn",
+    className: "dropdown-item",
+    href: "#"
+  }, "Download .DOCX");
 };
-export default DownloadAsDocxButton; 
+export default DownloadAsDocxLink; 
