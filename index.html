@@ -6,8 +6,7 @@
 		<title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<script>
-			const isProduction = false;
-			const isUsingBundleInDev = false;
+			const isProduction = true;
 			const appVersion = "0.1.0";
 
 			const cssPath = "./" + (isProduction ? "dist" : "src") + "/stylesheets/build/";
@@ -53,47 +52,38 @@
 			}
 
 			if (!isProduction) {
-				if (!isUsingBundleInDev) {
-					const jsPath = "./src/js/";
+				const jsPath = "./src/js/";
 
-					const jsExt = (isProduction ? ".min" : "") + ".js";
+				const jsExt = (isProduction ? ".min" : "") + ".js";
 
-					const jsFileList = [
-						{
-							name: "App",
-							type: "module"
-						},
-						{
-							name: "main",
-							type: "module"
-						},
-					];
+				const jsFileList = [
+					{
+						name: "App",
+						type: "module"
+					},
+					{
+						name: "main",
+						type: "module"
+					},
+				];
 
-					jsFileList.map((jsFile) => {
-						if (jsFile.type == "module") {
-							script = document.createElement("script");
-							script.type = "module";
-							script.src = jsPath + jsFile.name + jsExt;
-							document.body.appendChild(script);
-						}
+				jsFileList.map((jsFile) => {
+					if (jsFile.type == "module") {
+						script = document.createElement("script");
+						script.type = "module";
+						script.src = jsPath + jsFile.name + jsExt;
+						document.body.appendChild(script);
+					}
 
-						if (jsFile.type == "text/babel") {
-							script = document.createElement("script");
-							script.type = "text/babel";
-							script.setAttribute("data-presets", "react");
-							script.setAttribute("data-type", "module");
-							script.src = jsPath + jsFile.name + jsExt;
-							document.body.appendChild(script);
-						}
-					});
-				}
-
-				if (isUsingBundleInDev) {
-					script = document.createElement("script");
-					script.type = "module";
-					script.src = "./src/js/main.bundle.js";
-					document.body.appendChild(script);
-				}
+					if (jsFile.type == "text/babel") {
+						script = document.createElement("script");
+						script.type = "text/babel";
+						script.setAttribute("data-presets", "react");
+						script.setAttribute("data-type", "module");
+						script.src = jsPath + jsFile.name + jsExt;
+						document.body.appendChild(script);
+					}
+				});
 			}
 		</script>
 	</body>
