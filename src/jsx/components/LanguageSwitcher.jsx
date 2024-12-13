@@ -11,7 +11,7 @@ const LanguageSwitcher = () => {
   const { t } = useTranslation();
   return (
     <div className="btn-group dropstart">
-      <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <button id="language-switcher-btn" type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         <Icon name="languageSwitcher" />
       </button>
       <ul id="language-switcher" className="dropdown-menu">

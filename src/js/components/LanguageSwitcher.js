@@ -9,6 +9,7 @@ const LanguageSwitcher = () => {
   return /*#__PURE__*/React.createElement("div", {
     className: "btn-group dropstart"
   }, /*#__PURE__*/React.createElement("button", {
+    id: "language-switcher-btn",
     type: "button",
     className: "btn btn-secondary dropdown-toggle",
     "data-bs-toggle": "dropdown",

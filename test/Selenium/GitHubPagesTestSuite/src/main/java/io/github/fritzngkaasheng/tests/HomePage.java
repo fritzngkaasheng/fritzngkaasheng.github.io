@@ -9,8 +9,6 @@ public class HomePage {
     public void homePage(WebDriver driver) throws InterruptedException {
         new ComingSoonSection().findComingSoonSection(driver);
 
-        WebElement translateToChineseBtn = driver.findElement(By.cssSelector("#language-switcher button:nth-child(2)"));
-        translateToChineseBtn.click();
         new UntranslatedTextFinder().findUntranslatedText(driver);
     }
 }
