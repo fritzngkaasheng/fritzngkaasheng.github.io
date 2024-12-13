@@ -50,6 +50,8 @@ public abstract class BaseTest {
 
     @Test(priority = 1)
     public void homePage() throws InterruptedException {
+        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(500));
+
         new HomePage().homePage(driver);
     }
 

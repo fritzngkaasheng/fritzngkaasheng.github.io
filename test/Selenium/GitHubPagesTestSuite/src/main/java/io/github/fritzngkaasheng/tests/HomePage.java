@@ -7,10 +7,10 @@ import org.testng.Assert;
 
 public class HomePage {
     public void homePage(WebDriver driver) throws InterruptedException {
-        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(500));
+        new ComingSoonSection().findComingSoonSection(driver);
 
-        WebElement comingSoonTitle = driver.findElement(By.id("coming-soon-title"));
-        String comingSoonTitleText = comingSoonTitle.getText();
-        Assert.assertEquals(comingSoonTitleText, "Coming Soon", "Coming Soon text mismatch");
+        WebElement translateToChineseBtn = driver.findElement(By.cssSelector("#language-switcher button:nth-child(2)"));
+        translateToChineseBtn.click();
+        new UntranslatedTextFinder().findUntranslatedText(driver);
     }
 }
