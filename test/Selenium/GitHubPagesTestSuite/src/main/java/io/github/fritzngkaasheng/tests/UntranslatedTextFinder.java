@@ -13,15 +13,6 @@ import java.util.Set;
 
 public class UntranslatedTextFinder {
     public void findUntranslatedText(WebDriver driver) throws InterruptedException {
-        WebElement languageSwitcherBtn = driver.findElement(By.id("language-switcher-dropstart"));
-        languageSwitcherBtn.click();
-
-        WebElement translateToChineseBtn = driver.findElement(By.cssSelector("#language-switcher > li:nth-child(2) > button"));
-        translateToChineseBtn.click();
-
-        WebElement navBarToggler = driver.findElement(By.className("navbar-toggler"));
-        navBarToggler.click();
-
         List<WebElement> textElements = driver.findElements(By.xpath("//*[text()]"));
         List<String> texts = new ArrayList<>();
         for (WebElement element : textElements) {
@@ -59,13 +50,8 @@ public class UntranslatedTextFinder {
             for (String untranslatedText : untranslatedTexts) {
                 System.out.println("\"" + untranslatedText + "\"");
             }
-        } else {
-            System.out.println("All texts are translated correctly.");
         }
 
         Assert.assertFalse(flagUntranslatedTextFound, "Untranslated texts found. Please check the terminal.");
-
-        WebElement closeNavBarBtn = driver.findElement(By.cssSelector("#offcanvasNavbar .btn-close"));
-        closeNavBarBtn.click();
     }
 }
