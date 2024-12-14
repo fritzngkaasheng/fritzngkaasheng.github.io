@@ -16,10 +16,13 @@ import {
 const DownloadAsPDFButton = () => {
   const { t } = useTranslation();
   useEffect(() => {
+    const html2pdfBtn = document.getElementById("html2pdf-btn");
+
+    //TODO: Check which Download PDF button has a higher ATS score
+    /*
     const { jsPDF } = window.jspdf;
 
     const jsPDFBtn = document.getElementById("jspdf-btn");
-    const html2pdfBtn = document.getElementById("html2pdf-btn");
 
     function downloadPDFUsingJsPDF() {	
       let doc = new jsPDF({
@@ -40,11 +43,11 @@ const DownloadAsPDFButton = () => {
       });
     };
 
-    //TODO: Check which Download PDF button has a higher ATS score
-    //jsPDFBtn.addEventListener("click", downloadPDFUsingJsPDF);
+    jsPDFBtn.addEventListener("click", downloadPDFUsingJsPDF);
+    */
     
     function downloadPDFUsingHtml2pdf() {	
-      let element = document.querySelector("html");
+      let element = document.querySelectorAll(".a4-container")[0];
       let opt = {
         filename:     docName + pdfExt,
         image:        { type: 'jpeg', quality: 0.98 },

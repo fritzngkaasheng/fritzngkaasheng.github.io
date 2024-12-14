@@ -7,17 +7,19 @@ const DownloadAsPDFButton = () => {
     t
   } = useTranslation();
   useEffect(() => {
-    const {
-      jsPDF
-    } = window.jspdf;
-    const jsPDFBtn = document.getElementById("jspdf-btn");
     const html2pdfBtn = document.getElementById("html2pdf-btn");
-    function downloadPDFUsingJsPDF() {
+
+    //TODO: Check which Download PDF button has a higher ATS score
+    /*
+    const { jsPDF } = window.jspdf;
+      const jsPDFBtn = document.getElementById("jspdf-btn");
+      function downloadPDFUsingJsPDF() {	
       let doc = new jsPDF({
         orientation: pdfOrientation,
         unit: pdfSizeUnit,
         format: a4ScaledToHD720pDimensionsPx
       });
+    
       doc.html(document.querySelector("html"), {
         width: a4ScaledToHD720pDimensionsPx[0],
         windowWidth: a4ScaledToHD720pDimensionsPx[0],
@@ -28,14 +30,12 @@ const DownloadAsPDFButton = () => {
           doc.save(docName + pdfExt);
         }
       });
-    }
-    ;
-
-    //TODO: Check which Download PDF button has a higher ATS score
-    //jsPDFBtn.addEventListener("click", downloadPDFUsingJsPDF);
+    };
+      jsPDFBtn.addEventListener("click", downloadPDFUsingJsPDF);
+    */
 
     function downloadPDFUsingHtml2pdf() {
-      let element = document.querySelector("html");
+      let element = document.querySelectorAll(".a4-container")[0];
       let opt = {
         filename: docName + pdfExt,
         image: {

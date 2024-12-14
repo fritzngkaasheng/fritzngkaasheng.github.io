@@ -1,7 +1,14 @@
+$a4Size300DPIPxWidth: 2480;
+$a4Size300DPIPxHeight: 3508;
+
 :root {
 	--bs-body-font-family: Arial, "Helvetica Neue", Helvetica, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 header.navbar {
 	left: unset;
+}
+
+.a4-container {
+	aspect-ratio: calc($a4Size300DPIPxWidth / $a4Size300DPIPxHeight);
 }

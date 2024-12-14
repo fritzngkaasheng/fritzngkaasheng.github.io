@@ -17,7 +17,14 @@ const DownloadAsDocxButton = () => {
     const htmlDocxJsBtn = document.getElementById("html-docx-js-btn");
 
     function downloadDOCX() {
-      let converted = htmlDocx.asBlob(doctypeDeclaration + document.querySelector("html").outerHTML);
+      let converted = htmlDocx.asBlob(
+        doctypeDeclaration 
+        + "<html>"
+        + document.querySelector("head").outerHTML
+        + "<body>"
+        + document.querySelectorAll(".a4-container")[0].outerHTML
+        + "</body>"
+        + "</html>");
       saveAs(converted, docName + docxExt);
     }
 
