@@ -24,4 +24,3 @@ const Icon = ({ name, className = "", ...props }) => {
 };
 
 export default Icon;
-

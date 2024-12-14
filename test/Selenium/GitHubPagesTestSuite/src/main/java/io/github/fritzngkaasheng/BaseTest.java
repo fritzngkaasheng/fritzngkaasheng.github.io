@@ -56,10 +56,17 @@ public abstract class BaseTest {
     }
 
     @Test(priority = 2)
-    public void dynamicResume() throws InterruptedException {
+    public void error404Page() throws InterruptedException {
+        driver.get(url + "#/summon/404/error");
+
+        new Error404Page().error404Page(driver);
+    }
+
+    @Test(priority = 3)
+    public void dynamicResumePage() throws InterruptedException {
         new Header().navigateTo(driver, "#/dynamic-resume");
 
-        new DynamicResume().dynamicResume(driver);
+        new DynamicResumePage().dynamicResumePage(driver);
     }
 
     @AfterTest

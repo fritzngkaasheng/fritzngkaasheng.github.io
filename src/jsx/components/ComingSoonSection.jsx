@@ -7,7 +7,7 @@ import {
 const ComingSoonSection = () => {
   const { t } = useTranslation();
   return (
-    <div className="coming-soon-section">
+    <div className="coming-soon-section container">
       <h1 id="coming-soon-title">{t('Coming Soon')}</h1>
     </div>
   );
