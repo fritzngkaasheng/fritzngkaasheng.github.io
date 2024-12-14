@@ -55,6 +55,13 @@ public abstract class BaseTest {
         new HomePage().homePage(driver);
     }
 
+    @Test(priority = 2)
+    public void dynamicResume() throws InterruptedException {
+        new Header().navigateTo(driver, "#/dynamic-resume");
+
+        new DynamicResume().dynamicResume(driver);
+    }
+
     @AfterTest
     public void tearDown() {
         if (driver != null) {

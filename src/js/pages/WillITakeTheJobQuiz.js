@@ -1,7 +1,7 @@
 "use strict";
 
-import A4Container from "/src/js/components/A4Container.js";
+import ComingSoonSection from "/src/js/components/ComingSoonSection.js";
 const WillITakeTheJobQuiz = () => {
-  return /*#__PURE__*/React.createElement(A4Container, null);
+  return /*#__PURE__*/React.createElement(ComingSoonSection, null);
 };
 export default WillITakeTheJobQuiz; 

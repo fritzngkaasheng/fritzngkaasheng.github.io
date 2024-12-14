@@ -2,7 +2,7 @@
 
 import { useTranslation } from "/src/js/i18n.js";
 import { pdfOrientation, pdfSizeUnit, a4ScaledToHD720pDimensionsPx, docName, pdfExt, useEffect } from "/src/js/main.js";
-const DownloadAsPDFLink = () => {
+const DownloadAsPDFButton = () => {
   const {
     t
   } = useTranslation();
@@ -31,10 +31,8 @@ const DownloadAsPDFLink = () => {
     }
     ;
 
-    /*
-    TODO: Check which Download PDF button has a higher ATS score
-    jsPDFBtn.addEventListener("click", downloadPDFUsingJsPDF);
-    */
+    //TODO: Check which Download PDF button has a higher ATS score
+    //jsPDFBtn.addEventListener("click", downloadPDFUsingJsPDF);
 
     function downloadPDFUsingHtml2pdf() {
       let element = document.querySelector("html");
@@ -60,17 +58,17 @@ const DownloadAsPDFLink = () => {
     ;
     html2pdfBtn.addEventListener("click", downloadPDFUsingHtml2pdf);
     return () => {
-      cleanupEventListener(jsPDFBtn, downloadPDFUsingJsPDF);
+      //TODO: Check which Download PDF button has a higher ATS score
+      //cleanupEventListener(jsPDFBtn, downloadPDFUsingJsPDF);
       cleanupEventListener(html2pdfBtn, downloadPDFUsingHtml2pdf);
     };
   }, []);
   const cleanupEventListener = (element, listener) => {
     element.removeEventListener("click", listener);
   };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("a", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
     id: "html2pdf-btn",
-    className: "dropdown-item",
-    href: "#"
+    className: "dropdown-item"
   }, t('Download .PDF')));
 };
-export default DownloadAsPDFLink; 
+export default DownloadAsPDFButton; 

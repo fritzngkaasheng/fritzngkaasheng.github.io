@@ -17,7 +17,7 @@ const Icon = ({ name, className = "", ...props }) => {
   };
 
   return (
-    <span className={`icon${" " + className}`} {...props}>
+    <span className={`icon${className ? " " + className : ""}`} {...props}>
       {icons[name] || null}
     </span>
   );

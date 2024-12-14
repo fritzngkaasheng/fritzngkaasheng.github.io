@@ -1,6 +1,6 @@
 "use strict";
 
-import Icon from "/src/js/components/Icons.js";
+import Icon from "/src/js/Icons.js";
 import Navigation from "/src/js/components/Navigation.js";
 import LanguageSwitcher from "/src/js/components/LanguageSwitcher.js";
 const Header = () => {

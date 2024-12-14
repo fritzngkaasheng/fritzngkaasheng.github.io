@@ -1,7 +1,7 @@
 "use strict";
 
 import { i18n, useTranslation, lngs } from "/src/js/i18n.js";
-import Icon from "/src/js/components/Icons.js";
+import Icon from "/src/js/Icons.js";
 const LanguageSwitcher = () => {
   const {
     t
@@ -20,10 +20,9 @@ const LanguageSwitcher = () => {
     id: "language-switcher",
     className: "dropdown-menu"
   }, Object.keys(lngs).map(lng => /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("button", {
-    className: "dropdown-item",
+    className: `dropdown-item${i18n.resolvedLanguage === lng ? " active" : ""}`,
     key: lng,
-    onClick: () => i18n.changeLanguage(lng),
-    disabled: i18n.resolvedLanguage === lng
+    onClick: () => i18n.changeLanguage(lng)
   }, lngs[lng].nativeName)))));
 };
 export default LanguageSwitcher; 

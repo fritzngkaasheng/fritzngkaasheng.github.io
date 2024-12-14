@@ -5,7 +5,7 @@ import {
   lngs
 } from "/src/js/i18n.js";
 
-import Icon from "/src/js/components/Icons.js";
+import Icon from "/src/js/Icons.js";
 
 const LanguageSwitcher = () => {
   const { t } = useTranslation();
@@ -16,7 +16,9 @@ const LanguageSwitcher = () => {
       </button>
       <ul id="language-switcher" className="dropdown-menu">
         {Object.keys(lngs).map((lng) => (
-          <li><button className="dropdown-item" key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{lngs[lng].nativeName}</button></li>
+          <li>
+            <button className={`dropdown-item${i18n.resolvedLanguage === lng ? " active" : ""}`} key={lng} onClick={() => i18n.changeLanguage(lng)}>{lngs[lng].nativeName}</button>
+          </li>
         ))}
       </ul>
     </div>

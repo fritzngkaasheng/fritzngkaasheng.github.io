@@ -1,8 +1,8 @@
 "use strict";
 
-import Icon from "/src/js/components/Icons.js";
-import DownloadAsPDFLink from "/src/js/components/DownloadAsPDFLink.js";
-import DownloadAsDocxLink from "/src/js/components/DownloadAsDocxLink.js";
+import Icon from "/src/js/Icons.js";
+import DownloadAsPDFButton from "/src/js/components/DownloadAsPDFButton.js";
+import DownloadAsDocxButton from "/src/js/components/DownloadAsDocxButton.js";
 const BottomRightFloatingButtons = () => {
   return /*#__PURE__*/React.createElement("div", {
     id: "bottom-right-floating-btns",
@@ -17,6 +17,6 @@ const BottomRightFloatingButtons = () => {
     name: "download"
   })), /*#__PURE__*/React.createElement("ul", {
     className: "dropdown-menu"
-  }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DownloadAsPDFLink, null)), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DownloadAsDocxLink, null))));
+  }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DownloadAsPDFButton, null)), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DownloadAsDocxButton, null))));
 };
 export default BottomRightFloatingButtons; 

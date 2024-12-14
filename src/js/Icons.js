@@ -34,7 +34,7 @@ const Icon = ({
     }))
   };
   return /*#__PURE__*/React.createElement("span", _extends({
-    className: `icon${" " + className}`
+    className: `icon${className ? " " + className : ""}`
   }, props), icons[name] || null);
 };
 export default Icon; 

@@ -13,7 +13,7 @@ import {
   useEffect
 } from "/src/js/main.js";
 
-const DownloadAsPDFLink = () => {
+const DownloadAsPDFButton = () => {
   const { t } = useTranslation();
   useEffect(() => {
     const { jsPDF } = window.jspdf;
@@ -39,11 +39,9 @@ const DownloadAsPDFLink = () => {
         }
       });
     };
-    
-    /*
-    TODO: Check which Download PDF button has a higher ATS score
-    jsPDFBtn.addEventListener("click", downloadPDFUsingJsPDF);
-    */
+
+    //TODO: Check which Download PDF button has a higher ATS score
+    //jsPDFBtn.addEventListener("click", downloadPDFUsingJsPDF);
     
     function downloadPDFUsingHtml2pdf() {	
       let element = document.querySelector("html");
@@ -68,7 +66,8 @@ const DownloadAsPDFLink = () => {
     html2pdfBtn.addEventListener("click", downloadPDFUsingHtml2pdf);
 
     return () => {
-      cleanupEventListener(jsPDFBtn, downloadPDFUsingJsPDF);
+      //TODO: Check which Download PDF button has a higher ATS score
+      //cleanupEventListener(jsPDFBtn, downloadPDFUsingJsPDF);
       cleanupEventListener(html2pdfBtn, downloadPDFUsingHtml2pdf);
     };
   }, []);
@@ -79,7 +78,7 @@ const DownloadAsPDFLink = () => {
 
   return (
     <>
-      <a id="html2pdf-btn" className="dropdown-item" href="#">{t('Download .PDF')}</a>
+      <button id="html2pdf-btn" className="dropdown-item">{t('Download .PDF')}</button>
       {/*
       TODO: Check which Download PDF button has a higher ATS score
       <button id="jspdf-btn">jsPDF</button>
@@ -90,4 +89,4 @@ const DownloadAsPDFLink = () => {
   );
 };
 
-export default DownloadAsPDFLink;
+export default DownloadAsPDFButton;

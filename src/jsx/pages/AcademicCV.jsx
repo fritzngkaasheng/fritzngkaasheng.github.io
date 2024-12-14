@@ -1,9 +1,9 @@
 "use strict";
 
-import A4Container from "/src/js/components/A4Container.js";
+import ComingSoonSection from "/src/js/components/ComingSoonSection.js";
 
 const AcademicCV = () => {
-  return <A4Container />;
+  return <ComingSoonSection />;
 };
 
 export default AcademicCV;

@@ -1,8 +1,8 @@
 "use strict";
 
-import Icon from "/src/js/components/Icons.js";
-import DownloadAsPDFLink from "/src/js/components/DownloadAsPDFLink.js";
-import DownloadAsDocxLink from "/src/js/components/DownloadAsDocxLink.js";
+import Icon from "/src/js/Icons.js";
+import DownloadAsPDFButton from "/src/js/components/DownloadAsPDFButton.js";
+import DownloadAsDocxButton from "/src/js/components/DownloadAsDocxButton.js";
 
 const BottomRightFloatingButtons = () => {
   return (
@@ -11,8 +11,8 @@ const BottomRightFloatingButtons = () => {
         <Icon name="download" />
       </button>
       <ul className="dropdown-menu">
-        <li><DownloadAsPDFLink /></li>
-        <li><DownloadAsDocxLink /></li>
+        <li><DownloadAsPDFButton /></li>
+        <li><DownloadAsDocxButton /></li>
       </ul>
     </div>
   );
