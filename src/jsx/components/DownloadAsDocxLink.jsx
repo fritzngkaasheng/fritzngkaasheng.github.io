@@ -1,6 +1,10 @@
 "use strict";
 
 import {
+  useTranslation
+} from "/src/js/i18n.js";
+
+import {
 	docName,
 	docxExt,
 	doctypeDeclaration,
@@ -8,6 +12,7 @@ import {
 } from "/src/js/main.js";
 
 const DownloadAsDocxLink = () => {
+  const { t } = useTranslation();
   useEffect(() => {
     const htmlDocxJsBtn = document.getElementById("html-docx-js-btn");
 
@@ -26,7 +31,7 @@ const DownloadAsDocxLink = () => {
   };
 
   return (
-    <a id="html-docx-js-btn" className="dropdown-item" href="#">Download .DOCX</a>
+    <a id="html-docx-js-btn" className="dropdown-item" href="#">{t('Download .DOCX')}</a>
   );
 };
 

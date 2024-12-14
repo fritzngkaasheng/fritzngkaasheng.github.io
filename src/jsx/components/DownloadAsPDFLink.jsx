@@ -1,6 +1,10 @@
 "use strict";
 
 import {
+  useTranslation
+} from "/src/js/i18n.js";
+
+import {
 	pdfOrientation,
 	pdfSizeUnit,
 	a4ScaledToHD720pDimensionsPx,
@@ -10,6 +14,7 @@ import {
 } from "/src/js/main.js";
 
 const DownloadAsPDFLink = () => {
+  const { t } = useTranslation();
   useEffect(() => {
     const { jsPDF } = window.jspdf;
 
@@ -74,7 +79,7 @@ const DownloadAsPDFLink = () => {
 
   return (
     <>
-      <a id="html2pdf-btn" className="dropdown-item" href="#">Download .PDF</a>
+      <a id="html2pdf-btn" className="dropdown-item" href="#">{t('Download .PDF')}</a>
       {/*
       TODO: Check which Download PDF button has a higher ATS score
       <button id="jspdf-btn">jsPDF</button>

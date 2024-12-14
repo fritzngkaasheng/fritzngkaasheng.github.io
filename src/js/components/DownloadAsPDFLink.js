@@ -1,7 +1,11 @@
 "use strict";
 
+import { useTranslation } from "/src/js/i18n.js";
 import { pdfOrientation, pdfSizeUnit, a4ScaledToHD720pDimensionsPx, docName, pdfExt, useEffect } from "/src/js/main.js";
 const DownloadAsPDFLink = () => {
+  const {
+    t
+  } = useTranslation();
   useEffect(() => {
     const {
       jsPDF
@@ -67,6 +71,6 @@ const DownloadAsPDFLink = () => {
     id: "html2pdf-btn",
     className: "dropdown-item",
     href: "#"
-  }, "Download .PDF"));
+  }, t('Download .PDF')));
 };
 export default DownloadAsPDFLink; 
