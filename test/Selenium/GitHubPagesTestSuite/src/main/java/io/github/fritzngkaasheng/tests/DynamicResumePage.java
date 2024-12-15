@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 public class DynamicResumePage {
     public void dynamicResumePage(WebDriver driver) throws InterruptedException {
-        new ComingSoonSection().findComingSoonSection(driver);
+        new SummarySection().findSummarySection(driver);
 
         final LanguageSwitcher languageSwitcher = new LanguageSwitcher();
 

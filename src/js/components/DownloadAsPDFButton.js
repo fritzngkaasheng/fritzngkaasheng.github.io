@@ -40,7 +40,7 @@ const DownloadAsPDFButton = () => {
     function downloadPDFUsingHtml2pdf() {
       let element = document.querySelectorAll(".a4-container")[0];
       let opt = {
-        filename: docName + pdfExt,
+        filename: t(docName) + pdfExt,
         image: {
           type: 'jpeg',
           quality: 0.98

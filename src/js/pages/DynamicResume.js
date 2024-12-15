@@ -49,7 +49,6 @@ const DynamicResume = () => {
         const dateB = new Date(parseInt(b.date.start.year));
         return dateB - dateA;
       });
-      console.log(profile.preset[presetName].skills);
       filteredData.skills = {};
       for (const [skillGroupName, skillIdList] of Object.entries(profile.preset[presetName].skills)) {
         filteredData.skills[skillGroupName] = {
@@ -60,7 +59,6 @@ const DynamicResume = () => {
           filteredData.skills[skillGroupName].skill[skillId] = profile.data.skills[skillGroupName].skill[skillId];
         });
       }
-      console.log(filteredData);
       setFilteredData(filteredData);
     }
   }, [profile]);

@@ -26,7 +26,7 @@ const DownloadAsDocxButton = () => {
         + document.querySelectorAll(".a4-container")[0].outerHTML
         + "</body>"
         + "</html>");
-      saveAs(converted, docName + docxExt);
+      saveAs(converted, t(docName) + docxExt);
     }
 
     htmlDocxJsBtn.addEventListener("click", downloadDOCX);
