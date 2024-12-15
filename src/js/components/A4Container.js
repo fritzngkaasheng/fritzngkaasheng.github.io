@@ -1,9 +1,10 @@
 "use strict";
 
-import ComingSoonSection from "/src/js/components/ComingSoonSection.js";
-const A4Container = () => {
+const A4Container = ({
+  children
+}) => {
   return /*#__PURE__*/React.createElement("div", {
     className: "a4-container"
-  }, /*#__PURE__*/React.createElement(ComingSoonSection, null));
+  }, children);
 };
 export default A4Container; 

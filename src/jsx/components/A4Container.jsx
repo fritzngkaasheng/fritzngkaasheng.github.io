@@ -1,11 +1,9 @@
 "use strict";
 
-import ComingSoonSection from "/src/js/components/ComingSoonSection.js";
-
-const A4Container = () => {
+const A4Container = ({ children }) => {
   return (
     <div className="a4-container">
-      <ComingSoonSection />
+      {children}
     </div>
   );
 };

@@ -1,7 +1,10 @@
 "use strict";
 
 import { useTranslation } from "/src/js/i18n.js";
-import { pdfOrientation, pdfSizeUnit, a4ScaledToHD720pDimensionsPx, docName, pdfExt, useEffect } from "/src/js/main.js";
+import { pdfOrientation, pdfSizeUnit, a4ScaledToHD720pDimensionsPx, docName, pdfExt } from "/src/js/main.js";
+const {
+  useEffect
+} = React;
 const DownloadAsPDFButton = () => {
   const {
     t

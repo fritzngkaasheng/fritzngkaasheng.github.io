@@ -7,7 +7,14 @@ header.navbar {
 }
 
 .a4-container {
-  aspect-ratio: 0.7069555302;
+  padding: 3rem 0;
+}
+
+@media (max-width: 1280px) and (min-width: 1280px) {
+  .a4-container {
+    aspect-ratio: 0.7069555302;
+    padding: 96px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

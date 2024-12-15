@@ -1,7 +1,10 @@
 "use strict";
 
 import { useTranslation } from "/src/js/i18n.js";
-import { docName, docxExt, doctypeDeclaration, useEffect } from "/src/js/main.js";
+import { docName, docxExt, doctypeDeclaration } from "/src/js/main.js";
+const {
+  useEffect
+} = React;
 const DownloadAsDocxButton = () => {
   const {
     t

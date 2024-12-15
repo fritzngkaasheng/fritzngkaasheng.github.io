@@ -7,9 +7,10 @@ import {
 import {
 	docName,
 	docxExt,
-	doctypeDeclaration,
-  useEffect
+	doctypeDeclaration
 } from "/src/js/main.js";
+
+const { useEffect } = React;
 
 const DownloadAsDocxButton = () => {
   const { t } = useTranslation();

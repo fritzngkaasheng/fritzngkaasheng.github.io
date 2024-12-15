@@ -9,9 +9,10 @@ import {
 	pdfSizeUnit,
 	a4ScaledToHD720pDimensionsPx,
 	docName,
-	pdfExt,
-  useEffect
+	pdfExt
 } from "/src/js/main.js";
+
+const { useEffect } = React;
 
 const DownloadAsPDFButton = () => {
   const { t } = useTranslation();

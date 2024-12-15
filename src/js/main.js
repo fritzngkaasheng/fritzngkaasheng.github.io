@@ -1,7 +1,5 @@
 "use strict";
 
-const { useEffect } = React;
-
 const pdfOrientation = "portrait";
 const pdfSizeUnit = "px";
 // const a4Size72DPIPx = [width, height];
@@ -17,6 +15,15 @@ const pdfExt = ".pdf";
 const docxExt = ".docx";
 const doctypeDeclaration = "<!DOCTYPE html>";
 
+const getDateText = date => {
+  const tempDate = new Date(
+    parseInt(date.year),
+    parseInt(date.month) - 1
+  );
+  const month = tempDate.toLocaleString('en-GB', { month: 'long' });
+  return month + " " + date.year;
+}
+
 export {
 	pdfOrientation,
 	pdfSizeUnit,
@@ -25,5 +32,5 @@ export {
 	pdfExt,
 	docxExt,
 	doctypeDeclaration,
-	useEffect
+	getDateText
 };
