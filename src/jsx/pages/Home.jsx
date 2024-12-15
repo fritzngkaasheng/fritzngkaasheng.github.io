@@ -1,7 +1,9 @@
 "use strict";
 
+import ComingSoonSection from "/src/js/components/ComingSoonSection.js";
+
 const Home = () => {
-  return <h1>Home</h1>;
+  return <ComingSoonSection />;
 };
 
 export default Home;

@@ -49,23 +49,24 @@ public abstract class BaseTest {
     }
 
     @Test(priority = 1)
-    public void testHelloWorld() throws InterruptedException {
-        new TestHelloWorld().testHelloWorld(driver);
+    public void homePage() throws InterruptedException {
+        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(500));
+
+        new HomePage().homePage(driver);
     }
 
     @Test(priority = 2)
-    public void testMiniPageTitleHome() throws InterruptedException {
-        new TestMiniPageTitleHome().testMiniPageTitleHome(driver);
+    public void error404Page() throws InterruptedException {
+        driver.get(url + "#/summon/404/error");
+
+        new Error404Page().error404Page(driver);
     }
 
     @Test(priority = 3)
-    public void testBlogsNavigation() throws InterruptedException {
-        new TestBlogsNavigation().testBlogsNavigation(driver);
-    }
+    public void dynamicResumePage() throws InterruptedException {
+        new Header().navigateTo(driver, "#/dynamic-resume");
 
-    @Test(priority = 4)
-    public void testPageRefresh() throws InterruptedException {
-        new TestPageRefresh().testPageRefresh(driver);
+        new DynamicResumePage().dynamicResumePage(driver);
     }
 
     @AfterTest
