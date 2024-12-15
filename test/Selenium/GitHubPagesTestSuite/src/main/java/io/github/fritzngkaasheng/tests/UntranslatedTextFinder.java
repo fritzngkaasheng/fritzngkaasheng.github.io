@@ -28,7 +28,13 @@ public class UntranslatedTextFinder {
 
         Set<String> ignoredTexts = Set.of(
                 "English",
-                "中文"
+                "中文",
+                "in/fritzngkaasheng",
+                "B2BE",
+                "Ideaone System Solutions Sdn. Bhd.",
+                "AWS Cloud Quest: Cloud Practitioner",
+                "Lightning Experience Reports & Dashboards Specialist",
+                "Trailhead • 2023"
         );
 
         for (String text : texts) {
