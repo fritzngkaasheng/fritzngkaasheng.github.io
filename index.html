@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title></title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha256-PI8n5gCcz9cQqQXm3PEtDuPG8qx9oFsFctPg0S5zb8g=" crossorigin="anonymous">
+		
 		<script>
 			const isProduction = true;
-			const isUsingBundleInDev = true;
-			const appVersion = "0.0.9";
+
+			const appVersion = "0.1.0";
 
 			const cssPath = "./" + (isProduction ? "dist" : "src") + "/stylesheets/build/";
 
@@ -23,40 +24,24 @@
 		</script>
 	</head>
 	<body>
-		<div class="container">
-			<h1 id="hello-world">Hello World</h1>
-			<p>I'm hosted with GitHub Pages.</p>
-			<div id="inv-container" class="d-none">
-				<div><s>PHP</s> [GitHub Pages does not support server-side languages]</div>
-				<div class="sass-element">SASS</div>
-				<div>JavaScript</div>
-				<button id="jspdf-btn">jsPDF</button>
-				<br/>
-				<button id="html2pdf-btn">html2pdf</button>
-				<br/>
-				<button id="html-docx-js-btn">html-docx-js</button>
-				<br/>
-				<button id="bootstrap-btn" class="btn btn-primary">Bootstrap</button>
-				<div id="react-element"></div>
-			</div>
-		</div>
+		<div id="root"></div>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.development.js" integrity="sha512-YFI6ChaPQ5hH9o8Q4n5ZzDHrhrwZ3dhgZSQ2JC/pgmYuD0QtG0iwQgfFa1J+o4jvklsKBupcHz5Tx1yqa25FFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.development.min.js" integrity="sha512-aTIGujEp0xIZSXrXXFjXL3YiozmMRYjKmll3rLYTmUIGaaidsrQNn+ii04E+VwlpIUNZOF3UBoXRmNQBEdD/qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.2.8/es6-promise.auto.min.js" integrity="sha512-S/NdLunV4IO1xPIfb9IT9IXhzObeMg6WRxAx+8vOV2DM+iM6r0Q6iioIwrYoVI5qHEkPVMv19m/09NnLIjYuXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha256-CDOy6cOibCWEdsRiZuaHf8dSGGJRYuBGC+mjoJimHGw=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js" integrity="sha256-2Unxw2h67a3O2shSYYZfKbF80nOZfn9rK/xTsvnUxN0=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha256-NfT5dPSyvNRNpzljNH+JUuNB+DkJ5EmCJ9Tia5j2bw0=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/es6-promise@4.2.8/dist/es6-promise.auto.min.js" integrity="sha256-Xxrdry6fWSKu1j2ALyuK/gHFQ+2Bp76ZrR6f3QXI47Y=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.min.js" integrity="sha512-GjGRh7A2LQ70FNY/PTAhlcurSzrIs/Vs8z2oZ9CLpiK6mGIgP3pgm8YSrXBsDpuK1hfjSiEmQvulnUyfE8Wttw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" integrity="sha256-6H5VB5QyLldKH9oMFUmjxw2uWpPZETQXpCkBaDjquMs=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.2/dist/html2pdf.min.js" integrity="sha256-qtSkz66/1lTIQeqqk+/P1xE50l/oiPWfcaNXyrpjUfY=" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/html-docx-js@0.3.1/dist/html-docx.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/24.0.2/i18next.min.js" integrity="sha512-gPfFz64ijjoBcvrP03DyLCExHxhVQ5Ubj7mjbrEugLBboYsD9NOyjMEP6+u1ESZBYcJnzxvqPNnzNAwbEGFpjw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@3.0.1/i18nextHttpBackend.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/react-i18next@15.1.3/dist/umd/react-i18next.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/8.0.0/i18nextBrowserLanguageDetector.min.js" integrity="sha512-8/RTkAM23B3lQzi6fmPs+Yf9qhIHzrzRpeSZsBsQ8OEmo95mbVp+68dB647VDCuyQIBbF+OIbS9b30aTWUkoog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdn.jsdelivr.net/npm/@remix-run/router@1.21.0/dist/router.umd.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/6.28.0/react-router.production.min.js" integrity="sha512-QIMTqBiQl8VH+/ei3TpwlOlm08c4Ch3LASMFz4S8JuHSJAUN1xLRvJHNlOjHkBjuPTcUD41L7cmac7UryhgqUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/6.28.0/react-router-dom.production.min.js" integrity="sha512-UhGSZ81Jg7IcSupeBdACb2Xx92AnsTeKKwNsNm9ssqt+VZJfO1PQDLCO3BzYvJGwMPD3JXwx1xMRzIiaReLlYg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js" integrity="sha256-xoh0y6ov0WULfXcLMoaA6nZfszdgI8w2CEJ/3k8NBIE=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/i18next@24.1.0/i18next.min.js" integrity="sha256-4WkN59B6GvBMrorBfl/OXcjonY9o8LR5XFcZKl50KjM=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@3.0.1/i18nextHttpBackend.min.js" integrity="sha256-GcZ/K4c5jHRBOA8FHMtaMDFcRaYugYdV7l5JFX9vYG4=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/react-i18next@15.2.0/dist/umd/react-i18next.min.js" integrity="sha256-UHmuha7AdThmlmhOpAJ0pY23SEZ2WbJ73mZ6Pj/kBIw=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@8.0.2/i18nextBrowserLanguageDetector.min.js" integrity="sha256-Pp4srrJoRRylSy11rGwhD1l7TaksKYU29j/uK4NMBlo=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@remix-run/router@1.21.0/dist/router.umd.min.js" integrity="sha256-jR1LV0BDGJpzhuKvxWLubWyerg8EZrkun3dlTmHDeoI=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/react-router@6.28.0/dist/umd/react-router.production.min.js" integrity="sha256-/JQcecAbEkFOvpwKYGhZZ0uRI1TwW7zKOTm1ybNzjUI=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/react-router-dom@6.28.0/dist/umd/react-router-dom.production.min.js" integrity="sha256-freqXK2mN0PC7/DhkRVrVAHe9i/2nXNRkG87zJwrJL8=" crossorigin="anonymous"></script>
 
 		<script>
 			let script = {};
@@ -69,47 +54,42 @@
 			}
 
 			if (!isProduction) {
-				if (!isUsingBundleInDev) {
-					const jsPath = "./src/js/";
+				const jsPath = "./src/js/";
 
-					const jsExt = (isProduction ? ".min" : "") + ".js";
+				const jsExt = (isProduction ? ".min" : "") + ".js";
 
-					const jsFileList = [
-						{
-							name: "main",
-							type: "module"
-						},
-						{
-							name: "components",
-							type: "module"
-						},
-					];
+				const jsFileList = [
+					{
+						name: "App",
+						type: "module"
+					},
+					// main.js is loaded by some dependencies in App.js
+					// Keep this code in case we need to load main.js separately
+					/*
+					{
+						name: "main",
+						type: "module"
+					},
+					*/
+				];
 
-					jsFileList.map((jsFile) => {
-						if (jsFile.type == "module") {
-							script = document.createElement("script");
-							script.type = "module";
-							script.src = jsPath + jsFile.name + jsExt;
-							document.body.appendChild(script);
-						}
+				jsFileList.map((jsFile) => {
+					if (jsFile.type == "module") {
+						script = document.createElement("script");
+						script.type = "module";
+						script.src = jsPath + jsFile.name + jsExt;
+						document.body.appendChild(script);
+					}
 
-						if (jsFile.type == "text/babel") {
-							script = document.createElement("script");
-							script.type = "text/babel";
-							script.setAttribute("data-presets", "react");
-							script.setAttribute("data-type", "module");
-							script.src = jsPath + jsFile.name + jsExt;
-							document.body.appendChild(script);
-						}
-					});
-				}
-
-				if (isUsingBundleInDev) {
-					script = document.createElement("script");
-					script.type = "module";
-					script.src = "./src/js/main.bundle.js";
-					document.body.appendChild(script);
-				}
+					if (jsFile.type == "text/babel") {
+						script = document.createElement("script");
+						script.type = "text/babel";
+						script.setAttribute("data-presets", "react");
+						script.setAttribute("data-type", "module");
+						script.src = jsPath + jsFile.name + jsExt;
+						document.body.appendChild(script);
+					}
+				});
 			}
 		</script>
 	</body>

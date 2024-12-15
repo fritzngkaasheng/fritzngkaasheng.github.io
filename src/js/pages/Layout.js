@@ -1,16 +1,8 @@
 "use strict";
 
-const {
-  Outlet,
-  Link
-} = window.ReactRouterDOM;
+import Header from "/src/js/components/Header.js";
+import MainContainer from "/src/js/components/MainContainer.js";
 const Layout = () => {
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("nav", null, /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
-    to: "/"
-  }, "Home (react-router-dom)")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
-    to: "/blogs"
-  }, "Blogs")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
-    to: "/contact"
-  }, "Contact")))), /*#__PURE__*/React.createElement(Outlet, null));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(MainContainer, null));
 };
 export default Layout; 
