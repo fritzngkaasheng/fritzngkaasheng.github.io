@@ -2,6 +2,9 @@
 
 import { useTranslation } from "/src/js/i18n.js";
 const {
+  useEffect
+} = React;
+const {
   Link,
   useLocation
 } = window.ReactRouterDOM;
@@ -11,6 +14,19 @@ const Navigation = () => {
   } = useTranslation();
   const location = useLocation();
   const isActive = path => location.pathname === path;
+  useEffect(() => {
+    document.querySelectorAll("#offcanvasNavbar a").forEach(function (element) {
+      element.addEventListener('click', function () {
+        var offcanvasElements = document.querySelectorAll('.offcanvas');
+        offcanvasElements.forEach(function (offcanvas) {
+          var bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvas);
+          if (bsOffcanvas) {
+            bsOffcanvas.hide();
+          }
+        });
+      });
+    });
+  }, []);
   return /*#__PURE__*/React.createElement("nav", null, /*#__PURE__*/React.createElement("ul", {
     className: "navbar-nav justify-content-end flex-grow-1 pe-3"
   }, /*#__PURE__*/React.createElement("li", {
