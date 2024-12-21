@@ -15,7 +15,7 @@ public class NavBar {
         WebElement nextPageLink = driver.findElement(By.cssSelector("[href=\"" + href + "\"]"));
         nextPageLink.click();
 
-        closeNavBar(driver);
+        waitUntilNavBarClosed(driver);
     }
 
     public void openNavBar(WebDriver driver) throws InterruptedException {
