@@ -141,6 +141,26 @@
           }
         },
         "link": "https://www.credly.com/badges/815cae01-d3de-4a21-a9c1-6cecc5d30a07/linked_in_profile"
+      },
+      "frontEndDevelopmentLibraries": {
+        "name": "Front End Development Libraries",
+        "organisation": "freeCodeCamp",
+        "date": {
+          "start": {
+            "year": "2024"
+          }
+        },
+        "link": "https://freecodecamp.org/certification/GrowingTree8/front-end-development-libraries"
+      },
+      "responsiveWebDesign": {
+        "name": "Responsive Web Design",
+        "organisation": "freeCodeCamp",
+        "date": {
+          "start": {
+            "year": "2024"
+          }
+        },
+        "link": "https://freecodecamp.org/certification/GrowingTree8/responsive-web-design"
       }
     },
     "skills": {
@@ -173,6 +193,13 @@
           "nETFramwork": ".NET Framework",
           "microsoftExcel": "Microsoft Excel"
         }
+      },
+      "languages": {
+        "name": "Languages",
+        "skill": {
+          "english": "English",
+          "chinese": "Chinese"
+        }
       }
     }
   },
@@ -181,6 +208,7 @@
       "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
     },
     "softwareEngineer": {
+      "roleName": "Software Engineer",
       "experience": [
         "intern",
         "webDeveloper",
@@ -220,6 +248,55 @@
           "java",
           "nETFramwork",
           "microsoftExcel"
+        ]
+      },
+      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+    },
+    "integrationEngineer": {
+      "roleName": "Integration Engineer",
+      "experience": [
+        "intern",
+        "webDeveloper",
+        "internii"
+      ],
+      "education": [
+        "diploma",
+        "bachelorsDegree",
+        "bachelorsDegreeii"
+      ],
+      "certifications": [
+        "frontEndDevelopmentLibraries",
+        "apsaraClouderGeneralSkillJAVACodingStandardsInAlibabaGroup",
+        "responsiveWebDesign"
+      ],
+      "skills": {
+        "industryKnowledge": [
+          "softwareDevelopmentLifeCycleSDLc",
+          "logAnalysis",
+          "incidentHandling",
+          "threatAnalysis",
+          "webDevelopment",
+          "softwareDevelopment"
+        ],
+        "toolsTechnologies": [
+          "contentManagementSystemsCMs",
+          "rESTAPIs",
+          "git",
+          "laravel",
+          "codeIgniter",
+          "php",
+          "sql",
+          "javaScript",
+          "jQuery",
+          "cascadingStyleSheetsCSs",
+          "html",
+          "java",
+          "nETFramwork",
+          "microsoftExcel"
+        ],
+        "languages": [
+          "english",
+          "chinese"
         ]
       },
       "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
