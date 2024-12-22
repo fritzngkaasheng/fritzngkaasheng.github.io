@@ -12,8 +12,17 @@ import SkillsSection from "/src/js/components/SkillsSection.js";
 
 const React = window.React;
 const { useState, useEffect } = React;
+const { useParams } = window.ReactRouterDOM;
+
+function kebabToCamelCase(str) {
+  return str.replace(/-./g, function(match) {
+      return match.charAt(1).toUpperCase();
+  });
+}
 
 const DynamicResume = () => {
+  const { preset } = useParams();
+
   const [profile, setProfile] = useState({});
   const [filteredData, setFilteredData] = useState({});
 
@@ -32,7 +41,15 @@ const DynamicResume = () => {
     if (profile.data) {
       const filteredData = {};
 
-      const presetName = "softwareEngineer";
+      let presetName = "softwareEngineer";
+
+      if (preset) {
+        const kebabCasePresetName = preset;
+        const camelCasePresetName = kebabToCamelCase(kebabCasePresetName);
+        presetName = camelCasePresetName;
+      }
+
+      filteredData.roleName = profile.preset[presetName].roleName;
 
       filteredData.experience = profile.preset[presetName].experience
       .map(experienceId => {
@@ -97,15 +114,24 @@ const DynamicResume = () => {
 
       setFilteredData(filteredData);
     }
-  }, [profile]);
+  }, [profile, preset]);
 
   if (!filteredData.experience) {
-    return <LoadingSection />;
+    return (
+      <>
+        <LoadingSection />
+      </>
+    );
   }
 
   return (
     <>
-      {profile.improvedHRProcessMode === "true" && <BottomRightFloatingButtons />}
+      {profile.improvedHRProcessMode === "true" && 
+        <BottomRightFloatingButtons
+          fullName={profile.data.contact.fullName}
+          roleName={filteredData.roleName}
+        />
+      }
       <A4Container>
         <ContactSection
           fullName={profile.data.contact.fullName}

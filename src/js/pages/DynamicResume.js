@@ -14,7 +14,18 @@ const {
   useState,
   useEffect
 } = React;
+const {
+  useParams
+} = window.ReactRouterDOM;
+function kebabToCamelCase(str) {
+  return str.replace(/-./g, function (match) {
+    return match.charAt(1).toUpperCase();
+  });
+}
 const DynamicResume = () => {
+  const {
+    preset
+  } = useParams();
   const [profile, setProfile] = useState({});
   const [filteredData, setFilteredData] = useState({});
   useEffect(() => {
@@ -27,7 +38,13 @@ const DynamicResume = () => {
   useEffect(() => {
     if (profile.data) {
       const filteredData = {};
-      const presetName = "softwareEngineer";
+      let presetName = "softwareEngineer";
+      if (preset) {
+        const kebabCasePresetName = preset;
+        const camelCasePresetName = kebabToCamelCase(kebabCasePresetName);
+        presetName = camelCasePresetName;
+      }
+      filteredData.roleName = profile.preset[presetName].roleName;
       filteredData.experience = profile.preset[presetName].experience.map(experienceId => {
         return profile.data.experience[experienceId];
       }).sort((a, b) => {
@@ -61,11 +78,14 @@ const DynamicResume = () => {
       }
       setFilteredData(filteredData);
     }
-  }, [profile]);
+  }, [profile, preset]);
   if (!filteredData.experience) {
-    return /*#__PURE__*/React.createElement(LoadingSection, null);
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LoadingSection, null));
   }
-  return /*#__PURE__*/React.createElement(React.Fragment, null, profile.improvedHRProcessMode === "true" && /*#__PURE__*/React.createElement(BottomRightFloatingButtons, null), /*#__PURE__*/React.createElement(A4Container, null, /*#__PURE__*/React.createElement(ContactSection, {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, profile.improvedHRProcessMode === "true" && /*#__PURE__*/React.createElement(BottomRightFloatingButtons, {
+    fullName: profile.data.contact.fullName,
+    roleName: filteredData.roleName
+  }), /*#__PURE__*/React.createElement(A4Container, null, /*#__PURE__*/React.createElement(ContactSection, {
     fullName: profile.data.contact.fullName,
     country: profile.data.contact.country,
     linkedInURLSlug: profile.data.contact.linkedInURLSlug

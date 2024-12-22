@@ -9,8 +9,6 @@ const a4Size300DPIPx = [2480, 3508];
 // const a4ScaledToHDDimensionsPx = [width, height];
 const a4ScaledToHD720pDimensionsPx = [1280, (1280 / a4Size300DPIPx[0] * a4Size300DPIPx[1])];
 
-let docName = "Fritz Ng - Software Engineer";
-
 const pdfExt = ".pdf";
 const docxExt = ".docx";
 const doctypeDeclaration = "<!DOCTYPE html>";
@@ -28,7 +26,6 @@ export {
 	pdfOrientation,
 	pdfSizeUnit,
 	a4ScaledToHD720pDimensionsPx,
-	docName,
 	pdfExt,
 	docxExt,
 	doctypeDeclaration,
