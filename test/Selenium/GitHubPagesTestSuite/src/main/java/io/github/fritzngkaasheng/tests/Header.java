@@ -10,6 +10,7 @@ public class Header {
     public void header(WebDriver driver) throws InterruptedException {
         final NavBar navBar = new NavBar();
         navBar.openNavBar(driver);
+        navBar.clickResumeDropdown(driver);
         new UntranslatedTextFinder().findUntranslatedText(driver);
         navBar.closeNavBar(driver);
     }

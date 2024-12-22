@@ -34,7 +34,8 @@ public class UntranslatedTextFinder {
                 "Ideaone System Solutions Sdn. Bhd.",
                 "AWS Cloud Quest: Cloud Practitioner",
                 "Lightning Experience Reports & Dashboards Specialist",
-                "Trailhead • 2023"
+                "Trailhead • 2023",
+                "freeCodeCamp • 2024"
         );
 
         for (String text : texts) {

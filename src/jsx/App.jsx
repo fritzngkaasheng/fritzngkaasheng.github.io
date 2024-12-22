@@ -22,6 +22,7 @@ class App extends React.Component {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="dynamic-resume" element={<DynamicResume />} />
+            <Route path="dynamic-resume/:preset" element={<DynamicResume />} />
             <Route path="academic-cv" element={<AcademicCV />} />
             <Route path="entrepreneur-resume" element={<EntrepreneurResume />} />
             <Route path="dating-profile" element={<DatingProfile />} />
