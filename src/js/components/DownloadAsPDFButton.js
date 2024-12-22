@@ -1,16 +1,20 @@
 "use strict";
 
 import { useTranslation } from "/src/js/i18n.js";
-import { pdfOrientation, pdfSizeUnit, a4ScaledToHD720pDimensionsPx, docName, pdfExt } from "/src/js/main.js";
+import { pdfOrientation, pdfSizeUnit, a4ScaledToHD720pDimensionsPx, pdfExt } from "/src/js/main.js";
 const {
   useEffect
 } = React;
-const DownloadAsPDFButton = () => {
+const DownloadAsPDFButton = ({
+  fullName,
+  roleName
+}) => {
   const {
     t
   } = useTranslation();
   useEffect(() => {
     const html2pdfBtn = document.getElementById("html2pdf-btn");
+    const docName = t(fullName) + " - " + t(roleName);
 
     //TODO: Check which Download PDF button has a higher ATS score
     /*
@@ -65,7 +69,7 @@ const DownloadAsPDFButton = () => {
       //cleanupEventListener(jsPDFBtn, downloadPDFUsingJsPDF);
       cleanupEventListener(html2pdfBtn, downloadPDFUsingHtml2pdf);
     };
-  }, []);
+  }, [t, roleName]);
   const cleanupEventListener = (element, listener) => {
     element.removeEventListener("click", listener);
   };

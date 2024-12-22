@@ -9,8 +9,17 @@ public class NavBar {
         Thread.sleep(java.time.Duration.ofMillis(500));
     }
 
+    public void clickResumeDropdown(WebDriver driver) throws InterruptedException {
+        WebElement resumeDropdown = driver.findElement(By.id("resume-dropdown"));
+        resumeDropdown.click();
+    }
+
     public void navigateTo(WebDriver driver, String href) throws InterruptedException {
         openNavBar(driver);
+
+        if (href.contains("dynamic-resume")) {
+            clickResumeDropdown(driver);
+        }
 
         WebElement nextPageLink = driver.findElement(By.cssSelector("[href=\"" + href + "\"]"));
         nextPageLink.click();

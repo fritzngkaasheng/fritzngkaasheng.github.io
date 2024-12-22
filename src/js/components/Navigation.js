@@ -15,7 +15,7 @@ const Navigation = () => {
   const location = useLocation();
   const isActive = path => location.pathname === path;
   useEffect(() => {
-    document.querySelectorAll("#offcanvasNavbar a").forEach(function (element) {
+    document.querySelectorAll("#offcanvasNavbar a:not(.dropdown-toggle)").forEach(function (element) {
       element.addEventListener('click', function () {
         var offcanvasElements = document.querySelectorAll('.offcanvas');
         offcanvasElements.forEach(function (offcanvas) {
@@ -36,12 +36,25 @@ const Navigation = () => {
     "aria-current": isActive('/') ? 'page' : undefined,
     to: "/"
   }, t('Home'))), /*#__PURE__*/React.createElement("li", {
-    className: "nav-item"
-  }, /*#__PURE__*/React.createElement(Link, {
-    className: `nav-link${isActive('/dynamic-resume') ? ' active' : ''}`,
+    className: "nav-item dropdown"
+  }, /*#__PURE__*/React.createElement("a", {
+    id: "resume-dropdown",
+    className: "nav-link dropdown-toggle",
+    href: "#",
+    role: "button",
+    "data-bs-toggle": "dropdown",
+    "aria-expanded": "false"
+  }, t('Resume')), /*#__PURE__*/React.createElement("ul", {
+    className: "dropdown-menu"
+  }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+    className: `dropdown-item${isActive('/dynamic-resume') ? ' active' : ''}`,
     "aria-current": isActive('/dynamic-resume') ? 'page' : undefined,
     to: "/dynamic-resume"
-  }, t('Resume'))), /*#__PURE__*/React.createElement("li", {
+  }, t('Software Engineer'))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+    className: `dropdown-item${isActive('/dynamic-resume/integration-engineer') ? ' active' : ''}`,
+    "aria-current": isActive('/dynamic-resume/integration-engineer') ? 'page' : undefined,
+    to: "/dynamic-resume/integration-engineer"
+  }, t('Integration Engineer'))))), /*#__PURE__*/React.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/React.createElement(Link, {
     className: `nav-link${isActive('/academic-cv') ? ' active' : ''}`,

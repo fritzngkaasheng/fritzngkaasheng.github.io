@@ -15,7 +15,7 @@ const Navigation = () => {
   const isActive = (path) => location.pathname === path;
 
   useEffect(() => {
-     document.querySelectorAll("#offcanvasNavbar a").forEach(function(element) {
+     document.querySelectorAll("#offcanvasNavbar a:not(.dropdown-toggle)").forEach(function(element) {
       element.addEventListener('click', function() {
         var offcanvasElements = document.querySelectorAll('.offcanvas');
         offcanvasElements.forEach(function(offcanvas) {
@@ -40,14 +40,30 @@ const Navigation = () => {
             {t('Home')}
           </Link>
         </li>
-        <li className="nav-item">
-          <Link
-            className={`nav-link${isActive('/dynamic-resume') ? ' active' : ''}`}
-            aria-current={isActive('/dynamic-resume') ? 'page' : undefined}
-            to="/dynamic-resume"
-          >
+        <li className="nav-item dropdown">
+          <a id="resume-dropdown" className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {t('Resume')}
-          </Link>
+          </a>
+          <ul className="dropdown-menu">
+            <li>
+              <Link
+                className={`dropdown-item${isActive('/dynamic-resume') ? ' active' : ''}`}
+                aria-current={isActive('/dynamic-resume') ? 'page' : undefined}
+                to="/dynamic-resume"
+              >
+                {t('Software Engineer')}
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={`dropdown-item${isActive('/dynamic-resume/integration-engineer') ? ' active' : ''}`}
+                aria-current={isActive('/dynamic-resume/integration-engineer') ? 'page' : undefined}
+                to="/dynamic-resume/integration-engineer"
+              >
+                {t('Integration Engineer')}
+              </Link>
+            </li>
+          </ul>
         </li>
         <li className="nav-item">
           <Link
@@ -85,22 +101,6 @@ const Navigation = () => {
             {t('Will I Take the Job? Quiz')}
           </Link>
         </li>
-        {/*
-        TODO: Add preset function for dynamic resume
-        <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="#">Action</a></li>
-            <li><a className="dropdown-item" href="#">Another action</a></li>
-            <li>
-              <hr className="dropdown-divider" />
-            </li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        */}
       </ul>
     </nav>
   );
