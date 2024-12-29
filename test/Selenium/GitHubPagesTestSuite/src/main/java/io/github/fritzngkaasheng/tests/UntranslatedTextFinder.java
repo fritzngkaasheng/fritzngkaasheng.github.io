@@ -35,7 +35,8 @@ public class UntranslatedTextFinder {
                 "AWS Cloud Quest: Cloud Practitioner",
                 "Lightning Experience Reports & Dashboards Specialist",
                 "Trailhead • 2023",
-                "freeCodeCamp • 2024"
+                "freeCodeCamp • 2024",
+                "LetsDefend • 2024"
         );
 
         for (String text : texts) {
