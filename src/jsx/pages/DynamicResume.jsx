@@ -41,7 +41,7 @@ const DynamicResume = () => {
     if (profile.data) {
       const filteredData = {};
 
-      let presetName = "softwareEngineer";
+      let presetName = profile.preset.default;
 
       if (preset) {
         const kebabCasePresetName = preset;

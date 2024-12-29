@@ -122,6 +122,56 @@
         },
         "link": "https://www.salesforce.com/trailblazer/ngkaasheng3439"
       },
+      "sOCAnalystLearningPathCertification": {
+        "name": "SOC Analyst Learning Path Certification",
+        "organisation": "LetsDefend",
+        "date": {
+          "start": {
+            "year": "2024"
+          }
+        },
+        "link": "https://app.letsdefend.io/certificate/show/b1f22e2e-3bbd-41de-b16c-81a417099909"
+      },
+      "aIAwareBadgeAIUntukRakyat": {
+        "name": "AI Aware Badge - AI untuk Rakyat",
+        "organisation": "MyDIGITAL and Intel",
+        "date": {
+          "start": {
+            "year": "2024"
+          }
+        },
+        "link": "https://aiur.ai.gov.my/#/badge?id=U2FsdGVkX18YD8eeYJADilFzUwgs1L2a3S4holyN1h4RKMQw4CUe1Q2u3A4l"
+      },
+      "aIAppreciateBadgeAIUntukRakyat": {
+        "name": "AI Appreciate Badge - AI untuk Rakyat",
+        "organisation": "MyDIGITAL and Intel",
+        "date": {
+          "start": {
+            "year": "2024"
+          }
+        },
+        "link": "https://aiur.ai.gov.my/#/badge?id=U2FsdGVkX19RtBMbU3AT6L8LKp1L2u3S4jJILHuFeLh0u7dTke1Q2u3A4l"
+      },
+      "responsiveWebDesign": {
+        "name": "Responsive Web Design",
+        "organisation": "freeCodeCamp",
+        "date": {
+          "start": {
+            "year": "2024"
+          }
+        },
+        "link": "https://freecodecamp.org/certification/GrowingTree8/responsive-web-design"
+      },
+      "compTIACySAPreparationPathCertification": {
+        "name": "CompTIA CySA+ Preparation Path Certification",
+        "organisation": "LetsDefend",
+        "date": {
+          "start": {
+            "year": "2024"
+          }
+        },
+        "link": "https://app.letsdefend.io/certificate/show/3f399346-720e-4690-ba63-fb63f5da7750"
+      },
       "apsaraClouderGeneralSkillJAVACodingStandardsInAlibabaGroup": {
         "name": "Apsara Clouder - General Skill: JAVA Coding Standards in Alibaba Group",
         "organisation": "Alibaba Cloud",
@@ -142,6 +192,16 @@
         },
         "link": "https://www.credly.com/badges/815cae01-d3de-4a21-a9c1-6cecc5d30a07/linked_in_profile"
       },
+      "iBMMQOnAWSCloudDeveloperEssentials": {
+        "name": "IBM MQ on AWS Cloud Developer Essentials",
+        "organisation": "IBM",
+        "date": {
+          "start": {
+            "year": "2024"
+          }
+        },
+        "link": "https://www.credly.com/badges/003524bd-973a-41a4-8d5c-2e1b50632dba/linked_in_profile"
+      },
       "frontEndDevelopmentLibraries": {
         "name": "Front End Development Libraries",
         "organisation": "freeCodeCamp",
@@ -151,16 +211,6 @@
           }
         },
         "link": "https://freecodecamp.org/certification/GrowingTree8/front-end-development-libraries"
-      },
-      "responsiveWebDesign": {
-        "name": "Responsive Web Design",
-        "organisation": "freeCodeCamp",
-        "date": {
-          "start": {
-            "year": "2024"
-          }
-        },
-        "link": "https://freecodecamp.org/certification/GrowingTree8/responsive-web-design"
       }
     },
     "skills": {
@@ -204,9 +254,7 @@
     }
   },
   "preset": {
-    "default": {
-      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
-    },
+    "default": "softwareEngineer",
     "softwareEngineer": {
       "roleName": "Software Engineer",
       "experience": [
@@ -268,6 +316,202 @@
         "frontEndDevelopmentLibraries",
         "apsaraClouderGeneralSkillJAVACodingStandardsInAlibabaGroup",
         "responsiveWebDesign"
+      ],
+      "skills": {
+        "industryKnowledge": [
+          "softwareDevelopmentLifeCycleSDLc",
+          "logAnalysis",
+          "incidentHandling",
+          "threatAnalysis",
+          "webDevelopment",
+          "softwareDevelopment"
+        ],
+        "toolsTechnologies": [
+          "contentManagementSystemsCMs",
+          "rESTAPIs",
+          "git",
+          "laravel",
+          "codeIgniter",
+          "php",
+          "sql",
+          "javaScript",
+          "jQuery",
+          "cascadingStyleSheetsCSs",
+          "html",
+          "java",
+          "nETFramwork",
+          "microsoftExcel"
+        ],
+        "languages": [
+          "english",
+          "chinese"
+        ]
+      },
+      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+    },
+    "cyberSecurityAnalyst": {
+      "roleName": "Cyber Security Analyst",
+      "experience": [
+        "intern",
+        "webDeveloper",
+        "internii"
+      ],
+      "education": [
+        "diploma",
+        "bachelorsDegree",
+        "bachelorsDegreeii"
+      ],
+      "certifications": [
+        "compTIACySAPreparationPathCertification",
+        "sOCAnalystLearningPathCertification",
+        "aWSCloudQuestCloudPractitioner"
+      ],
+      "skills": {
+        "industryKnowledge": [
+          "softwareDevelopmentLifeCycleSDLc",
+          "logAnalysis",
+          "incidentHandling",
+          "threatAnalysis",
+          "webDevelopment",
+          "softwareDevelopment"
+        ],
+        "toolsTechnologies": [
+          "contentManagementSystemsCMs",
+          "rESTAPIs",
+          "git",
+          "laravel",
+          "codeIgniter",
+          "php",
+          "sql",
+          "javaScript",
+          "jQuery",
+          "cascadingStyleSheetsCSs",
+          "html",
+          "java",
+          "nETFramwork",
+          "microsoftExcel"
+        ],
+        "languages": [
+          "english",
+          "chinese"
+        ]
+      },
+      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+    },
+    "systemAnalyst": {
+      "roleName": "System Analyst",
+      "experience": [
+        "intern",
+        "webDeveloper",
+        "internii"
+      ],
+      "education": [
+        "diploma",
+        "bachelorsDegree",
+        "bachelorsDegreeii"
+      ],
+      "certifications": [
+        "compTIACySAPreparationPathCertification",
+        "sOCAnalystLearningPathCertification",
+        "lightningExperienceReportsDashboardsSpecialist"
+      ],
+      "skills": {
+        "industryKnowledge": [
+          "softwareDevelopmentLifeCycleSDLc",
+          "logAnalysis",
+          "incidentHandling",
+          "threatAnalysis",
+          "webDevelopment",
+          "softwareDevelopment"
+        ],
+        "toolsTechnologies": [
+          "contentManagementSystemsCMs",
+          "rESTAPIs",
+          "git",
+          "laravel",
+          "codeIgniter",
+          "php",
+          "sql",
+          "javaScript",
+          "jQuery",
+          "cascadingStyleSheetsCSs",
+          "html",
+          "java",
+          "nETFramwork",
+          "microsoftExcel"
+        ],
+        "languages": [
+          "english",
+          "chinese"
+        ]
+      },
+      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+    },
+    "technicalSupportEngineer": {
+      "roleName": "Technical Support Engineer",
+      "experience": [
+        "intern",
+        "webDeveloper",
+        "internii"
+      ],
+      "education": [
+        "diploma",
+        "bachelorsDegree",
+        "bachelorsDegreeii"
+      ],
+      "certifications": [
+        "compTIACySAPreparationPathCertification",
+        "sOCAnalystLearningPathCertification",
+        "aWSCloudQuestCloudPractitioner"
+      ],
+      "skills": {
+        "industryKnowledge": [
+          "softwareDevelopmentLifeCycleSDLc",
+          "logAnalysis",
+          "incidentHandling",
+          "threatAnalysis",
+          "webDevelopment",
+          "softwareDevelopment"
+        ],
+        "toolsTechnologies": [
+          "contentManagementSystemsCMs",
+          "rESTAPIs",
+          "git",
+          "laravel",
+          "codeIgniter",
+          "php",
+          "sql",
+          "javaScript",
+          "jQuery",
+          "cascadingStyleSheetsCSs",
+          "html",
+          "java",
+          "nETFramwork",
+          "microsoftExcel"
+        ],
+        "languages": [
+          "english",
+          "chinese"
+        ]
+      },
+      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+    },
+    "iTConsultant": {
+      "roleName": "IT Consultant",
+      "experience": [
+        "intern",
+        "webDeveloper",
+        "internii"
+      ],
+      "education": [
+        "diploma",
+        "bachelorsDegree",
+        "bachelorsDegreeii"
+      ],
+      "certifications": [
+        "lightningExperienceReportsDashboardsSpecialist",
+        "aWSCloudQuestCloudPractitioner",
+        "frontEndDevelopmentLibraries"
       ],
       "skills": {
         "industryKnowledge": [
