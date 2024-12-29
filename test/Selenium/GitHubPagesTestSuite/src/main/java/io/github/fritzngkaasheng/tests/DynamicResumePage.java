@@ -13,6 +13,10 @@ public class DynamicResumePage {
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume");
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/software-engineer");
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/integration-engineer");
+        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/cyber-security-analyst");
+        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/system-analyst");
+        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/technical-support-engineer");
+        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/i-t-consultant");
     }
 
     public void dynamicResumePage(WebDriver driver) throws InterruptedException {
