@@ -50,11 +50,31 @@ const Navigation = () => {
     className: `dropdown-item${isActive('/dynamic-resume') ? ' active' : ''}`,
     "aria-current": isActive('/dynamic-resume') ? 'page' : undefined,
     to: "/dynamic-resume"
+  }, t('Default'))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+    className: `dropdown-item${isActive('/dynamic-resume/software-engineer') ? ' active' : ''}`,
+    "aria-current": isActive('/dynamic-resume/software-engineer') ? 'page' : undefined,
+    to: "/dynamic-resume/software-engineer"
   }, t('Software Engineer'))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
     className: `dropdown-item${isActive('/dynamic-resume/integration-engineer') ? ' active' : ''}`,
     "aria-current": isActive('/dynamic-resume/integration-engineer') ? 'page' : undefined,
     to: "/dynamic-resume/integration-engineer"
-  }, t('Integration Engineer'))))), /*#__PURE__*/React.createElement("li", {
+  }, t('Integration Engineer'))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+    className: `dropdown-item${isActive('/dynamic-resume/cyber-security-analyst') ? ' active' : ''}`,
+    "aria-current": isActive('/dynamic-resume/cyber-security-analyst') ? 'page' : undefined,
+    to: "/dynamic-resume/cyber-security-analyst"
+  }, t('Cyber Security Analyst'))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+    className: `dropdown-item${isActive('/dynamic-resume/system-analyst') ? ' active' : ''}`,
+    "aria-current": isActive('/dynamic-resume/system-analyst') ? 'page' : undefined,
+    to: "/dynamic-resume/system-analyst"
+  }, t('System Analyst'))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+    className: `dropdown-item${isActive('/dynamic-resume/technical-support-engineer') ? ' active' : ''}`,
+    "aria-current": isActive('/dynamic-resume/technical-support-engineer') ? 'page' : undefined,
+    to: "/dynamic-resume/technical-support-engineer"
+  }, t('Technical Support Engineer'))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+    className: `dropdown-item${isActive('/dynamic-resume/i-t-consultant') ? ' active' : ''}`,
+    "aria-current": isActive('/dynamic-resume/i-t-consultant') ? 'page' : undefined,
+    to: "/dynamic-resume/i-t-consultant"
+  }, t('IT Consultant'))))), /*#__PURE__*/React.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/React.createElement(Link, {
     className: `nav-link${isActive('/academic-cv') ? ' active' : ''}`,

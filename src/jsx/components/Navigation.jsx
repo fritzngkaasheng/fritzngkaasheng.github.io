@@ -51,6 +51,15 @@ const Navigation = () => {
                 aria-current={isActive('/dynamic-resume') ? 'page' : undefined}
                 to="/dynamic-resume"
               >
+                {t('Default')}
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={`dropdown-item${isActive('/dynamic-resume/software-engineer') ? ' active' : ''}`}
+                aria-current={isActive('/dynamic-resume/software-engineer') ? 'page' : undefined}
+                to="/dynamic-resume/software-engineer"
+              >
                 {t('Software Engineer')}
               </Link>
             </li>
@@ -61,6 +70,42 @@ const Navigation = () => {
                 to="/dynamic-resume/integration-engineer"
               >
                 {t('Integration Engineer')}
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={`dropdown-item${isActive('/dynamic-resume/cyber-security-analyst') ? ' active' : ''}`}
+                aria-current={isActive('/dynamic-resume/cyber-security-analyst') ? 'page' : undefined}
+                to="/dynamic-resume/cyber-security-analyst"
+              >
+                {t('Cyber Security Analyst')}
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={`dropdown-item${isActive('/dynamic-resume/system-analyst') ? ' active' : ''}`}
+                aria-current={isActive('/dynamic-resume/system-analyst') ? 'page' : undefined}
+                to="/dynamic-resume/system-analyst"
+              >
+                {t('System Analyst')}
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={`dropdown-item${isActive('/dynamic-resume/technical-support-engineer') ? ' active' : ''}`}
+                aria-current={isActive('/dynamic-resume/technical-support-engineer') ? 'page' : undefined}
+                to="/dynamic-resume/technical-support-engineer"
+              >
+                {t('Technical Support Engineer')}
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={`dropdown-item${isActive('/dynamic-resume/i-t-consultant') ? ' active' : ''}`}
+                aria-current={isActive('/dynamic-resume/i-t-consultant') ? 'page' : undefined}
+                to="/dynamic-resume/i-t-consultant"
+              >
+                {t('IT Consultant')}
               </Link>
             </li>
           </ul>
