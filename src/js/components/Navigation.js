@@ -50,6 +50,10 @@ const Navigation = () => {
     className: `dropdown-item${isActive('/dynamic-resume') ? ' active' : ''}`,
     "aria-current": isActive('/dynamic-resume') ? 'page' : undefined,
     to: "/dynamic-resume"
+  }, t('Default'))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+    className: `dropdown-item${isActive('/dynamic-resume/software-engineer') ? ' active' : ''}`,
+    "aria-current": isActive('/dynamic-resume') ? 'page' : undefined,
+    to: "/dynamic-resume/software-engineer"
   }, t('Software Engineer'))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
     className: `dropdown-item${isActive('/dynamic-resume/integration-engineer') ? ' active' : ''}`,
     "aria-current": isActive('/dynamic-resume/integration-engineer') ? 'page' : undefined,

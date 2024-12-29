@@ -204,9 +204,7 @@
     }
   },
   "preset": {
-    "default": {
-      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
-    },
+    "default": "softwareEngineer",
     "softwareEngineer": {
       "roleName": "Software Engineer",
       "experience": [
