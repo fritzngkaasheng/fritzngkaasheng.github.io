@@ -8,6 +8,8 @@ import SummarySection from "/src/js/components/SummarySection.js";
 import ExperienceSection from "/src/js/components/ExperienceSection.js";
 import EducationSection from "/src/js/components/EducationSection.js";
 import CertificationsSection from "/src/js/components/CertificationsSection.js";
+import CourseworkSection from "/src/js/components/CourseworkSection.js";
+import InvolvementSection from "/src/js/components/InvolvementSection.js";
 import SkillsSection from "/src/js/components/SkillsSection.js";
 
 const React = window.React;
@@ -68,19 +70,23 @@ const DynamicResume = () => {
     
         filteredData.education = Object.values(profile.data.education)
         .sort((a, b) => {
-          const dateA = new Date(
+          const dateA = a.date ? new Date(
             parseInt(a.date.end.year),
             parseInt(a.date.end.month) - 1
-          );
-          const dateB = new Date(
+          ) : new Date(0, 0);
+          const dateB = b.date ? new Date(
             parseInt(b.date.end.year),
             parseInt(b.date.end.month) - 1
-          );
+          ) : new Date(0, 0);
   
           return dateB - dateA;
         });
   
         filteredData.certifications = Object.values(profile.data.certifications).reverse();
+
+        filteredData.coursework = Object.values(profile.data.coursework).reverse();
+
+        filteredData.involvement = Object.values(profile.data.involvement).reverse();
   
         filteredData.skills = profile.data.skills;
       }
@@ -188,6 +194,12 @@ const DynamicResume = () => {
         <CertificationsSection
           certificationList={filteredData.certifications}
         />
+        {filteredData.coursework && (<CourseworkSection
+          courseworkList={filteredData.coursework}
+        />)}
+        {filteredData.involvement && (<InvolvementSection
+          involvementList={filteredData.involvement}
+        />)}
         <SkillsSection
           skillList={filteredData.skills}
         />

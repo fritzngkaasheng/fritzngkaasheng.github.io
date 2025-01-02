@@ -25,7 +25,7 @@ const ExperienceSection = ({ experienceList }) => {
               <h5>{t(experience.company)}</h5>
               <h5>{t(getDateText(experience.date.start))} - {t(getDateText(experience.date.end))}, {t(experience.location)}</h5>
             </div>
-            {experience.description.type === "bullet" && (
+            {experience.description && experience.description.type === "bullet" && (
               <ul>
                 {experience.description.data.map((bulletText, index) => (
                   <li key={index}>{t(bulletText)}</li>

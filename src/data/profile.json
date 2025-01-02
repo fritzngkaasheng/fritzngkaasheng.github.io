@@ -7,6 +7,45 @@
       "country": "Malaysia"
     },
     "experience": {
+      "marketingAssistant": {
+        "role": "Marketing Assistant",
+        "company": "Serasi Utara Sdn Bhd",
+        "date": {
+          "start": {
+            "year": "2018",
+            "month": "01"
+          },
+          "end": {
+            "year": "2018",
+            "month": "03"
+          }
+        },
+        "location": "Cheras, Selangor, Malaysia",
+        "description": {
+          "type": "bullet",
+          "data": [
+            "Installed and maintained billboard to promote the shop.",
+            "Created engaging billboard videos.",
+            "Set up and managed the shop’s Facebook page.",
+            "Assisted in adding the shop to Google Maps and created a website."
+          ]
+        }
+      },
+      "waiter": {
+        "role": "Waiter",
+        "company": "Koong Woh Tong Sdn Bhd",
+        "date": {
+          "start": {
+            "year": "2019",
+            "month": "03"
+          },
+          "end": {
+            "year": "2019",
+            "month": "05"
+          }
+        },
+        "location": "Seri Kembangan, Selangor, Malaysia"
+      },
       "intern": {
         "role": "Intern | WordPress, WooCommerce",
         "company": "Ideaone System Solutions Sdn. Bhd.",
@@ -109,6 +148,9 @@
             "month": "08"
           }
         }
+      },
+      "freeCodeCamp": {
+        "school": "freeCodeCamp"
       }
     },
     "certifications": {
@@ -211,6 +253,33 @@
           }
         },
         "link": "https://freecodecamp.org/certification/GrowingTree8/front-end-development-libraries"
+      }
+    },
+    "coursework": {
+      "letsDefendFreeCourses": {
+        "name": "LetsDefend Free Courses"
+      }
+    },
+    "involvement": {
+      "committeeMemberOfAPUMerdekaFiesta201viii": {
+        "role": "Committee Member of APU Merdeka Fiesta 2018",
+        "organisation": "Asia Pacific University of Technology and Innovation (APU / APIIT)"
+      },
+      "participatedInSolarEnergyCarCompetition201viii": {
+        "role": "Participated in Solar Energy Car Competition 2018",
+        "organisation": "Asia Pacific University of Technology and Innovation (APU / APIIT)"
+      },
+      "participatedInFusionexDataChallenge201ix": {
+        "role": "Participated in Fusionex Data Challenge 2019",
+        "organisation": "Fusionex Group",
+        "description": {
+          "type": "bullet",
+          "data": [
+            "Analyzed complex datasets using tools like Python and Jupyter Notebook.",
+            "Collaborated in a team of 3, enhanced teamwork and communication skills.",
+            "Received constrictive feedback from industry experts, which helped refine my analytical approach."
+          ]
+        }
       }
     },
     "skills": {

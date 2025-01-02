@@ -38,7 +38,8 @@ public class UntranslatedTextFinder {
                 "freeCodeCamp • 2024",
                 "LetsDefend • 2024",
                 "IBM • 2024",
-                "IBM MQ on AWS Cloud Developer Essentials（AWS 云上的 IBM MQ 开发人员要点）"
+                "IBM MQ on AWS Cloud Developer Essentials（AWS 云上的 IBM MQ 开发人员要点）",
+                "freeCodeCamp"
         );
 
         for (String text : texts) {
