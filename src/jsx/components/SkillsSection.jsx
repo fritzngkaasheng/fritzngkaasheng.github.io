@@ -19,13 +19,13 @@ const SkillsSection = ({ skillList }) => {
         text="SKILLS"
       />
       {Object.values(skillList).map(skillGroup => (
-          <>
+          <div>
             <p>{t(skillGroup.name)}: {
               Object.keys(skillGroup.skill)
               .map(skill => t(skillGroup.skill[skill]))
               .join(t(", "))
             }</p>
-          </>
+          </div>
         ))}
     </div>
   );

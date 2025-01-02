@@ -14,7 +14,7 @@ i18n
   .use(Backend)
   .init({
     backend: {
-      loadPath: './locales/{{lng}}/{{ns}}.json',
+      loadPath: './locales/{{lng}}/{{ns}}.min.json',
       addPath: './locales/add/{{lng}}/{{ns}}',
     },
     fallbackLng: "en",
