@@ -11,6 +11,7 @@ public class DynamicResumePage {
 
     public void dynamicResumePages(WebDriver driver) throws InterruptedException {
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume");
+        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/all-details");
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/software-engineer");
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/integration-engineer");
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/cyber-security-analyst");

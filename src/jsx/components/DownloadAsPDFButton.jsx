@@ -8,6 +8,7 @@ import {
 	pdfOrientation,
 	pdfSizeUnit,
 	a4ScaledToHD720pDimensionsPx,
+  pdfMarginPx,
 	pdfExt
 } from "/src/js/main.js";
 
@@ -51,20 +52,22 @@ const DownloadAsPDFButton = ({ fullName, roleName }) => {
     function downloadPDFUsingHtml2pdf() {	
       let element = document.querySelectorAll(".a4-container")[0];
       let opt = {
+        margin:       pdfMarginPx,
         filename:     t(docName) + pdfExt,
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  {
-          width: a4ScaledToHD720pDimensionsPx[0],
-          height: a4ScaledToHD720pDimensionsPx[1],
+          scale: 2,
           windowWidth: a4ScaledToHD720pDimensionsPx[0]
         },
         jsPDF:        {
           orientation: pdfOrientation,
           unit: pdfSizeUnit,
-          format: a4ScaledToHD720pDimensionsPx
-        }
+          format: a4ScaledToHD720pDimensionsPx,
+          compressPDF: true
+        },
+        pagebreak: { mode: ['css'] }
       };
-       
+
       html2pdf().from(element).set(opt).save();
     };
     

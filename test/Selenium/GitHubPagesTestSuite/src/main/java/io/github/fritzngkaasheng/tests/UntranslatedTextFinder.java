@@ -36,7 +36,9 @@ public class UntranslatedTextFinder {
                 "Lightning Experience Reports & Dashboards Specialist",
                 "Trailhead • 2023",
                 "freeCodeCamp • 2024",
-                "LetsDefend • 2024"
+                "LetsDefend • 2024",
+                "IBM • 2024",
+                "IBM MQ on AWS Cloud Developer Essentials（AWS 云上的 IBM MQ 开发人员要点）"
         );
 
         for (String text : texts) {

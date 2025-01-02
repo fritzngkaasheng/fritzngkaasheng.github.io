@@ -49,67 +49,105 @@ const DynamicResume = () => {
         presetName = camelCasePresetName;
       }
 
-      filteredData.roleName = profile.preset[presetName].roleName;
+      if ("allDetails" == presetName) {
+        filteredData.roleName = "All Details";
 
-      filteredData.experience = profile.preset[presetName].experience
-      .map(experienceId => {
-        return profile.data.experience[experienceId];
-      })
-      .sort((a, b) => {
-        const dateA = new Date(
-          parseInt(a.date.start.year),
-          parseInt(a.date.start.month) - 1
-        );
-        const dateB = new Date(
-          parseInt(b.date.start.year),
-          parseInt(b.date.start.month) - 1
-        );
-
-        return dateB - dateA;
-      });
+        filteredData.experience = Object.values(profile.data.experience)
+        .sort((a, b) => {
+          const dateA = new Date(
+            parseInt(a.date.start.year),
+            parseInt(a.date.start.month) - 1
+          );
+          const dateB = new Date(
+            parseInt(b.date.start.year),
+            parseInt(b.date.start.month) - 1
+          );
   
-      filteredData.education = profile.preset[presetName].education
-      .map(educationId => {
-        return profile.data.education[educationId];
-      })
-      .sort((a, b) => {
-        const dateA = new Date(
-          parseInt(a.date.end.year),
-          parseInt(a.date.end.month) - 1
-        );
-        const dateB = new Date(
-          parseInt(b.date.end.year),
-          parseInt(b.date.end.month) - 1
-        );
-
-        return dateB - dateA;
-      });
-
-      filteredData.certifications = profile.preset[presetName].certifications
-      .map(certificationId => {
-        return profile.data.certifications[certificationId];
-      })
-      .sort((a, b) => {
-        const dateA = new Date(
-          parseInt(a.date.start.year)
-        );
-        const dateB = new Date(
-          parseInt(b.date.start.year)
-        );
-
-        return dateB - dateA;
-      });
-
-      filteredData.skills = {};
-
-      for (const [skillGroupName, skillIdList] of Object.entries(profile.preset[presetName].skills)) {
-        filteredData.skills[skillGroupName] = {
-          "name": profile.data.skills[skillGroupName].name,
-          "skill": {}
-        };
-        skillIdList.map((skillId) => {
-          filteredData.skills[skillGroupName].skill[skillId] = profile.data.skills[skillGroupName].skill[skillId];
+          return dateB - dateA;
         });
+    
+        filteredData.education = Object.values(profile.data.education)
+        .sort((a, b) => {
+          const dateA = new Date(
+            parseInt(a.date.end.year),
+            parseInt(a.date.end.month) - 1
+          );
+          const dateB = new Date(
+            parseInt(b.date.end.year),
+            parseInt(b.date.end.month) - 1
+          );
+  
+          return dateB - dateA;
+        });
+  
+        filteredData.certifications = Object.values(profile.data.certifications).reverse();
+  
+        filteredData.skills = profile.data.skills;
+      }
+
+      if ("allDetails" != presetName) {
+        filteredData.roleName = profile.preset[presetName].roleName;
+
+        filteredData.experience = profile.preset[presetName].experience
+        .map(experienceId => {
+          return profile.data.experience[experienceId];
+        })
+        .sort((a, b) => {
+          const dateA = new Date(
+            parseInt(a.date.start.year),
+            parseInt(a.date.start.month) - 1
+          );
+          const dateB = new Date(
+            parseInt(b.date.start.year),
+            parseInt(b.date.start.month) - 1
+          );
+  
+          return dateB - dateA;
+        });
+    
+        filteredData.education = profile.preset[presetName].education
+        .map(educationId => {
+          return profile.data.education[educationId];
+        })
+        .sort((a, b) => {
+          const dateA = new Date(
+            parseInt(a.date.end.year),
+            parseInt(a.date.end.month) - 1
+          );
+          const dateB = new Date(
+            parseInt(b.date.end.year),
+            parseInt(b.date.end.month) - 1
+          );
+  
+          return dateB - dateA;
+        });
+  
+        filteredData.certifications = profile.preset[presetName].certifications
+        .map(certificationId => {
+          return profile.data.certifications[certificationId];
+        })
+        .sort((a, b) => {
+          const dateA = new Date(
+            parseInt(a.date.start.year)
+          );
+          const dateB = new Date(
+            parseInt(b.date.start.year)
+          );
+  
+          return dateB - dateA;
+        });
+  
+        filteredData.skills = {};
+  
+        for (const [skillGroupName, skillIdList] of Object.entries(profile.preset[presetName].skills)) {
+          filteredData.skills[skillGroupName] = {
+            "name": profile.data.skills[skillGroupName].name,
+            "skill": {}
+          };
+          skillIdList.map((skillId) => {
+            filteredData.skills[skillGroupName].skill[skillId] = profile.data.skills[skillGroupName].skill[skillId];
+          });
+        }
       }
 
       setFilteredData(filteredData);

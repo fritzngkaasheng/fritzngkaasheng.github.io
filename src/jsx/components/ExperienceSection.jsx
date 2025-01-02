@@ -19,7 +19,7 @@ const ExperienceSection = ({ experienceList }) => {
         text="EXPERIENCE"
       />
       {experienceList.map(experience => (
-          <>
+          <div>
             <h4>{t(experience.role)}</h4>
             <div className="d-xl-flex justify-content-xl-between">
               <h5>{t(experience.company)}</h5>
@@ -32,7 +32,7 @@ const ExperienceSection = ({ experienceList }) => {
                 ))}
               </ul>
             )}
-          </>
+          </div>
         ))}
     </div>
   );

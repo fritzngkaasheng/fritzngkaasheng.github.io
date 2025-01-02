@@ -14,6 +14,6 @@ const EducationSection = ({
   }, /*#__PURE__*/React.createElement(SectionTitle, {
     id: "education-title",
     text: "EDUCATION"
-  }), educationList.map(education => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h4", null, t(education.degree)), /*#__PURE__*/React.createElement("p", null, t(education.school), " \u2022 ", t(getDateText(education.date.end))))));
+  }), educationList.map(education => /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, t(education.degree)), /*#__PURE__*/React.createElement("p", null, t(education.school), " \u2022 ", t(getDateText(education.date.end))))));
 };
 export default EducationSection; 

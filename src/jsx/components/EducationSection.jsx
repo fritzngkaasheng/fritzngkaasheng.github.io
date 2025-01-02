@@ -19,10 +19,10 @@ const EducationSection = ({ educationList }) => {
         text="EDUCATION"
       />
       {educationList.map(education => (
-          <>
+          <div>
             <h4>{t(education.degree)}</h4>
             <p>{t(education.school)} • {t(getDateText(education.date.end))}</p>
-          </>
+          </div>
         ))}
     </div>
   );
