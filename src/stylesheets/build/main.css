@@ -6,15 +6,38 @@ header.navbar {
   left: unset;
 }
 
-.a4-container {
+#main-container .a4-container {
   padding: 3rem 0;
+}
+
+.a4-container {
+  page-break-inside: auto;
+}
+
+p, li, h2, h3, h4, h5, h6 {
+  page-break-inside: avoid;
+  page-break-after: auto;
+}
+
+ul, ol {
+  page-break-inside: avoid;
+}
+
+.container {
+  page-break-inside: auto;
+}
+
+.a4-container > .container > div {
+  page-break-inside: avoid;
+  page-break-after: auto;
 }
 
 @media (max-width: 1280px) and (min-width: 1280px) {
   .a4-container {
     aspect-ratio: 0.7069555302;
+  }
+  #main-container .a4-container {
     padding: 96px;
-    height: 1810.5806451613px;
   }
 }
 
