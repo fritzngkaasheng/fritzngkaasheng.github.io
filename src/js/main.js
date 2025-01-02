@@ -8,6 +8,7 @@ const a4Size72DPIPx = [595, 842];
 const a4Size300DPIPx = [2480, 3508];
 // const a4ScaledToHDDimensionsPx = [width, height];
 const a4ScaledToHD720pDimensionsPx = [1280, (1280 / a4Size300DPIPx[0] * a4Size300DPIPx[1])];
+const pdfMarginPx = 96;
 
 const pdfExt = ".pdf";
 const docxExt = ".docx";
@@ -26,6 +27,7 @@ export {
 	pdfOrientation,
 	pdfSizeUnit,
 	a4ScaledToHD720pDimensionsPx,
+	pdfMarginPx,
 	pdfExt,
 	docxExt,
 	doctypeDeclaration,

@@ -11,14 +11,38 @@ header.navbar {
 	left: unset;
 }
 
-.a4-container {
+#main-container .a4-container {
 	padding: 3rem 0;
+}
+
+.a4-container {
+  page-break-inside: auto;
+}
+
+p, li, h2, h3, h4, h5, h6 {
+  page-break-inside: avoid;
+  page-break-after: auto;
+}
+
+ul, ol {
+  page-break-inside: avoid;
+}
+
+.container {
+  page-break-inside: auto;
+}
+
+.a4-container > .container > div {
+  page-break-inside: avoid;
+  page-break-after: auto;
 }
 
 @media (max-width: $defaultScreenWidth) and (min-width: $defaultScreenWidth) {
 	.a4-container {
 		aspect-ratio: calc($a4Size300DPIPxWidth / $a4Size300DPIPxHeight);
+	}
+
+	#main-container .a4-container {
 		padding: $marginSize;
-		height: calc($defaultScreenWidth / ($a4Size300DPIPxWidth / $a4Size300DPIPxHeight))
 	}
 }
