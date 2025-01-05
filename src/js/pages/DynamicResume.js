@@ -26,10 +26,15 @@ function kebabToCamelCase(str) {
 }
 const DynamicResume = () => {
   const {
-    preset
+    preset,
+    encodedFilter
   } = useParams();
   const [profile, setProfile] = useState({});
   const [filteredData, setFilteredData] = useState({});
+  const [errorMessages, setErrorMessages] = useState([]);
+  const addErrorMessage = errorMessage => {
+    setErrorMessages(prevErrorMessages => [...prevErrorMessages, errorMessage]);
+  };
   useEffect(() => {
     fetch("/dist/data/profile.min.json").then(res => res.json()).then(data => {
       setProfile(data);
@@ -38,6 +43,7 @@ const DynamicResume = () => {
     });
   }, []);
   useEffect(() => {
+    setErrorMessages([]);
     if (profile.data) {
       const filteredData = {};
       let presetName = profile.preset.default;
@@ -46,7 +52,9 @@ const DynamicResume = () => {
         const camelCasePresetName = kebabToCamelCase(kebabCasePresetName);
         presetName = camelCasePresetName;
       }
-      if ("allDetails" == presetName) {
+      let isSpecialPreset = false;
+      if ("allDetails" == presetName || "c" == presetName && !encodedFilter) {
+        isSpecialPreset = true;
         filteredData.roleName = "All Details";
         filteredData.experience = Object.values(profile.data.experience).sort((a, b) => {
           const dateA = new Date(parseInt(a.date.start.year), parseInt(a.date.start.month) - 1);
@@ -63,45 +71,113 @@ const DynamicResume = () => {
         filteredData.involvement = Object.values(profile.data.involvement).reverse();
         filteredData.skills = profile.data.skills;
       }
-      if ("allDetails" != presetName) {
-        filteredData.roleName = profile.preset[presetName].roleName;
-        filteredData.experience = profile.preset[presetName].experience.map(experienceId => {
-          return profile.data.experience[experienceId];
-        }).sort((a, b) => {
-          const dateA = new Date(parseInt(a.date.start.year), parseInt(a.date.start.month) - 1);
-          const dateB = new Date(parseInt(b.date.start.year), parseInt(b.date.start.month) - 1);
-          return dateB - dateA;
-        });
-        filteredData.education = profile.preset[presetName].education.map(educationId => {
-          return profile.data.education[educationId];
-        }).sort((a, b) => {
-          const dateA = new Date(parseInt(a.date.end.year), parseInt(a.date.end.month) - 1);
-          const dateB = new Date(parseInt(b.date.end.year), parseInt(b.date.end.month) - 1);
-          return dateB - dateA;
-        });
-        filteredData.certifications = profile.preset[presetName].certifications.map(certificationId => {
-          return profile.data.certifications[certificationId];
-        }).sort((a, b) => {
-          const dateA = new Date(parseInt(a.date.start.year));
-          const dateB = new Date(parseInt(b.date.start.year));
-          return dateB - dateA;
-        });
-        filteredData.skills = {};
-        for (const [skillGroupName, skillIdList] of Object.entries(profile.preset[presetName].skills)) {
-          filteredData.skills[skillGroupName] = {
-            "name": profile.data.skills[skillGroupName].name,
-            "skill": {}
-          };
-          skillIdList.map(skillId => {
-            filteredData.skills[skillGroupName].skill[skillId] = profile.data.skills[skillGroupName].skill[skillId];
-          });
+      if (!isSpecialPreset || "c" == presetName && encodedFilter) {
+        let filter = void 0;
+        if ("c" == presetName) {
+          isSpecialPreset = true;
+          if (encodedFilter) {
+            filter = JSON.parse(decodeURIComponent(encodedFilter));
+            filter.roleName = "Resume";
+          }
+        }
+        if (!isSpecialPreset) {
+          filter = profile.preset[presetName];
+        }
+        filteredData.roleName = filter.roleName;
+        if (!filter.experience) {
+          addErrorMessage("Please provide at least 1 experience");
+        }
+        if (filter.experience) {
+          filteredData.experience = filter.experience.map(experienceId => {
+            if (profile.data.experience[experienceId]) {
+              return profile.data.experience[experienceId];
+            }
+          }).sort((a, b) => {
+            const dateA = new Date(parseInt(a.date.start.year), parseInt(a.date.start.month) - 1);
+            const dateB = new Date(parseInt(b.date.start.year), parseInt(b.date.start.month) - 1);
+            return dateB - dateA;
+          }).filter(Boolean);
+          if (filteredData.experience.length < 1) {
+            addErrorMessage("Please provide at least 1 experience");
+          }
+        }
+        if (!filter.education) {
+          addErrorMessage("Please provide at least 1 education");
+        }
+        if (filter.education) {
+          filteredData.education = filter.education.map(educationId => {
+            if (profile.data.education[educationId]) {
+              return profile.data.education[educationId];
+            }
+          }).sort((a, b) => {
+            const dateA = new Date(parseInt(a.date.end.year), parseInt(a.date.end.month) - 1);
+            const dateB = new Date(parseInt(b.date.end.year), parseInt(b.date.end.month) - 1);
+            return dateB - dateA;
+          }).filter(Boolean);
+          if (filteredData.education.length < 1) {
+            addErrorMessage("Please provide at least 1 education");
+          }
+        }
+        if (!filter.certifications) {
+          addErrorMessage("Please provide at least 1 certification");
+        }
+        if (filter.certifications) {
+          filteredData.certifications = filter.certifications.map(certificationId => {
+            if (profile.data.certifications[certificationId]) {
+              return profile.data.certifications[certificationId];
+            }
+          }).sort((a, b) => {
+            const dateA = new Date(parseInt(a.date.start.year));
+            const dateB = new Date(parseInt(b.date.start.year));
+            return dateB - dateA;
+          }).filter(Boolean);
+          if (filteredData.certifications.length < 1) {
+            addErrorMessage("Please provide at least 1 certification");
+          }
+        }
+        if (!filter.skills) {
+          addErrorMessage("Please provide at least 1 skill");
+        }
+        if (filter.skills) {
+          filteredData.skills = {};
+          for (const [skillGroupName, skillIdList] of Object.entries(filter.skills)) {
+            if (profile.data.skills[skillGroupName]) {
+              filteredData.skills[skillGroupName] = {
+                "name": profile.data.skills[skillGroupName].name,
+                "skill": {}
+              };
+              skillIdList.map(skillId => {
+                if (profile.data.skills[skillGroupName].skill[skillId]) {
+                  filteredData.skills[skillGroupName].skill[skillId] = profile.data.skills[skillGroupName].skill[skillId];
+                }
+              });
+            }
+          }
+          if (Object.keys(filteredData.skills).length < 1) {
+            addErrorMessage("Please provide at least 1 skill");
+          }
+          if (Object.keys(filteredData.skills).length >= 1) {
+            for (const skillGroupName of Object.keys(filteredData.skills)) {
+              if (Object.keys(filteredData.skills[skillGroupName].skill).length < 1) {
+                addErrorMessage("Skill group " + skillGroupName + " is empty");
+              }
+            }
+          }
         }
       }
       setFilteredData(filteredData);
     }
-  }, [profile, preset]);
-  if (!filteredData.experience) {
+  }, [profile, preset, encodedFilter]);
+  if (!filteredData.roleName) {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LoadingSection, null));
+  }
+  if (errorMessages.length > 0) {
+    return /*#__PURE__*/React.createElement("div", null, errorMessages.length > 0 && /*#__PURE__*/React.createElement("div", {
+      className: "message-container"
+    }, errorMessages.map((msg, index) => /*#__PURE__*/React.createElement("div", {
+      key: index,
+      className: "message"
+    }, msg))));
   }
   return /*#__PURE__*/React.createElement(React.Fragment, null, profile.improvedHRProcessMode === "true" && /*#__PURE__*/React.createElement(BottomRightFloatingButtons, {
     fullName: profile.data.contact.fullName,
@@ -111,7 +187,7 @@ const DynamicResume = () => {
     country: profile.data.contact.country,
     linkedInURLSlug: profile.data.contact.linkedInURLSlug
   }), /*#__PURE__*/React.createElement(SummarySection, {
-    summary: profile.preset.softwareEngineer.summary
+    summary: profile.preset[profile.preset.default].summary
   }), /*#__PURE__*/React.createElement(ExperienceSection, {
     experienceList: filteredData.experience
   }), /*#__PURE__*/React.createElement(EducationSection, {

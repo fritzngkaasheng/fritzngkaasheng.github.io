@@ -14,7 +14,7 @@ const CertificationsSection = ({ certificationList }) => {
         id="certifications-title"
         text="CERTIFICATIONS"
       />
-      {certificationList.map(certification => (
+      {certificationList.map(certification => certification && (
           <div>
             <h4>{t(certification.name)}</h4>
             <p>{t(certification.organisation)} • {t(certification.date.start.year)}</p>

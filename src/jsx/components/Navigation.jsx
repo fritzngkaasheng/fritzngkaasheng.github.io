@@ -65,6 +65,15 @@ const Navigation = () => {
             </li>
             <li>
               <Link
+                className={`dropdown-item${isActive('/dynamic-resume/c') ? ' active' : ''}`}
+                aria-current={isActive('/dynamic-resume/c') ? 'page' : undefined}
+                to="/dynamic-resume/c"
+              >
+                {t('Customise the Resume')}
+              </Link>
+            </li>
+            <li>
+              <Link
                 className={`dropdown-item${isActive('/dynamic-resume/software-engineer') ? ' active' : ''}`}
                 aria-current={isActive('/dynamic-resume/software-engineer') ? 'page' : undefined}
                 to="/dynamic-resume/software-engineer"
