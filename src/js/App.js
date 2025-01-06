@@ -31,6 +31,9 @@ class App extends React.Component {
       path: "dynamic-resume/:preset",
       element: /*#__PURE__*/React.createElement(DynamicResume, null)
     }), /*#__PURE__*/React.createElement(Route, {
+      path: "dynamic-resume/:preset/:encodedFilter",
+      element: /*#__PURE__*/React.createElement(DynamicResume, null)
+    }), /*#__PURE__*/React.createElement(Route, {
       path: "academic-cv",
       element: /*#__PURE__*/React.createElement(AcademicCV, null)
     }), /*#__PURE__*/React.createElement(Route, {

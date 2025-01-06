@@ -18,7 +18,7 @@ const ExperienceSection = ({ experienceList }) => {
         id="experience-title"
         text="EXPERIENCE"
       />
-      {experienceList.map(experience => (
+      {experienceList.map(experience => experience && (
           <div>
             <h4>{t(experience.role)}</h4>
             <div className="d-xl-flex justify-content-xl-between">

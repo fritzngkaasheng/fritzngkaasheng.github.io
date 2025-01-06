@@ -64,7 +64,7 @@ public abstract class BaseTest {
 
     @Test(priority = 3)
     public void dynamicResumePage() throws InterruptedException {
-        new DynamicResumePage().dynamicResumePages(driver);
+        new DynamicResumePage().dynamicResumePages(driver, url);
     }
 
     @AfterTest
