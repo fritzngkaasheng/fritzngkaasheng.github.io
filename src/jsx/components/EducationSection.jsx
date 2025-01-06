@@ -18,7 +18,7 @@ const EducationSection = ({ educationList }) => {
         id="education-title"
         text="EDUCATION"
       />
-      {educationList.map(education => (
+      {educationList.map(education => education && (
           <div>
             {education.degree && (
               <h4>{t(education.degree)}</h4>

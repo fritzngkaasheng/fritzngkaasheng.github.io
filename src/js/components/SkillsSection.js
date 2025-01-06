@@ -14,6 +14,6 @@ const SkillsSection = ({
   }, /*#__PURE__*/React.createElement(SectionTitle, {
     id: "skills-title",
     text: "SKILLS"
-  }), Object.values(skillList).map(skillGroup => /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, t(skillGroup.name), ": ", Object.keys(skillGroup.skill).map(skill => t(skillGroup.skill[skill])).join(t(", "))))));
+  }), Object.values(skillList).map(skillGroup => skillGroup && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, t(skillGroup.name), ": ", Object.keys(skillGroup.skill).map(skill => skill && t(skillGroup.skill[skill])).join(t(", "))))));
 };
 export default SkillsSection; 
