@@ -1,5 +1,9 @@
 "use strict";
 
+import {
+  useTranslation
+} from "/src/js/i18n.js";
+
 import LoadingSection from "/src/js/components/LoadingSection.js";
 import BottomRightFloatingButtons from "/src/js/components/BottomRightFloatingButtons.js";
 import A4Container from "/src/js/components/A4Container.js";
@@ -23,6 +27,8 @@ function kebabToCamelCase(str) {
 }
 
 const DynamicResume = () => {
+  const { t } = useTranslation();
+
   const { preset, encodedFilter } = useParams();
 
   const [profile, setProfile] = useState({});
@@ -108,7 +114,12 @@ const DynamicResume = () => {
         if ("c" == presetName) {
           isSpecialPreset = true;
           if (encodedFilter) {
-            filter = JSON.parse(decodeURIComponent(encodedFilter));
+            try {
+              filter = JSON.parse(decodeURIComponent(encodedFilter));
+            } catch (error) {
+              addErrorMessage("Invalid JSON filter");
+              return;
+            }
             filter.roleName = "Resume";
           }
         }
@@ -235,9 +246,38 @@ const DynamicResume = () => {
           if (Object.keys(filteredData.skills).length >= 1) {
             for (const skillGroupName of Object.keys(filteredData.skills)) {
               if (Object.keys(filteredData.skills[skillGroupName].skill).length < 1) {
-                addErrorMessage("Skill group " + skillGroupName + " is empty");
+                addErrorMessage("This skill group is empty:");
+                addErrorMessage(`"${skillGroupName}"`);
               }
             }
+          }
+        }
+
+        if (filter.coursework) {
+          filteredData.coursework = filter.coursework
+          .map(courseworkId => {
+            if (profile.data.coursework[courseworkId]) {
+              return profile.data.coursework[courseworkId];
+            }
+          })
+          .filter( Boolean );
+
+          if (filteredData.coursework.length < 1) {
+            addErrorMessage("Please provide at least 1 coursework");
+          }
+        }
+
+        if (filter.involvement) {
+          filteredData.involvement = filter.involvement
+          .map(involvementId => {
+            if (profile.data.involvement[involvementId]) {
+              return profile.data.involvement[involvementId];
+            }
+          })
+          .filter( Boolean );
+
+          if (filteredData.involvement.length < 1) {
+            addErrorMessage("Please provide at least 1 involvement");
           }
         }
       }
@@ -246,27 +286,27 @@ const DynamicResume = () => {
     }
   }, [profile, preset, encodedFilter]);
 
-  if (!filteredData.roleName) {
-    return (
-      <>
-        <LoadingSection />
-      </>
-    );
-  }
-
   if (errorMessages.length > 0) {
     return (
-      <div>
+      <div className="container">
         {errorMessages.length > 0 && (
           <div className="message-container">
             {errorMessages.map((msg, index) => (
               <div key={index} className="message">
-                {msg}
+                {t(msg)}
               </div>
             ))}
           </div>
         )}
       </div>
+    );
+  }
+
+  if (Object.keys(filteredData).length < 1) {
+    return (
+      <>
+        <LoadingSection />
+      </>
     );
   }
 

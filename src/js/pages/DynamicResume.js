@@ -1,5 +1,6 @@
 "use strict";
 
+import { useTranslation } from "/src/js/i18n.js";
 import LoadingSection from "/src/js/components/LoadingSection.js";
 import BottomRightFloatingButtons from "/src/js/components/BottomRightFloatingButtons.js";
 import A4Container from "/src/js/components/A4Container.js";
@@ -25,6 +26,9 @@ function kebabToCamelCase(str) {
   });
 }
 const DynamicResume = () => {
+  const {
+    t
+  } = useTranslation();
   const {
     preset,
     encodedFilter
@@ -76,7 +80,12 @@ const DynamicResume = () => {
         if ("c" == presetName) {
           isSpecialPreset = true;
           if (encodedFilter) {
-            filter = JSON.parse(decodeURIComponent(encodedFilter));
+            try {
+              filter = JSON.parse(decodeURIComponent(encodedFilter));
+            } catch (error) {
+              addErrorMessage("Invalid JSON filter");
+              return;
+            }
             filter.roleName = "Resume";
           }
         }
@@ -159,25 +168,48 @@ const DynamicResume = () => {
           if (Object.keys(filteredData.skills).length >= 1) {
             for (const skillGroupName of Object.keys(filteredData.skills)) {
               if (Object.keys(filteredData.skills[skillGroupName].skill).length < 1) {
-                addErrorMessage("Skill group " + skillGroupName + " is empty");
+                addErrorMessage("This skill group is empty:");
+                addErrorMessage(`"${skillGroupName}"`);
               }
             }
+          }
+        }
+        if (filter.coursework) {
+          filteredData.coursework = filter.coursework.map(courseworkId => {
+            if (profile.data.coursework[courseworkId]) {
+              return profile.data.coursework[courseworkId];
+            }
+          }).filter(Boolean);
+          if (filteredData.coursework.length < 1) {
+            addErrorMessage("Please provide at least 1 coursework");
+          }
+        }
+        if (filter.involvement) {
+          filteredData.involvement = filter.involvement.map(involvementId => {
+            if (profile.data.involvement[involvementId]) {
+              return profile.data.involvement[involvementId];
+            }
+          }).filter(Boolean);
+          if (filteredData.involvement.length < 1) {
+            addErrorMessage("Please provide at least 1 involvement");
           }
         }
       }
       setFilteredData(filteredData);
     }
   }, [profile, preset, encodedFilter]);
-  if (!filteredData.roleName) {
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LoadingSection, null));
-  }
   if (errorMessages.length > 0) {
-    return /*#__PURE__*/React.createElement("div", null, errorMessages.length > 0 && /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "container"
+    }, errorMessages.length > 0 && /*#__PURE__*/React.createElement("div", {
       className: "message-container"
     }, errorMessages.map((msg, index) => /*#__PURE__*/React.createElement("div", {
       key: index,
       className: "message"
-    }, msg))));
+    }, t(msg)))));
+  }
+  if (Object.keys(filteredData).length < 1) {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LoadingSection, null));
   }
   return /*#__PURE__*/React.createElement(React.Fragment, null, profile.improvedHRProcessMode === "true" && /*#__PURE__*/React.createElement(BottomRightFloatingButtons, {
     fullName: profile.data.contact.fullName,

@@ -106,5 +106,13 @@
   "Collaborated in a team of 3, enhanced teamwork and communication skills.": "在三人团队中合作，增强了团队合作和沟通能力。",
   "Received constrictive feedback from industry experts, which helped refine my analytical approach.": "收到了来自行业专家的有力反馈，这有助于完善我的分析方法。",
   "Participated in Solar Energy Car Competition 2018": "参加了 Solar Energy Car Competition 2018（2018 年太阳能汽车竞赛）",
-  "Committee Member of APU Merdeka Fiesta 2018": "APU Merdeka Fiesta 2018（2018 年亚太大学默迪卡嘉年华）委员"
+  "Committee Member of APU Merdeka Fiesta 2018": "APU Merdeka Fiesta 2018（2018 年亚太大学默迪卡嘉年华）委员",
+  "Invalid JSON filter": "无效的 JSON 过滤器",
+  "Please provide at least 1 experience": "请提供至少 1 个工作经历",
+  "Please provide at least 1 education": "请提供至少 1 个教育经历",
+  "Please provide at least 1 certification": "请提供至少 1 份证书",
+  "Please provide at least 1 skill": "请提供至少 1 个技能",
+  "Please provide at least 1 coursework": "请提供至少 1 门课程",
+  "Please provide at least 1 involvement": "请提供至少 1 个参与经历",
+  "This skill group is empty:": "这个技能组是空的："
 }
