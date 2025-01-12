@@ -5,12 +5,13 @@ import {
 } from "/src/js/i18n.js";
 
 import {
+  inactiveElementClasses,
 	getDateText
 } from "/src/js/main.js";
 
 import SectionTitle from "/src/js/components/SectionTitle.js";
 
-const ExperienceSection = ({ experienceList }) => {
+const ExperienceSection = ({ experienceList, mode, filter }) => {
   const { t } = useTranslation();
   return (
     <div className="experience-section container">
@@ -19,7 +20,10 @@ const ExperienceSection = ({ experienceList }) => {
         text="EXPERIENCE"
       />
       {experienceList.map(experience => experience && (
-          <div>
+          <div className={`mb-3${(
+            mode === "edit" 
+            && !(filter.experience.find(experienceId => experienceId == experience.key))
+          ) ? " " + inactiveElementClasses : ""}`}>
             <h4>{t(experience.role)}</h4>
             <div className="d-xl-flex justify-content-xl-between">
               <h5>{t(experience.company)}</h5>

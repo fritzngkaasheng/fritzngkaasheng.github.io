@@ -4,9 +4,13 @@ import {
   useTranslation
 } from "/src/js/i18n.js";
 
+import {
+  inactiveElementClasses
+} from "/src/js/main.js";
+
 import SectionTitle from "/src/js/components/SectionTitle.js";
 
-const InvolvementSection = ({ involvementList }) => {
+const InvolvementSection = ({ involvementList, mode, filter }) => {
   const { t } = useTranslation();
   return (
     <div className="involvement-section container">
@@ -15,7 +19,14 @@ const InvolvementSection = ({ involvementList }) => {
         text="INVOLVEMENT"
       />
       {involvementList.map(involvement => (
-          <div>
+          <div className={(
+            mode === "edit" 
+            && (
+              !filter.involvement 
+              || !(filter.involvement?.find(involvementId => involvementId == involvement.key))
+            )
+          ) 
+          && inactiveElementClasses}>
             <h4>{t(involvement.role)}</h4>
             <p>
               {t(involvement.organisation)}

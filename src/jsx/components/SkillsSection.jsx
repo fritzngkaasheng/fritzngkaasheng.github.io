@@ -5,12 +5,12 @@ import {
 } from "/src/js/i18n.js";
 
 import {
-	getDateText
+  inactiveElementClasses
 } from "/src/js/main.js";
 
 import SectionTitle from "/src/js/components/SectionTitle.js";
 
-const SkillsSection = ({ skillList }) => {
+const SkillsSection = ({ skillList, mode, filter }) => {
   const { t } = useTranslation();
   return (
     <div className="skills-section container">
@@ -18,11 +18,15 @@ const SkillsSection = ({ skillList }) => {
         id="skills-title"
         text="SKILLS"
       />
-      {Object.values(skillList).map(skillGroup => skillGroup && (
-          <div>
-            <p>{t(skillGroup.name)}: {
-              Object.keys(skillGroup.skill)
-              .map(skill => skill && t(skillGroup.skill[skill]))
+      {Object.entries(skillList).map(skillGroupArr => skillGroupArr[1] && (
+          <div className={(
+            mode === "edit" 
+            && !(Object.keys(filter.skills).find(skillGroupId => skillGroupId == skillGroupArr[0]))
+          ) 
+          && inactiveElementClasses}>
+            <p>{t(skillGroupArr[1].name)}: {
+              Object.keys(skillGroupArr[1].skill)
+              .map(skill => skill && t(skillGroupArr[1].skill[skill]))
               .join(t(", "))
             }</p>
           </div>

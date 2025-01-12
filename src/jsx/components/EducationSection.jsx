@@ -5,12 +5,13 @@ import {
 } from "/src/js/i18n.js";
 
 import {
+  inactiveElementClasses,
 	getDateText
 } from "/src/js/main.js";
 
 import SectionTitle from "/src/js/components/SectionTitle.js";
 
-const EducationSection = ({ educationList }) => {
+const EducationSection = ({ educationList, mode, filter }) => {
   const { t } = useTranslation();
   return (
     <div className="experience-section container">
@@ -19,7 +20,11 @@ const EducationSection = ({ educationList }) => {
         text="EDUCATION"
       />
       {educationList.map(education => education && (
-          <div>
+          <div className={(
+            mode === "edit" 
+            && !(filter.education.find(educationId => educationId == education.key))
+          ) 
+          && inactiveElementClasses}>
             {education.degree && (
               <h4>{t(education.degree)}</h4>
             )}

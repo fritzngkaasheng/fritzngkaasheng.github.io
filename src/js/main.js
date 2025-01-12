@@ -14,6 +14,8 @@ const pdfExt = ".pdf";
 const docxExt = ".docx";
 const doctypeDeclaration = "<!DOCTYPE html>";
 
+const inactiveElementClasses = "bg-black bg-opacity-25 opacity-50";
+
 const getDateText = date => {
   const tempDate = new Date(
     parseInt(date.year),
@@ -31,5 +33,6 @@ export {
 	pdfExt,
 	docxExt,
 	doctypeDeclaration,
+	inactiveElementClasses,
 	getDateText
 };
