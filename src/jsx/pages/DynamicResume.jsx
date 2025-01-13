@@ -4,6 +4,7 @@ import {
   useTranslation
 } from "/src/js/i18n.js";
 
+import EditResumeButton from "/src/js/components/EditResumeButton.js";
 import LoadingSection from "/src/js/components/LoadingSection.js";
 import BottomRightFloatingButtons from "/src/js/components/BottomRightFloatingButtons.js";
 import EditResumeToolbar from "/src/js/components/EditResumeToolbar.js";
@@ -19,7 +20,7 @@ import SkillsSection from "/src/js/components/SkillsSection.js";
 
 const React = window.React;
 const { useState, useEffect } = React;
-const { useParams, useLocation } = window.ReactRouterDOM;
+const { useParams } = window.ReactRouterDOM;
 
 function kebabToCamelCase(str) {
   return str.replace(/-./g, function(match) {
@@ -30,8 +31,6 @@ function kebabToCamelCase(str) {
 const DynamicResume = () => {
   const { t } = useTranslation();
 
-  const location = useLocation();
-
   const { preset, mode, encodedFilter } = useParams();
 
   const [profile, setProfile] = useState({});
@@ -41,6 +40,53 @@ const DynamicResume = () => {
 
   const addErrorMessage = (errorMessage) => {
     setErrorMessages((prevErrorMessages) => [...prevErrorMessages, errorMessage]);
+  };
+
+  const updateExitResumeUrlWithFilter = (filter) => {
+    const encodedFilter = encodeURIComponent(JSON.stringify(filter));
+
+    window.location.href = "/#/dynamic-resume/c/edit/" + encodedFilter;
+  };
+
+  const toggleExperience = (experienceKey) => {
+    setFilter((prevFilter) => {
+      const newExperience = prevFilter.experience.includes(experienceKey)
+        ? prevFilter.experience.filter(key => key !== experienceKey)
+        : [...prevFilter.experience, experienceKey];
+      const newFilter = { ...prevFilter, experience: newExperience };
+      updateExitResumeUrlWithFilter(newFilter);
+      return newFilter;
+    });
+  };
+
+  const navigateToEditResumeMode = () => {
+    const filterInFunc = filter;
+
+    if (Object.keys(filterInFunc).length < 1) {
+
+      filterInFunc.experience = filteredData.experience.map(experience => experience.key);
+  
+      filterInFunc.education = filteredData.education.map(education => education.key);
+  
+      filterInFunc.certifications = filteredData.certifications.map(certification => certification.key);
+  
+      filterInFunc.coursework = filteredData.coursework.map(coursework => coursework.key);
+  
+      filterInFunc.involvement = filteredData.involvement.map(involvement => involvement.key);
+  
+      filterInFunc.skills = {};
+  
+      for (const [skillGroupId, skillGroup] of Object.entries(filteredData.skills)) {
+        filterInFunc.skills[skillGroupId] = [];
+  
+        Object.keys(skillGroup.skill).map(skillId => {
+          filterInFunc.skills[skillGroupId].push(skillId);
+        });
+      }
+    }
+
+    setFilter(filterInFunc);
+    updateExitResumeUrlWithFilter(filterInFunc);
   };
 
   useEffect(() => {
@@ -246,12 +292,12 @@ const DynamicResume = () => {
           })
           .sort((a, b) => {
             const dateA = new Date(
-              parseInt(a.date.end.year),
-              parseInt(a.date.end.month) - 1
+              parseInt(a.date ? a.date.end.year : 0),
+              parseInt(a.date ? a.date.end.month : 1) - 1
             );
             const dateB = new Date(
-              parseInt(b.date.end.year),
-              parseInt(b.date.end.month) - 1
+              parseInt(b.date ? b.date.end.year : 0),
+              parseInt(b.date ? b.date.end.month : 1) - 1
             );
     
             return dateB - dateA;
@@ -357,7 +403,7 @@ const DynamicResume = () => {
 
       setFilteredData(filteredData);
     }
-  }, [location, profile, preset, encodedFilter, mode]);
+  }, [profile, preset, encodedFilter, mode]);
 
   if (errorMessages.length > 0) {
     return (
@@ -371,11 +417,20 @@ const DynamicResume = () => {
             ))}
           </div>
         )}
+        <EditResumeButton
+          navigateToEditResumeMode={navigateToEditResumeMode}
+        />
       </div>
     );
   }
 
-  if (Object.keys(filteredData).length < 1) {
+  if (
+    Object.keys(filteredData).length < 1 
+    || (
+      mode == "edit" 
+      && Object.keys(filter).length < 1
+    )
+  ) {
     return (
       <>
         <LoadingSection />
@@ -385,7 +440,7 @@ const DynamicResume = () => {
 
   return (
     <>
-      {profile.improvedHRProcessMode === "true" && 
+      {(profile.improvedHRProcessMode === "true" && mode !== "edit") && 
         <BottomRightFloatingButtons
           fullName={profile.data.contact.fullName}
           roleName={filteredData.roleName}
@@ -394,7 +449,9 @@ const DynamicResume = () => {
       {(mode === "edit" || encodedFilter === "edit") &&
         <EditResumeToolbar 
           encodedFilter={encodedFilter}
+          mode={mode}
           filteredData={filteredData}
+          navigateToEditResumeMode={navigateToEditResumeMode}
         />
       }
       <A4Container>
@@ -410,6 +467,8 @@ const DynamicResume = () => {
           experienceList={filteredData.experience}
           mode={mode}
           filter={filter}
+          toggleExperience={toggleExperience}
+          navigateToEditResumeMode={navigateToEditResumeMode}
         />
         <EducationSection
           educationList={filteredData.education}

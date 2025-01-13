@@ -1,6 +1,7 @@
 "use strict";
 
 import { useTranslation } from "/src/js/i18n.js";
+import EditResumeButton from "/src/js/components/EditResumeButton.js";
 import LoadingSection from "/src/js/components/LoadingSection.js";
 import BottomRightFloatingButtons from "/src/js/components/BottomRightFloatingButtons.js";
 import EditResumeToolbar from "/src/js/components/EditResumeToolbar.js";
@@ -19,8 +20,7 @@ const {
   useEffect
 } = React;
 const {
-  useParams,
-  useLocation
+  useParams
 } = window.ReactRouterDOM;
 function kebabToCamelCase(str) {
   return str.replace(/-./g, function (match) {
@@ -31,7 +31,6 @@ const DynamicResume = () => {
   const {
     t
   } = useTranslation();
-  const location = useLocation();
   const {
     preset,
     mode,
@@ -43,6 +42,40 @@ const DynamicResume = () => {
   const [errorMessages, setErrorMessages] = useState([]);
   const addErrorMessage = errorMessage => {
     setErrorMessages(prevErrorMessages => [...prevErrorMessages, errorMessage]);
+  };
+  const updateExitResumeUrlWithFilter = filter => {
+    const encodedFilter = encodeURIComponent(JSON.stringify(filter));
+    window.location.href = "/#/dynamic-resume/c/edit/" + encodedFilter;
+  };
+  const toggleExperience = experienceKey => {
+    setFilter(prevFilter => {
+      const newExperience = prevFilter.experience.includes(experienceKey) ? prevFilter.experience.filter(key => key !== experienceKey) : [...prevFilter.experience, experienceKey];
+      const newFilter = {
+        ...prevFilter,
+        experience: newExperience
+      };
+      updateExitResumeUrlWithFilter(newFilter);
+      return newFilter;
+    });
+  };
+  const navigateToEditResumeMode = () => {
+    const filterInFunc = filter;
+    if (Object.keys(filterInFunc).length < 1) {
+      filterInFunc.experience = filteredData.experience.map(experience => experience.key);
+      filterInFunc.education = filteredData.education.map(education => education.key);
+      filterInFunc.certifications = filteredData.certifications.map(certification => certification.key);
+      filterInFunc.coursework = filteredData.coursework.map(coursework => coursework.key);
+      filterInFunc.involvement = filteredData.involvement.map(involvement => involvement.key);
+      filterInFunc.skills = {};
+      for (const [skillGroupId, skillGroup] of Object.entries(filteredData.skills)) {
+        filterInFunc.skills[skillGroupId] = [];
+        Object.keys(skillGroup.skill).map(skillId => {
+          filterInFunc.skills[skillGroupId].push(skillId);
+        });
+      }
+    }
+    setFilter(filterInFunc);
+    updateExitResumeUrlWithFilter(filterInFunc);
   };
   useEffect(() => {
     fetch("/dist/data/profile.min.json").then(res => res.json()).then(data => {
@@ -163,8 +196,8 @@ const DynamicResume = () => {
               return profile.data.education[educationId];
             }
           }).sort((a, b) => {
-            const dateA = new Date(parseInt(a.date.end.year), parseInt(a.date.end.month) - 1);
-            const dateB = new Date(parseInt(b.date.end.year), parseInt(b.date.end.month) - 1);
+            const dateA = new Date(parseInt(a.date ? a.date.end.year : 0), parseInt(a.date ? a.date.end.month : 1) - 1);
+            const dateB = new Date(parseInt(b.date ? b.date.end.year : 0), parseInt(b.date ? b.date.end.month : 1) - 1);
             return dateB - dateA;
           }).filter(Boolean);
           if (filteredData.education.length < 1) {
@@ -241,7 +274,7 @@ const DynamicResume = () => {
       }
       setFilteredData(filteredData);
     }
-  }, [location, profile, preset, encodedFilter, mode]);
+  }, [profile, preset, encodedFilter, mode]);
   if (errorMessages.length > 0) {
     return /*#__PURE__*/React.createElement("div", {
       className: "container"
@@ -250,17 +283,21 @@ const DynamicResume = () => {
     }, errorMessages.map((msg, index) => /*#__PURE__*/React.createElement("div", {
       key: index,
       className: "message"
-    }, t(msg)))));
+    }, t(msg)))), /*#__PURE__*/React.createElement(EditResumeButton, {
+      navigateToEditResumeMode: navigateToEditResumeMode
+    }));
   }
-  if (Object.keys(filteredData).length < 1) {
+  if (Object.keys(filteredData).length < 1 || mode == "edit" && Object.keys(filter).length < 1) {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LoadingSection, null));
   }
-  return /*#__PURE__*/React.createElement(React.Fragment, null, profile.improvedHRProcessMode === "true" && /*#__PURE__*/React.createElement(BottomRightFloatingButtons, {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, profile.improvedHRProcessMode === "true" && mode !== "edit" && /*#__PURE__*/React.createElement(BottomRightFloatingButtons, {
     fullName: profile.data.contact.fullName,
     roleName: filteredData.roleName
   }), (mode === "edit" || encodedFilter === "edit") && /*#__PURE__*/React.createElement(EditResumeToolbar, {
     encodedFilter: encodedFilter,
-    filteredData: filteredData
+    mode: mode,
+    filteredData: filteredData,
+    navigateToEditResumeMode: navigateToEditResumeMode
   }), /*#__PURE__*/React.createElement(A4Container, null, /*#__PURE__*/React.createElement(ContactSection, {
     fullName: profile.data.contact.fullName,
     country: profile.data.contact.country,
@@ -270,7 +307,9 @@ const DynamicResume = () => {
   }), /*#__PURE__*/React.createElement(ExperienceSection, {
     experienceList: filteredData.experience,
     mode: mode,
-    filter: filter
+    filter: filter,
+    toggleExperience: toggleExperience,
+    navigateToEditResumeMode: navigateToEditResumeMode
   }), /*#__PURE__*/React.createElement(EducationSection, {
     educationList: filteredData.education,
     mode: mode,

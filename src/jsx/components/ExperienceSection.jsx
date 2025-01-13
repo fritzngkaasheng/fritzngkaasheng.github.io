@@ -11,8 +11,13 @@ import {
 
 import SectionTitle from "/src/js/components/SectionTitle.js";
 
-const ExperienceSection = ({ experienceList, mode, filter }) => {
+const ExperienceSection = ({ experienceList, mode, filter, toggleExperience, navigateToEditResumeMode }) => {
   const { t } = useTranslation();
+
+  const handleCheckboxChange = (experienceKey) => {
+    toggleExperience(experienceKey);
+  };
+
   return (
     <div className="experience-section container">
       <SectionTitle
@@ -24,6 +29,20 @@ const ExperienceSection = ({ experienceList, mode, filter }) => {
             mode === "edit" 
             && !(filter.experience.find(experienceId => experienceId == experience.key))
           ) ? " " + inactiveElementClasses : ""}`}>
+            {mode === "edit" && (
+              <div className="form-check">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id={`experience-${experience.key}`}
+                  checked={filter.experience.includes(experience.key)}
+                  onChange={() => handleCheckboxChange(experience.key)}
+                />
+                <label className="form-check-label" htmlFor={`experience-${experience.key}`}>
+                  {t(experience.role)}
+                </label>
+              </div>
+            )}
             <h4>{t(experience.role)}</h4>
             <div className="d-xl-flex justify-content-xl-between">
               <h5>{t(experience.company)}</h5>
