@@ -1,8 +1,10 @@
 "use strict";
 
 import { useTranslation } from "/src/js/i18n.js";
+import EditResumeButton from "/src/js/components/EditResumeButton.js";
 import LoadingSection from "/src/js/components/LoadingSection.js";
 import BottomRightFloatingButtons from "/src/js/components/BottomRightFloatingButtons.js";
+import EditResumeToolbar from "/src/js/components/EditResumeToolbar.js";
 import A4Container from "/src/js/components/A4Container.js";
 import ContactSection from "/src/js/components/ContactSection.js";
 import SummarySection from "/src/js/components/SummarySection.js";
@@ -31,13 +33,105 @@ const DynamicResume = () => {
   } = useTranslation();
   const {
     preset,
+    mode,
     encodedFilter
   } = useParams();
   const [profile, setProfile] = useState({});
+  const [filter, setFilter] = useState({});
   const [filteredData, setFilteredData] = useState({});
   const [errorMessages, setErrorMessages] = useState([]);
   const addErrorMessage = errorMessage => {
     setErrorMessages(prevErrorMessages => [...prevErrorMessages, errorMessage]);
+  };
+  const updateExitResumeUrlWithFilter = filter => {
+    const encodedFilter = encodeURIComponent(JSON.stringify(filter));
+    window.location.href = "/#/dynamic-resume/c/edit/" + encodedFilter;
+  };
+  const toggleItem = (itemType, itemKey) => {
+    setFilter(prevFilter => {
+      if (!prevFilter[itemType]) {
+        prevFilter[itemType] = [];
+      }
+      const newItems = prevFilter[itemType].includes(itemKey) ? prevFilter[itemType].filter(key => key !== itemKey) : [...prevFilter[itemType], itemKey];
+      const newFilter = {
+        ...prevFilter,
+        [itemType]: newItems
+      };
+      updateExitResumeUrlWithFilter(newFilter);
+      return newFilter;
+    });
+  };
+  const toggleSkillGroup = (itemKey, itemValue) => {
+    setFilter(prevFilter => {
+      const newSkills = {
+        ...prevFilter.skills
+      };
+      if (newSkills[itemKey]) {
+        delete newSkills[itemKey];
+      } else {
+        newSkills[itemKey] = Object.keys(itemValue.skill);
+      }
+      const newFilter = {
+        ...prevFilter,
+        skills: newSkills
+      };
+      updateExitResumeUrlWithFilter(newFilter);
+      return newFilter;
+    });
+  };
+  const navigateToEditResumeMode = () => {
+    const filterInFunc = filter;
+    if (Object.keys(filterInFunc).length < 1) {
+      filterInFunc.experience = filteredData.experience.map(experience => experience.key);
+      filterInFunc.education = filteredData.education.map(education => education.key);
+      filterInFunc.certifications = filteredData.certifications.map(certification => certification.key);
+      filterInFunc.coursework = filteredData.coursework.map(coursework => coursework.key);
+      filterInFunc.involvement = filteredData.involvement.map(involvement => involvement.key);
+      filterInFunc.skills = {};
+      for (const [skillGroupId, skillGroup] of Object.entries(filteredData.skills)) {
+        filterInFunc.skills[skillGroupId] = [];
+        Object.keys(skillGroup.skill).map(skillId => {
+          filterInFunc.skills[skillGroupId].push(skillId);
+        });
+      }
+    }
+    setFilter(filterInFunc);
+    setFilteredData(loadAllFilteredData());
+    updateExitResumeUrlWithFilter(filterInFunc);
+  };
+  const loadAllFilteredData = () => {
+    const filteredData = {};
+    filteredData.roleName = "All Details";
+    filteredData.experience = Object.entries(profile.data.experience).map(([key, value]) => ({
+      key,
+      ...value
+    })).sort((a, b) => {
+      const dateA = new Date(parseInt(a.date.start.year), parseInt(a.date.start.month) - 1);
+      const dateB = new Date(parseInt(b.date.start.year), parseInt(b.date.start.month) - 1);
+      return dateB - dateA;
+    });
+    filteredData.education = Object.entries(profile.data.education).map(([key, value]) => ({
+      key,
+      ...value
+    })).sort((a, b) => {
+      const dateA = a.date ? new Date(parseInt(a.date.end.year), parseInt(a.date.end.month) - 1) : new Date(0, 0);
+      const dateB = b.date ? new Date(parseInt(b.date.end.year), parseInt(b.date.end.month) - 1) : new Date(0, 0);
+      return dateB - dateA;
+    });
+    filteredData.certifications = Object.entries(profile.data.certifications).reverse().map(([key, value]) => ({
+      key,
+      ...value
+    }));
+    filteredData.coursework = Object.entries(profile.data.coursework).reverse().map(([key, value]) => ({
+      key,
+      ...value
+    }));
+    filteredData.involvement = Object.entries(profile.data.involvement).reverse().map(([key, value]) => ({
+      key,
+      ...value
+    }));
+    filteredData.skills = profile.data.skills;
+    return filteredData;
   };
   useEffect(() => {
     fetch("/dist/data/profile.min.json").then(res => res.json()).then(data => {
@@ -49,7 +143,7 @@ const DynamicResume = () => {
   useEffect(() => {
     setErrorMessages([]);
     if (profile.data) {
-      const filteredData = {};
+      let filteredData = {};
       let presetName = profile.preset.default;
       if (preset) {
         const kebabCasePresetName = preset;
@@ -57,26 +151,35 @@ const DynamicResume = () => {
         presetName = camelCasePresetName;
       }
       let isSpecialPreset = false;
-      if ("allDetails" == presetName || "c" == presetName && !encodedFilter) {
+      if ("allDetails" == presetName || "c" == presetName && (mode == "edit" || encodedFilter == "edit" || !encodedFilter)) {
         isSpecialPreset = true;
-        filteredData.roleName = "All Details";
-        filteredData.experience = Object.values(profile.data.experience).sort((a, b) => {
-          const dateA = new Date(parseInt(a.date.start.year), parseInt(a.date.start.month) - 1);
-          const dateB = new Date(parseInt(b.date.start.year), parseInt(b.date.start.month) - 1);
-          return dateB - dateA;
-        });
-        filteredData.education = Object.values(profile.data.education).sort((a, b) => {
-          const dateA = a.date ? new Date(parseInt(a.date.end.year), parseInt(a.date.end.month) - 1) : new Date(0, 0);
-          const dateB = b.date ? new Date(parseInt(b.date.end.year), parseInt(b.date.end.month) - 1) : new Date(0, 0);
-          return dateB - dateA;
-        });
-        filteredData.certifications = Object.values(profile.data.certifications).reverse();
-        filteredData.coursework = Object.values(profile.data.coursework).reverse();
-        filteredData.involvement = Object.values(profile.data.involvement).reverse();
-        filteredData.skills = profile.data.skills;
+        if (encodedFilter && encodedFilter != "edit") {
+          let filter = {};
+          try {
+            filter = JSON.parse(decodeURIComponent(encodedFilter));
+          } catch (error) {
+            addErrorMessage("Invalid JSON filter");
+            return;
+          }
+          filter.roleName = "Resume";
+          setFilter(filter);
+          if (!filter.experience) {
+            addErrorMessage("Please provide at least 1 experience");
+          }
+          if (!filter.education) {
+            addErrorMessage("Please provide at least 1 education");
+          }
+          if (!filter.certifications) {
+            addErrorMessage("Please provide at least 1 certification");
+          }
+          if (!filter.skills) {
+            addErrorMessage("Please provide at least 1 skill");
+          }
+        }
+        filteredData = loadAllFilteredData();
       }
-      if (!isSpecialPreset || "c" == presetName && encodedFilter) {
-        let filter = void 0;
+      if (!isSpecialPreset || "c" == presetName && mode != "edit" && encodedFilter != "edit" && encodedFilter) {
+        let filter = {};
         if ("c" == presetName) {
           isSpecialPreset = true;
           if (encodedFilter) {
@@ -92,6 +195,7 @@ const DynamicResume = () => {
         if (!isSpecialPreset) {
           filter = profile.preset[presetName];
         }
+        setFilter(filter);
         filteredData.roleName = filter.roleName;
         if (!filter.experience) {
           addErrorMessage("Please provide at least 1 experience");
@@ -119,8 +223,8 @@ const DynamicResume = () => {
               return profile.data.education[educationId];
             }
           }).sort((a, b) => {
-            const dateA = new Date(parseInt(a.date.end.year), parseInt(a.date.end.month) - 1);
-            const dateB = new Date(parseInt(b.date.end.year), parseInt(b.date.end.month) - 1);
+            const dateA = new Date(parseInt(a.date ? a.date.end.year : 0), parseInt(a.date ? a.date.end.month : 1) - 1);
+            const dateB = new Date(parseInt(b.date ? b.date.end.year : 0), parseInt(b.date ? b.date.end.month : 1) - 1);
             return dateB - dateA;
           }).filter(Boolean);
           if (filteredData.education.length < 1) {
@@ -181,7 +285,7 @@ const DynamicResume = () => {
             }
           }).filter(Boolean);
           if (filteredData.coursework.length < 1) {
-            addErrorMessage("Please provide at least 1 coursework");
+            delete filteredData.coursework;
           }
         }
         if (filter.involvement) {
@@ -191,14 +295,14 @@ const DynamicResume = () => {
             }
           }).filter(Boolean);
           if (filteredData.involvement.length < 1) {
-            addErrorMessage("Please provide at least 1 involvement");
+            delete filteredData.involvement;
           }
         }
       }
       setFilteredData(filteredData);
     }
-  }, [profile, preset, encodedFilter]);
-  if (errorMessages.length > 0) {
+  }, [profile, preset, encodedFilter, mode]);
+  if (errorMessages.length > 0 && mode !== "edit") {
     return /*#__PURE__*/React.createElement("div", {
       className: "container"
     }, errorMessages.length > 0 && /*#__PURE__*/React.createElement("div", {
@@ -206,14 +310,21 @@ const DynamicResume = () => {
     }, errorMessages.map((msg, index) => /*#__PURE__*/React.createElement("div", {
       key: index,
       className: "message"
-    }, t(msg)))));
+    }, t(msg)))), /*#__PURE__*/React.createElement(EditResumeButton, {
+      navigateToEditResumeMode: navigateToEditResumeMode
+    }));
   }
-  if (Object.keys(filteredData).length < 1) {
+  if (Object.keys(filteredData).length < 1 || mode == "edit" && Object.keys(filter).length < 1) {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LoadingSection, null));
   }
-  return /*#__PURE__*/React.createElement(React.Fragment, null, profile.improvedHRProcessMode === "true" && /*#__PURE__*/React.createElement(BottomRightFloatingButtons, {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, profile.improvedHRProcessMode === "true" && mode !== "edit" && /*#__PURE__*/React.createElement(BottomRightFloatingButtons, {
     fullName: profile.data.contact.fullName,
     roleName: filteredData.roleName
+  }), (mode === "edit" || encodedFilter === "edit") && /*#__PURE__*/React.createElement(EditResumeToolbar, {
+    encodedFilter: encodedFilter,
+    mode: mode,
+    filteredData: filteredData,
+    navigateToEditResumeMode: navigateToEditResumeMode
   }), /*#__PURE__*/React.createElement(A4Container, null, /*#__PURE__*/React.createElement(ContactSection, {
     fullName: profile.data.contact.fullName,
     country: profile.data.contact.country,
@@ -221,17 +332,36 @@ const DynamicResume = () => {
   }), /*#__PURE__*/React.createElement(SummarySection, {
     summary: profile.preset[profile.preset.default].summary
   }), /*#__PURE__*/React.createElement(ExperienceSection, {
-    experienceList: filteredData.experience
+    experienceList: filteredData.experience,
+    mode: mode,
+    filter: filter,
+    toggleItem: itemKey => toggleItem('experience', itemKey),
+    navigateToEditResumeMode: navigateToEditResumeMode
   }), /*#__PURE__*/React.createElement(EducationSection, {
-    educationList: filteredData.education
+    educationList: filteredData.education,
+    mode: mode,
+    filter: filter,
+    toggleItem: itemKey => toggleItem('education', itemKey)
   }), /*#__PURE__*/React.createElement(CertificationsSection, {
-    certificationList: filteredData.certifications
+    certificationList: filteredData.certifications,
+    mode: mode,
+    filter: filter,
+    toggleItem: itemKey => toggleItem('certifications', itemKey)
   }), filteredData.coursework && /*#__PURE__*/React.createElement(CourseworkSection, {
-    courseworkList: filteredData.coursework
+    courseworkList: filteredData.coursework,
+    mode: mode,
+    filter: filter,
+    toggleItem: itemKey => toggleItem('coursework', itemKey)
   }), filteredData.involvement && /*#__PURE__*/React.createElement(InvolvementSection, {
-    involvementList: filteredData.involvement
+    involvementList: filteredData.involvement,
+    mode: mode,
+    filter: filter,
+    toggleItem: itemKey => toggleItem('involvement', itemKey)
   }), /*#__PURE__*/React.createElement(SkillsSection, {
-    skillList: filteredData.skills
+    skillList: filteredData.skills,
+    mode: mode,
+    filter: filter,
+    toggleSkillGroup: toggleSkillGroup
   })));
 };
 export default DynamicResume; 
