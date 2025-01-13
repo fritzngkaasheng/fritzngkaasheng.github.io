@@ -55,6 +55,10 @@ const Navigation = () => {
     "aria-current": isActive('/dynamic-resume/all-details') ? 'page' : undefined,
     to: "/dynamic-resume/all-details"
   }, t('All Details'))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+    className: `dropdown-item${isActive('/dynamic-resume/c/edit') ? ' active' : ''}`,
+    "aria-current": isActive('/dynamic-resume/c/edit') ? 'page' : undefined,
+    to: "/dynamic-resume/c/edit"
+  }, t('Customise the Resume'))), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
     className: `dropdown-item${isActive('/dynamic-resume/software-engineer') ? ' active' : ''}`,
     "aria-current": isActive('/dynamic-resume/software-engineer') ? 'page' : undefined,
     to: "/dynamic-resume/software-engineer"

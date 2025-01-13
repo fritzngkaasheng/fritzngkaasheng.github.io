@@ -5,13 +5,16 @@ import {
 } from "/src/js/i18n.js";
 
 import {
-	getDateText
+  inactiveElementClasses,
+  getDateText
 } from "/src/js/main.js";
 
 import SectionTitle from "/src/js/components/SectionTitle.js";
+import CheckboxWithLabel from "/src/js/components/CheckboxWithLabel.js";
 
-const ExperienceSection = ({ experienceList }) => {
+const ExperienceSection = ({ experienceList, mode, filter, toggleItem }) => {
   const { t } = useTranslation();
+
   return (
     <div className="experience-section container">
       <SectionTitle
@@ -19,7 +22,26 @@ const ExperienceSection = ({ experienceList }) => {
         text="EXPERIENCE"
       />
       {experienceList.map(experience => experience && (
-          <div>
+          <div className={`mb-3${(
+            mode === "edit" 
+            && !(
+              filter.experience 
+              ? filter.experience.find(experienceId => experienceId == experience.key) 
+              : false
+            )
+          ) ? " " + inactiveElementClasses : ""}`}>
+            {mode === "edit" && (
+              <CheckboxWithLabel
+                id={`experience-${experience.key}`}
+                checked={
+                  filter.experience 
+                  ? filter.experience.includes(experience.key) 
+                  : false
+                }
+                onChange={() => toggleItem(experience.key)}
+                label={t(experience.role)}
+              />
+            )}
             <h4>{t(experience.role)}</h4>
             <div className="d-xl-flex justify-content-xl-between">
               <h5>{t(experience.company)}</h5>

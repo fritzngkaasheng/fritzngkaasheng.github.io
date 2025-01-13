@@ -63,18 +63,15 @@ const Navigation = () => {
                 {t('All Details')}
               </Link>
             </li>
-            {/*
-            TODO: Add keyword search function to dynamic resume
             <li>
               <Link
-                className={`dropdown-item${isActive('/dynamic-resume/c') ? ' active' : ''}`}
-                aria-current={isActive('/dynamic-resume/c') ? 'page' : undefined}
-                to="/dynamic-resume/c"
+                className={`dropdown-item${isActive('/dynamic-resume/c/edit') ? ' active' : ''}`}
+                aria-current={isActive('/dynamic-resume/c/edit') ? 'page' : undefined}
+                to="/dynamic-resume/c/edit"
               >
                 {t('Customise the Resume')}
               </Link>
             </li>
-            */}
             <li>
               <Link
                 className={`dropdown-item${isActive('/dynamic-resume/software-engineer') ? ' active' : ''}`}
