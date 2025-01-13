@@ -48,12 +48,29 @@ const DynamicResume = () => {
     window.location.href = "/#/dynamic-resume/c/edit/" + encodedFilter;
   };
 
-  const toggleExperience = (experienceKey) => {
+  const toggleItem = (itemType, itemKey) => {
     setFilter((prevFilter) => {
-      const newExperience = prevFilter.experience.includes(experienceKey)
-        ? prevFilter.experience.filter(key => key !== experienceKey)
-        : [...prevFilter.experience, experienceKey];
-      const newFilter = { ...prevFilter, experience: newExperience };
+      if (!prevFilter[itemType]) {
+        prevFilter[itemType] = [];
+      }
+      const newItems = prevFilter[itemType].includes(itemKey)
+        ? prevFilter[itemType].filter(key => key !== itemKey)
+        : [...prevFilter[itemType], itemKey];
+      const newFilter = { ...prevFilter, [itemType]: newItems };
+      updateExitResumeUrlWithFilter(newFilter);
+      return newFilter;
+    });
+  };
+
+  const toggleSkillGroup = (itemKey, itemValue) => {
+    setFilter((prevFilter) => {
+      const newSkills = { ...prevFilter.skills };
+      if (newSkills[itemKey]) {
+        delete newSkills[itemKey];
+      } else {
+        newSkills[itemKey] = Object.keys(itemValue.skill);
+      }
+      const newFilter = { ...prevFilter, skills: newSkills };
       updateExitResumeUrlWithFilter(newFilter);
       return newFilter;
     });
@@ -86,8 +103,76 @@ const DynamicResume = () => {
     }
 
     setFilter(filterInFunc);
+    setFilteredData(loadAllFilteredData());
     updateExitResumeUrlWithFilter(filterInFunc);
   };
+
+  const loadAllFilteredData = () => {
+    const filteredData = {};
+
+    filteredData.roleName = "All Details";
+
+    filteredData.experience = Object.entries(profile.data.experience)
+    .map(([key, value]) => ({
+      key,
+      ...value,
+    }))
+    .sort((a, b) => {
+      const dateA = new Date(
+        parseInt(a.date.start.year),
+        parseInt(a.date.start.month) - 1
+      );
+      const dateB = new Date(
+        parseInt(b.date.start.year),
+        parseInt(b.date.start.month) - 1
+      );
+
+      return dateB - dateA;
+    });
+
+    filteredData.education = Object.entries(profile.data.education)
+    .map(([key, value]) => ({
+      key,
+      ...value,
+    }))
+    .sort((a, b) => {
+      const dateA = a.date ? new Date(
+        parseInt(a.date.end.year),
+        parseInt(a.date.end.month) - 1
+      ) : new Date(0, 0);
+      const dateB = b.date ? new Date(
+        parseInt(b.date.end.year),
+        parseInt(b.date.end.month) - 1
+      ) : new Date(0, 0);
+
+      return dateB - dateA;
+    });
+
+    filteredData.certifications = Object.entries(profile.data.certifications)
+    .reverse()
+    .map(([key, value]) => ({
+      key,
+      ...value,
+    }));
+
+    filteredData.coursework = Object.entries(profile.data.coursework)
+    .reverse()
+    .map(([key, value]) => ({
+      key,
+      ...value,
+    }));
+
+    filteredData.involvement = Object.entries(profile.data.involvement)
+    .reverse()
+    .map(([key, value]) => ({
+      key,
+      ...value,
+    }));
+
+    filteredData.skills = profile.data.skills;
+
+    return filteredData;
+  }
 
   useEffect(() => {
     fetch("/dist/data/profile.min.json")
@@ -104,7 +189,7 @@ const DynamicResume = () => {
     setErrorMessages([]);
 
     if (profile.data) {
-      const filteredData = {};
+      let filteredData = {};
 
       let presetName = profile.preset.default;
 
@@ -156,66 +241,7 @@ const DynamicResume = () => {
           }
         }
 
-        filteredData.roleName = "All Details";
-
-        filteredData.experience = Object.entries(profile.data.experience)
-        .map(([key, value]) => ({
-          key,
-          ...value,
-        }))
-        .sort((a, b) => {
-          const dateA = new Date(
-            parseInt(a.date.start.year),
-            parseInt(a.date.start.month) - 1
-          );
-          const dateB = new Date(
-            parseInt(b.date.start.year),
-            parseInt(b.date.start.month) - 1
-          );
-  
-          return dateB - dateA;
-        });
-    
-        filteredData.education = Object.entries(profile.data.education)
-        .map(([key, value]) => ({
-          key,
-          ...value,
-        }))
-        .sort((a, b) => {
-          const dateA = a.date ? new Date(
-            parseInt(a.date.end.year),
-            parseInt(a.date.end.month) - 1
-          ) : new Date(0, 0);
-          const dateB = b.date ? new Date(
-            parseInt(b.date.end.year),
-            parseInt(b.date.end.month) - 1
-          ) : new Date(0, 0);
-  
-          return dateB - dateA;
-        });
-  
-        filteredData.certifications = Object.entries(profile.data.certifications)
-        .reverse()
-        .map(([key, value]) => ({
-          key,
-          ...value,
-        }));
-
-        filteredData.coursework = Object.entries(profile.data.coursework)
-        .reverse()
-        .map(([key, value]) => ({
-          key,
-          ...value,
-        }));
-
-        filteredData.involvement = Object.entries(profile.data.involvement)
-        .reverse()
-        .map(([key, value]) => ({
-          key,
-          ...value,
-        }));
-  
-        filteredData.skills = profile.data.skills;
+        filteredData = loadAllFilteredData();
       }
 
       if (!isSpecialPreset 
@@ -382,7 +408,7 @@ const DynamicResume = () => {
           .filter( Boolean );
 
           if (filteredData.coursework.length < 1) {
-            addErrorMessage("Please provide at least 1 coursework");
+            delete filteredData.coursework;
           }
         }
 
@@ -396,7 +422,7 @@ const DynamicResume = () => {
           .filter( Boolean );
 
           if (filteredData.involvement.length < 1) {
-            addErrorMessage("Please provide at least 1 involvement");
+            delete filteredData.involvement;
           }
         }
       }
@@ -405,7 +431,7 @@ const DynamicResume = () => {
     }
   }, [profile, preset, encodedFilter, mode]);
 
-  if (errorMessages.length > 0) {
+  if (errorMessages.length > 0 && mode !== "edit") {
     return (
       <div className="container">
         {errorMessages.length > 0 && (
@@ -467,33 +493,38 @@ const DynamicResume = () => {
           experienceList={filteredData.experience}
           mode={mode}
           filter={filter}
-          toggleExperience={toggleExperience}
+          toggleItem={(itemKey) => toggleItem('experience', itemKey)}
           navigateToEditResumeMode={navigateToEditResumeMode}
         />
         <EducationSection
           educationList={filteredData.education}
           mode={mode}
           filter={filter}
+          toggleItem={(itemKey) => toggleItem('education', itemKey)}
         />
         <CertificationsSection
           certificationList={filteredData.certifications}
           mode={mode}
           filter={filter}
+          toggleItem={(itemKey) => toggleItem('certifications', itemKey)}
         />
         {filteredData.coursework && (<CourseworkSection
           courseworkList={filteredData.coursework}
           mode={mode}
           filter={filter}
+          toggleItem={(itemKey) => toggleItem('coursework', itemKey)}
         />)}
         {filteredData.involvement && (<InvolvementSection
           involvementList={filteredData.involvement}
           mode={mode}
           filter={filter}
+          toggleItem={(itemKey) => toggleItem('involvement', itemKey)}
         />)}
         <SkillsSection
           skillList={filteredData.skills}
           mode={mode}
           filter={filter}
+          toggleSkillGroup={toggleSkillGroup}
         />
       </A4Container>
     </>

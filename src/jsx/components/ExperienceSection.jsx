@@ -6,17 +6,14 @@ import {
 
 import {
   inactiveElementClasses,
-	getDateText
+  getDateText
 } from "/src/js/main.js";
 
 import SectionTitle from "/src/js/components/SectionTitle.js";
+import CheckboxWithLabel from "/src/js/components/CheckboxWithLabel.js";
 
-const ExperienceSection = ({ experienceList, mode, filter, toggleExperience, navigateToEditResumeMode }) => {
+const ExperienceSection = ({ experienceList, mode, filter, toggleItem }) => {
   const { t } = useTranslation();
-
-  const handleCheckboxChange = (experienceKey) => {
-    toggleExperience(experienceKey);
-  };
 
   return (
     <div className="experience-section container">
@@ -27,21 +24,23 @@ const ExperienceSection = ({ experienceList, mode, filter, toggleExperience, nav
       {experienceList.map(experience => experience && (
           <div className={`mb-3${(
             mode === "edit" 
-            && !(filter.experience.find(experienceId => experienceId == experience.key))
+            && !(
+              filter.experience 
+              ? filter.experience.find(experienceId => experienceId == experience.key) 
+              : false
+            )
           ) ? " " + inactiveElementClasses : ""}`}>
             {mode === "edit" && (
-              <div className="form-check">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  id={`experience-${experience.key}`}
-                  checked={filter.experience.includes(experience.key)}
-                  onChange={() => handleCheckboxChange(experience.key)}
-                />
-                <label className="form-check-label" htmlFor={`experience-${experience.key}`}>
-                  {t(experience.role)}
-                </label>
-              </div>
+              <CheckboxWithLabel
+                id={`experience-${experience.key}`}
+                checked={
+                  filter.experience 
+                  ? filter.experience.includes(experience.key) 
+                  : false
+                }
+                onChange={() => toggleItem(experience.key)}
+                label={t(experience.role)}
+              />
             )}
             <h4>{t(experience.role)}</h4>
             <div className="d-xl-flex justify-content-xl-between">

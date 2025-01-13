@@ -6,12 +6,13 @@ import {
 
 import {
   inactiveElementClasses,
-	getDateText
+  getDateText
 } from "/src/js/main.js";
 
 import SectionTitle from "/src/js/components/SectionTitle.js";
+import CheckboxWithLabel from "/src/js/components/CheckboxWithLabel.js";
 
-const EducationSection = ({ educationList, mode, filter }) => {
+const EducationSection = ({ educationList, mode, filter, toggleItem }) => {
   const { t } = useTranslation();
   return (
     <div className="experience-section container">
@@ -22,9 +23,25 @@ const EducationSection = ({ educationList, mode, filter }) => {
       {educationList.map(education => education && (
           <div className={(
             mode === "edit" 
-            && !(filter.education.find(educationId => educationId == education.key))
+            && !(
+              filter.education 
+              ? filter.education.find(educationId => educationId == education.key) 
+              : false
+            )
           ) 
           && inactiveElementClasses}>
+            {mode === "edit" && (
+              <CheckboxWithLabel
+                id={`education-${education.key}`}
+                checked={
+                  filter.education 
+                  ? filter.education.includes(education.key) 
+                  : false
+                }
+                onChange={() => toggleItem(education.key)}
+                label={t(education.degree)}
+              />
+            )}
             {education.degree && (
               <h4>{t(education.degree)}</h4>
             )}

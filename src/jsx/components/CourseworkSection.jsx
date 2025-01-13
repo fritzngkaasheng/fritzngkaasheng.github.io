@@ -9,8 +9,9 @@ import {
 } from "/src/js/main.js";
 
 import SectionTitle from "/src/js/components/SectionTitle.js";
+import CheckboxWithLabel from "/src/js/components/CheckboxWithLabel.js";
 
-const CourseworkSection = ({ courseworkList, mode, filter }) => {
+const CourseworkSection = ({ courseworkList, mode, filter, toggleItem }) => {
   const { t } = useTranslation();
   return (
     <div className="coursework-section container">
@@ -23,10 +24,26 @@ const CourseworkSection = ({ courseworkList, mode, filter }) => {
             mode === "edit" 
             && (
               !filter.coursework 
-              || !(filter.coursework?.find(courseworkId => courseworkId == coursework.key))
+              || !(
+                filter.coursework 
+                ? filter.coursework?.find(courseworkId => courseworkId == coursework.key) 
+                : false
+              )
             )
           ) 
           && inactiveElementClasses}>
+            {mode === "edit" && (
+              <CheckboxWithLabel
+                id={`coursework-${coursework.key}`}
+                checked={
+                  filter.coursework 
+                  ? filter.coursework.includes(coursework.key) 
+                  : false
+                }
+                onChange={() => toggleItem(coursework.key)}
+                label={t(coursework.name)}
+              />
+            )}
             <h4>{t(coursework.name)}</h4>
           </div>
         ))}
