@@ -114,5 +114,8 @@
   "Please provide at least 1 skill": "请提供至少 1 个技能",
   "Please provide at least 1 coursework": "请提供至少 1 门课程",
   "Please provide at least 1 involvement": "请提供至少 1 个参与经历",
-  "This skill group is empty:": "这个技能组是空的："
+  "This skill group is empty:": "这个技能组是空的：",
+  "Customise the Resume": "自定义简历",
+  "Edit Resume": "编辑简历",
+  "Done": "完成"
 }
