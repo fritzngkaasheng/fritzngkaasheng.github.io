@@ -974,7 +974,7 @@
         {
         "value": "mx",
         "text": "Mexico",
-        "priority": 9,
+        "priority": -1,
         "apec": true,
         "income": "upper-middle",
         "war": true

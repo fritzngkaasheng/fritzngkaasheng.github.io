@@ -22,21 +22,15 @@ const WillITakeTheJobQuiz = () => {
 
     let probability = NaN;
     let accumulatedPoints = 0;
-    let totalAvailablePoints = 0;
+    let totalAvailablePoints = Math.max(...quizData.quiz[0].options.map(option => option.priority));
 
     if (selectedOption) {
-      const numberOfGreenFlagCountries = Object.keys(quizData.quiz[0].options.filter(
-        option => option.priority >= 1
-      )).length;
-
-      totalAvailablePoints += numberOfGreenFlagCountries;
-
       if (selectedOption.priority < 1) {
         accumulatedPoints += 0;
       }
 
       if (selectedOption.priority >= 1) {
-        accumulatedPoints += (numberOfGreenFlagCountries - (selectedOption.priority - 1));
+        accumulatedPoints += (totalAvailablePoints - (selectedOption.priority - 1));
       }
     }
 
@@ -75,9 +69,11 @@ const WillITakeTheJobQuiz = () => {
           <label for={quizData.quiz[0].id} className="form-label">{t(quizData.quiz[0].question)}</label>
           <select className="form-select" name={quizData.quiz[0].name} id={quizData.quiz[0].id} aria-label={quizData.quiz[0].question} onChange={handleOriginChange}>
             <option selected>Choose...</option>
-            {quizData.quiz[0].options.map((option) => (
-              <option key={option.value} value={option.value}>{t(option.text)}</option>
-            ))}
+            {quizData.quiz[0].options
+              .sort((a, b) => a.text.localeCompare(b.text))
+              .map((option) => (
+                <option key={option.value} value={option.value}>{t(option.text)}</option>
+              ))}
           </select>
         </div>
         <div id="quizAnswer" className="d-none">

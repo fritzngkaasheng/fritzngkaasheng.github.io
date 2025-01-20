@@ -18,15 +18,13 @@ const WillITakeTheJobQuiz = () => {
     const selectedOption = quizData.quiz[0].options.find(option => option.value === selectedValue);
     let probability = NaN;
     let accumulatedPoints = 0;
-    let totalAvailablePoints = 0;
+    let totalAvailablePoints = Math.max(...quizData.quiz[0].options.map(option => option.priority));
     if (selectedOption) {
-      const numberOfGreenFlagCountries = Object.keys(quizData.quiz[0].options.filter(option => option.priority >= 1)).length;
-      totalAvailablePoints += numberOfGreenFlagCountries;
       if (selectedOption.priority < 1) {
         accumulatedPoints += 0;
       }
       if (selectedOption.priority >= 1) {
-        accumulatedPoints += numberOfGreenFlagCountries - (selectedOption.priority - 1);
+        accumulatedPoints += totalAvailablePoints - (selectedOption.priority - 1);
       }
     }
     if (totalAvailablePoints > 0) {
@@ -60,7 +58,7 @@ const WillITakeTheJobQuiz = () => {
     onChange: handleOriginChange
   }, /*#__PURE__*/React.createElement("option", {
     selected: true
-  }, "Choose..."), quizData.quiz[0].options.map(option => /*#__PURE__*/React.createElement("option", {
+  }, "Choose..."), quizData.quiz[0].options.sort((a, b) => a.text.localeCompare(b.text)).map(option => /*#__PURE__*/React.createElement("option", {
     key: option.value,
     value: option.value
   }, t(option.text))))), /*#__PURE__*/React.createElement("div", {
