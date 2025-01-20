@@ -1,4 +1,5 @@
 {
+  "earliestUpdate": "2020-01-01",
   "quiz": [
     {
       "name": "origin",
@@ -9,22 +10,27 @@
         {
         "value": "ad",
         "text": "Andorra",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "ae",
         "text": "United Arab Emirates",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "af",
         "text": "Afghanistan",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "ag",
         "text": "Antigua and Barbuda",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "ai",
@@ -34,17 +40,20 @@
         {
         "value": "al",
         "text": "Albania",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "am",
         "text": "Armenia",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "ao",
         "text": "Angola",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "aq",
@@ -54,27 +63,34 @@
         {
         "value": "ar",
         "text": "Argentina",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "as",
         "text": "American Samoa",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "at",
         "text": "Austria",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "au",
         "text": "Australia",
-        "priority": 2
+        "priority": 2,
+        "apec": true,
+        "income": "high"
         },
         {
         "value": "aw",
         "text": "Aruba",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "ax",
@@ -84,52 +100,66 @@
         {
         "value": "az",
         "text": "Azerbaijan",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "ba",
         "text": "Bosnia and Herzegovina",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "bb",
         "text": "Barbados",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "bd",
         "text": "Bangladesh",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "be",
         "text": "Belgium",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "bf",
         "text": "Burkina Faso",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "bg",
         "text": "Bulgaria",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "bh",
         "text": "Bahrain",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "bi",
         "text": "Burundi",
-        "priority": -1
+        "priority": -1,
+        "income": "low"
         },
         {
         "value": "bj",
         "text": "Benin",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle",
+        "war": true
         },
         {
         "value": "bl",
@@ -139,17 +169,21 @@
         {
         "value": "bm",
         "text": "Bermuda",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "bn",
         "text": "Brunei Darussalam",
-        "priority": -1
+        "priority": 9,
+        "apec": true,
+        "income": "high"
         },
         {
         "value": "bo",
         "text": "Bolivia, Plurinational State of",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "bq",
@@ -159,17 +193,20 @@
         {
         "value": "br",
         "text": "Brazil",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "bs",
         "text": "Bahamas",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "bt",
         "text": "Bhutan",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "bv",
@@ -179,22 +216,27 @@
         {
         "value": "bw",
         "text": "Botswana",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "by",
         "text": "Belarus",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "bz",
         "text": "Belize",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "ca",
         "text": "Canada",
-        "priority": -1
+        "priority": 9,
+        "apec": true,
+        "income": "high"
         },
         {
         "value": "cc",
@@ -204,22 +246,27 @@
         {
         "value": "cd",
         "text": "Congo, Democratic Republic of the",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "cf",
         "text": "Central African Republic",
-        "priority": -1
+        "priority": -1,
+        "income": "low"
         },
         {
         "value": "cg",
         "text": "Congo",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "ch",
         "text": "Switzerland",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "ci",
@@ -234,42 +281,54 @@
         {
         "value": "cl",
         "text": "Chile",
-        "priority": -1
+        "priority": 9,
+        "apec": true,
+        "income": "high"
         },
         {
         "value": "cm",
         "text": "Cameroon",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle",
+        "war": true
         },
         {
         "value": "cn",
         "text": "China",
-        "priority": 4
+        "priority": 4,
+        "apec": true,
+        "income": "upper-middle"
         },
         {
         "value": "co",
         "text": "Colombia",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle",
+        "war": true
         },
         {
         "value": "cr",
         "text": "Costa Rica",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "cu",
         "text": "Cuba",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "cv",
         "text": "Cabo Verde",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "cw",
         "text": "Curaçao",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "cx",
@@ -279,57 +338,74 @@
         {
         "value": "cy",
         "text": "Cyprus",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "cz",
         "text": "Czechia",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "de",
         "text": "Germany",
-        "priority": 5
+        "priority": 5,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "dj",
         "text": "Djibouti",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "dk",
         "text": "Denmark",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "dm",
         "text": "Dominica",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "do",
         "text": "Dominican Republic",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "dz",
         "text": "Algeria",
-        "priority": -1
+        "priority": -1,
+        "war": true
         },
         {
         "value": "ec",
         "text": "Ecuador",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle",
+        "war": true
         },
         {
         "value": "ee",
         "text": "Estonia",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "eg",
         "text": "Egypt",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "eh",
@@ -339,27 +415,35 @@
         {
         "value": "er",
         "text": "Eritrea",
-        "priority": -1
+        "priority": -1,
+        "income": "low"
         },
         {
         "value": "es",
         "text": "Spain",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "et",
         "text": "Ethiopia",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "fi",
         "text": "Finland",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "fj",
         "text": "Fiji",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "fk",
@@ -369,37 +453,45 @@
         {
         "value": "fm",
         "text": "Micronesia, Federated States of",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "fo",
         "text": "Faroe Islands",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "fr",
         "text": "France",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "ga",
         "text": "Gabon",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "gb",
         "text": "United Kingdom of Great Britain and Northern Ireland",
-        "priority": 8
+        "priority": 8,
+        "income": "high"
         },
         {
         "value": "gd",
         "text": "Grenada",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "ge",
         "text": "Georgia",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "gf",
@@ -414,27 +506,33 @@
         {
         "value": "gh",
         "text": "Ghana",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle",
+        "war": true
         },
         {
         "value": "gi",
         "text": "Gibraltar",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "gl",
         "text": "Greenland",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "gm",
         "text": "Gambia",
-        "priority": -1
+        "priority": -1,
+        "income": "low"
         },
         {
         "value": "gn",
         "text": "Guinea",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "gp",
@@ -444,12 +542,15 @@
         {
         "value": "gq",
         "text": "Equatorial Guinea",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "gr",
         "text": "Greece",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "gs",
@@ -459,27 +560,33 @@
         {
         "value": "gt",
         "text": "Guatemala",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "gu",
         "text": "Guam",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "gw",
         "text": "Guinea-Bissau",
-        "priority": -1
+        "priority": -1,
+        "income": "low"
         },
         {
         "value": "gy",
         "text": "Guyana",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "hk",
         "text": "Hong Kong",
-        "priority": -1
+        "priority": 9,
+        "apec": true,
+        "income": "high"
         },
         {
         "value": "hm",
@@ -489,47 +596,62 @@
         {
         "value": "hn",
         "text": "Honduras",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "hr",
         "text": "Croatia",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "ht",
         "text": "Haiti",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle",
+        "war": true
         },
         {
         "value": "hu",
         "text": "Hungary",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "id",
         "text": "Indonesia",
-        "priority": -1
+        "priority": 9,
+        "apec": true,
+        "income": "upper-middle"
         },
         {
         "value": "ie",
         "text": "Ireland",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "il",
         "text": "Israel",
-        "priority": -1
+        "priority": -1,
+        "income": "high",
+        "war": true
         },
         {
         "value": "im",
         "text": "Isle of Man",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "in",
         "text": "India",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "io",
@@ -539,22 +661,29 @@
         {
         "value": "iq",
         "text": "Iraq",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle",
+        "war": true
         },
         {
         "value": "ir",
         "text": "Iran, Islamic Republic of",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "is",
         "text": "Iceland",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "it",
         "text": "Italy",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "je",
@@ -564,178 +693,224 @@
         {
         "value": "jm",
         "text": "Jamaica",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "jo",
         "text": "Jordan",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "jp",
         "text": "Japan",
-        "priority": -1
+        "priority": 9,
+        "apec": true,
+        "income": "high"
         },
         {
         "value": "ke",
         "text": "Kenya",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "kg",
         "text": "Kyrgyzstan",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "kh",
         "text": "Cambodia",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "ki",
         "text": "Kiribati",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "km",
         "text": "Comoros",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "kn",
         "text": "Saint Kitts and Nevis",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "kp",
         "text": "Korea, Democratic People's Republic of",
-        "priority": -1
+        "priority": -1,
+        "income": "low"
         },
         {
         "value": "kr",
         "text": "Korea, Republic of",
-        "priority": -1
+        "priority": 9,
+        "apec": true,
+        "income": "high"
         },
         {
         "value": "kw",
         "text": "Kuwait",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "ky",
         "text": "Cayman Islands",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "kz",
         "text": "Kazakhstan",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "la",
         "text": "Lao People's Democratic Republic",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "lb",
         "text": "Lebanon",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle",
+        "war": true
         },
         {
         "value": "lc",
         "text": "Saint Lucia",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "li",
         "text": "Liechtenstein",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "lk",
         "text": "Sri Lanka",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "lr",
         "text": "Liberia",
-        "priority": -1
+        "priority": -1,
+        "income": "low"
         },
         {
         "value": "ls",
         "text": "Lesotho",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "lt",
         "text": "Lithuania",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "lu",
         "text": "Luxembourg",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "lv",
         "text": "Latvia",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "ly",
         "text": "Libya",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle",
+        "war": true
         },
         {
         "value": "ma",
         "text": "Morocco",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle",
+        "war": true
         },
         {
         "value": "mc",
         "text": "Monaco",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "md",
         "text": "Moldova, Republic of",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "me",
         "text": "Montenegro",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "mf",
         "text": "Saint Martin (French part)",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "mg",
         "text": "Madagascar",
-        "priority": -1
+        "priority": -1,
+        "income": "low"
         },
         {
         "value": "mh",
         "text": "Marshall Islands",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "mk",
         "text": "North Macedonia",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "ml",
         "text": "Mali",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "mm",
         "text": "Myanmar",
         "priority": -1,
-        "reason": "Cases of forced labour fraud are taking place here"
+        "reason": "Cases of forced labour fraud are taking place here",
+        "income": "lower-middle",
+        "war": true
         },
         {
         "value": "mn",
@@ -745,12 +920,14 @@
         {
         "value": "mo",
         "text": "Macao",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "mp",
         "text": "Northern Mariana Islands",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "mq",
@@ -760,7 +937,9 @@
         {
         "value": "mr",
         "text": "Mauritania",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle",
+        "war": true
         },
         {
         "value": "ms",
@@ -770,52 +949,67 @@
         {
         "value": "mt",
         "text": "Malta",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "mu",
         "text": "Mauritius",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "mv",
         "text": "Maldives",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "mw",
         "text": "Malawi",
-        "priority": -1
+        "priority": -1,
+        "income": "low"
         },
         {
         "value": "mx",
         "text": "Mexico",
-        "priority": -1
+        "priority": 9,
+        "apec": true,
+        "income": "upper-middle",
+        "war": true
         },
         {
         "value": "my",
         "text": "Malaysia",
-        "priority": 6
+        "priority": 6,
+        "apec": true,
+        "income": "upper-middle"
         },
         {
         "value": "mz",
         "text": "Mozambique",
-        "priority": -1
+        "priority": -1,
+        "income": "low"
         },
         {
         "value": "na",
         "text": "Namibia",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "nc",
         "text": "New Caledonia",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "ne",
         "text": "Niger",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "nf",
@@ -825,32 +1019,41 @@
         {
         "value": "ng",
         "text": "Nigeria",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle",
+        "war": true
         },
         {
         "value": "ni",
         "text": "Nicaragua",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "nl",
         "text": "Netherlands, Kingdom of the",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "no",
         "text": "Norway",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "np",
         "text": "Nepal",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "nr",
         "text": "Nauru",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "nu",
@@ -860,47 +1063,62 @@
         {
         "value": "nz",
         "text": "New Zealand",
-        "priority": 3
+        "priority": 3,
+        "apec": true,
+        "income": "high"
         },
         {
         "value": "om",
         "text": "Oman",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "pa",
         "text": "Panama",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "pe",
         "text": "Peru",
-        "priority": -1
+        "priority": 9,
+        "apec": true,
+        "income": "upper-middle"
         },
         {
         "value": "pf",
         "text": "French Polynesia",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "pg",
         "text": "Papua New Guinea",
-        "priority": -1
+        "priority": 9,
+        "apec": true,
+        "income": "lower-middle"
         },
         {
         "value": "ph",
         "text": "Philippines",
-        "priority": -1
+        "priority": 9,
+        "apec": true,
+        "income": "lower-middle"
         },
         {
         "value": "pk",
         "text": "Pakistan",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle",
+        "war": true
         },
         {
         "value": "pl",
         "text": "Poland",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "pm",
@@ -915,32 +1133,39 @@
         {
         "value": "pr",
         "text": "Puerto Rico",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "ps",
         "text": "Palestine, State of",
-        "priority": -1
+        "priority": -1,
+        "war": true
         },
         {
         "value": "pt",
         "text": "Portugal",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "pw",
         "text": "Palau",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "py",
         "text": "Paraguay",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "qa",
         "text": "Qatar",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "re",
@@ -950,52 +1175,68 @@
         {
         "value": "ro",
         "text": "Romania",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "rs",
         "text": "Serbia",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "ru",
         "text": "Russian Federation",
-        "priority": -1
+        "priority": -1,
+        "apec": true,
+        "income": "high",
+        "war": true
         },
         {
         "value": "rw",
         "text": "Rwanda",
-        "priority": -1
+        "priority": -1,
+        "income": "low"
         },
         {
         "value": "sa",
         "text": "Saudi Arabia",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "sb",
         "text": "Solomon Islands",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "sc",
         "text": "Seychelles",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "sd",
         "text": "Sudan",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "se",
         "text": "Sweden",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "sg",
         "text": "Singapore",
-        "priority": 1
+        "priority": 1,
+        "apec": true,
+        "income": "high"
         },
         {
         "value": "sh",
@@ -1005,7 +1246,9 @@
         {
         "value": "si",
         "text": "Slovenia",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "sj",
@@ -1015,72 +1258,91 @@
         {
         "value": "sk",
         "text": "Slovakia",
-        "priority": -1
+        "priority": 10,
+        "eea": true,
+        "income": "high"
         },
         {
         "value": "sl",
         "text": "Sierra Leone",
-        "priority": -1
+        "priority": -1,
+        "income": "low"
         },
         {
         "value": "sm",
         "text": "San Marino",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "sn",
         "text": "Senegal",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "so",
         "text": "Somalia",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "sr",
         "text": "Suriname",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "ss",
         "text": "South Sudan",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "st",
         "text": "Sao Tome and Principe",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "sv",
         "text": "El Salvador",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "sx",
         "text": "Sint Maarten (Dutch part)",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "sy",
         "text": "Syrian Arab Republic",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "sz",
         "text": "Eswatini",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "tc",
         "text": "Turks and Caicos Islands",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "td",
         "text": "Chad",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "tf",
@@ -1090,18 +1352,23 @@
         {
         "value": "tg",
         "text": "Togo",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "th",
         "text": "Thailand",
         "priority": -1,
-        "reason": "Cases of forced labour fraud are taking place here"
+        "reason": "Cases of forced labour fraud are taking place here",
+        "apec": true,
+        "income": "upper-middle"
         },
         {
         "value": "tj",
         "text": "Tajikistan",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "tk",
@@ -1111,57 +1378,72 @@
         {
         "value": "tl",
         "text": "Timor-Leste",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "tm",
         "text": "Turkmenistan",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "tn",
         "text": "Tunisia",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle",
+        "war": true
         },
         {
         "value": "to",
         "text": "Tonga",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "tr",
         "text": "Türkiye",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "tt",
         "text": "Trinidad and Tobago",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "tv",
         "text": "Tuvalu",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "tw",
         "text": "Taiwan, Province of China",
-        "priority": 7
+        "priority": 7,
+        "apec": true,
+        "income": "high"
         },
         {
         "value": "tz",
         "text": "Tanzania, United Republic of",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "ua",
         "text": "Ukraine",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle",
+        "war": true
         },
         {
         "value": "ug",
         "text": "Uganda",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "um",
@@ -1171,17 +1453,21 @@
         {
         "value": "us",
         "text": "United States of America",
-        "priority": -1
+        "priority": 9,
+        "apec": true,
+        "income": "high"
         },
         {
         "value": "uy",
         "text": "Uruguay",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "uz",
         "text": "Uzbekistan",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "va",
@@ -1191,7 +1477,8 @@
         {
         "value": "vc",
         "text": "Saint Vincent and the Grenadines",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "ve",
@@ -1201,22 +1488,27 @@
         {
         "value": "vg",
         "text": "Virgin Islands (British)",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "vi",
         "text": "Virgin Islands (U.S.)",
-        "priority": -1
+        "priority": 11,
+        "income": "high"
         },
         {
         "value": "vn",
         "text": "Viet Nam",
-        "priority": -1
+        "priority": 9,
+        "apec": true,
+        "income": "lower-middle"
         },
         {
         "value": "vu",
         "text": "Vanuatu",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "wf",
@@ -1226,12 +1518,15 @@
         {
         "value": "ws",
         "text": "Samoa",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "ye",
         "text": "Yemen",
-        "priority": -1
+        "priority": -1,
+        "income": "low",
+        "war": true
         },
         {
         "value": "yt",
@@ -1241,17 +1536,20 @@
         {
         "value": "za",
         "text": "South Africa",
-        "priority": -1
+        "priority": -1,
+        "income": "upper-middle"
         },
         {
         "value": "zm",
         "text": "Zambia",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         },
         {
         "value": "zw",
         "text": "Zimbabwe",
-        "priority": -1
+        "priority": -1,
+        "income": "lower-middle"
         }
       ]
     }
