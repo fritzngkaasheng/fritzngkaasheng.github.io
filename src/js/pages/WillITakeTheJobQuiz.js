@@ -1,41 +1,71 @@
 "use strict";
 
-import ComingSoonSection from "/src/js/components/ComingSoonSection.js";
+import { useTranslation } from "/src/js/i18n.js";
+import LoadingSection from "/src/js/components/LoadingSection.js";
+const {
+  useState,
+  useEffect
+} = React;
 const WillITakeTheJobQuiz = () => {
+  const {
+    t
+  } = useTranslation("quiz");
+  const [quizData, setQuizData] = useState({});
+  const [probability, setProbability] = useState(NaN);
+  const handleOriginChange = event => {
+    const quizAnswerSection = document.getElementById("quizAnswer");
+    const selectedValue = event.target.value;
+    const selectedOption = quizData.quiz[0].options.find(option => option.value === selectedValue);
+    let probability = NaN;
+    let accumulatedPoints = 0;
+    let totalAvailablePoints = 0;
+    if (selectedOption) {
+      const numberOfGreenFlagCountries = Object.keys(quizData.quiz[0].options.filter(option => option.priority >= 1)).length;
+      totalAvailablePoints += numberOfGreenFlagCountries;
+      if (selectedOption.priority < 1) {
+        accumulatedPoints += 0;
+      }
+      if (selectedOption.priority >= 1) {
+        accumulatedPoints += numberOfGreenFlagCountries - (selectedOption.priority - 1);
+      }
+    }
+    if (totalAvailablePoints > 0) {
+      probability = accumulatedPoints / totalAvailablePoints * 100;
+    }
+    setProbability(probability);
+    quizAnswerSection.classList.remove("d-none");
+  };
+  useEffect(() => {
+    fetch("/dist/data/quiz.min.json").then(res => res.json()).then(data => {
+      setQuizData(data);
+    }).catch(err => {
+      console.error("Failed to load quiz.min.json:", err);
+    });
+  }, []);
+  if (Object.keys(quizData).length < 1) {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LoadingSection, null));
+  }
   return /*#__PURE__*/React.createElement("div", {
     className: "container"
-  }, /*#__PURE__*/React.createElement("form", null, /*#__PURE__*/React.createElement("div", {
-    className: "mb-3"
-  }, /*#__PURE__*/React.createElement("label", {
-    for: "quizOrigin",
+  }, /*#__PURE__*/React.createElement("form", {
+    id: "willITakeTheJobQuizV1"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+    for: quizData.quiz[0].id,
     className: "form-label"
-  }, "Which country is this job from?"), /*#__PURE__*/React.createElement("select", {
+  }, t(quizData.quiz[0].question)), /*#__PURE__*/React.createElement("select", {
     className: "form-select",
-    name: "origin",
-    id: "quizOrigin",
-    "aria-label": "Which country is this job from?"
+    name: quizData.quiz[0].name,
+    id: quizData.quiz[0].id,
+    "aria-label": quizData.quiz[0].question,
+    onChange: handleOriginChange
   }, /*#__PURE__*/React.createElement("option", {
     selected: true
-  }, "Choose..."), /*#__PURE__*/React.createElement("option", {
-    value: "sg"
-  }, "Singapore"), /*#__PURE__*/React.createElement("option", {
-    value: "au"
-  }, "Australia"), /*#__PURE__*/React.createElement("option", {
-    value: "nz"
-  }, "New Zealand"), /*#__PURE__*/React.createElement("option", {
-    value: "cn"
-  }, "China"), /*#__PURE__*/React.createElement("option", {
-    value: "de"
-  }, "Germany"), /*#__PURE__*/React.createElement("option", {
-    value: "my"
-  }, "Malaysia"), /*#__PURE__*/React.createElement("option", {
-    value: "tw"
-  }, "Taiwan"), /*#__PURE__*/React.createElement("option", {
-    value: "gb"
-  }, "United Kingdom of Great Britain and Northern Ireland"), /*#__PURE__*/React.createElement("option", {
-    value: "th"
-  }, "Thailand"), /*#__PURE__*/React.createElement("option", {
-    value: "mm"
-  }, "Myanmar"))), /*#__PURE__*/React.createElement("h2", null, "The probability that I will choose this job is NaN%")));
+  }, "Choose..."), quizData.quiz[0].options.map(option => /*#__PURE__*/React.createElement("option", {
+    key: option.value,
+    value: option.value
+  }, t(option.text))))), /*#__PURE__*/React.createElement("div", {
+    id: "quizAnswer",
+    className: "d-none"
+  }, /*#__PURE__*/React.createElement("h2", null, "The probability that I will choose this job is ", isNaN(probability) ? 'NaN' : probability, "%"))));
 };
 export default WillITakeTheJobQuiz; 

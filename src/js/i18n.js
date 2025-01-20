@@ -18,6 +18,8 @@ i18n
       addPath: './locales/add/{{lng}}/{{ns}}',
     },
     fallbackLng: "en",
+    ns: ['common', 'profile', 'quiz'], // List all namespaces
+    defaultNS: 'common', // Default namespace
 
     interpolation: {
       escapeValue: false
