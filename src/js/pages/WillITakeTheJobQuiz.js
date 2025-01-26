@@ -35,6 +35,31 @@ const WillITakeTheJobQuiz = () => {
   };
   useEffect(() => {
     fetch("/dist/data/quiz.min.json").then(res => res.json()).then(data => {
+      const numericPriorities = data.quiz[0].options.map(option => option.priority).filter(priority => typeof priority === 'number' && !isNaN(priority));
+      let maxPriorityNumber = numericPriorities.length > 0 ? Math.max(...numericPriorities) : 0;
+      data.quiz[0].options.map(option => {
+        if (!option.priority) {
+          if (option.apec && option.apec === true) {
+            option.priority = maxPriorityNumber + 1;
+          }
+          if (option.eea && option.eea === true) {
+            option.priority = maxPriorityNumber + 2;
+          }
+          if (option.income && option.income === "high" && !option.priority) {
+            option.priority = maxPriorityNumber + 3;
+          }
+          if (option.income && option.income !== "high" && (!option.priority || option.priority && option.priority > maxPriorityNumber)) {
+            option.priority = -1;
+          }
+          if (option.war && option.war === true) {
+            option.priority = -1;
+          }
+          if (!option.priority) {
+            option.priority = -1;
+          }
+        }
+      });
+      console.log(data);
       setQuizData(data);
     }).catch(err => {
       console.error("Failed to load quiz.min.json:", err);
