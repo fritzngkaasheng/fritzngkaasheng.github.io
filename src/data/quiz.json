@@ -1343,6 +1343,50 @@
           "priority": 3
         }
       ]
+    },
+    {
+      "name": "salary",
+      "id": "quizSalary",
+      "question": "What is the salary?",
+      "type": "currency",
+      "indicators": [
+        {
+          "currency": "MYR",
+          "value": 2800,
+          "operator": "<",
+          "priority": -1,
+          "remark": "less than minimum"
+        },
+        {
+          "currency": "MYR",
+          "value": 2800,
+          "operator": ">=",
+          "priority": 2,
+          "remark": "minimum for non-high income countries"
+        },
+        {
+          "currency": "SGD",
+          "value": 3000,
+          "operator": "<",
+          "countryIncome": "high",
+          "priority": -1,
+          "remark": "less than minimum for high income countries"
+        },
+        {
+          "currency": "SGD",
+          "value": 3000,
+          "operator": ">=",
+          "priority": 2,
+          "remark": "minimum for high income countries"
+        },
+        {
+          "currency": "SGD",
+          "value": 4000,
+          "operator": ">=",
+          "priority": 1,
+          "remark": "recommended"
+        }
+      ]
     }
   ]
 }

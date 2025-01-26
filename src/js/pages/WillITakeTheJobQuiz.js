@@ -6,10 +6,14 @@ const {
   useState,
   useEffect
 } = React;
+let currencyToMYRConversionList = {
+  "sgd": 3.25
+};
 let maxOriginPriority = 0;
 let maxLocationTypePriority = 0;
-let questionValues = [];
-let questionPoints = [];
+let maxSalaryPriority = 0;
+const questionValues = {};
+const questionPoints = {};
 let accumulatedPoints = 0;
 let totalAvailablePoints = 0;
 const WillITakeTheJobQuiz = () => {
@@ -20,15 +24,20 @@ const WillITakeTheJobQuiz = () => {
   const [probability, setProbability] = useState(NaN);
   const calculateProbability = () => {
     let probability = NaN;
-    if (questionPoints[0] <= 0) {
+    accumulatedPoints = 0;
+    if (questionPoints.origin <= 0 || questionPoints.salary < 0) {
       accumulatedPoints = 0;
     }
-    if (questionPoints[0] > 0) {
-      if (questionValues[1] === "remote") {
-        accumulatedPoints = questionPoints[1] * maxOriginPriority + questionPoints[0];
+    if (questionPoints.origin > 0 && questionPoints.salary >= 0) {
+      if (questionValues.locationType === "remote") {
+        const chunk1 = (maxLocationTypePriority - 1) * maxOriginPriority * maxSalaryPriority;
+        const chunk2 = maxOriginPriority * questionPoints.salary;
+        accumulatedPoints = chunk1 + chunk2 + questionPoints.origin;
       }
-      if (questionValues[1] !== "remote") {
-        accumulatedPoints = (questionPoints[0] - 1) * 2 + (questionPoints[1] + 1);
+      if (questionValues.locationType !== "remote") {
+        const chunk1 = (questionPoints.origin - 1) * (maxLocationTypePriority - 1) * maxSalaryPriority;
+        const chunk2 = (maxLocationTypePriority - 1) * questionPoints.salary;
+        accumulatedPoints = chunk1 + chunk2 + (questionPoints.locationType + 1);
       }
     }
     probability = accumulatedPoints / totalAvailablePoints * 100;
@@ -52,11 +61,24 @@ const WillITakeTheJobQuiz = () => {
     const locationTypeQuestion = document.getElementById(`${quizData.quiz[1].id}Section`);
     locationTypeQuestion.classList.add("d-none");
   };
+  const showSalaryQuestion = () => {
+    const salaryQuestion = document.getElementById(`${quizData.quiz[2].id}Section`);
+    salaryQuestion.classList.remove("d-none");
+    const salarySelect = document.getElementById(`${quizData.quiz[2].id}Currency`);
+    salarySelect.selectedIndex = 0;
+    const salaryValue = document.getElementById(quizData.quiz[2].id);
+    salaryValue.value = 0;
+  };
+  const hideSalaryQuestion = () => {
+    const salaryQuestion = document.getElementById(`${quizData.quiz[2].id}Section`);
+    salaryQuestion.classList.add("d-none");
+  };
   const handleOriginChange = event => {
     hideQuizAnswer();
     hideLocationTypeQuestion();
+    hideSalaryQuestion();
     const selectedValue = event.target.value;
-    questionValues[0] = selectedValue;
+    questionValues.origin = selectedValue;
     if (selectedValue === "Choose...") {
       return;
     }
@@ -65,28 +87,29 @@ const WillITakeTheJobQuiz = () => {
       // if priority = -1, point = -1
       // if priority = 0, point = 0
       if (selectedOption.priority < 1) {
-        questionPoints[0] = selectedOption.priority;
+        questionPoints.origin = selectedOption.priority;
       }
 
       // if priority = 1, point = maxOriginPriority
       // if priority = 2, point = maxOriginPriority - 1
       // if priority = 3, point = maxOriginPriority - 2...
       if (selectedOption.priority >= 1) {
-        questionPoints[0] = maxOriginPriority - (selectedOption.priority - 1);
+        questionPoints.origin = maxOriginPriority - (selectedOption.priority - 1);
       }
     }
-    if (questionPoints[0] <= 0) {
+    if (questionPoints.origin <= 0) {
       calculateProbability();
       showQuizAnswer();
     }
-    if (questionPoints[0] > 0) {
+    if (questionPoints.origin > 0) {
       showLocationTypeQuestion();
     }
   };
   const handleLocationTypeChange = event => {
     hideQuizAnswer();
+    hideSalaryQuestion();
     const selectedValue = event.target.value;
-    questionValues[1] = selectedValue;
+    questionValues.locationType = selectedValue;
     if (selectedValue === "Choose...") {
       return;
     }
@@ -95,7 +118,7 @@ const WillITakeTheJobQuiz = () => {
       // if priority = -1, point = -1
       // if priority = 0, point = 0
       if (selectedOption.priority < 1) {
-        questionPoints[1] = 0;
+        questionPoints.locationType = 0;
       }
 
       // if priority = 1, point = maxLocationTypePriority - 1
@@ -104,9 +127,49 @@ const WillITakeTheJobQuiz = () => {
       // Set On-site point to 0
       // Usually On-site priority = maxLocationTypePriority
       if (selectedOption.priority >= 1) {
-        questionPoints[1] = maxLocationTypePriority - selectedOption.priority;
+        questionPoints.locationType = maxLocationTypePriority - selectedOption.priority;
       }
     }
+    showSalaryQuestion();
+  };
+  const handleSalaryChange = () => {
+    hideQuizAnswer();
+    const currencySelect = document.getElementById(`${quizData.quiz[2].id}Currency`);
+    const salaryInput = document.getElementById(quizData.quiz[2].id);
+    const selectedCurrency = currencySelect.value;
+    const prevSalaryValue = parseFloat(salaryInput.value);
+    if (!prevSalaryValue) {
+      return;
+    }
+    let salaryValue = 0;
+    if (!selectedCurrency || isNaN(prevSalaryValue)) {
+      return;
+    }
+    if (selectedCurrency === "Choose...") {
+      return;
+    }
+    if (selectedCurrency === "myr") {
+      salaryValue = prevSalaryValue;
+    }
+    if (selectedCurrency === "sgd") {
+      salaryValue = prevSalaryValue * currencyToMYRConversionList.sgd;
+    }
+    questionValues.salary = salaryValue;
+    const selectedOrigin = quizData.quiz[0].options.find(option => option.value === questionValues.origin);
+    quizData.quiz[2].indicators.map(indicator => {
+      if (indicator.operator === ">=" && salaryValue >= indicator.value) {
+        questionPoints.salary = maxSalaryPriority - indicator.priority;
+      }
+      if (indicator.operator === "<" && salaryValue < indicator.value && selectedOrigin.income !== "high" && indicator.countryIncome !== "high") {
+        questionPoints.salary = indicator.priority;
+      }
+      if (indicator.operator === "<" && salaryValue < indicator.value && selectedOrigin.income === "high" && indicator.countryIncome === "high" && questionValues.locationType !== "remote") {
+        questionPoints.salary = indicator.priority;
+      }
+      if (indicator.operator === "<" && salaryValue < indicator.value && selectedOrigin.income === "high" && indicator.countryIncome !== "high" && questionValues.locationType === "remote") {
+        questionPoints.salary = indicator.priority;
+      }
+    });
     calculateProbability();
     showQuizAnswer();
   };
@@ -136,11 +199,17 @@ const WillITakeTheJobQuiz = () => {
           }
         }
       });
+      data.quiz[2].indicators.map(indicator => {
+        indicator.currency = indicator.currency.toLowerCase();
+        if (indicator.currency === "sgd") {
+          indicator.value = indicator.value * currencyToMYRConversionList.sgd;
+          indicator.currency = "myr";
+        }
+      });
       maxOriginPriority = Math.max(...data.quiz[0].options.map(option => option.priority));
       maxLocationTypePriority = Math.max(...data.quiz[1].options.map(option => option.priority));
-      questionValues = ["", ""];
-      questionPoints = [0, 0];
-      totalAvailablePoints = maxOriginPriority * maxLocationTypePriority;
+      maxSalaryPriority = Math.max(...data.quiz[2].indicators.map(indicator => indicator.priority));
+      totalAvailablePoints = maxOriginPriority * maxLocationTypePriority * maxSalaryPriority;
       setQuizData(data);
     }).catch(err => {
       console.error("Failed to load quiz.min.json:", err);
@@ -187,6 +256,37 @@ const WillITakeTheJobQuiz = () => {
     key: option.value,
     value: option.value
   }, t(option.text))))), /*#__PURE__*/React.createElement("div", {
+    id: `${quizData.quiz[2].id}Section`,
+    className: "d-none"
+  }, /*#__PURE__*/React.createElement("label", {
+    for: quizData.quiz[2].id,
+    className: "form-label"
+  }, t(quizData.quiz[2].question)), /*#__PURE__*/React.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-auto"
+  }, /*#__PURE__*/React.createElement("select", {
+    className: "form-select",
+    name: `${quizData.quiz[2].name}Currency`,
+    id: `${quizData.quiz[2].id}Currency`,
+    "aria-label": quizData.quiz[2].question,
+    onChange: handleSalaryChange
+  }, /*#__PURE__*/React.createElement("option", {
+    selected: true
+  }, "Choose..."), /*#__PURE__*/React.createElement("option", {
+    key: "myr",
+    value: "myr"
+  }, t("MYR")), /*#__PURE__*/React.createElement("option", {
+    key: "sgd",
+    value: "sgd"
+  }, t("SGD")))), /*#__PURE__*/React.createElement("div", {
+    className: "col-auto"
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    class: "form-control",
+    id: quizData.quiz[2].id,
+    onChange: handleSalaryChange
+  })))), /*#__PURE__*/React.createElement("div", {
     id: "quizAnswer",
     className: "d-none"
   }, /*#__PURE__*/React.createElement("h2", null, "The probability that I will choose this job is ", isNaN(probability) ? 'NaN' : probability, "%"))));
