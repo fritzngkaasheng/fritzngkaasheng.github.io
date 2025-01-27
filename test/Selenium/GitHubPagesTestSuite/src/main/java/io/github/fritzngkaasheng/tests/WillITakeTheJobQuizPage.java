@@ -35,7 +35,7 @@ public class WillITakeTheJobQuizPage {
 
     public void willITakeTheJobQuizPage(WebDriver driver) throws InterruptedException {
         translation(driver);
-        
+
         selectDropdown(driver, "quizOrigin", "sg - Singapore");
         selectDropdown(driver, "quizLocationType", "Remote");
 

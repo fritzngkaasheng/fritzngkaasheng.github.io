@@ -406,9 +406,9 @@ const WillITakeTheJobQuiz = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container py-5">
       <form id="willITakeTheJobQuizV1">
-        <div id={`${quizData.quiz[0].id}Section`}>
+        <div id={`${quizData.quiz[0].id}Section`} className="mb-3">
           <label for={quizData.quiz[0].id} className="form-label">{t(quizData.quiz[0].question)}</label>
           <select className="form-select" name={quizData.quiz[0].name} id={quizData.quiz[0].id} aria-label={quizData.quiz[0].question} onChange={handleOriginChange}>
             <option value="Choose..." selected>{t("Choose...")}</option>
@@ -419,7 +419,7 @@ const WillITakeTheJobQuiz = () => {
               ))}
           </select>
         </div>
-        <div id={`${quizData.quiz[1].id}Section`} className="d-none">
+        <div id={`${quizData.quiz[1].id}Section`} className="mb-3 d-none">
           <label for={quizData.quiz[1].id} className="form-label">{t(quizData.quiz[1].question)}</label>
           <select className="form-select" name={quizData.quiz[1].name} id={quizData.quiz[1].id} aria-label={quizData.quiz[1].question} onChange={handleLocationTypeChange}>
             <option value="Choose..." selected>{t("Choose...")}</option>
@@ -429,7 +429,7 @@ const WillITakeTheJobQuiz = () => {
               ))}
           </select>
         </div>
-        <div id={`${quizData.quiz[2].id}Section`} className="d-none">
+        <div id={`${quizData.quiz[2].id}Section`} className="mb-3 d-none">
           <label for={quizData.quiz[2].id} className="form-label">{t(quizData.quiz[2].question)}</label>
           <div className="row">
               <div className="col-auto">
@@ -441,13 +441,13 @@ const WillITakeTheJobQuiz = () => {
                   <option key="usd" value="usd">{t("USD")}</option>*/}
                 </select>
               </div>
-              <div className="col-auto">
+              <div className="col col-sm-auto">
                 <input type="number" class="form-control" id={quizData.quiz[2].id} onChange={handleSalaryChange}/>
               </div>
           </div>
         </div>
-        <div id="quizAnswer" className="d-none">
-          <h2>{t("Possibility of me choosing this job:")} {isNaN(probability) ? 'NaN' : probability}%</h2>
+        <div id="quizAnswer" className="mb-3 d-none">
+          <h2>{t("Possibility of me choosing this job: ")}{isNaN(probability) ? 'NaN' : probability}%</h2>
         </div>
       </form>
     </div>

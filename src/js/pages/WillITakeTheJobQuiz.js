@@ -259,11 +259,12 @@ const WillITakeTheJobQuiz = () => {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LoadingSection, null));
   }
   return /*#__PURE__*/React.createElement("div", {
-    className: "container"
+    className: "container py-5"
   }, /*#__PURE__*/React.createElement("form", {
     id: "willITakeTheJobQuizV1"
   }, /*#__PURE__*/React.createElement("div", {
-    id: `${quizData.quiz[0].id}Section`
+    id: `${quizData.quiz[0].id}Section`,
+    className: "mb-3"
   }, /*#__PURE__*/React.createElement("label", {
     for: quizData.quiz[0].id,
     className: "form-label"
@@ -281,7 +282,7 @@ const WillITakeTheJobQuiz = () => {
     value: option.value
   }, `${option.value} - ${t(option.text)}`)))), /*#__PURE__*/React.createElement("div", {
     id: `${quizData.quiz[1].id}Section`,
-    className: "d-none"
+    className: "mb-3 d-none"
   }, /*#__PURE__*/React.createElement("label", {
     for: quizData.quiz[1].id,
     className: "form-label"
@@ -299,7 +300,7 @@ const WillITakeTheJobQuiz = () => {
     value: option.value
   }, t(option.text))))), /*#__PURE__*/React.createElement("div", {
     id: `${quizData.quiz[2].id}Section`,
-    className: "d-none"
+    className: "mb-3 d-none"
   }, /*#__PURE__*/React.createElement("label", {
     for: quizData.quiz[2].id,
     className: "form-label"
@@ -323,7 +324,7 @@ const WillITakeTheJobQuiz = () => {
     key: "sgd",
     value: "sgd"
   }, t("SGD")))), /*#__PURE__*/React.createElement("div", {
-    className: "col-auto"
+    className: "col col-sm-auto"
   }, /*#__PURE__*/React.createElement("input", {
     type: "number",
     class: "form-control",
@@ -331,7 +332,7 @@ const WillITakeTheJobQuiz = () => {
     onChange: handleSalaryChange
   })))), /*#__PURE__*/React.createElement("div", {
     id: "quizAnswer",
-    className: "d-none"
-  }, /*#__PURE__*/React.createElement("h2", null, t("Possibility of me choosing this job:"), " ", isNaN(probability) ? 'NaN' : probability, "%"))));
+    className: "mb-3 d-none"
+  }, /*#__PURE__*/React.createElement("h2", null, t("Possibility of me choosing this job: "), isNaN(probability) ? 'NaN' : probability, "%"))));
 };
 export default WillITakeTheJobQuiz; 
