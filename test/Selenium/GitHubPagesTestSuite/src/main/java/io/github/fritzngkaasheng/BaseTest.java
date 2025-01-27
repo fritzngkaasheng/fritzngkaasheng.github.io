@@ -67,6 +67,13 @@ public abstract class BaseTest {
         new DynamicResumePage().dynamicResumePages(driver, url);
     }
 
+    @Test(priority = 4)
+    public void willITakeTheJobQuizPage() throws InterruptedException {
+        new Header().navigateTo(driver, "#/will-i-take-the-job-quiz");
+
+        new WillITakeTheJobQuizPage().willITakeTheJobQuizPage(driver);
+    }
+
     @AfterTest
     public void tearDown() {
         if (driver != null) {
