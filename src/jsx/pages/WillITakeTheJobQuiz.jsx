@@ -411,18 +411,18 @@ const WillITakeTheJobQuiz = () => {
         <div id={`${quizData.quiz[0].id}Section`}>
           <label for={quizData.quiz[0].id} className="form-label">{t(quizData.quiz[0].question)}</label>
           <select className="form-select" name={quizData.quiz[0].name} id={quizData.quiz[0].id} aria-label={quizData.quiz[0].question} onChange={handleOriginChange}>
-            <option selected>Choose...</option>
+            <option value="Choose..." selected>{t("Choose...")}</option>
             {quizData.quiz[0].options
-              .sort((a, b) => a.text.localeCompare(b.text))
+              .sort((a, b) => a.value.localeCompare(b.value))
               .map((option) => (
-                <option key={option.value} value={option.value}>{t(option.text)}</option>
+                <option key={option.value} value={option.value}>{`${option.value} - ${t(option.text)}`}</option>
               ))}
           </select>
         </div>
         <div id={`${quizData.quiz[1].id}Section`} className="d-none">
           <label for={quizData.quiz[1].id} className="form-label">{t(quizData.quiz[1].question)}</label>
           <select className="form-select" name={quizData.quiz[1].name} id={quizData.quiz[1].id} aria-label={quizData.quiz[1].question} onChange={handleLocationTypeChange}>
-            <option selected>Choose...</option>
+            <option value="Choose..." selected>{t("Choose...")}</option>
             {quizData.quiz[1].options
               .map((option) => (
                 <option key={option.value} value={option.value}>{t(option.text)}</option>
@@ -434,7 +434,7 @@ const WillITakeTheJobQuiz = () => {
           <div className="row">
               <div className="col-auto">
                 <select className="form-select" name={`${quizData.quiz[2].name}Currency`} id={`${quizData.quiz[2].id}Currency`} aria-label={quizData.quiz[2].question} onChange={handleSalaryChange}>
-                  <option selected>Choose...</option>
+                  <option value="Choose..." selected>{t("Choose...")}</option>
                   <option key="myr" value="myr">{t("MYR")}</option>
                   <option key="sgd" value="sgd">{t("SGD")}</option>
                   {/*<option key="aud" value="aud">{t("AUD")}</option>
@@ -447,7 +447,7 @@ const WillITakeTheJobQuiz = () => {
           </div>
         </div>
         <div id="quizAnswer" className="d-none">
-          <h2>The probability that I will choose this job is {isNaN(probability) ? 'NaN' : probability}%</h2>
+          <h2>{t("Possibility of me choosing this job:")} {isNaN(probability) ? 'NaN' : probability}%</h2>
         </div>
       </form>
     </div>

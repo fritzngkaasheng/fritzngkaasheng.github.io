@@ -274,11 +274,12 @@ const WillITakeTheJobQuiz = () => {
     "aria-label": quizData.quiz[0].question,
     onChange: handleOriginChange
   }, /*#__PURE__*/React.createElement("option", {
+    value: "Choose...",
     selected: true
-  }, "Choose..."), quizData.quiz[0].options.sort((a, b) => a.text.localeCompare(b.text)).map(option => /*#__PURE__*/React.createElement("option", {
+  }, t("Choose...")), quizData.quiz[0].options.sort((a, b) => a.value.localeCompare(b.value)).map(option => /*#__PURE__*/React.createElement("option", {
     key: option.value,
     value: option.value
-  }, t(option.text))))), /*#__PURE__*/React.createElement("div", {
+  }, `${option.value} - ${t(option.text)}`)))), /*#__PURE__*/React.createElement("div", {
     id: `${quizData.quiz[1].id}Section`,
     className: "d-none"
   }, /*#__PURE__*/React.createElement("label", {
@@ -291,8 +292,9 @@ const WillITakeTheJobQuiz = () => {
     "aria-label": quizData.quiz[1].question,
     onChange: handleLocationTypeChange
   }, /*#__PURE__*/React.createElement("option", {
+    value: "Choose...",
     selected: true
-  }, "Choose..."), quizData.quiz[1].options.map(option => /*#__PURE__*/React.createElement("option", {
+  }, t("Choose...")), quizData.quiz[1].options.map(option => /*#__PURE__*/React.createElement("option", {
     key: option.value,
     value: option.value
   }, t(option.text))))), /*#__PURE__*/React.createElement("div", {
@@ -312,8 +314,9 @@ const WillITakeTheJobQuiz = () => {
     "aria-label": quizData.quiz[2].question,
     onChange: handleSalaryChange
   }, /*#__PURE__*/React.createElement("option", {
+    value: "Choose...",
     selected: true
-  }, "Choose..."), /*#__PURE__*/React.createElement("option", {
+  }, t("Choose...")), /*#__PURE__*/React.createElement("option", {
     key: "myr",
     value: "myr"
   }, t("MYR")), /*#__PURE__*/React.createElement("option", {
@@ -329,6 +332,6 @@ const WillITakeTheJobQuiz = () => {
   })))), /*#__PURE__*/React.createElement("div", {
     id: "quizAnswer",
     className: "d-none"
-  }, /*#__PURE__*/React.createElement("h2", null, "The probability that I will choose this job is ", isNaN(probability) ? 'NaN' : probability, "%"))));
+  }, /*#__PURE__*/React.createElement("h2", null, t("Possibility of me choosing this job:"), " ", isNaN(probability) ? 'NaN' : probability, "%"))));
 };
 export default WillITakeTheJobQuiz; 

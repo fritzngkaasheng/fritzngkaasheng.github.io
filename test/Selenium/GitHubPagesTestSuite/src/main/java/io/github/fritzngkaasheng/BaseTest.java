@@ -55,7 +55,7 @@ public abstract class BaseTest {
         new HomePage().homePage(driver);
     }
 
-    @Test(priority = 2)
+    /*@Test(priority = 2)
     public void error404Page() throws InterruptedException {
         driver.get(url + "#/summon/404/error");
 
@@ -65,6 +65,13 @@ public abstract class BaseTest {
     @Test(priority = 3)
     public void dynamicResumePage() throws InterruptedException {
         new DynamicResumePage().dynamicResumePages(driver, url);
+    }*/
+
+    @Test(priority = 4)
+    public void willITakeTheJobQuizPage() throws InterruptedException {
+        new Header().navigateTo(driver, "#/will-i-take-the-job-quiz");
+
+        new WillITakeTheJobQuizPage().willITakeTheJobQuizPage(driver);
     }
 
     @AfterTest
