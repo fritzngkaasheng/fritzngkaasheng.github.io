@@ -6,41 +6,83 @@ const {
   useState,
   useEffect
 } = React;
-let currencyToMYRConversionList = {
+const currencyToMYRConversionList = {
   "sgd": 3.25
 };
-let maxOriginPriority = 0;
-let maxLocationTypePriority = 0;
-let maxSalaryPriority = 0;
+const maxPriorities = {};
 const questionValues = {};
 const questionPoints = {};
-let accumulatedPoints = 0;
-let totalAvailablePoints = 0;
+let probabilitySliderPos = 0;
+let probabilitySliderPosMin = 0;
+let probabilitySliderPosMax = 0;
+let probabilitySliderSubLength = 0;
+let probabilitySliderLength = 0;
 const WillITakeTheJobQuiz = () => {
   const {
     t
   } = useTranslation("quiz");
   const [quizData, setQuizData] = useState({});
   const [probability, setProbability] = useState(NaN);
+  const refreshProbabilitySliderSubLength = () => {
+    probabilitySliderSubLength = probabilitySliderPosMax - probabilitySliderPosMin + 1;
+  };
   const calculateProbability = () => {
     let probability = NaN;
-    accumulatedPoints = 0;
-    if (questionPoints.origin <= 0 || questionPoints.salary < 0) {
-      accumulatedPoints = 0;
+    let chunkLength = 0;
+    probabilitySliderSubLength = probabilitySliderLength;
+    probabilitySliderPos = 0;
+    if (Object.values(questionPoints).includes(-1)) {
+      probabilitySliderPos = 0;
+      probabilitySliderSubLength = 0;
     }
-    if (questionPoints.origin > 0 && questionPoints.salary >= 0) {
+    if (!Object.values(questionPoints).includes(-1)) {
+      probabilitySliderPosMin = 0;
+      probabilitySliderPosMax = probabilitySliderLength;
+
+      // check if locationType === "remote"
+      chunkLength = probabilitySliderSubLength / maxPriorities.locationType;
       if (questionValues.locationType === "remote") {
-        const chunk1 = (maxLocationTypePriority - 1) * maxOriginPriority * maxSalaryPriority;
-        const chunk2 = maxOriginPriority * questionPoints.salary;
-        accumulatedPoints = chunk1 + chunk2 + questionPoints.origin;
+        probabilitySliderPosMin = probabilitySliderLength - chunkLength + 1;
+        refreshProbabilitySliderSubLength();
+
+        // origin
+        chunkLength = probabilitySliderSubLength / maxPriorities.origin;
+        probabilitySliderPosMax = probabilitySliderPosMin - 1 + chunkLength * questionPoints.origin;
+        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+        refreshProbabilitySliderSubLength();
+
+        // salary
+        chunkLength = probabilitySliderSubLength / maxPriorities.salary;
+        probabilitySliderPosMax = probabilitySliderPosMin - 1 + chunkLength * questionPoints.salary;
+        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+        refreshProbabilitySliderSubLength();
       }
       if (questionValues.locationType !== "remote") {
-        const chunk1 = (questionPoints.origin - 1) * (maxLocationTypePriority - 1) * maxSalaryPriority;
-        const chunk2 = (maxLocationTypePriority - 1) * questionPoints.salary;
-        accumulatedPoints = chunk1 + chunk2 + (questionPoints.locationType + 1);
+        probabilitySliderPosMin = 1;
+        probabilitySliderPosMax = probabilitySliderLength - chunkLength;
+        refreshProbabilitySliderSubLength();
+
+        // origin
+        chunkLength = probabilitySliderSubLength / maxPriorities.origin;
+        probabilitySliderPosMax = probabilitySliderPosMin - 1 + chunkLength * questionPoints.origin;
+        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+        refreshProbabilitySliderSubLength();
+
+        // locationType
+        chunkLength = probabilitySliderSubLength / (maxPriorities.locationType - 1);
+        probabilitySliderPosMax = probabilitySliderPosMin - 1 + chunkLength * questionPoints.locationType;
+        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+        refreshProbabilitySliderSubLength();
+
+        // salary
+        chunkLength = probabilitySliderSubLength / maxPriorities.salary;
+        probabilitySliderPosMax = probabilitySliderPosMin - 1 + chunkLength * questionPoints.salary;
+        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+        refreshProbabilitySliderSubLength();
       }
+      probabilitySliderPos = probabilitySliderPosMin;
     }
-    probability = accumulatedPoints / totalAvailablePoints * 100;
+    probability = probabilitySliderPos / probabilitySliderLength * 100;
     setProbability(probability);
   };
   const showQuizAnswer = () => {
@@ -90,11 +132,11 @@ const WillITakeTheJobQuiz = () => {
         questionPoints.origin = selectedOption.priority;
       }
 
-      // if priority = 1, point = maxOriginPriority
-      // if priority = 2, point = maxOriginPriority - 1
-      // if priority = 3, point = maxOriginPriority - 2...
+      // if priority = 1, point = maxPriorities.origin
+      // if priority = 2, point = maxPriorities.origin - 1
+      // if priority = 3, point = maxPriorities.origin - 2...
       if (selectedOption.priority >= 1) {
-        questionPoints.origin = maxOriginPriority - (selectedOption.priority - 1);
+        questionPoints.origin = maxPriorities.origin - (selectedOption.priority - 1);
       }
     }
     if (questionPoints.origin <= 0) {
@@ -121,13 +163,11 @@ const WillITakeTheJobQuiz = () => {
         questionPoints.locationType = 0;
       }
 
-      // if priority = 1, point = maxLocationTypePriority - 1
-      // if priority = 2, point = maxLocationTypePriority - 2
-      // if priority = 3, point = maxLocationTypePriority - 3...
-      // Set On-site point to 0
-      // Usually On-site priority = maxLocationTypePriority
+      // if priority = 1, point = maxPriorities.locationType
+      // if priority = 2, point = maxPriorities.locationType - 1
+      // if priority = 3, point = maxPriorities.locationType - 2...
       if (selectedOption.priority >= 1) {
-        questionPoints.locationType = maxLocationTypePriority - selectedOption.priority;
+        questionPoints.locationType = maxPriorities.locationType - (selectedOption.priority - 1);
       }
     }
     showSalaryQuestion();
@@ -158,7 +198,7 @@ const WillITakeTheJobQuiz = () => {
     const selectedOrigin = quizData.quiz[0].options.find(option => option.value === questionValues.origin);
     quizData.quiz[2].indicators.map(indicator => {
       if (indicator.operator === ">=" && salaryValue >= indicator.value) {
-        questionPoints.salary = maxSalaryPriority - indicator.priority;
+        questionPoints.salary = maxPriorities.salary - (indicator.priority - 1);
       }
       if (indicator.operator === "<" && salaryValue < indicator.value && selectedOrigin.income !== "high" && indicator.countryIncome !== "high") {
         questionPoints.salary = indicator.priority;
@@ -176,19 +216,19 @@ const WillITakeTheJobQuiz = () => {
   useEffect(() => {
     fetch("/dist/data/quiz.min.json").then(res => res.json()).then(data => {
       const numericOriginPriorities = data.quiz[0].options.map(option => option.priority).filter(priority => typeof priority === 'number' && !isNaN(priority));
-      let prevMaxOriginPriority = numericOriginPriorities.length > 0 ? Math.max(...numericOriginPriorities) : 0;
+      const preMaxOriginPriority = numericOriginPriorities.length > 0 ? Math.max(...numericOriginPriorities) : 0;
       data.quiz[0].options.map(option => {
         if (!option.priority) {
           if (option.apec && option.apec === true) {
-            option.priority = prevMaxOriginPriority + 1;
+            option.priority = preMaxOriginPriority + 1;
           }
           if (option.eea && option.eea === true) {
-            option.priority = prevMaxOriginPriority + 2;
+            option.priority = preMaxOriginPriority + 2;
           }
           if (option.income && option.income === "high" && !option.priority) {
-            option.priority = prevMaxOriginPriority + 3;
+            option.priority = preMaxOriginPriority + 3;
           }
-          if (option.income && option.income !== "high" && (!option.priority || option.priority && option.priority > prevMaxOriginPriority)) {
+          if (option.income && option.income !== "high" && (!option.priority || option.priority && option.priority > preMaxOriginPriority)) {
             option.priority = -1;
           }
           if (option.war && option.war === true) {
@@ -206,10 +246,10 @@ const WillITakeTheJobQuiz = () => {
           indicator.currency = "myr";
         }
       });
-      maxOriginPriority = Math.max(...data.quiz[0].options.map(option => option.priority));
-      maxLocationTypePriority = Math.max(...data.quiz[1].options.map(option => option.priority));
-      maxSalaryPriority = Math.max(...data.quiz[2].indicators.map(indicator => indicator.priority));
-      totalAvailablePoints = maxOriginPriority * maxLocationTypePriority * maxSalaryPriority;
+      maxPriorities.origin = Math.max(...data.quiz[0].options.map(option => option.priority));
+      maxPriorities.locationType = Math.max(...data.quiz[1].options.map(option => option.priority));
+      maxPriorities.salary = Math.max(...data.quiz[2].indicators.map(indicator => indicator.priority));
+      probabilitySliderLength = maxPriorities.origin * maxPriorities.locationType * maxPriorities.salary;
       setQuizData(data);
     }).catch(err => {
       console.error("Failed to load quiz.min.json:", err);
