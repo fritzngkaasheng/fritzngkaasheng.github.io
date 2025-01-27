@@ -181,7 +181,7 @@ const DynamicResume = () => {
         setProfile(data);
       })
       .catch((err) => {
-        console.error("Failed to load profile.json:", err);
+        console.error("Failed to load profile.min.json:", err);
       });
   }, []);
 
