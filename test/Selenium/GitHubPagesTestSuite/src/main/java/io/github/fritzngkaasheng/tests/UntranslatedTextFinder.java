@@ -41,7 +41,9 @@ public class UntranslatedTextFinder {
                 "IBM MQ on AWS Cloud Developer Essentials（AWS 云上的 IBM MQ 开发人员要点）",
                 "freeCodeCamp",
                 "\"industryKnowledge\"",
-                "\"toolsTechnologies\""
+                "\"toolsTechnologies\"",
+                "MYR",
+                "SGD"
         );
 
         for (String text : texts) {

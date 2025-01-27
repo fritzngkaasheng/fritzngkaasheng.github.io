@@ -137,7 +137,7 @@ const DynamicResume = () => {
     fetch("/dist/data/profile.min.json").then(res => res.json()).then(data => {
       setProfile(data);
     }).catch(err => {
-      console.error("Failed to load profile.json:", err);
+      console.error("Failed to load profile.min.json:", err);
     });
   }, []);
   useEffect(() => {
