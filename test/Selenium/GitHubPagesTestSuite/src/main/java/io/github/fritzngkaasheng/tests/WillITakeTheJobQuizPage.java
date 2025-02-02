@@ -44,6 +44,7 @@ public class WillITakeTheJobQuizPage {
         textBox.sendKeys("4000");
 
         selectDropdown(driver, "quizSalaryCurrency", "SGD");
+        selectDropdown(driver, "quizOccupation", "Infocomm technology - Software engineer");
 
         answer(driver, "100");
 
