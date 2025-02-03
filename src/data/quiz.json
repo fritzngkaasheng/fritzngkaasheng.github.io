@@ -1,7 +1,7 @@
 {
   "earliestUpdate": "2020-01-01",
-  "quiz": [
-    {
+  "quiz": {
+    "qOrigin": {
       "name": "origin",
       "id": "quizOrigin",
       "question": "Which country is this job from?",
@@ -1321,7 +1321,7 @@
         }
       ]
     },
-    {
+    "qLocationType": {
       "name": "locationType",
       "id": "quizLocationType",
       "question": "What is the location type?",
@@ -1344,7 +1344,7 @@
         }
       ]
     },
-    {
+    "qSalary": {
       "name": "salary",
       "id": "quizSalary",
       "question": "What is the salary?",
@@ -1387,6 +1387,601 @@
           "remark": "recommended"
         }
       ]
+    },
+    "qOccupation": {
+      "name": "occupation",
+      "id": "quizOccupation",
+      "question": "What kind of job is this?",
+      "type": "select",
+      "options": [
+        {
+          "value": "AI engineer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Analyst programmer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Applications programmer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Computer programmer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Multimedia programmer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Systems programmer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Technical programmer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cloud architect",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cloud engineer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cloud operations engineer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cloud specialist",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cyber compliance specialist",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cyber governance specialist",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cyber risk analyst",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cyber risk manager",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cyber threat monitoring analyst",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cyber security consultant",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "ICT resilience analyst",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "ICT resilience manager",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "ICT security consultant",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "ICT security specialist",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Information security analyst",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Information technology security specialist",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cybersecurity architect",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cybersecurity engineer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "ICT security engineer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "ICT security architect",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Information systems security developer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cyber defense incident responder",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cyber incident responder",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "ICT security operations analyst",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "ICT threat monitoring analyst",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Chief data scientist",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Data engineer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Data scientist",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Head of data analytics",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Computer forensics expert",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Computer forensics investigator",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cyber forensics expert",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cyber forensics investigation specialist",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cyber incident investigation specialist",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cyber threat investigation specialist",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Digital forensic expert",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Digital forensics analyst",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "ICT forensics expert",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Information forensics expert",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Ethical hacker",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Exploitation analyst",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "ICT security tester",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Network security tester",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Penetration testing specialist",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Security penetration tester",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Security penetration testing manager",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "System security tester",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Vulnerability analyst",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Digital product manager",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Application development manager",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Head of applications development",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Software and applications manager",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Software development manager",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Applications developer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Blockchain architect",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Blockchain developer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Blockchain engineer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Computer software engineer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cryptography architect",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cryptography developer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Cryptography engineer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Platform engineer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Platform engineering manager",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Programmers and software development professional",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Software developer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Software engineer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Mobile applications developer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Web developer",
+          "sector": "Infocomm technology",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Other",
+          "sector": "Infocomm technology"
+        },
+        {
+          "value": "Alternative protein food application scientist",
+          "sector": "Agritech",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Novel food biotechnologist",
+          "sector": "Agritech",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Other",
+          "sector": "Agritech"
+        },
+        {
+          "value": "Investment advisor (ultra-high/high net worth / family office / philanthropy)",
+          "sector": "Financial services",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Relationship manager (ultra-high/high net worth / family office / philanthropy)",
+          "sector": "Financial services",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Wealth planner (ultra-high/high net worth / family office / philanthropy)",
+          "sector": "Financial services",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Other",
+          "sector": "Financial services"
+        },
+        {
+          "value": "Carbon programme manager",
+          "sector": "Green economy",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Carbon project originator",
+          "sector": "Green economy",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Carbon project manager",
+          "sector": "Green economy",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Carbon rating analyst",
+          "sector": "Green economy",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Carbon standards & methodology developer",
+          "sector": "Green economy",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Carbon trader",
+          "sector": "Green economy",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Carbon auditor",
+          "sector": "Green economy",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Carbon verification & audit specialist",
+          "sector": "Green economy",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Other",
+          "sector": "Green economy"
+        },
+        {
+          "value": "Marine superintendent (deck)",
+          "sector": "Maritime",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Marine superintendent",
+          "sector": "Maritime",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Marine/vessel manager",
+          "sector": "Maritime",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Marine superintendent (engineer)",
+          "sector": "Maritime",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Technical superintendent (marine)",
+          "sector": "Maritime",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Other",
+          "sector": "Maritime"
+        },
+        {
+          "value": "Semiconductor engineer",
+          "sector": "Semiconductor",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Integrated circuit designer",
+          "sector": "Semiconductor",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Microchip engineer",
+          "sector": "Semiconductor",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Product engineer",
+          "sector": "Semiconductor",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Test engineer",
+          "sector": "Semiconductor",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Instrumentation and control (IC) engineer",
+          "sector": "Semiconductor",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Process engineer",
+          "sector": "Semiconductor",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Process technology engineer",
+          "sector": "Semiconductor",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Process engineer (electronic)",
+          "sector": "Semiconductor",
+          "singaporeSOLList": true
+        },
+        {
+          "value": "Other",
+          "sector": "Semiconductor"
+        },
+        {
+          "value": "Other",
+          "sector": "Construction",
+          "singaporeSPassSectorList": true
+        },
+        {
+          "value": "Other",
+          "sector": "Process",
+          "singaporeSPassSectorList": true
+        },
+        {
+          "value": "Other",
+          "sector": "Marine shipyard",
+          "singaporeSPassSectorList": true
+        },
+        {
+          "value": "Other",
+          "sector": "Manufacturing",
+          "singaporeSPassSectorList": true
+        },
+        {
+          "value": "Other",
+          "sector": "Services",
+          "singaporeSPassSectorList": true
+        },
+        {
+          "value": "Illegal Activities",
+          "sector": "Crime",
+          "priority": -1
+        }
+      ]
+    },
+    "qMonitor": {
+      "name": "monitor",
+      "id": "quizMonitor",
+      "question": "How many monitors are typically required for this job?",
+      "type": "number",
+      "indicators": [
+        {
+          "value": 1,
+          "operator": "=",
+          "priority": 1
+        },
+        {
+          "value": 2,
+          "operator": ">=",
+          "priority": 2
+        },
+        {
+          "value": 0,
+          "operator": "<=",
+          "priority": 2
+        }
+      ]
     }
-  ]
+  }
 }

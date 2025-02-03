@@ -60,11 +60,10 @@ public class DynamicResumePage {
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume");
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/all-details");
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/software-engineer");
-        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/integration-engineer");
-        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/cyber-security-analyst");
-        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/system-analyst");
-        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/technical-support-engineer");
-        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/i-t-consultant");
+        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/cyber-security-engineer");
+        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/application-developer");
+        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/penetration-tester");
+        navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/cloud-engineer");
         goToAndVerifyDynamicResumePage(driver, url + "#/dynamic-resume/c");
         goToAndVerifyDynamicResumePage(driver, url + "#/dynamic-resume/c/%7B%22experience%22%3A%5B%22intern%22%2C%22webDeveloper%22%2C%22internii%22%5D%2C%22education%22%3A%5B%22diploma%22%2C%22bachelorsDegree%22%2C%22bachelorsDegreeii%22%5D%2C%22certifications%22%3A%5B%22lightningExperienceReportsDashboardsSpecialist%22%2C%22aWSCloudQuestCloudPractitioner%22%2C%22frontEndDevelopmentLibraries%22%5D%2C%22coursework%22%3A%5B%22letsDefendFreeCourses%22%5D%2C%22involvement%22%3A%5B%22committeeMemberOfAPUMerdekaFiesta201viii%22%2C%22participatedInSolarEnergyCarCompetition201viii%22%2C%22participatedInFusionexDataChallenge201ix%22%5D%2C%22skills%22%3A%7B%22industryKnowledge%22%3A%5B%22softwareDevelopmentLifeCycleSDLc%22%2C%22logAnalysis%22%2C%22incidentHandling%22%2C%22threatAnalysis%22%2C%22webDevelopment%22%2C%22softwareDevelopment%22%5D%2C%22toolsTechnologies%22%3A%5B%22contentManagementSystemsCMs%22%2C%22rESTAPIs%22%2C%22git%22%2C%22laravel%22%2C%22codeIgniter%22%2C%22php%22%2C%22sql%22%2C%22javaScript%22%2C%22jQuery%22%2C%22cascadingStyleSheetsCSs%22%2C%22html%22%2C%22java%22%2C%22nETFramwork%22%2C%22microsoftExcel%22%5D%7D%7D");
 

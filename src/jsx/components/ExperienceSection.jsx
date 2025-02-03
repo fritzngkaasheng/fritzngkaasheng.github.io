@@ -45,7 +45,7 @@ const ExperienceSection = ({ experienceList, mode, filter, toggleItem }) => {
             <h4>{t(experience.role)}</h4>
             <div className="d-xl-flex justify-content-xl-between">
               <h5>{t(experience.company)}</h5>
-              <h5>{t(getDateText(experience.date.start))} - {t(getDateText(experience.date.end))}, {t(experience.location)}</h5>
+              <h5>{t(getDateText(experience.date.start))} - {experience.date.end ? t(getDateText(experience.date.end)) : t("Present")}, {t(experience.location)}</h5>
             </div>
             {experience.description && experience.description.type === "bullet" && (
               <ul>
