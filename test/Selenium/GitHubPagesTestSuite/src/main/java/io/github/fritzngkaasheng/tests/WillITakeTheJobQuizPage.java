@@ -15,6 +15,12 @@ public class WillITakeTheJobQuizPage {
         originDropdown.selectByVisibleText(targetText);
     }
 
+    private void fillTextBox(WebDriver driver, String textBoxId, String value) throws InterruptedException {
+        WebElement textBox = driver.findElement(By.id(textBoxId));
+        textBox.clear();
+        textBox.sendKeys(value);
+    }
+
     private void translation(WebDriver driver) throws InterruptedException {
         final LanguageSwitcher languageSwitcher = new LanguageSwitcher();
 
@@ -39,12 +45,12 @@ public class WillITakeTheJobQuizPage {
         selectDropdown(driver, "quizOrigin", "sg - Singapore");
         selectDropdown(driver, "quizLocationType", "Remote");
 
-        WebElement textBox = driver.findElement(By.id("quizSalary"));
-        textBox.clear();
-        textBox.sendKeys("4000");
+        fillTextBox(driver, "quizSalary", "4000");
 
         selectDropdown(driver, "quizSalaryCurrency", "SGD");
         selectDropdown(driver, "quizOccupation", "Infocomm technology - Software engineer");
+
+        fillTextBox(driver, "quizMonitor", "1");
 
         answer(driver, "100");
 

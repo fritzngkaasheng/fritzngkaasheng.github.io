@@ -1959,6 +1959,29 @@
           "priority": -1
         }
       ]
+    },
+    "qMonitor": {
+      "name": "monitor",
+      "id": "quizMonitor",
+      "question": "How many monitors are typically required for this job?",
+      "type": "number",
+      "indicators": [
+        {
+          "value": 1,
+          "operator": "=",
+          "priority": 1
+        },
+        {
+          "value": 2,
+          "operator": ">=",
+          "priority": 2
+        },
+        {
+          "value": 0,
+          "operator": "<=",
+          "priority": 2
+        }
+      ]
     }
   }
 }

@@ -88,6 +88,15 @@ const WillITakeTheJobQuiz = () => {
         probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
 
         refreshProbabilitySliderSubLength();
+
+        // monitor
+        chunkLength = probabilitySliderSubLength / maxPriorities.monitor;
+
+        probabilitySliderPosMax = (probabilitySliderPosMin - 1) + (chunkLength * questionPoints.monitor);
+
+        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+
+        refreshProbabilitySliderSubLength();
       }
       
       if (questionValues.locationType !== "remote") {
@@ -128,6 +137,15 @@ const WillITakeTheJobQuiz = () => {
         chunkLength = probabilitySliderSubLength / maxPriorities.occupation;
 
         probabilitySliderPosMax = (probabilitySliderPosMin - 1) + (chunkLength * questionPoints.occupation);
+
+        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+
+        refreshProbabilitySliderSubLength();
+
+        // monitor
+        chunkLength = probabilitySliderSubLength / maxPriorities.monitor;
+
+        probabilitySliderPosMax = (probabilitySliderPosMin - 1) + (chunkLength * questionPoints.monitor);
 
         probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
 
@@ -179,7 +197,7 @@ const WillITakeTheJobQuiz = () => {
 
     const salaryValue = document.getElementById(quizData.quiz.qSalary.id);
 
-    salaryValue.value = 0;
+    salaryValue.value = "";
   }
 
   const hideSalaryQuestion = () => {
@@ -204,12 +222,29 @@ const WillITakeTheJobQuiz = () => {
     occupationQuestion.classList.add("d-none");
   }
 
+  const showMonitorQuestion = () => {
+    const monitorQuestion = document.getElementById(`${quizData.quiz.qMonitor.id}Section`);
+
+    monitorQuestion.classList.remove("d-none");
+
+    const monitorInput = document.getElementById(quizData.quiz.qMonitor.id);
+
+    monitorInput.value = "";
+  }
+
+  const hideMonitorQuestion = () => {
+    const monitorQuestion = document.getElementById(`${quizData.quiz.qMonitor.id}Section`);
+
+    monitorQuestion.classList.add("d-none");
+  }
+
   const handleOriginChange = (event) => {
     hideQuizAnswer();
 
     hideLocationTypeQuestion();
     hideSalaryQuestion();
     hideOccupationQuestion();
+    hideMonitorQuestion();
 
     const selectedValue = event.target.value;
     questionValues.origin = selectedValue;
@@ -251,6 +286,7 @@ const WillITakeTheJobQuiz = () => {
 
     hideSalaryQuestion();
     hideOccupationQuestion();
+    hideMonitorQuestion();
 
     const selectedValue = event.target.value;
     questionValues.locationType = selectedValue;
@@ -283,6 +319,7 @@ const WillITakeTheJobQuiz = () => {
     hideQuizAnswer();
 
     hideOccupationQuestion();
+    hideMonitorQuestion();
 
     const currencySelect = document.getElementById(`${quizData.quiz.qSalary.id}Currency`);
     const salaryInput = document.getElementById(quizData.quiz.qSalary.id);
@@ -368,6 +405,8 @@ const WillITakeTheJobQuiz = () => {
   const handleOccupationChange = (event) => {
     hideQuizAnswer();
 
+    hideMonitorQuestion();
+
     const selectedValue = event.target.value;
     questionValues.occupation = selectedValue;
 
@@ -392,8 +431,53 @@ const WillITakeTheJobQuiz = () => {
       }
     }
 
-    calculateProbability();
+    if (questionPoints.occupation <= 0) {
+      calculateProbability();
+  
+      showQuizAnswer();
+    }
 
+    if (questionPoints.occupation > 0) {
+      showMonitorQuestion();
+    }
+  };
+
+  const handleMonitorChange = () => {
+    hideQuizAnswer();
+
+    const monitorInput = document.getElementById(quizData.quiz.qMonitor.id);
+
+    const monitorValue = parseFloat(monitorInput.value);
+
+    if (monitorValue < 0) {
+      return;
+    }
+
+    quizData.quiz.qMonitor.indicators.map(indicator => {
+      if (
+        indicator.operator === "=" 
+        && monitorValue == indicator.value
+      ) {
+        questionPoints.monitor = maxPriorities.monitor - (indicator.priority - 1);
+      }
+
+      if (
+        indicator.operator === ">=" 
+        && monitorValue >= indicator.value
+      ) {
+        questionPoints.monitor = maxPriorities.monitor - (indicator.priority - 1);
+      }
+
+      if (
+        indicator.operator === "<=" 
+        && monitorValue <= indicator.value
+      ) {
+        questionPoints.monitor = maxPriorities.monitor - (indicator.priority - 1);
+      }
+    });
+
+    calculateProbability();
+  
     showQuizAnswer();
   };
 
@@ -504,11 +588,13 @@ const WillITakeTheJobQuiz = () => {
         maxPriorities.locationType = Math.max(...data.quiz.qLocationType.options.map(option => option.priority));
         maxPriorities.salary = Math.max(...data.quiz.qSalary.indicators.map(indicator => indicator.priority));
         maxPriorities.occupation = Math.max(...data.quiz.qOccupation.options.map(option => option.priority));
+        maxPriorities.monitor = Math.max(...data.quiz.qMonitor.indicators.map(option => option.priority));
 
         probabilitySliderLength = maxPriorities.origin 
             * maxPriorities.locationType 
             * maxPriorities.salary
-            * maxPriorities.occupation;
+            * maxPriorities.occupation
+            * maxPriorities.monitor;
         
         setquizData(data);
       })
@@ -552,21 +638,21 @@ const WillITakeTheJobQuiz = () => {
         <div id={`${quizData.quiz.qSalary.id}Section`} className="mb-3 d-none">
           <label for={quizData.quiz.qSalary.id} className="form-label">{t(quizData.quiz.qSalary.question)}</label>
           <div className="row">
-              <div className="col-auto">
-                <select className="form-select" name={`${quizData.quiz.qSalary.name}Currency`} id={`${quizData.quiz.qSalary.id}Currency`} aria-label={quizData.quiz.qSalary.question} onChange={handleSalaryChange}>
-                  <option value="Choose..." selected>{t("Choose...")}</option>
-                  <option key="myr" value="myr">{t("MYR")}</option>
-                  <option key="sgd" value="sgd">{t("SGD")}</option>
-                  {/*
-                  TODO: Add more currencies
-                  <option key="aud" value="aud">{t("AUD")}</option>
-                  <option key="usd" value="usd">{t("USD")}</option>
-                  */}
-                </select>
-              </div>
-              <div className="col col-sm-auto">
-                <input type="number" class="form-control" id={quizData.quiz.qSalary.id} onChange={handleSalaryChange}/>
-              </div>
+            <div className="col-auto">
+              <select className="form-select" name={`${quizData.quiz.qSalary.name}Currency`} id={`${quizData.quiz.qSalary.id}Currency`} aria-label={quizData.quiz.qSalary.question} onChange={handleSalaryChange}>
+                <option value="Choose..." selected>{t("Choose...")}</option>
+                <option key="myr" value="myr">{t("MYR")}</option>
+                <option key="sgd" value="sgd">{t("SGD")}</option>
+                {/*
+                TODO: Add more currencies
+                <option key="aud" value="aud">{t("AUD")}</option>
+                <option key="usd" value="usd">{t("USD")}</option>
+                */}
+              </select>
+            </div>
+            <div className="col col-sm-auto">
+              <input type="number" class="form-control" id={quizData.quiz.qSalary.id} onChange={handleSalaryChange}/>
+            </div>
           </div>
         </div>
         <div id={`${quizData.quiz.qOccupation.id}Section`} className="mb-3 d-none">
@@ -578,6 +664,10 @@ const WillITakeTheJobQuiz = () => {
                 <option key={option.value} value={option.value}>{`${t(option.sector)} - ${t(option.jobTitle)}`}</option>
               ))}
           </select>
+        </div>
+        <div id={`${quizData.quiz.qMonitor.id}Section`} className="mb-3 d-none">
+          <label for={quizData.quiz.qMonitor.id} className="form-label">{t(quizData.quiz.qMonitor.question)}</label>
+          <input type="number" class="form-control" id={quizData.quiz.qMonitor.id} onChange={handleMonitorChange} min="0"/>
         </div>
         <div id="quizAnswer" className="mb-3 d-none">
           <h2>{t("Possibility of me choosing this job: ")}{isNaN(probability) ? 'NaN' : probability}%</h2>
