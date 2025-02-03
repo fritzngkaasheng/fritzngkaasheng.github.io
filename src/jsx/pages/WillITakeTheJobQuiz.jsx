@@ -8,9 +8,22 @@ import LoadingSection from "/src/js/components/LoadingSection.js";
 
 const { useState, useEffect } = React;
 
-const currencyToMYRConversionList = {
-  "sgd": 3.25
-};
+const getCurrencyRateList = async (currencyFrom) => {
+  try {
+    const response = await fetch("https://open.er-api.com/v6/latest/" + currencyFrom.toUpperCase());
+    const data = await response.json();
+    return data.rates;
+  } catch (err) {
+    console.error("Failed to load currency rate:", err);
+    return null;
+  }
+}
+
+const currencyRateListFromMYR = await getCurrencyRateList("MYR");
+const currencyToMYRConversionList = {};
+for (const currency in currencyRateListFromMYR) {
+  currencyToMYRConversionList[currency.toLowerCase()] = 1 / currencyRateListFromMYR[currency];
+}
 
 const maxPriorities = {};
 
@@ -70,33 +83,6 @@ const WillITakeTheJobQuiz = () => {
         probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
 
         refreshProbabilitySliderSubLength();
-
-        // salary
-        chunkLength = probabilitySliderSubLength / maxPriorities.salary;
-
-        probabilitySliderPosMax = (probabilitySliderPosMin - 1) + (chunkLength * questionPoints.salary);
-
-        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
-
-        refreshProbabilitySliderSubLength();
-
-        // occupation
-        chunkLength = probabilitySliderSubLength / maxPriorities.occupation;
-
-        probabilitySliderPosMax = (probabilitySliderPosMin - 1) + (chunkLength * questionPoints.occupation);
-
-        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
-
-        refreshProbabilitySliderSubLength();
-
-        // monitor
-        chunkLength = probabilitySliderSubLength / maxPriorities.monitor;
-
-        probabilitySliderPosMax = (probabilitySliderPosMin - 1) + (chunkLength * questionPoints.monitor);
-
-        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
-
-        refreshProbabilitySliderSubLength();
       }
       
       if (questionValues.locationType !== "remote") {
@@ -123,34 +109,34 @@ const WillITakeTheJobQuiz = () => {
         probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
 
         refreshProbabilitySliderSubLength();
-
-        // salary
-        chunkLength = probabilitySliderSubLength / maxPriorities.salary;
-
-        probabilitySliderPosMax = (probabilitySliderPosMin - 1) + (chunkLength * questionPoints.salary);
-
-        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
-
-        refreshProbabilitySliderSubLength();
-
-        // occupation
-        chunkLength = probabilitySliderSubLength / maxPriorities.occupation;
-
-        probabilitySliderPosMax = (probabilitySliderPosMin - 1) + (chunkLength * questionPoints.occupation);
-
-        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
-
-        refreshProbabilitySliderSubLength();
-
-        // monitor
-        chunkLength = probabilitySliderSubLength / maxPriorities.monitor;
-
-        probabilitySliderPosMax = (probabilitySliderPosMin - 1) + (chunkLength * questionPoints.monitor);
-
-        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
-
-        refreshProbabilitySliderSubLength();
       }
+
+      // salary
+      chunkLength = probabilitySliderSubLength / maxPriorities.salary;
+
+      probabilitySliderPosMax = (probabilitySliderPosMin - 1) + (chunkLength * questionPoints.salary);
+
+      probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+
+      refreshProbabilitySliderSubLength();
+
+      // occupation
+      chunkLength = probabilitySliderSubLength / maxPriorities.occupation;
+
+      probabilitySliderPosMax = (probabilitySliderPosMin - 1) + (chunkLength * questionPoints.occupation);
+
+      probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+
+      refreshProbabilitySliderSubLength();
+
+      // monitor
+      chunkLength = probabilitySliderSubLength / maxPriorities.monitor;
+
+      probabilitySliderPosMax = (probabilitySliderPosMin - 1) + (chunkLength * questionPoints.monitor);
+
+      probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+
+      refreshProbabilitySliderSubLength();
 
       probabilitySliderPos = probabilitySliderPosMin;
     }
@@ -345,8 +331,8 @@ const WillITakeTheJobQuiz = () => {
       salaryValue = prevSalaryValue;
     }
 
-    if (selectedCurrency === "sgd") {
-      salaryValue = prevSalaryValue * currencyToMYRConversionList.sgd;
+    if (selectedCurrency !== "myr") {
+      salaryValue = prevSalaryValue * currencyToMYRConversionList[selectedCurrency];
     }
 
     questionValues.salary = salaryValue;
@@ -450,6 +436,7 @@ const WillITakeTheJobQuiz = () => {
     const monitorValue = parseFloat(monitorInput.value);
 
     if (monitorValue < 0) {
+      alert(t("Please enter a non-negative value"));
       return;
     }
 
@@ -482,9 +469,10 @@ const WillITakeTheJobQuiz = () => {
   };
 
   useEffect(() => {
-    fetch("/dist/data/quiz.min.json")
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchQuizData = async () => {
+      try {
+        const res = await fetch("/dist/data/quiz.min.json");
+        const data = await res.json();
         const numericOriginPriorities = data.quiz.qOrigin.options
           .map(option => option.priority)
           .filter(priority => typeof priority === 'number' && !isNaN(priority));
@@ -535,9 +523,8 @@ const WillITakeTheJobQuiz = () => {
 
         data.quiz.qSalary.indicators.map((indicator) => {
           indicator.currency = indicator.currency.toLowerCase();
-
-          if (indicator.currency === "sgd") {
-            indicator.value = indicator.value * currencyToMYRConversionList.sgd;
+          if (indicator.currency in currencyToMYRConversionList) {
+            indicator.value = indicator.value * currencyToMYRConversionList[indicator.currency];
             indicator.currency = "myr";
           }
         });
@@ -597,10 +584,12 @@ const WillITakeTheJobQuiz = () => {
             * maxPriorities.monitor;
         
         setquizData(data);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error("Failed to load quiz.min.json:", err);
-      });
+      }
+    };
+
+    fetchQuizData();
   }, []);
 
   if (Object.keys(quizData).length < 1) {
@@ -641,19 +630,17 @@ const WillITakeTheJobQuiz = () => {
             <div className="col-auto">
               <select className="form-select" name={`${quizData.quiz.qSalary.name}Currency`} id={`${quizData.quiz.qSalary.id}Currency`} aria-label={quizData.quiz.qSalary.question} onChange={handleSalaryChange}>
                 <option value="Choose..." selected>{t("Choose...")}</option>
-                <option key="myr" value="myr">{t("MYR")}</option>
-                <option key="sgd" value="sgd">{t("SGD")}</option>
-                {/*
-                TODO: Add more currencies
-                <option key="aud" value="aud">{t("AUD")}</option>
-                <option key="usd" value="usd">{t("USD")}</option>
-                */}
+                {Object.keys(currencyToMYRConversionList)
+                  .map((currency) => (
+                    <option key={currency} value={currency}>{t(currency.toUpperCase())}</option>
+                  ))}
               </select>
             </div>
             <div className="col col-sm-auto">
               <input type="number" class="form-control" id={quizData.quiz.qSalary.id} onChange={handleSalaryChange}/>
             </div>
           </div>
+          <a href="https://www.exchangerate-api.com" target="_blank">{t("Rates By Exchange Rate API")}</a>
         </div>
         <div id={`${quizData.quiz.qOccupation.id}Section`} className="mb-3 d-none">
           <label for={quizData.quiz.qOccupation.id} className="form-label">{t(quizData.quiz.qOccupation.question)}</label>

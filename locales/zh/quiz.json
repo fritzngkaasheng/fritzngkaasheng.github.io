@@ -373,5 +373,7 @@
   "Services": "服务业",
   "Crime": "犯罪",
   "Illegal Activities": "非法活动",
-  "How many monitors are typically required for this job?": "这项工作通常需要多少台显示器？"
+  "How many monitors are typically required for this job?": "这项工作通常需要多少台显示器？",
+  "Rates By Exchange Rate API": "Exchange Rate API 的汇率",
+  "Please enter a non-negative value": "请输入一个非负值"
 }
