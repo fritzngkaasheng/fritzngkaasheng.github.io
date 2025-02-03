@@ -6,9 +6,21 @@ const {
   useState,
   useEffect
 } = React;
-const currencyToMYRConversionList = {
-  "sgd": 3.25
+const getCurrencyRateList = async currencyFrom => {
+  try {
+    const response = await fetch("https://open.er-api.com/v6/latest/" + currencyFrom.toUpperCase());
+    const data = await response.json();
+    return data.rates;
+  } catch (err) {
+    console.error("Failed to load currency rate:", err);
+    return null;
+  }
 };
+const currencyRateListFromMYR = await getCurrencyRateList("MYR");
+const currencyToMYRConversionList = {};
+for (const currency in currencyRateListFromMYR) {
+  currencyToMYRConversionList[currency.toLowerCase()] = 1 / currencyRateListFromMYR[currency];
+}
 const maxPriorities = {};
 const questionValues = {};
 const questionPoints = {};
@@ -21,7 +33,7 @@ const WillITakeTheJobQuiz = () => {
   const {
     t
   } = useTranslation("quiz");
-  const [quizData, setQuizData] = useState({});
+  const [quizData, setquizData] = useState({});
   const [probability, setProbability] = useState(NaN);
   const refreshProbabilitySliderSubLength = () => {
     probabilitySliderSubLength = probabilitySliderPosMax - probabilitySliderPosMin + 1;
@@ -50,12 +62,6 @@ const WillITakeTheJobQuiz = () => {
         probabilitySliderPosMax = probabilitySliderPosMin - 1 + chunkLength * questionPoints.origin;
         probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
         refreshProbabilitySliderSubLength();
-
-        // salary
-        chunkLength = probabilitySliderSubLength / maxPriorities.salary;
-        probabilitySliderPosMax = probabilitySliderPosMin - 1 + chunkLength * questionPoints.salary;
-        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
-        refreshProbabilitySliderSubLength();
       }
       if (questionValues.locationType !== "remote") {
         probabilitySliderPosMin = 1;
@@ -73,13 +79,25 @@ const WillITakeTheJobQuiz = () => {
         probabilitySliderPosMax = probabilitySliderPosMin - 1 + chunkLength * questionPoints.locationType;
         probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
         refreshProbabilitySliderSubLength();
-
-        // salary
-        chunkLength = probabilitySliderSubLength / maxPriorities.salary;
-        probabilitySliderPosMax = probabilitySliderPosMin - 1 + chunkLength * questionPoints.salary;
-        probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
-        refreshProbabilitySliderSubLength();
       }
+
+      // salary
+      chunkLength = probabilitySliderSubLength / maxPriorities.salary;
+      probabilitySliderPosMax = probabilitySliderPosMin - 1 + chunkLength * questionPoints.salary;
+      probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+      refreshProbabilitySliderSubLength();
+
+      // occupation
+      chunkLength = probabilitySliderSubLength / maxPriorities.occupation;
+      probabilitySliderPosMax = probabilitySliderPosMin - 1 + chunkLength * questionPoints.occupation;
+      probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+      refreshProbabilitySliderSubLength();
+
+      // monitor
+      chunkLength = probabilitySliderSubLength / maxPriorities.monitor;
+      probabilitySliderPosMax = probabilitySliderPosMin - 1 + chunkLength * questionPoints.monitor;
+      probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+      refreshProbabilitySliderSubLength();
       probabilitySliderPos = probabilitySliderPosMin;
     }
     probability = probabilitySliderPos / probabilitySliderLength * 100;
@@ -94,37 +112,59 @@ const WillITakeTheJobQuiz = () => {
     quizAnswerSection.classList.add("d-none");
   };
   const showLocationTypeQuestion = () => {
-    const locationTypeQuestion = document.getElementById(`${quizData.quiz[1].id}Section`);
+    const locationTypeQuestion = document.getElementById(`${quizData.quiz.qLocationType.id}Section`);
     locationTypeQuestion.classList.remove("d-none");
-    const locationTypeSelect = document.getElementById(quizData.quiz[1].id);
+    const locationTypeSelect = document.getElementById(quizData.quiz.qLocationType.id);
     locationTypeSelect.selectedIndex = 0;
   };
   const hideLocationTypeQuestion = () => {
-    const locationTypeQuestion = document.getElementById(`${quizData.quiz[1].id}Section`);
+    const locationTypeQuestion = document.getElementById(`${quizData.quiz.qLocationType.id}Section`);
     locationTypeQuestion.classList.add("d-none");
   };
   const showSalaryQuestion = () => {
-    const salaryQuestion = document.getElementById(`${quizData.quiz[2].id}Section`);
+    const salaryQuestion = document.getElementById(`${quizData.quiz.qSalary.id}Section`);
     salaryQuestion.classList.remove("d-none");
-    const salarySelect = document.getElementById(`${quizData.quiz[2].id}Currency`);
+    const salarySelect = document.getElementById(`${quizData.quiz.qSalary.id}Currency`);
     salarySelect.selectedIndex = 0;
-    const salaryValue = document.getElementById(quizData.quiz[2].id);
-    salaryValue.value = 0;
+    const salaryValue = document.getElementById(quizData.quiz.qSalary.id);
+    salaryValue.value = "";
   };
   const hideSalaryQuestion = () => {
-    const salaryQuestion = document.getElementById(`${quizData.quiz[2].id}Section`);
+    const salaryQuestion = document.getElementById(`${quizData.quiz.qSalary.id}Section`);
     salaryQuestion.classList.add("d-none");
+  };
+  const showOccupationQuestion = () => {
+    const occupationQuestion = document.getElementById(`${quizData.quiz.qOccupation.id}Section`);
+    occupationQuestion.classList.remove("d-none");
+    const occupationSelect = document.getElementById(quizData.quiz.qOccupation.id);
+    occupationSelect.selectedIndex = 0;
+  };
+  const hideOccupationQuestion = () => {
+    const occupationQuestion = document.getElementById(`${quizData.quiz.qOccupation.id}Section`);
+    occupationQuestion.classList.add("d-none");
+  };
+  const showMonitorQuestion = () => {
+    const monitorQuestion = document.getElementById(`${quizData.quiz.qMonitor.id}Section`);
+    monitorQuestion.classList.remove("d-none");
+    const monitorInput = document.getElementById(quizData.quiz.qMonitor.id);
+    monitorInput.value = "";
+  };
+  const hideMonitorQuestion = () => {
+    const monitorQuestion = document.getElementById(`${quizData.quiz.qMonitor.id}Section`);
+    monitorQuestion.classList.add("d-none");
   };
   const handleOriginChange = event => {
     hideQuizAnswer();
     hideLocationTypeQuestion();
     hideSalaryQuestion();
+    hideOccupationQuestion();
+    hideMonitorQuestion();
     const selectedValue = event.target.value;
     questionValues.origin = selectedValue;
     if (selectedValue === "Choose...") {
       return;
     }
-    const selectedOption = quizData.quiz[0].options.find(option => option.value === selectedValue);
+    const selectedOption = quizData.quiz.qOrigin.options.find(option => option.value === selectedValue);
     if (selectedOption) {
       // if priority = -1, point = -1
       // if priority = 0, point = 0
@@ -150,12 +190,14 @@ const WillITakeTheJobQuiz = () => {
   const handleLocationTypeChange = event => {
     hideQuizAnswer();
     hideSalaryQuestion();
+    hideOccupationQuestion();
+    hideMonitorQuestion();
     const selectedValue = event.target.value;
     questionValues.locationType = selectedValue;
     if (selectedValue === "Choose...") {
       return;
     }
-    const selectedOption = quizData.quiz[1].options.find(option => option.value === selectedValue);
+    const selectedOption = quizData.quiz.qLocationType.options.find(option => option.value === selectedValue);
     if (selectedOption) {
       // if priority = -1, point = -1
       // if priority = 0, point = 0
@@ -174,8 +216,10 @@ const WillITakeTheJobQuiz = () => {
   };
   const handleSalaryChange = () => {
     hideQuizAnswer();
-    const currencySelect = document.getElementById(`${quizData.quiz[2].id}Currency`);
-    const salaryInput = document.getElementById(quizData.quiz[2].id);
+    hideOccupationQuestion();
+    hideMonitorQuestion();
+    const currencySelect = document.getElementById(`${quizData.quiz.qSalary.id}Currency`);
+    const salaryInput = document.getElementById(quizData.quiz.qSalary.id);
     const selectedCurrency = currencySelect.value;
     const prevSalaryValue = parseFloat(salaryInput.value);
     if (!prevSalaryValue) {
@@ -191,12 +235,12 @@ const WillITakeTheJobQuiz = () => {
     if (selectedCurrency === "myr") {
       salaryValue = prevSalaryValue;
     }
-    if (selectedCurrency === "sgd") {
-      salaryValue = prevSalaryValue * currencyToMYRConversionList.sgd;
+    if (selectedCurrency !== "myr") {
+      salaryValue = prevSalaryValue * currencyToMYRConversionList[selectedCurrency];
     }
     questionValues.salary = salaryValue;
-    const selectedOrigin = quizData.quiz[0].options.find(option => option.value === questionValues.origin);
-    quizData.quiz[2].indicators.map(indicator => {
+    const selectedOrigin = quizData.quiz.qOrigin.options.find(option => option.value === questionValues.origin);
+    quizData.quiz.qSalary.indicators.map(indicator => {
       if (indicator.operator === ">=" && salaryValue >= indicator.value) {
         questionPoints.salary = maxPriorities.salary - (indicator.priority - 1);
       }
@@ -210,50 +254,141 @@ const WillITakeTheJobQuiz = () => {
         questionPoints.salary = indicator.priority;
       }
     });
+    if (questionPoints.salary <= 0) {
+      calculateProbability();
+      showQuizAnswer();
+    }
+    if (questionPoints.salary > 0) {
+      showOccupationQuestion();
+    }
+  };
+  const handleOccupationChange = event => {
+    hideQuizAnswer();
+    hideMonitorQuestion();
+    const selectedValue = event.target.value;
+    questionValues.occupation = selectedValue;
+    if (selectedValue === "Choose...") {
+      return;
+    }
+    const selectedOption = quizData.quiz.qOccupation.options.find(option => option.value === selectedValue);
+    if (selectedOption) {
+      // if priority = -1, point = -1
+      // if priority = 0, point = 0
+      if (selectedOption.priority < 1) {
+        questionPoints.occupation = selectedOption.priority;
+      }
+
+      // if priority = 1, point = maxPriorities.occupation
+      // if priority = 2, point = maxPriorities.occupation - 1
+      // if priority = 3, point = maxPriorities.occupation - 2...
+      if (selectedOption.priority >= 1) {
+        questionPoints.occupation = maxPriorities.occupation - (selectedOption.priority - 1);
+      }
+    }
+    if (questionPoints.occupation <= 0) {
+      calculateProbability();
+      showQuizAnswer();
+    }
+    if (questionPoints.occupation > 0) {
+      showMonitorQuestion();
+    }
+  };
+  const handleMonitorChange = () => {
+    hideQuizAnswer();
+    const monitorInput = document.getElementById(quizData.quiz.qMonitor.id);
+    const monitorValue = parseFloat(monitorInput.value);
+    if (monitorValue < 0) {
+      alert(t("Please enter a non-negative value"));
+      return;
+    }
+    quizData.quiz.qMonitor.indicators.map(indicator => {
+      if (indicator.operator === "=" && monitorValue == indicator.value) {
+        questionPoints.monitor = maxPriorities.monitor - (indicator.priority - 1);
+      }
+      if (indicator.operator === ">=" && monitorValue >= indicator.value) {
+        questionPoints.monitor = maxPriorities.monitor - (indicator.priority - 1);
+      }
+      if (indicator.operator === "<=" && monitorValue <= indicator.value) {
+        questionPoints.monitor = maxPriorities.monitor - (indicator.priority - 1);
+      }
+    });
     calculateProbability();
     showQuizAnswer();
   };
   useEffect(() => {
-    fetch("/dist/data/quiz.min.json").then(res => res.json()).then(data => {
-      const numericOriginPriorities = data.quiz[0].options.map(option => option.priority).filter(priority => typeof priority === 'number' && !isNaN(priority));
-      const preMaxOriginPriority = numericOriginPriorities.length > 0 ? Math.max(...numericOriginPriorities) : 0;
-      data.quiz[0].options.map(option => {
-        if (!option.priority) {
-          if (option.apec && option.apec === true) {
-            option.priority = preMaxOriginPriority + 1;
-          }
-          if (option.eea && option.eea === true) {
-            option.priority = preMaxOriginPriority + 2;
-          }
-          if (option.income && option.income === "high" && !option.priority) {
-            option.priority = preMaxOriginPriority + 3;
-          }
-          if (option.income && option.income !== "high" && (!option.priority || option.priority && option.priority > preMaxOriginPriority)) {
-            option.priority = -1;
-          }
-          if (option.war && option.war === true) {
-            option.priority = -1;
-          }
+    const fetchQuizData = async () => {
+      try {
+        const res = await fetch("/dist/data/quiz.min.json");
+        const data = await res.json();
+        const numericOriginPriorities = data.quiz.qOrigin.options.map(option => option.priority).filter(priority => typeof priority === 'number' && !isNaN(priority));
+        const preMaxOriginPriority = numericOriginPriorities.length > 0 ? Math.max(...numericOriginPriorities, 0) : 0;
+        data.quiz.qOrigin.options.map(option => {
           if (!option.priority) {
-            option.priority = -1;
+            if (option.apec && option.apec === true) {
+              option.priority = preMaxOriginPriority + 1;
+            }
+            if (option.eea && option.eea === true) {
+              option.priority = preMaxOriginPriority + 2;
+            }
+            if (option.income && option.income === "high" && !option.priority) {
+              option.priority = preMaxOriginPriority + 3;
+            }
+            if (option.income && option.income !== "high" && (!option.priority || option.priority && option.priority > preMaxOriginPriority)) {
+              option.priority = -1;
+            }
+            if (option.war && option.war === true) {
+              option.priority = -1;
+            }
+            if (!option.priority) {
+              option.priority = -1;
+            }
           }
-        }
-      });
-      data.quiz[2].indicators.map(indicator => {
-        indicator.currency = indicator.currency.toLowerCase();
-        if (indicator.currency === "sgd") {
-          indicator.value = indicator.value * currencyToMYRConversionList.sgd;
-          indicator.currency = "myr";
-        }
-      });
-      maxPriorities.origin = Math.max(...data.quiz[0].options.map(option => option.priority));
-      maxPriorities.locationType = Math.max(...data.quiz[1].options.map(option => option.priority));
-      maxPriorities.salary = Math.max(...data.quiz[2].indicators.map(indicator => indicator.priority));
-      probabilitySliderLength = maxPriorities.origin * maxPriorities.locationType * maxPriorities.salary;
-      setQuizData(data);
-    }).catch(err => {
-      console.error("Failed to load quiz.min.json:", err);
-    });
+        });
+        data.quiz.qSalary.indicators.map(indicator => {
+          indicator.currency = indicator.currency.toLowerCase();
+          if (indicator.currency in currencyToMYRConversionList) {
+            indicator.value = indicator.value * currencyToMYRConversionList[indicator.currency];
+            indicator.currency = "myr";
+          }
+        });
+        const numericOccupationPriorities = data.quiz.qOccupation.options.map(option => option.priority).filter(priority => typeof priority === 'number' && !isNaN(priority));
+        const preMaxOccupationPriority = numericOccupationPriorities.length > 0 ? Math.max(...numericOccupationPriorities, 0) : 0;
+        const singaporeSOLSectorList = data.quiz.qOccupation.options.filter(option => option.singaporeSOLList).map(option => option.sector);
+        data.quiz.qOccupation.options.map(option => {
+          option.jobTitle = option.value;
+          option.value = option.sector + " - " + option.value;
+          if (!option.priority) {
+            if (option.singaporeSOLList && option.singaporeSOLList === true) {
+              option.priority = preMaxOccupationPriority + 1;
+            }
+            if (!option.priority) {
+              if (option.sector === "Infocomm technology") {
+                option.priority = preMaxOccupationPriority + 2;
+              }
+              if (option.sector !== "Infocomm technology" && singaporeSOLSectorList.includes(option.sector)) {
+                option.priority = preMaxOccupationPriority + 3;
+              }
+            }
+            if (option.singaporeSPassSectorList && option.singaporeSPassSectorList === true) {
+              option.priority = preMaxOccupationPriority + 4;
+            }
+            if (!option.priority) {
+              option.priority = preMaxOccupationPriority + 5;
+            }
+          }
+        });
+        maxPriorities.origin = Math.max(...data.quiz.qOrigin.options.map(option => option.priority));
+        maxPriorities.locationType = Math.max(...data.quiz.qLocationType.options.map(option => option.priority));
+        maxPriorities.salary = Math.max(...data.quiz.qSalary.indicators.map(indicator => indicator.priority));
+        maxPriorities.occupation = Math.max(...data.quiz.qOccupation.options.map(option => option.priority));
+        maxPriorities.monitor = Math.max(...data.quiz.qMonitor.indicators.map(option => option.priority));
+        probabilitySliderLength = maxPriorities.origin * maxPriorities.locationType * maxPriorities.salary * maxPriorities.occupation * maxPriorities.monitor;
+        setquizData(data);
+      } catch (err) {
+        console.error("Failed to load quiz.min.json:", err);
+      }
+    };
+    fetchQuizData();
   }, []);
   if (Object.keys(quizData).length < 1) {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LoadingSection, null));
@@ -263,74 +398,104 @@ const WillITakeTheJobQuiz = () => {
   }, /*#__PURE__*/React.createElement("form", {
     id: "willITakeTheJobQuizV1"
   }, /*#__PURE__*/React.createElement("div", {
-    id: `${quizData.quiz[0].id}Section`,
+    id: `${quizData.quiz.qOrigin.id}Section`,
     className: "mb-3"
   }, /*#__PURE__*/React.createElement("label", {
-    for: quizData.quiz[0].id,
+    for: quizData.quiz.qOrigin.id,
     className: "form-label"
-  }, t(quizData.quiz[0].question)), /*#__PURE__*/React.createElement("select", {
+  }, t(quizData.quiz.qOrigin.question)), /*#__PURE__*/React.createElement("select", {
     className: "form-select",
-    name: quizData.quiz[0].name,
-    id: quizData.quiz[0].id,
-    "aria-label": quizData.quiz[0].question,
+    name: quizData.quiz.qOrigin.name,
+    id: quizData.quiz.qOrigin.id,
+    "aria-label": quizData.quiz.qOrigin.question,
     onChange: handleOriginChange
   }, /*#__PURE__*/React.createElement("option", {
     value: "Choose...",
     selected: true
-  }, t("Choose...")), quizData.quiz[0].options.sort((a, b) => a.value.localeCompare(b.value)).map(option => /*#__PURE__*/React.createElement("option", {
+  }, t("Choose...")), quizData.quiz.qOrigin.options.sort((a, b) => a.value.localeCompare(b.value)).map(option => /*#__PURE__*/React.createElement("option", {
     key: option.value,
     value: option.value
   }, `${option.value} - ${t(option.text)}`)))), /*#__PURE__*/React.createElement("div", {
-    id: `${quizData.quiz[1].id}Section`,
+    id: `${quizData.quiz.qLocationType.id}Section`,
     className: "mb-3 d-none"
   }, /*#__PURE__*/React.createElement("label", {
-    for: quizData.quiz[1].id,
+    for: quizData.quiz.qLocationType.id,
     className: "form-label"
-  }, t(quizData.quiz[1].question)), /*#__PURE__*/React.createElement("select", {
+  }, t(quizData.quiz.qLocationType.question)), /*#__PURE__*/React.createElement("select", {
     className: "form-select",
-    name: quizData.quiz[1].name,
-    id: quizData.quiz[1].id,
-    "aria-label": quizData.quiz[1].question,
+    name: quizData.quiz.qLocationType.name,
+    id: quizData.quiz.qLocationType.id,
+    "aria-label": quizData.quiz.qLocationType.question,
     onChange: handleLocationTypeChange
   }, /*#__PURE__*/React.createElement("option", {
     value: "Choose...",
     selected: true
-  }, t("Choose...")), quizData.quiz[1].options.map(option => /*#__PURE__*/React.createElement("option", {
+  }, t("Choose...")), quizData.quiz.qLocationType.options.map(option => /*#__PURE__*/React.createElement("option", {
     key: option.value,
     value: option.value
   }, t(option.text))))), /*#__PURE__*/React.createElement("div", {
-    id: `${quizData.quiz[2].id}Section`,
+    id: `${quizData.quiz.qSalary.id}Section`,
     className: "mb-3 d-none"
   }, /*#__PURE__*/React.createElement("label", {
-    for: quizData.quiz[2].id,
+    for: quizData.quiz.qSalary.id,
     className: "form-label"
-  }, t(quizData.quiz[2].question)), /*#__PURE__*/React.createElement("div", {
+  }, t(quizData.quiz.qSalary.question)), /*#__PURE__*/React.createElement("div", {
     className: "row"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-auto"
   }, /*#__PURE__*/React.createElement("select", {
     className: "form-select",
-    name: `${quizData.quiz[2].name}Currency`,
-    id: `${quizData.quiz[2].id}Currency`,
-    "aria-label": quizData.quiz[2].question,
+    name: `${quizData.quiz.qSalary.name}Currency`,
+    id: `${quizData.quiz.qSalary.id}Currency`,
+    "aria-label": quizData.quiz.qSalary.question,
     onChange: handleSalaryChange
   }, /*#__PURE__*/React.createElement("option", {
     value: "Choose...",
     selected: true
-  }, t("Choose...")), /*#__PURE__*/React.createElement("option", {
-    key: "myr",
-    value: "myr"
-  }, t("MYR")), /*#__PURE__*/React.createElement("option", {
-    key: "sgd",
-    value: "sgd"
-  }, t("SGD")))), /*#__PURE__*/React.createElement("div", {
+  }, t("Choose...")), Object.keys(currencyToMYRConversionList).map(currency => /*#__PURE__*/React.createElement("option", {
+    key: currency,
+    value: currency
+  }, t(currency.toUpperCase()))))), /*#__PURE__*/React.createElement("div", {
     className: "col col-sm-auto"
   }, /*#__PURE__*/React.createElement("input", {
     type: "number",
     class: "form-control",
-    id: quizData.quiz[2].id,
+    id: quizData.quiz.qSalary.id,
     onChange: handleSalaryChange
-  })))), /*#__PURE__*/React.createElement("div", {
+  }))), /*#__PURE__*/React.createElement("a", {
+    href: "https://www.exchangerate-api.com",
+    target: "_blank"
+  }, t("Rates By Exchange Rate API"))), /*#__PURE__*/React.createElement("div", {
+    id: `${quizData.quiz.qOccupation.id}Section`,
+    className: "mb-3 d-none"
+  }, /*#__PURE__*/React.createElement("label", {
+    for: quizData.quiz.qOccupation.id,
+    className: "form-label"
+  }, t(quizData.quiz.qOccupation.question)), /*#__PURE__*/React.createElement("select", {
+    className: "form-select",
+    name: quizData.quiz.qOccupation.name,
+    id: quizData.quiz.qOccupation.id,
+    "aria-label": quizData.quiz.qOccupation.question,
+    onChange: handleOccupationChange
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "Choose...",
+    selected: true
+  }, t("Choose...")), quizData.quiz.qOccupation.options.map(option => /*#__PURE__*/React.createElement("option", {
+    key: option.value,
+    value: option.value
+  }, `${t(option.sector)} - ${t(option.jobTitle)}`)))), /*#__PURE__*/React.createElement("div", {
+    id: `${quizData.quiz.qMonitor.id}Section`,
+    className: "mb-3 d-none"
+  }, /*#__PURE__*/React.createElement("label", {
+    for: quizData.quiz.qMonitor.id,
+    className: "form-label"
+  }, t(quizData.quiz.qMonitor.question)), /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    class: "form-control",
+    id: quizData.quiz.qMonitor.id,
+    onChange: handleMonitorChange,
+    min: "0"
+  })), /*#__PURE__*/React.createElement("div", {
     id: "quizAnswer",
     className: "mb-3 d-none"
   }, /*#__PURE__*/React.createElement("h2", null, t("Possibility of me choosing this job: "), isNaN(probability) ? 'NaN' : probability, "%"))));
