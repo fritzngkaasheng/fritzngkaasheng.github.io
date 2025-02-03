@@ -116,6 +116,17 @@
             "Analysed the impact of a feature on CodeIgniter and Laravel systems."
           ]
         }
+      },
+      "associateTechnicalSupportMandarin": {
+        "role": "Associate Technical Support (Mandarin)",
+        "company": "Baker Hughes",
+        "date": {
+          "start": {
+            "year": "2024",
+            "month": "12"
+          }
+        },
+        "location": "Federal Territory of Kuala Lumpur, Malaysia"
       }
     },
     "education": {
@@ -565,6 +576,186 @@
         "lightningExperienceReportsDashboardsSpecialist",
         "aWSCloudQuestCloudPractitioner",
         "frontEndDevelopmentLibraries"
+      ],
+      "skills": {
+        "industryKnowledge": [
+          "softwareDevelopmentLifeCycleSDLc",
+          "logAnalysis",
+          "incidentHandling",
+          "threatAnalysis",
+          "webDevelopment",
+          "softwareDevelopment"
+        ],
+        "toolsTechnologies": [
+          "contentManagementSystemsCMs",
+          "rESTAPIs",
+          "git",
+          "laravel",
+          "codeIgniter",
+          "php",
+          "sql",
+          "javaScript",
+          "jQuery",
+          "cascadingStyleSheetsCSs",
+          "html",
+          "java",
+          "nETFramwork",
+          "microsoftExcel"
+        ]
+      },
+      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+    },
+    "cyberSecurityEngineer": {
+      "roleName": "Cyber Security Engineer",
+      "experience": [
+        "intern",
+        "webDeveloper",
+        "internii"
+      ],
+      "education": [
+        "diploma",
+        "bachelorsDegree",
+        "bachelorsDegreeii"
+      ],
+      "certifications": [
+        "compTIACySAPreparationPathCertification",
+        "sOCAnalystLearningPathCertification",
+        "aWSCloudQuestCloudPractitioner"
+      ],
+      "skills": {
+        "industryKnowledge": [
+          "softwareDevelopmentLifeCycleSDLc",
+          "logAnalysis",
+          "incidentHandling",
+          "threatAnalysis",
+          "webDevelopment",
+          "softwareDevelopment"
+        ],
+        "toolsTechnologies": [
+          "contentManagementSystemsCMs",
+          "rESTAPIs",
+          "git",
+          "laravel",
+          "codeIgniter",
+          "php",
+          "sql",
+          "javaScript",
+          "jQuery",
+          "cascadingStyleSheetsCSs",
+          "html",
+          "java",
+          "nETFramwork",
+          "microsoftExcel"
+        ]
+      },
+      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+    },
+    "applicationDeveloper": {
+      "roleName": "Application Developer",
+      "experience": [
+        "intern",
+        "webDeveloper",
+        "internii"
+      ],
+      "education": [
+        "diploma",
+        "bachelorsDegree",
+        "bachelorsDegreeii"
+      ],
+      "certifications": [
+        "lightningExperienceReportsDashboardsSpecialist",
+        "apsaraClouderGeneralSkillJAVACodingStandardsInAlibabaGroup",
+        "aWSCloudQuestCloudPractitioner"
+      ],
+      "skills": {
+        "industryKnowledge": [
+          "softwareDevelopmentLifeCycleSDLc",
+          "logAnalysis",
+          "incidentHandling",
+          "threatAnalysis",
+          "webDevelopment",
+          "softwareDevelopment"
+        ],
+        "toolsTechnologies": [
+          "contentManagementSystemsCMs",
+          "rESTAPIs",
+          "git",
+          "laravel",
+          "codeIgniter",
+          "php",
+          "sql",
+          "javaScript",
+          "jQuery",
+          "cascadingStyleSheetsCSs",
+          "html",
+          "java",
+          "nETFramwork",
+          "microsoftExcel"
+        ]
+      },
+      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+    },
+    "penetrationTester": {
+      "roleName": "Penetration Tester",
+      "experience": [
+        "intern",
+        "webDeveloper",
+        "internii"
+      ],
+      "education": [
+        "diploma",
+        "bachelorsDegree",
+        "bachelorsDegreeii"
+      ],
+      "certifications": [
+        "compTIACySAPreparationPathCertification",
+        "sOCAnalystLearningPathCertification",
+        "aWSCloudQuestCloudPractitioner"
+      ],
+      "skills": {
+        "industryKnowledge": [
+          "softwareDevelopmentLifeCycleSDLc",
+          "logAnalysis",
+          "incidentHandling",
+          "threatAnalysis",
+          "webDevelopment",
+          "softwareDevelopment"
+        ],
+        "toolsTechnologies": [
+          "contentManagementSystemsCMs",
+          "rESTAPIs",
+          "git",
+          "laravel",
+          "codeIgniter",
+          "php",
+          "sql",
+          "javaScript",
+          "jQuery",
+          "cascadingStyleSheetsCSs",
+          "html",
+          "java",
+          "nETFramwork",
+          "microsoftExcel"
+        ]
+      },
+      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+    },
+    "cloudEngineer": {
+      "roleName": "Cloud Engineer",
+      "experience": [
+        "intern",
+        "webDeveloper",
+        "internii"
+      ],
+      "education": [
+        "diploma",
+        "bachelorsDegree",
+        "bachelorsDegreeii"
+      ],
+      "certifications": [
+        "aWSCloudQuestCloudPractitioner",
+        "iBMMQOnAWSCloudDeveloperEssentials",
+        "apsaraClouderGeneralSkillJAVACodingStandardsInAlibabaGroup"
       ],
       "skills": {
         "industryKnowledge": [
