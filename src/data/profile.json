@@ -7,6 +7,25 @@
       "country": "Malaysia"
     },
     "experience": {
+      "sandwichSeller": {
+        "role": "Sandwich seller",
+        "company": "Primary School Bazaar",
+        "date": {
+          "start": {
+            "year": "2011"
+          },
+          "end": {
+            "year": "2011"
+          }
+        },
+        "location": "Selangor, Malaysia",
+        "description": {
+          "type": "bullet",
+          "data": [
+            "1 day selling sandwiches."
+          ]
+        }
+      },
       "marketingAssistant": {
         "role": "Marketing Assistant",
         "company": "Serasi Utara Sdn Bhd",
@@ -28,6 +47,44 @@
             "Created engaging billboard videos.",
             "Set up and managed the shop’s Facebook page.",
             "Assisted in adding the shop to Google Maps and created a website."
+          ]
+        }
+      },
+      "bunSeller": {
+        "role": "Bun seller",
+        "company": "University Bazaar",
+        "date": {
+          "start": {
+            "year": "2018"
+          },
+          "end": {
+            "year": "2018"
+          }
+        },
+        "location": "Federal Territory of Kuala Lumpur, Malaysia",
+        "description": {
+          "type": "bullet",
+          "data": [
+            "Sell buns for a day, in a group of about 10 people."
+          ]
+        }
+      },
+      "drinkSeller": {
+        "role": "Drink seller",
+        "company": "University Bazaar",
+        "date": {
+          "start": {
+            "year": "2019"
+          },
+          "end": {
+            "year": "2019"
+          }
+        },
+        "location": "Federal Territory of Kuala Lumpur, Malaysia",
+        "description": {
+          "type": "bullet",
+          "data": [
+            "Selling drinks for 1 week, working with popcorn seller, in a group of about 10 people."
           ]
         }
       },
@@ -784,6 +841,22 @@
         ]
       },
       "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+    }
+  },
+  "entrepreneurPreset": {
+    "entrepreneur": {
+      "roleName": "Entrepreneur",
+      "experience": [
+        "drinkSeller",
+        "bunSeller",
+        "sandwichSeller"
+      ],
+      "education": [
+        "diploma",
+        "bachelorsDegree",
+        "bachelorsDegreeii"
+      ],
+      "summary": "Software Engineer with 1 year of experience and a total of 2 years of work experience. Demonstrated entrepreneurial skills through involvement in three activities. Open to business and entrepreneurship opportunities that comply with Singapore EntrePass requirements."
     }
   }
 }
