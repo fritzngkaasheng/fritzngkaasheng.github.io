@@ -74,6 +74,13 @@ public abstract class BaseTest {
         new WillITakeTheJobQuizPage().willITakeTheJobQuizPage(driver);
     }
 
+    @Test(priority = 5)
+    public void entrepreneurResumePage() throws InterruptedException {
+        new Header().navigateTo(driver, "#/entrepreneur-resume");
+
+        new EntrepreneurResumePage().entrepreneurResumePage(driver);
+    }
+
     @AfterTest
     public void tearDown() {
         if (driver != null) {

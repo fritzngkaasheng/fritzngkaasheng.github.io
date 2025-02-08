@@ -4,6 +4,11 @@ import {
   useTranslation
 } from "/src/js/i18n.js";
 
+import {
+	sortExperience,
+	sortEducation
+} from "/src/js/main.js";
+
 import EditResumeButton from "/src/js/components/EditResumeButton.js";
 import LoadingSection from "/src/js/components/LoadingSection.js";
 import BottomRightFloatingButtons from "/src/js/components/BottomRightFloatingButtons.js";
@@ -117,36 +122,14 @@ const DynamicResume = () => {
       key,
       ...value,
     }))
-    .sort((a, b) => {
-      const dateA = new Date(
-        parseInt(a.date.start.year),
-        parseInt(a.date.start.month) - 1
-      );
-      const dateB = new Date(
-        parseInt(b.date.start.year),
-        parseInt(b.date.start.month) - 1
-      );
-
-      return dateB - dateA;
-    });
+    .sort(sortExperience);
 
     filteredData.education = Object.entries(profile.data.education)
     .map(([key, value]) => ({
       key,
       ...value,
     }))
-    .sort((a, b) => {
-      const dateA = a.date ? new Date(
-        parseInt(a.date.end.year),
-        parseInt(a.date.end.month) - 1
-      ) : new Date(0, 0);
-      const dateB = b.date ? new Date(
-        parseInt(b.date.end.year),
-        parseInt(b.date.end.month) - 1
-      ) : new Date(0, 0);
-
-      return dateB - dateA;
-    });
+    .sort(sortEducation);
 
     filteredData.certifications = Object.entries(profile.data.certifications)
     .reverse()
@@ -286,19 +269,8 @@ const DynamicResume = () => {
               return profile.data.experience[experienceId];
             }
           })
-          .sort((a, b) => {
-            const dateA = new Date(
-              parseInt(a.date.start.year),
-              parseInt(a.date.start.month) - 1
-            );
-            const dateB = new Date(
-              parseInt(b.date.start.year),
-              parseInt(b.date.start.month) - 1
-            );
-    
-            return dateB - dateA;
-          })
-          .filter( Boolean );
+          .sort(sortExperience)
+          .filter(Boolean);
 
           if (filteredData.experience.length < 1) {
             addErrorMessage("Please provide at least 1 experience");
@@ -316,19 +288,8 @@ const DynamicResume = () => {
               return profile.data.education[educationId];
             }
           })
-          .sort((a, b) => {
-            const dateA = new Date(
-              parseInt(a.date ? a.date.end.year : 0),
-              parseInt(a.date ? a.date.end.month : 1) - 1
-            );
-            const dateB = new Date(
-              parseInt(b.date ? b.date.end.year : 0),
-              parseInt(b.date ? b.date.end.month : 1) - 1
-            );
-    
-            return dateB - dateA;
-          })
-          .filter( Boolean );
+          .sort(sortEducation)
+          .filter(Boolean);
 
           if (filteredData.education.length < 1) {
             addErrorMessage("Please provide at least 1 education");
