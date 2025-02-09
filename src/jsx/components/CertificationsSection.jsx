@@ -20,7 +20,7 @@ const CertificationsSection = ({ certificationList, mode, filter, toggleItem }) 
         text="CERTIFICATIONS"
       />
       {certificationList.map(certification => certification && (
-          <div className={(
+          <div className={`mb-3 ${(
             mode === "edit" 
             && !(
               filter.certifications 
@@ -28,7 +28,7 @@ const CertificationsSection = ({ certificationList, mode, filter, toggleItem }) 
               : false
             )
           ) 
-          && inactiveElementClasses}>
+          && inactiveElementClasses}`}>
             {mode === "edit" && (
               <CheckboxWithLabel
                 id={`certification-${certification.key}`}
@@ -42,7 +42,14 @@ const CertificationsSection = ({ certificationList, mode, filter, toggleItem }) 
               />
             )}
             <h4>{t(certification.name)}</h4>
-            <p>{t(certification.organisation)} • {t(certification.date.start.year)}</p>
+            <p className="mb-2">{t(certification.organisation)} • {t(certification.date.start.year)}</p>
+            {certification.description && certification.description.type === "bullet" && (
+              <ul>
+                {certification.description.data.map((bulletText, index) => (
+                  <li key={index}>{t(bulletText)}</li>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
     </div>
