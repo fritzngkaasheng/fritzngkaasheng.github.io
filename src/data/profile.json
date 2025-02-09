@@ -232,6 +232,25 @@
         },
         "link": "https://www.salesforce.com/trailblazer/ngkaasheng3439"
       },
+      "iELTs": {
+        "name": "IELTS",
+        "organisation": "IDP Education Limited",
+        "date": {
+          "start": {
+            "year": "2023"
+          }
+        },
+        "description": {
+          "type": "bullet",
+          "data": [
+            "Overall Band Score: 6.5",
+            "Listening: 7.0",
+            "Reading: 7.0",
+            "Writing: 6.0",
+            "Speaking: 6.5"
+          ]
+        }
+      },
       "sOCAnalystLearningPathCertification": {
         "name": "SOC Analyst Learning Path Certification",
         "organisation": "LetsDefend",
@@ -348,6 +367,16 @@
             "Received constrictive feedback from industry experts, which helped refine my analytical approach."
           ]
         }
+      }
+    },
+    "awards": {
+      "taylorsExcellenceAward202i": {
+        "role": "Taylor's Excellence Award 2021",
+        "organisation": "Taylor's University"
+      },
+      "aPUMalaysianScholarshipsMeritAwards201viii": {
+        "role": "APU Malaysian Scholarships & Merit Awards 2018",
+        "organisation": "Asia Pacific University of Technology and Innovation (APU / APIIT)"
       }
     },
     "skills": {
@@ -857,6 +886,59 @@
         "bachelorsDegreeii"
       ],
       "summary": "Software Engineer with 1 year of experience and a total of 2 years of work experience. Demonstrated entrepreneurial skills through involvement in three activities. Open to business and entrepreneurship opportunities that comply with Singapore EntrePass requirements."
+    }
+  },
+  "academicPreset": {
+    "academic": {
+      "roleName": "Student - Academic CV",
+      "education": [
+        "diploma",
+        "bachelorsDegree",
+        "bachelorsDegreeii"
+      ],
+      "experience": [
+        "intern",
+        "webDeveloper",
+        "internii"
+      ],
+      "awards": [
+        "taylorsExcellenceAward202i",
+        "aPUMalaysianScholarshipsMeritAwards201viii"
+      ],
+      "certifications": [
+        "iELTs"
+      ],
+      "skills": {
+        "languages": [
+          "english",
+          "chinese"
+        ],
+        "toolsTechnologies": [
+          "contentManagementSystemsCMs",
+          "rESTAPIs",
+          "git",
+          "laravel",
+          "codeIgniter",
+          "php",
+          "sql",
+          "javaScript",
+          "jQuery",
+          "cascadingStyleSheetsCSs",
+          "html",
+          "java",
+          "nETFramwork",
+          "microsoftExcel"
+        ],
+        "industryKnowledge": [
+          "softwareDevelopmentLifeCycleSDLc",
+          "logAnalysis",
+          "incidentHandling",
+          "threatAnalysis",
+          "webDevelopment",
+          "softwareDevelopment"
+        ]
+      },
+      "summary": "Software Engineer with 1 year of experience and a total of 2 years of professional work experience. Graduated from Taylor's University with a strong foundation in IT, achieving a CGPA of 3.40. Seeking opportunities at top universities, institutions, or colleges offering a Master's program in IT with full scholarship support."
     }
   }
 }

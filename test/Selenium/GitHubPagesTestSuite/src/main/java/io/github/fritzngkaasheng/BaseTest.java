@@ -81,6 +81,13 @@ public abstract class BaseTest {
         new EntrepreneurResumePage().entrepreneurResumePage(driver);
     }
 
+    @Test(priority = 6)
+    public void academicCVPage() throws InterruptedException {
+        new Header().navigateTo(driver, "#/academic-cv");
+
+        new AcademicCVPage().academicCVPage(driver);
+    }
+
     @AfterTest
     public void tearDown() {
         if (driver != null) {

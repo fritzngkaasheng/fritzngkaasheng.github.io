@@ -117,6 +117,8 @@ const DynamicResume = () => {
 
     filteredData.roleName = "All Details";
 
+    filteredData.summary = profile.preset[profile.preset.default].summary;
+
     filteredData.experience = Object.entries(profile.data.experience)
     .map(([key, value]) => ({
       key,
@@ -257,6 +259,14 @@ const DynamicResume = () => {
         setFilter(filter);
 
         filteredData.roleName = filter.roleName;
+
+        if (!filter.summary) {
+          filteredData.summary = profile.preset[profile.preset.default].summary;
+        }
+        
+        if (filter.summary) {
+          filteredData.summary = filter.summary;
+        }
 
         if (!filter.experience) {
           addErrorMessage("Please provide at least 1 experience");
@@ -448,7 +458,7 @@ const DynamicResume = () => {
           linkedInURLSlug={profile.data.contact.linkedInURLSlug}
         />
         <SummarySection
-          summary={profile.preset[profile.preset.default].summary}
+          summary={filteredData.summary}
         />
         <ExperienceSection
           experienceList={filteredData.experience}
