@@ -40,5 +40,9 @@ ul, ol {
     padding: 96px;
   }
 }
+.icon {
+  width: 24px;
+  height: 24px;
+}
 
 /*# sourceMappingURL=main.css.map */

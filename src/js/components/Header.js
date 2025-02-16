@@ -5,9 +5,9 @@ import Navigation from "/src/js/components/Navigation.js";
 import LanguageSwitcher from "/src/js/components/LanguageSwitcher.js";
 const Header = () => {
   return /*#__PURE__*/React.createElement("header", {
-    className: "navbar bg-body-tertiary fixed-top pe-2 flex-column align-items-end"
+    className: "navbar bg-transparent fixed-top pe-2 flex-column align-items-end"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "navbar-toggler",
+    className: "navbar-toggler bg-body-tertiary",
     type: "button",
     "data-bs-toggle": "offcanvas",
     "data-bs-target": "#offcanvasNavbar",
