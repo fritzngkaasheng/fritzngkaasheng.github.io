@@ -6,8 +6,8 @@ import LanguageSwitcher from "/src/js/components/LanguageSwitcher.js";
 
 const Header = () => {
   return (
-    <header className="navbar bg-body-tertiary fixed-top pe-2 flex-column align-items-end">
-      <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+    <header className="navbar bg-transparent fixed-top pe-2 flex-column align-items-end">
+      <button className="navbar-toggler bg-body-tertiary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <Icon name="navBar" />
       </button>
       <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">

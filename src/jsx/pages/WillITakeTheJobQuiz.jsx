@@ -8,23 +8,6 @@ import LoadingSection from "/src/js/components/LoadingSection.js";
 
 const { useState, useEffect } = React;
 
-const getCurrencyRateList = async (currencyFrom) => {
-  try {
-    const response = await fetch("https://open.er-api.com/v6/latest/" + currencyFrom.toUpperCase());
-    const data = await response.json();
-    return data.rates;
-  } catch (err) {
-    console.error("Failed to load currency rate:", err);
-    return null;
-  }
-}
-
-const currencyRateListFromMYR = await getCurrencyRateList("MYR");
-const currencyToMYRConversionList = {};
-for (const currency in currencyRateListFromMYR) {
-  currencyToMYRConversionList[currency.toLowerCase()] = 1 / currencyRateListFromMYR[currency];
-}
-
 const maxPriorities = {};
 
 const questionValues = {};
@@ -41,6 +24,18 @@ const WillITakeTheJobQuiz = () => {
 
   const [quizData, setquizData] = useState({});
   const [probability, setProbability] = useState(NaN);
+  const [currencyToMYRConversionList, setCurrencyToMYRConversionList] = useState({});
+
+  const getCurrencyRateList = async (currencyFrom) => {
+    try {
+      const response = await fetch("https://open.er-api.com/v6/latest/" + currencyFrom.toUpperCase());
+      const data = await response.json();
+      return data.rates;
+    } catch (err) {
+      console.error("Failed to load currency rate:", err);
+      return null;
+    }
+  }
 
   const refreshProbabilitySliderSubLength = () => {
     probabilitySliderSubLength = probabilitySliderPosMax - probabilitySliderPosMin + 1;
@@ -469,6 +464,17 @@ const WillITakeTheJobQuiz = () => {
   };
 
   useEffect(() => {
+    const fetchCurrencyRates = async () => {
+      const currencyRateListFromMYR = await getCurrencyRateList("MYR");
+      const conversionList = {};
+      for (const currency in currencyRateListFromMYR) {
+        conversionList[currency.toLowerCase()] = 1 / currencyRateListFromMYR[currency];
+      }
+      setCurrencyToMYRConversionList(conversionList);
+    };
+
+    fetchCurrencyRates();
+
     const fetchQuizData = async () => {
       try {
         const res = await fetch("/dist/data/quiz.min.json");

@@ -2,6 +2,7 @@ $a4Size300DPIPxWidth: 2480;
 $a4Size300DPIPxHeight: 3508;
 $marginSize: 96px; // 2.54cm
 $defaultScreenWidth: 1280px;
+$iconSize: 24px;
 
 :root {
 	--bs-body-font-family: Arial, "Helvetica Neue", Helvetica, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -45,4 +46,9 @@ ul, ol {
 	#main-container .a4-container {
 		padding: $marginSize;
 	}
+}
+
+.icon {
+	width: $iconSize;
+	height: $iconSize;
 }
