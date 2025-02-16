@@ -88,6 +88,13 @@ public abstract class BaseTest {
         new AcademicCVPage().academicCVPage(driver);
     }
 
+    @Test(priority = 7)
+    public void datingProfilePage() throws InterruptedException {
+        new Header().navigateTo(driver, "#/dating-profile");
+
+        new DatingProfilePage().datingProfilePage(driver);
+    }
+
     @AfterTest
     public void tearDown() {
         if (driver != null) {

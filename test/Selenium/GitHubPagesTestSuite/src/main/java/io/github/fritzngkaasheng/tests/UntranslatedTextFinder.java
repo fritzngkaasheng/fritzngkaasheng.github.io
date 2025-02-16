@@ -204,7 +204,9 @@ public class UntranslatedTextFinder {
                 "ZAR",
                 "ZMW",
                 "ZWL",
-                "Exchange Rate API 的汇率"
+                "Exchange Rate API 的汇率",
+                "Fritz",
+                "24"
         );
 
         for (String text : texts) {
