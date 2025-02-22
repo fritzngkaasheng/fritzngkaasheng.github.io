@@ -7,6 +7,7 @@ import {
 import Icon from "/src/js/Icons.js";
 
 import LoadingSection from "/src/js/components/LoadingSection.js";
+import BasicInfoItem from "/src/js/components/BasicInfoItem.js";
 
 const React = window.React;
 const { useState, useEffect } = React;
@@ -101,9 +102,72 @@ const DatingProfile = () => {
             </div>
           </div>
           <div className="col-12">
-            <div className="card" id="coming-soon-card">
+            <div className="card" id="basic-info-card">
               <div className="card-body">
-                <p>{t("Coming Soon")}</p>
+                <h4>{t("Basic Information")}</h4>
+                <BasicInfoItem icon="genderMale" text={t("Male")} />
+                <BasicInfoItem icon="ruler" text={t(data.basicInformation.height)} />
+                <BasicInfoItem icon="home" text={t(data.basicInformation.comeFrom)} />
+                <BasicInfoItem icon="wineGlass" text={t(data.lifestyle.drinking)} />
+                <BasicInfoItem icon="smoking" text={t(data.lifestyle.smoking)} />
+                <BasicInfoItem icon="droplet" text={t(data.basicInformation.bloodType)} />
+                <BasicInfoItem icon="globeAmericas" text={t(data.basicInformation.speaking.join(" | "))} />
+                <BasicInfoItem icon="buildings" text={t(data.workEducation.industry)} />
+                <BasicInfoItem icon="briefcase" text={t(data.workEducation.occupation)} />
+                <BasicInfoItem icon="mortorboard" text={t(data.workEducation.degree)} />
+                <BasicInfoItem icon="school" text={t(data.workEducation.school)} />
+                <BasicInfoItem icon="search" text={t(data.lifestyle.lookingFor)} />
+              </div>
+            </div>
+          </div>
+          <div className="col-12">
+            <div className="card" id="lifestyle-card">
+              <div className="card-body">
+                <h4>{t("Lifestyle")}</h4>
+                <BasicInfoItem icon="dog" text={t(data.lifestyle.pets)} />
+                <BasicInfoItem icon="dumbbell" text={t(data.lifestyle.exercise)} />
+                <BasicInfoItem icon="utensils" text={t(data.lifestyle.diet)} />
+                <BasicInfoItem icon="couch" text={t(data.lifestyle.offDay)} />
+              </div>
+            </div>
+          </div>
+          <div className="col-12">
+            <div className="card" id="my-zodiac-sign-card">
+              <div className="card-body">
+                <h4>{t("My Zodiac Sign")}</h4>
+                <p className="mb-0">{t(data.basicInformation.zodiac)}</p>
+              </div>
+            </div>
+          </div>
+          <div className="col-12">
+            <div className="card" id="my-interests-card">
+              <div className="card-body">
+                <h4>{t("My Interests")}</h4>
+                <div className="d-flex flex-wrap gap-3">
+                  {Object.entries(data.interests).map(interestListByCategory => {
+                    let iconName = "";
+                    
+                    if (interestListByCategory[0] === "food") {
+                      iconName = "utensils";
+                    }
+
+                    if (interestListByCategory[0] === "flimTv") {
+                      iconName = "playFill";
+                    }
+
+                    if (interestListByCategory[0] === "travel") {
+                      iconName = "airplaneFill";
+                    }
+
+                    return interestListByCategory[1].map((interest, interestIndex) => {
+                      return (
+                        <>
+                        <button key={interestIndex} type="button" className="btn active" data-bs-toggle="button" aria-pressed="true"><Icon name={iconName} /> {t(interest)}</button>
+                        </>
+                      );
+                    });
+                  })}
+                </div>
               </div>
             </div>
           </div>
