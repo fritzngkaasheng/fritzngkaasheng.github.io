@@ -206,7 +206,10 @@ public class UntranslatedTextFinder {
                 "ZWL",
                 "Exchange Rate API 的汇率",
                 "Fritz",
-                "24"
+                "24",
+                "172cm",
+                "Youtube",
+                "A型"
         );
 
         for (String text : texts) {
