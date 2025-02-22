@@ -10,6 +10,7 @@ const { useEffect } = React;
 
 const EditResumeToolbar = ({ encodedFilter, mode, filteredData, navigateToEditResumeMode }) => {
   const { t } = useTranslation();
+
   useEffect(() => {
     if (
       encodedFilter 

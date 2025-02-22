@@ -30,15 +30,15 @@
     "speaking": ["Chinese", "English"],
     "height": "172cm",
     "zodiac": "Leo",
-    "bloodType": "A"
+    "bloodType": "Type A"
   },
   "lifestyle": {
     "lookingFor": "Chats and friends",
     "pets": "No pets",
     "exercise": "Almost never",
     "smoking": "Non-smoker",
-    "drinking": "Never",
-    "offDay": "Other days",
+    "drinking": "Non-alcoholic",
+    "offDay": "Other rest days",
     "diet": "Other dietary preference"
   },
   "interests": {
