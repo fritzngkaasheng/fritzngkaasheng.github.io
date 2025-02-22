@@ -27,10 +27,15 @@ const DatingProfile = () => {
   if (Object.keys(data).length < 1) {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LoadingSection, null));
   }
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-12 col-md-4 p-0 bg-black bg-opacity-25"
+  }, /*#__PURE__*/React.createElement("div", {
     id: "image-carousel",
-    className: "carousel slide bg-black bg-opacity-25",
-    "data-bs-theme": "dark"
+    className: "carousel slide"
   }, /*#__PURE__*/React.createElement("div", {
     className: "carousel-indicators"
   }, /*#__PURE__*/React.createElement("button", {
@@ -60,24 +65,28 @@ const DatingProfile = () => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "carousel-item active"
   }, /*#__PURE__*/React.createElement("img", {
+    loading: "lazy",
     src: "/assets/images/D1.jpg",
     className: "d-block w-100 vh-100 object-fit-contain",
     alt: "Selfie"
   })), /*#__PURE__*/React.createElement("div", {
     className: "carousel-item"
   }, /*#__PURE__*/React.createElement("img", {
+    loading: "lazy",
     src: "/assets/images/D2.jpg",
     className: "d-block w-100 vh-100 object-fit-contain",
     alt: "China Trip"
   })), /*#__PURE__*/React.createElement("div", {
     className: "carousel-item"
   }, /*#__PURE__*/React.createElement("img", {
+    loading: "lazy",
     src: "/assets/images/D3.jpg",
     className: "d-block w-100 vh-100 object-fit-contain",
     alt: "Singapore Trip"
   })), /*#__PURE__*/React.createElement("div", {
     className: "carousel-item"
   }, /*#__PURE__*/React.createElement("img", {
+    loading: "lazy",
     src: "/assets/images/D4.jpg",
     className: "d-block w-100 vh-100 object-fit-contain",
     alt: "Selfie with ETS"
@@ -87,9 +96,6 @@ const DatingProfile = () => {
     "data-bs-target": "#image-carousel",
     "data-bs-slide": "prev"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "carousel-control-prev-icon",
-    "aria-hidden": "true"
-  }), /*#__PURE__*/React.createElement("span", {
     className: "visually-hidden"
   }, t("Previous"))), /*#__PURE__*/React.createElement("button", {
     className: "carousel-control-next",
@@ -97,12 +103,9 @@ const DatingProfile = () => {
     "data-bs-target": "#image-carousel",
     "data-bs-slide": "next"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "carousel-control-next-icon",
-    "aria-hidden": "true"
-  }), /*#__PURE__*/React.createElement("span", {
     className: "visually-hidden"
-  }, t("Next")))), /*#__PURE__*/React.createElement("div", {
-    className: "container py-5"
+  }, t("Next"))))), /*#__PURE__*/React.createElement("div", {
+    className: "py-5 col-12 col-md-8"
   }, /*#__PURE__*/React.createElement("div", {
     className: "row gy-3"
   }, /*#__PURE__*/React.createElement("div", {
@@ -243,6 +246,6 @@ const DatingProfile = () => {
         name: iconName
       }), " ", t(interest)));
     });
-  }))))))));
+  })))))))));
 };
 export default DatingProfile; 
