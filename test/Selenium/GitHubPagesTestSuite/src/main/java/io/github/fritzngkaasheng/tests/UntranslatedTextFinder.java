@@ -196,7 +196,18 @@ public class UntranslatedTextFinder {
         "24",
         "172cm",
         "Youtube",
-        "A型"
+        "A型",
+        "REST API",
+        "Git",
+        "Laravel",
+        "CodeIgniter",
+        "SQL",
+        "JavaScript",
+        "jQuery",
+        "CSS",
+        "HTML",
+        "Java",
+        ".NET Framework"
     ));
 
     public void addAppVersionToIgnoredTextsList(WebDriver driver) throws InterruptedException {
