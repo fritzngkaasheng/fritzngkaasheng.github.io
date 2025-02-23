@@ -49,6 +49,7 @@ public class WillITakeTheJobQuizPage {
 
         selectDropdown(driver, "quizSalaryCurrency", "SGD");
         selectDropdown(driver, "quizOccupation", "Infocomm technology - Software engineer");
+        selectDropdown(driver, "quizTimeSensitivity", "Fully Flexible (e.g. Focus more on results than strict hours)");
 
         fillTextBox(driver, "quizMonitor", "1");
 
