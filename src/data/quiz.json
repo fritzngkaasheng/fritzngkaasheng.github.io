@@ -1982,6 +1982,29 @@
           "priority": 2
         }
       ]
+    },
+    "qTimeSensitivity": {
+      "name": "timeSensitivity",
+      "id": "quizTimeSensitivity",
+      "question": "What are the expectations regarding punctuality and attendance for this role?",
+      "type": "select",
+      "options": [
+        {
+          "value": "strict",
+          "text": "Strict Punctuality Required (e.g. Punctuality is very important for this role)",
+          "priority": 3
+        },
+        {
+          "value": "some-flexibility",
+          "text": "Some Flexibility (e.g. As long as I meet deadlines and communicate any schedule changes)",
+          "priority": 2
+        },
+        {
+          "value": "fully-flexible",
+          "text": "Fully Flexible (e.g. Focus more on results than strict hours)",
+          "priority": 1
+        }
+      ]
     }
   }
 }
