@@ -45,7 +45,7 @@ const DatingProfile = () => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-12 col-md-4 p-0 bg-black bg-opacity-25">
+        <div className="col-12 col-md-4 p-0 py-md-5 bg-black bg-opacity-25">
           <div id="image-carousel" className="carousel slide">
             <div className="carousel-indicators">
               <button type="button" data-bs-target="#image-carousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -53,18 +53,18 @@ const DatingProfile = () => {
               <button type="button" data-bs-target="#image-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
               <button type="button" data-bs-target="#image-carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
             </div>
-            <div className="carousel-inner">
+            <div className="carousel-inner ratio ratio-1x1">
               <div className="carousel-item active">
-                <img loading="lazy" src="/assets/images/D1.jpg" className="d-block w-100 vh-100 object-fit-contain" alt="Selfie"/>
+                <img loading="lazy" src="/assets/images/D1.jpg" className="d-block w-100 h-100 object-fit-contain" alt="Selfie"/>
               </div>
               <div className="carousel-item">
-                <img loading="lazy" src="/assets/images/D2.jpg" className="d-block w-100 vh-100 object-fit-contain" alt="China Trip"/>
+                <img loading="lazy" src="/assets/images/D2.jpg" className="d-block w-100 h-100 object-fit-contain" alt="China Trip"/>
               </div>
               <div className="carousel-item">
-                <img loading="lazy" src="/assets/images/D3.jpg" className="d-block w-100 vh-100 object-fit-contain" alt="Singapore Trip"/>
+                <img loading="lazy" src="/assets/images/D3.jpg" className="d-block w-100 h-100 object-fit-contain" alt="Singapore Trip"/>
               </div>
               <div className="carousel-item">
-                <img loading="lazy" src="/assets/images/D4.jpg" className="d-block w-100 vh-100 object-fit-contain" alt="Selfie with ETS"/>
+                <img loading="lazy" src="/assets/images/D4.jpg" className="d-block w-100 h-100 object-fit-contain" alt="Selfie with ETS"/>
               </div>
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#image-carousel" data-bs-slide="prev">

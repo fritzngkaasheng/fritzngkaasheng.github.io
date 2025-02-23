@@ -24,6 +24,9 @@ const Header = () => {
           </form>
           */}
         </div>
+        <div className="p-3 text-end">
+          <span id="app-version">v{appVersion}</span>
+        </div>
       </div>
       <div className="pt-2">
         <LanguageSwitcher />

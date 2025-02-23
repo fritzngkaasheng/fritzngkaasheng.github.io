@@ -32,7 +32,7 @@ const DatingProfile = () => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "row"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "col-12 col-md-4 p-0 bg-black bg-opacity-25"
+    className: "col-12 col-md-4 p-0 py-md-5 bg-black bg-opacity-25"
   }, /*#__PURE__*/React.createElement("div", {
     id: "image-carousel",
     className: "carousel slide"
@@ -61,34 +61,34 @@ const DatingProfile = () => {
     "data-bs-slide-to": "3",
     "aria-label": "Slide 4"
   })), /*#__PURE__*/React.createElement("div", {
-    className: "carousel-inner"
+    className: "carousel-inner ratio ratio-1x1"
   }, /*#__PURE__*/React.createElement("div", {
     className: "carousel-item active"
   }, /*#__PURE__*/React.createElement("img", {
     loading: "lazy",
     src: "/assets/images/D1.jpg",
-    className: "d-block w-100 vh-100 object-fit-contain",
+    className: "d-block w-100 h-100 object-fit-contain",
     alt: "Selfie"
   })), /*#__PURE__*/React.createElement("div", {
     className: "carousel-item"
   }, /*#__PURE__*/React.createElement("img", {
     loading: "lazy",
     src: "/assets/images/D2.jpg",
-    className: "d-block w-100 vh-100 object-fit-contain",
+    className: "d-block w-100 h-100 object-fit-contain",
     alt: "China Trip"
   })), /*#__PURE__*/React.createElement("div", {
     className: "carousel-item"
   }, /*#__PURE__*/React.createElement("img", {
     loading: "lazy",
     src: "/assets/images/D3.jpg",
-    className: "d-block w-100 vh-100 object-fit-contain",
+    className: "d-block w-100 h-100 object-fit-contain",
     alt: "Singapore Trip"
   })), /*#__PURE__*/React.createElement("div", {
     className: "carousel-item"
   }, /*#__PURE__*/React.createElement("img", {
     loading: "lazy",
     src: "/assets/images/D4.jpg",
-    className: "d-block w-100 vh-100 object-fit-contain",
+    className: "d-block w-100 h-100 object-fit-contain",
     alt: "Selfie with ETS"
   }))), /*#__PURE__*/React.createElement("button", {
     className: "carousel-control-prev",

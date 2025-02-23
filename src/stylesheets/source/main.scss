@@ -52,3 +52,11 @@ ul, ol {
 	width: $iconSize;
 	height: $iconSize;
 }
+
+.home-page {
+	scroll-snap-type: y mandatory;
+}
+
+.home-page .row {
+	scroll-snap-align: start;
+}
