@@ -29,7 +29,11 @@ const Header = () => {
     "aria-label": "Close"
   })), /*#__PURE__*/React.createElement("div", {
     className: "offcanvas-body"
-  }, /*#__PURE__*/React.createElement(Navigation, null))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(Navigation, null)), /*#__PURE__*/React.createElement("div", {
+    className: "p-3 text-end"
+  }, /*#__PURE__*/React.createElement("span", {
+    id: "app-version"
+  }, "v", appVersion))), /*#__PURE__*/React.createElement("div", {
     className: "pt-2"
   }, /*#__PURE__*/React.createElement(LanguageSwitcher, null)));
 };

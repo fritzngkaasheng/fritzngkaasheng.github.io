@@ -22,7 +22,7 @@ public abstract class BaseTest {
 
     @BeforeTest
     @Parameters("browser")
-    public void setUp(String browser) {
+    public void setUp(String browser) throws InterruptedException {
         if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
@@ -46,6 +46,10 @@ public abstract class BaseTest {
         }
         driver.get(url);
         driver.manage().window().maximize();
+
+        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(500));
+
+        new UntranslatedTextFinder().addAppVersionToIgnoredTextsList(driver);
     }
 
     @Test(priority = 1)

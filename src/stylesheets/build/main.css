@@ -45,4 +45,12 @@ ul, ol {
   height: 24px;
 }
 
+.home-page {
+  scroll-snap-type: y mandatory;
+}
+
+.home-page .row {
+  scroll-snap-align: start;
+}
+
 /*# sourceMappingURL=main.css.map */

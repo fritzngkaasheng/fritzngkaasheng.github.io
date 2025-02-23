@@ -375,5 +375,9 @@
   "Illegal Activities": "非法活动",
   "How many monitors are typically required for this job?": "这项工作通常需要多少台显示器？",
   "Rates By Exchange Rate API": "Exchange Rate API 的汇率",
-  "Please enter a non-negative value": "请输入一个非负值"
+  "Please enter a non-negative value": "请输入一个非负值",
+  "What are the expectations regarding punctuality and attendance for this role?": "对这个职位的准时性和出勤率有什么要求？",
+  "Strict Punctuality Required (e.g. Punctuality is very important for this role)": "需要严格准时（例如，准时对这个职位非常重要）",
+  "Some Flexibility (e.g. As long as I meet deadlines and communicate any schedule changes)": "有一定的灵活性（例如，只要我能按时完成任务并及时通报任何日程安排的变化）",
+  "Fully Flexible (e.g. Focus more on results than strict hours)": "完全灵活（例如，更注重结果而不是严格的工作时间）"
 }

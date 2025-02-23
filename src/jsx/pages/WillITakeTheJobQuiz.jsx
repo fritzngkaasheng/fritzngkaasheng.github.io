@@ -124,6 +124,15 @@ const WillITakeTheJobQuiz = () => {
 
       refreshProbabilitySliderSubLength();
 
+      // timeSensitivity
+      chunkLength = probabilitySliderSubLength / maxPriorities.timeSensitivity;
+
+      probabilitySliderPosMax = (probabilitySliderPosMin - 1) + (chunkLength * questionPoints.timeSensitivity);
+
+      probabilitySliderPosMin = probabilitySliderPosMax - chunkLength + 1;
+
+      refreshProbabilitySliderSubLength();
+
       // monitor
       chunkLength = probabilitySliderSubLength / maxPriorities.monitor;
 
@@ -203,6 +212,22 @@ const WillITakeTheJobQuiz = () => {
     occupationQuestion.classList.add("d-none");
   }
 
+  const showTimeSensitivityQuestion = () => {
+    const occupationQuestion = document.getElementById(`${quizData.quiz.qTimeSensitivity.id}Section`);
+
+    occupationQuestion.classList.remove("d-none");
+
+    const occupationSelect = document.getElementById(quizData.quiz.qTimeSensitivity.id);
+
+    occupationSelect.selectedIndex = 0;
+  }
+
+  const hideTimeSensitivityQuestion = () => {
+    const occupationQuestion = document.getElementById(`${quizData.quiz.qTimeSensitivity.id}Section`);
+
+    occupationQuestion.classList.add("d-none");
+  }
+
   const showMonitorQuestion = () => {
     const monitorQuestion = document.getElementById(`${quizData.quiz.qMonitor.id}Section`);
 
@@ -225,6 +250,7 @@ const WillITakeTheJobQuiz = () => {
     hideLocationTypeQuestion();
     hideSalaryQuestion();
     hideOccupationQuestion();
+    hideTimeSensitivityQuestion();
     hideMonitorQuestion();
 
     const selectedValue = event.target.value;
@@ -267,6 +293,7 @@ const WillITakeTheJobQuiz = () => {
 
     hideSalaryQuestion();
     hideOccupationQuestion();
+    hideTimeSensitivityQuestion();
     hideMonitorQuestion();
 
     const selectedValue = event.target.value;
@@ -300,6 +327,7 @@ const WillITakeTheJobQuiz = () => {
     hideQuizAnswer();
 
     hideOccupationQuestion();
+    hideTimeSensitivityQuestion();
     hideMonitorQuestion();
 
     const currencySelect = document.getElementById(`${quizData.quiz.qSalary.id}Currency`);
@@ -386,6 +414,7 @@ const WillITakeTheJobQuiz = () => {
   const handleOccupationChange = (event) => {
     hideQuizAnswer();
 
+    hideTimeSensitivityQuestion();
     hideMonitorQuestion();
 
     const selectedValue = event.target.value;
@@ -419,6 +448,47 @@ const WillITakeTheJobQuiz = () => {
     }
 
     if (questionPoints.occupation > 0) {
+      showTimeSensitivityQuestion();
+    }
+  };
+
+  
+  const handleTimeSensitivityChange = (event) => {
+    hideQuizAnswer();
+
+    hideMonitorQuestion();
+
+    const selectedValue = event.target.value;
+    questionValues.timeSensitivity = selectedValue;
+
+    if (selectedValue === "Choose...") {
+      return;
+    }
+
+    const selectedOption = quizData.quiz.qTimeSensitivity.options.find(option => option.value === selectedValue);
+
+    if (selectedOption) {
+      // if priority = -1, point = -1
+      // if priority = 0, point = 0
+      if (selectedOption.priority < 1) {
+        questionPoints.timeSensitivity = selectedOption.priority;
+      }
+
+      // if priority = 1, point = maxPriorities.timeSensitivity
+      // if priority = 2, point = maxPriorities.timeSensitivity - 1
+      // if priority = 3, point = maxPriorities.timeSensitivity - 2...
+      if (selectedOption.priority >= 1) {
+        questionPoints.timeSensitivity = maxPriorities.timeSensitivity - (selectedOption.priority - 1);
+      }
+    }
+
+    if (questionPoints.timeSensitivity <= 0) {
+      calculateProbability();
+  
+      showQuizAnswer();
+    }
+
+    if (questionPoints.timeSensitivity > 0) {
       showMonitorQuestion();
     }
   };
@@ -581,12 +651,14 @@ const WillITakeTheJobQuiz = () => {
         maxPriorities.locationType = Math.max(...data.quiz.qLocationType.options.map(option => option.priority));
         maxPriorities.salary = Math.max(...data.quiz.qSalary.indicators.map(indicator => indicator.priority));
         maxPriorities.occupation = Math.max(...data.quiz.qOccupation.options.map(option => option.priority));
+        maxPriorities.timeSensitivity = Math.max(...data.quiz.qTimeSensitivity.options.map(option => option.priority));
         maxPriorities.monitor = Math.max(...data.quiz.qMonitor.indicators.map(option => option.priority));
 
         probabilitySliderLength = maxPriorities.origin 
             * maxPriorities.locationType 
             * maxPriorities.salary
             * maxPriorities.occupation
+            * maxPriorities.timeSensitivity
             * maxPriorities.monitor;
         
         setquizData(data);
@@ -655,6 +727,16 @@ const WillITakeTheJobQuiz = () => {
             {quizData.quiz.qOccupation.options
               .map((option) => (
                 <option key={option.value} value={option.value}>{`${t(option.sector)} - ${t(option.jobTitle)}`}</option>
+              ))}
+          </select>
+        </div>
+        <div id={`${quizData.quiz.qTimeSensitivity.id}Section`} className="mb-3 d-none">
+          <label for={quizData.quiz.qTimeSensitivity.id} className="form-label">{t(quizData.quiz.qTimeSensitivity.question)}</label>
+          <select className="form-select" name={quizData.quiz.qTimeSensitivity.name} id={quizData.quiz.qTimeSensitivity.id} aria-label={quizData.quiz.qTimeSensitivity.question} onChange={handleTimeSensitivityChange}>
+            <option value="Choose..." selected>{t("Choose...")}</option>
+            {quizData.quiz.qTimeSensitivity.options
+              .map((option) => (
+                <option key={option.value} value={option.value}>{t(option.text)}</option>
               ))}
           </select>
         </div>
