@@ -9,22 +9,22 @@ const Home = () => {
 
   return (
     <div className="home-page container-fluid vh-100 overflow-y-scroll">
-      <div id="intro-section" className="row vh-100 justify-content-center align-items-center text-center">
-        <div className="col">
+      <div id="intro-section" className="row vh-100 justify-content-center align-items-center text-center custom-bg-color-1">
+        <div className="col w-md-container">
           <h1 id="name" className="display-5 mb-3 fw-bold">{t("Fritz Ng")}</h1>
           <h4 className="mb-4">{t("Remote IT Professional")}</h4>
           <h4 className="mb-4">{t("Specializing in Software Development, Cybersecurity")}</h4>
           <a className="btn btn-primary btn-lg" href="#/dynamic-resume">{t("Learn More")}</a>
         </div>
       </div>
-      <div id="about-me-section" className="row vh-100 justify-content-center align-items-center text-center">
-        <div className="col">
+      <div id="about-me-section" className="row vh-100 justify-content-center align-items-center text-center custom-bg-color-2">
+        <div className="col w-md-container">
           <h2 className="fw-bold">{t("About Me")}</h2>
           <p>{t("I am a software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally.")}</p>
         </div>
       </div>
-      <div id="skills-section" className="row vh-100 justify-content-center align-items-center text-center">
-        <div className="col">
+      <div id="skills-section" className="row vh-100 justify-content-center align-items-center text-center custom-bg-color-1">
+        <div className="col w-md-container">
           <h2 className="mb-4 fw-bold">{t("Skills")}</h2>
           <div className="skill-list d-flex flex-wrap gap-3 justify-content-center">
             <button type="button" class="btn btn-info">{t("REST APIs")}</button>
@@ -42,8 +42,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div id="experience-section" className="row vh-100 justify-content-center align-items-center text-center">
-        <div className="col">
+      <div id="experience-section" className="row vh-100 justify-content-center align-items-center text-center custom-bg-color-2">
+        <div className="col w-md-container">
           <h2 className="fw-bold">{t("Experience")}</h2>
           <div className="job">
               <h3 className="fw-bold">{t("Intern")} - {t("B2BE")}</h3>
@@ -52,8 +52,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div id="contact-me-section" className="row vh-100 justify-content-center align-items-center text-center">
-        <div className="col">
+      <div id="contact-me-section" className="row vh-100 justify-content-center align-items-center text-center custom-bg-color-1">
+        <div className="col w-md-container">
           <h2 className="fw-bold">{t("Contact Me")}</h2>
           <p>{t("If you're interested in working with me, feel free to reach out!")}</p>
           <div className="d-flex flex-wrap justify-content-center gap-3">

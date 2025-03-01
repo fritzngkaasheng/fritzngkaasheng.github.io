@@ -9,9 +9,9 @@ const Home = () => {
     className: "home-page container-fluid vh-100 overflow-y-scroll"
   }, /*#__PURE__*/React.createElement("div", {
     id: "intro-section",
-    className: "row vh-100 justify-content-center align-items-center text-center"
+    className: "row vh-100 justify-content-center align-items-center text-center custom-bg-color-1"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "col"
+    className: "col w-md-container"
   }, /*#__PURE__*/React.createElement("h1", {
     id: "name",
     className: "display-5 mb-3 fw-bold"
@@ -24,16 +24,16 @@ const Home = () => {
     href: "#/dynamic-resume"
   }, t("Learn More")))), /*#__PURE__*/React.createElement("div", {
     id: "about-me-section",
-    className: "row vh-100 justify-content-center align-items-center text-center"
+    className: "row vh-100 justify-content-center align-items-center text-center custom-bg-color-2"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "col"
+    className: "col w-md-container"
   }, /*#__PURE__*/React.createElement("h2", {
     className: "fw-bold"
   }, t("About Me")), /*#__PURE__*/React.createElement("p", null, t("I am a software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally.")))), /*#__PURE__*/React.createElement("div", {
     id: "skills-section",
-    className: "row vh-100 justify-content-center align-items-center text-center"
+    className: "row vh-100 justify-content-center align-items-center text-center custom-bg-color-1"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "col"
+    className: "col w-md-container"
   }, /*#__PURE__*/React.createElement("h2", {
     className: "mb-4 fw-bold"
   }, t("Skills")), /*#__PURE__*/React.createElement("div", {
@@ -76,9 +76,9 @@ const Home = () => {
     class: "btn btn-info"
   }, t(".NET Framework"))))), /*#__PURE__*/React.createElement("div", {
     id: "experience-section",
-    className: "row vh-100 justify-content-center align-items-center text-center"
+    className: "row vh-100 justify-content-center align-items-center text-center custom-bg-color-2"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "col"
+    className: "col w-md-container"
   }, /*#__PURE__*/React.createElement("h2", {
     className: "fw-bold"
   }, t("Experience")), /*#__PURE__*/React.createElement("div", {
@@ -91,9 +91,9 @@ const Home = () => {
     className: "fw-bold"
   }, t("Responsibilities"), ":"), " ", t("Enhanced CodeIgniter and Laravel by implementing client-requested features, resolving critical bugs, and deploying numerous updates, improving the experience for over 100 users. Conducted impact analysis to ensure system efficiency and stability."))))), /*#__PURE__*/React.createElement("div", {
     id: "contact-me-section",
-    className: "row vh-100 justify-content-center align-items-center text-center"
+    className: "row vh-100 justify-content-center align-items-center text-center custom-bg-color-1"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "col"
+    className: "col w-md-container"
   }, /*#__PURE__*/React.createElement("h2", {
     className: "fw-bold"
   }, t("Contact Me")), /*#__PURE__*/React.createElement("p", null, t("If you're interested in working with me, feel free to reach out!")), /*#__PURE__*/React.createElement("div", {
