@@ -174,8 +174,19 @@
           ]
         }
       },
-      "associateTechnicalSupportMandarin": {
-        "role": "Associate Technical Support (Mandarin)",
+      "associateTechnicalSupport": {
+        "role": "Associate Technical Support",
+        "company": "Tech Mahindra",
+        "date": {
+          "start": {
+            "year": "2024",
+            "month": "12"
+          }
+        },
+        "location": "Malaysia"
+      },
+      "associateTechnicalSupportii": {
+        "role": "Associate Technical Support",
         "company": "Baker Hughes",
         "date": {
           "start": {
@@ -407,6 +418,7 @@
           "html": "HTML",
           "java": "Java",
           "nETFramwork": ".NET Framework",
+          "activeDirectory": "Active Directory",
           "microsoftExcel": "Microsoft Excel"
         }
       },
