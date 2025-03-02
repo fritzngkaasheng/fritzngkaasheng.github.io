@@ -33,33 +33,491 @@ public class WillITakeTheJobQuizPage {
         languageSwitcher.switchToEnglish(driver);
     }
 
-    private void answer(WebDriver driver, String possibility) throws InterruptedException {
-        WebElement quizAnswer = driver.findElement(By.id("quizAnswer"));
-        String quizAnswerText = quizAnswer.getText();
-        Assert.assertEquals(quizAnswerText, "Possibility of me choosing this job: " + possibility + "%", "Unexpected answer");
+    private String getAnswer(WebDriver driver) throws InterruptedException {
+        WebElement probability = driver.findElement(By.id("probability"));
+        return probability.getText();
+    }
+
+    private void checkAnswer(WebDriver driver, String possibility) throws InterruptedException {
+        Assert.assertEquals(getAnswer(driver), possibility, "Unexpected answer");
+    }
+
+    private void fillOutForm(WebDriver driver, String origin) throws InterruptedException {
+        selectDropdown(driver, "quizOrigin", origin);
+    }
+
+    private void fillOutForm(
+            WebDriver driver,
+            String origin,
+            String locationType,
+            String salary,
+            String salaryCurrency
+    ) throws InterruptedException {
+        fillOutForm(driver, origin);
+
+        selectDropdown(driver, "quizLocationType", locationType);
+
+        fillTextBox(driver, "quizSalary", salary);
+
+        selectDropdown(driver, "quizSalaryCurrency", salaryCurrency);
+    }
+
+    private void fillOutForm(
+            WebDriver driver,
+            String origin,
+            String locationType,
+            String salary,
+            String salaryCurrency,
+            String occupation
+    ) throws InterruptedException {
+        fillOutForm(
+                driver,
+                origin,
+                locationType,
+                salary,
+                salaryCurrency
+        );
+
+        selectDropdown(driver, "quizOccupation", occupation);
+    }
+
+    private void fillOutForm(
+            WebDriver driver,
+            String origin,
+            String locationType,
+            String salary,
+            String salaryCurrency,
+            String occupation,
+            String timeSensitivity,
+            String monitor
+    ) throws InterruptedException {
+        fillOutForm(
+                driver,
+                origin,
+                locationType,
+                salary,
+                salaryCurrency,
+                occupation
+        );
+
+        selectDropdown(driver, "quizTimeSensitivity", timeSensitivity);
+
+        fillTextBox(driver, "quizMonitor", monitor);
+    }
+
+    private double getAnswerByFillOutForm(
+            WebDriver driver,
+            String origin,
+            String locationType,
+            String salary,
+            String salaryCurrency,
+            String occupation,
+            String timeSensitivity,
+            String monitor
+    ) throws InterruptedException {
+        fillOutForm(
+                driver,
+                origin,
+                locationType,
+                salary,
+                salaryCurrency,
+                occupation,
+                timeSensitivity,
+                monitor
+        );
+
+        return Double.parseDouble(getAnswer(driver));
+    }
+
+    private void compareAnswers(double biggerAnswer, double smallerAnswer) {
+        Assert.assertTrue(biggerAnswer > smallerAnswer, "Expected first answer to be greater than second answer");
     }
 
     public void willITakeTheJobQuizPage(WebDriver driver) throws InterruptedException {
         translation(driver);
 
-        selectDropdown(driver, "quizOrigin", "sg - Singapore");
-        selectDropdown(driver, "quizLocationType", "Remote");
+        fillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
 
-        fillTextBox(driver, "quizSalary", "4000");
-
-        selectDropdown(driver, "quizSalaryCurrency", "SGD");
-        selectDropdown(driver, "quizOccupation", "Infocomm technology - Software engineer");
-        selectDropdown(driver, "quizTimeSensitivity", "Fully Flexible (e.g. Focus more on results than strict hours)");
-
-        fillTextBox(driver, "quizMonitor", "1");
-
-        answer(driver, "100");
+        checkAnswer(driver, "100");
 
         translation(driver);
 
-        selectDropdown(driver, "quizOrigin", "mm - Myanmar");
+        fillOutForm(driver, "mm - Myanmar");
 
-        answer(driver, "0");
+        checkAnswer(driver, "0");
+
+        translation(driver);
+
+        Double answer1 = null;
+        Double answer2 = null;
+
+        answer1 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        answer2 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Hybrid",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        compareAnswers(answer1, answer2);
+
+        translation(driver);
+
+        answer1 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Hybrid",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        answer2 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "On-site",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        compareAnswers(answer1, answer2);
+
+        translation(driver);
+
+        fillOutForm(
+                driver,
+                "my - Malaysia",
+                "On-site",
+                "2799",
+                "MYR"
+        );
+
+        checkAnswer(driver, "0");
+
+        translation(driver);
+
+        answer1 = getAnswerByFillOutForm(
+                driver,
+                "my - Malaysia",
+                "On-site",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        answer2 = getAnswerByFillOutForm(
+                driver,
+                "my - Malaysia",
+                "On-site",
+                "2800",
+                "MYR",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        compareAnswers(answer1, answer2);
+
+        translation(driver);
+
+        fillOutForm(
+                driver,
+                "sg - Singapore",
+                "On-site",
+                "2999",
+                "SGD"
+        );
+
+        checkAnswer(driver, "0");
+
+        translation(driver);
+
+        answer1 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        answer2 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "3000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        compareAnswers(answer1, answer2);
+
+        translation(driver);
+
+        answer1 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        answer2 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "3000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        compareAnswers(answer1, answer2);
+
+        translation(driver);
+
+        fillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "2799",
+                "MYR"
+        );
+
+        checkAnswer(driver, "0");
+
+        translation(driver);
+
+        fillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Crime - Illegal Activities"
+        );
+
+        checkAnswer(driver, "0");
+
+        translation(driver);
+
+        answer1 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        answer2 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Other",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        compareAnswers(answer1, answer2);
+
+        translation(driver);
+
+        answer1 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Other",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        answer2 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Financial services - Other",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        compareAnswers(answer1, answer2);
+
+        translation(driver);
+
+        answer1 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Other",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        answer2 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Services - Other",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        compareAnswers(answer1, answer2);
+
+        translation(driver);
+
+        answer1 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Other",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        answer2 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Manufacturing - Other",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        compareAnswers(answer1, answer2);
+
+        translation(driver);
+
+        answer1 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        answer2 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Some Flexibility (e.g. As long as I meet deadlines and communicate any schedule changes)",
+                "1"
+        );
+
+        compareAnswers(answer1, answer2);
+
+        translation(driver);
+
+        answer1 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Some Flexibility (e.g. As long as I meet deadlines and communicate any schedule changes)",
+                "1"
+        );
+
+        answer2 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Strict Punctuality Required (e.g. Punctuality is very important for this role)",
+                "1"
+        );
+
+        compareAnswers(answer1, answer2);
+
+        translation(driver);
+
+        answer1 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "1"
+        );
+
+        answer2 = getAnswerByFillOutForm(
+                driver,
+                "sg - Singapore",
+                "Remote",
+                "4000",
+                "SGD",
+                "Infocomm technology - Software engineer",
+                "Fully Flexible (e.g. Focus more on results than strict hours)",
+                "2"
+        );
+
+        compareAnswers(answer1, answer2);
 
         translation(driver);
     }
