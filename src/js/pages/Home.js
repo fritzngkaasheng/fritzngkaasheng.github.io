@@ -99,10 +99,10 @@ const Home = () => {
   }, t("Contact Me")), /*#__PURE__*/React.createElement("p", null, t("If you're interested in working with me, feel free to reach out!")), /*#__PURE__*/React.createElement("div", {
     className: "d-flex flex-wrap justify-content-center gap-3"
   }, /*#__PURE__*/React.createElement("a", {
-    className: "btn btn-primary btn-lg",
+    className: "btn btn-primary btn-lg btn-email",
     href: "mailto:fritzngkaasheng@gmail.com"
   }, t("Email Me")), /*#__PURE__*/React.createElement("a", {
-    className: "btn btn-primary btn-lg",
+    className: "btn btn-primary btn-lg btn-linkedin",
     href: "https://www.linkedin.com/in/fritzngkaasheng",
     target: "_blank"
   }, t("LinkedIn"))))));

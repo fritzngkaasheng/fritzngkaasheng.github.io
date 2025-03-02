@@ -5,6 +5,8 @@ import static com.github.pemistahl.lingua.api.Language.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.util.ArrayList;
@@ -193,7 +195,6 @@ public class UntranslatedTextFinder {
         "ZWL",
         "Exchange Rate API 的汇率",
         "Fritz",
-        "24",
         "172cm",
         "Youtube",
         "A型",
@@ -210,12 +211,19 @@ public class UntranslatedTextFinder {
         ".NET Framework"
     ));
 
+    // For more details, refer: https://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-numeric-in-java
+    public static boolean isNumeric(String str) {
+        return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
+    }
+
     public void addAppVersionToIgnoredTextsList(WebDriver driver) throws InterruptedException {
         new NavBar().openNavBar(driver);
 
-        Thread.sleep(java.time.Duration.ofMillis(500));
+        WebElement appVersion = new WebDriverWait(
+                driver,
+                java.time.Duration.ofMillis(2000)
+        ).until(ExpectedConditions.visibilityOfElementLocated(By.id("app-version")));
 
-        WebElement appVersion = driver.findElement(By.id("app-version"));
         String appVersionText = appVersion.getText();
 
         ignoredTexts.add(appVersionText);
@@ -239,6 +247,10 @@ public class UntranslatedTextFinder {
 
         for (String text : texts) {
             if (ignoredTexts.contains(text)) {
+                continue;
+            }
+
+            if (isNumeric(text)) {
                 continue;
             }
 

@@ -42,9 +42,7 @@ public class DynamicResumePage {
     private void checkCheckbox(WebDriver driver, String elemId) throws InterruptedException {
         WebElement checkBox = driver.findElement(By.id(elemId));
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", checkBox);
-
-        Thread.sleep(java.time.Duration.ofMillis(jsScrollDuration));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'instant', block: 'center'});", checkBox);
 
         boolean isCheckedBeforeToggle = checkBox.isSelected();
 
@@ -148,9 +146,7 @@ public class DynamicResumePage {
 
         WebElement doneBtn = driver.findElement(By.id("done-btn"));
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", doneBtn);
-
-        Thread.sleep(java.time.Duration.ofMillis(jsScrollDuration));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'instant', block: 'center'});", doneBtn);
 
         doneBtn.click();
 
