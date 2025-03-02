@@ -3,14 +3,25 @@ package io.github.fritzngkaasheng.tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class NavBar {
     public void waitUntilNavBarClosed(WebDriver driver) throws InterruptedException {
-        Thread.sleep(java.time.Duration.ofMillis(500));
+        new WebDriverWait(
+                driver,
+                java.time.Duration.ofMillis(2000)
+        ).until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#offcanvasNavbar")));
     }
 
     public void clickResumeDropdown(WebDriver driver) throws InterruptedException {
         WebElement resumeDropdown = driver.findElement(By.id("resume-dropdown"));
+
+        new WebDriverWait(
+                driver,
+                java.time.Duration.ofMillis(2000)
+        ).until(ExpectedConditions.elementToBeClickable(resumeDropdown));
+
         resumeDropdown.click();
     }
 
