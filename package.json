@@ -1,5 +1,25 @@
 {
+  "name": "fritzngkaasheng.github.io",
+  "version": "0.6.2",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4",
+    "@babel/cli": "^7.26.4",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3"
+  },
   "dependencies": {
+    "lodash": "^4.17.21",
     "bootstrap": "^5.3.3",
     "sass": "^1.32.0"
   }
