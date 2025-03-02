@@ -17,6 +17,21 @@ class App extends React.Component {
   constructor(props) {
     super(props);
   }
+  componentDidMount() {
+    window.addEventListener('click', this.handleLinkClick);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('click', this.handleLinkClick);
+  }
+  handleLinkClick = event => {
+    const link = event.target.closest('a');
+    if (link && link.href && !link.href.includes(window.location.hostname)) {
+      const userConfirmed = window.confirm(`Do you really want to leave this website and go to ${link.href}?`);
+      if (!userConfirmed) {
+        event.preventDefault();
+      }
+    }
+  };
   render() {
     return /*#__PURE__*/React.createElement(HashRouter, null, /*#__PURE__*/React.createElement(Routes, null, /*#__PURE__*/React.createElement(Route, {
       path: "/",

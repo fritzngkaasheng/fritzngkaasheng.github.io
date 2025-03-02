@@ -363,90 +363,94 @@ const WillITakeTheJobQuiz = () => {
     showQuizAnswer();
   };
   useEffect(() => {
-    const fetchCurrencyRates = async () => {
-      const currencyRateListFromMYR = await getCurrencyRateList("MYR");
-      const conversionList = {};
-      for (const currency in currencyRateListFromMYR) {
-        conversionList[currency.toLowerCase()] = 1 / currencyRateListFromMYR[currency];
-      }
-      setCurrencyToMYRConversionList(conversionList);
-    };
-    fetchCurrencyRates();
-    const fetchQuizData = async () => {
-      try {
-        const res = await fetch("/dist/data/quiz.min.json");
-        const data = await res.json();
-        const numericOriginPriorities = data.quiz.qOrigin.options.map(option => option.priority).filter(priority => typeof priority === 'number' && !isNaN(priority));
-        const preMaxOriginPriority = numericOriginPriorities.length > 0 ? Math.max(...numericOriginPriorities, 0) : 0;
-        data.quiz.qOrigin.options.map(option => {
-          if (!option.priority) {
-            if (option.apec && option.apec === true) {
-              option.priority = preMaxOriginPriority + 1;
-            }
-            if (option.eea && option.eea === true) {
-              option.priority = preMaxOriginPriority + 2;
-            }
-            if (option.income && option.income === "high" && !option.priority) {
-              option.priority = preMaxOriginPriority + 3;
-            }
-            if (option.income && option.income !== "high" && (!option.priority || option.priority && option.priority > preMaxOriginPriority)) {
-              option.priority = -1;
-            }
-            if (option.war && option.war === true) {
-              option.priority = -1;
-            }
+    if (Object.keys(currencyToMYRConversionList).length < 1) {
+      const fetchCurrencyRates = async () => {
+        const currencyRateListFromMYR = await getCurrencyRateList("MYR");
+        const conversionList = {};
+        for (const currency in currencyRateListFromMYR) {
+          conversionList[currency.toLowerCase()] = 1 / currencyRateListFromMYR[currency];
+        }
+        setCurrencyToMYRConversionList(conversionList);
+      };
+      fetchCurrencyRates();
+    }
+    if (Object.keys(currencyToMYRConversionList).length >= 1) {
+      const fetchQuizData = async () => {
+        try {
+          const res = await fetch("/dist/data/quiz.min.json");
+          const data = await res.json();
+          const numericOriginPriorities = data.quiz.qOrigin.options.map(option => option.priority).filter(priority => typeof priority === 'number' && !isNaN(priority));
+          const preMaxOriginPriority = numericOriginPriorities.length > 0 ? Math.max(...numericOriginPriorities, 0) : 0;
+          data.quiz.qOrigin.options.map(option => {
             if (!option.priority) {
-              option.priority = -1;
-            }
-          }
-        });
-        data.quiz.qSalary.indicators.map(indicator => {
-          indicator.currency = indicator.currency.toLowerCase();
-          if (indicator.currency in currencyToMYRConversionList) {
-            indicator.value = indicator.value * currencyToMYRConversionList[indicator.currency];
-            indicator.currency = "myr";
-          }
-        });
-        const numericOccupationPriorities = data.quiz.qOccupation.options.map(option => option.priority).filter(priority => typeof priority === 'number' && !isNaN(priority));
-        const preMaxOccupationPriority = numericOccupationPriorities.length > 0 ? Math.max(...numericOccupationPriorities, 0) : 0;
-        const singaporeSOLSectorList = data.quiz.qOccupation.options.filter(option => option.singaporeSOLList).map(option => option.sector);
-        data.quiz.qOccupation.options.map(option => {
-          option.jobTitle = option.value;
-          option.value = option.sector + " - " + option.value;
-          if (!option.priority) {
-            if (option.singaporeSOLList && option.singaporeSOLList === true) {
-              option.priority = preMaxOccupationPriority + 1;
-            }
-            if (!option.priority) {
-              if (option.sector === "Infocomm technology") {
-                option.priority = preMaxOccupationPriority + 2;
+              if (option.apec && option.apec === true) {
+                option.priority = preMaxOriginPriority + 1;
               }
-              if (option.sector !== "Infocomm technology" && singaporeSOLSectorList.includes(option.sector)) {
-                option.priority = preMaxOccupationPriority + 3;
+              if (option.eea && option.eea === true) {
+                option.priority = preMaxOriginPriority + 2;
+              }
+              if (option.income && option.income === "high" && !option.priority) {
+                option.priority = preMaxOriginPriority + 3;
+              }
+              if (option.income && option.income !== "high" && (!option.priority || option.priority && option.priority > preMaxOriginPriority)) {
+                option.priority = -1;
+              }
+              if (option.war && option.war === true) {
+                option.priority = -1;
+              }
+              if (!option.priority) {
+                option.priority = -1;
               }
             }
-            if (option.singaporeSPassSectorList && option.singaporeSPassSectorList === true) {
-              option.priority = preMaxOccupationPriority + 4;
+          });
+          data.quiz.qSalary.indicators.map(indicator => {
+            indicator.currency = indicator.currency.toLowerCase();
+            if (indicator.currency in currencyToMYRConversionList) {
+              indicator.value = indicator.value * currencyToMYRConversionList[indicator.currency];
+              indicator.currency = "myr";
             }
+          });
+          const numericOccupationPriorities = data.quiz.qOccupation.options.map(option => option.priority).filter(priority => typeof priority === 'number' && !isNaN(priority));
+          const preMaxOccupationPriority = numericOccupationPriorities.length > 0 ? Math.max(...numericOccupationPriorities, 0) : 0;
+          const singaporeSOLSectorList = data.quiz.qOccupation.options.filter(option => option.singaporeSOLList).map(option => option.sector);
+          data.quiz.qOccupation.options.map(option => {
+            option.jobTitle = option.value;
+            option.value = option.sector + " - " + option.value;
             if (!option.priority) {
-              option.priority = preMaxOccupationPriority + 5;
+              if (option.singaporeSOLList && option.singaporeSOLList === true) {
+                option.priority = preMaxOccupationPriority + 1;
+              }
+              if (!option.priority) {
+                if (option.sector === "Infocomm technology") {
+                  option.priority = preMaxOccupationPriority + 2;
+                }
+                if (option.sector !== "Infocomm technology" && singaporeSOLSectorList.includes(option.sector)) {
+                  option.priority = preMaxOccupationPriority + 3;
+                }
+              }
+              if (option.singaporeSPassSectorList && option.singaporeSPassSectorList === true) {
+                option.priority = preMaxOccupationPriority + 4;
+              }
+              if (!option.priority) {
+                option.priority = preMaxOccupationPriority + 5;
+              }
             }
-          }
-        });
-        maxPriorities.origin = Math.max(...data.quiz.qOrigin.options.map(option => option.priority));
-        maxPriorities.locationType = Math.max(...data.quiz.qLocationType.options.map(option => option.priority));
-        maxPriorities.salary = Math.max(...data.quiz.qSalary.indicators.map(indicator => indicator.priority));
-        maxPriorities.occupation = Math.max(...data.quiz.qOccupation.options.map(option => option.priority));
-        maxPriorities.timeSensitivity = Math.max(...data.quiz.qTimeSensitivity.options.map(option => option.priority));
-        maxPriorities.monitor = Math.max(...data.quiz.qMonitor.indicators.map(option => option.priority));
-        probabilitySliderLength = maxPriorities.origin * maxPriorities.locationType * maxPriorities.salary * maxPriorities.occupation * maxPriorities.timeSensitivity * maxPriorities.monitor;
-        setquizData(data);
-      } catch (err) {
-        console.error("Failed to load quiz.min.json:", err);
-      }
-    };
-    fetchQuizData();
-  }, []);
+          });
+          maxPriorities.origin = Math.max(...data.quiz.qOrigin.options.map(option => option.priority));
+          maxPriorities.locationType = Math.max(...data.quiz.qLocationType.options.map(option => option.priority));
+          maxPriorities.salary = Math.max(...data.quiz.qSalary.indicators.map(indicator => indicator.priority));
+          maxPriorities.occupation = Math.max(...data.quiz.qOccupation.options.map(option => option.priority));
+          maxPriorities.timeSensitivity = Math.max(...data.quiz.qTimeSensitivity.options.map(option => option.priority));
+          maxPriorities.monitor = Math.max(...data.quiz.qMonitor.indicators.map(option => option.priority));
+          probabilitySliderLength = maxPriorities.origin * maxPriorities.locationType * maxPriorities.salary * maxPriorities.occupation * maxPriorities.timeSensitivity * maxPriorities.monitor;
+          setquizData(data);
+        } catch (err) {
+          console.error("Failed to load quiz.min.json:", err);
+        }
+      };
+      fetchQuizData();
+    }
+  }, [currencyToMYRConversionList]);
   if (Object.keys(quizData).length < 1) {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(LoadingSection, null));
   }
@@ -573,6 +577,8 @@ const WillITakeTheJobQuiz = () => {
   })), /*#__PURE__*/React.createElement("div", {
     id: "quizAnswer",
     className: "mb-3 d-none"
-  }, /*#__PURE__*/React.createElement("h2", null, t("Possibility of me choosing this job: "), isNaN(probability) ? 'NaN' : probability, "%"))));
+  }, /*#__PURE__*/React.createElement("h2", null, t("Possibility of me choosing this job: "), /*#__PURE__*/React.createElement("span", {
+    id: "probability"
+  }, isNaN(probability) ? 'NaN' : probability), "%"))));
 };
 export default WillITakeTheJobQuiz; 

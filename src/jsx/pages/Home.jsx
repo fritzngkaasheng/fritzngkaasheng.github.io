@@ -57,8 +57,8 @@ const Home = () => {
           <h2 className="fw-bold">{t("Contact Me")}</h2>
           <p>{t("If you're interested in working with me, feel free to reach out!")}</p>
           <div className="d-flex flex-wrap justify-content-center gap-3">
-            <a className="btn btn-primary btn-lg" href="mailto:fritzngkaasheng@gmail.com">{t("Email Me")}</a>
-            <a className="btn btn-primary btn-lg" href="https://www.linkedin.com/in/fritzngkaasheng" target="_blank">{t("LinkedIn")}</a>
+            <a className="btn btn-primary btn-lg btn-email" href="mailto:fritzngkaasheng@gmail.com">{t("Email Me")}</a>
+            <a className="btn btn-primary btn-lg btn-linkedin" href="https://www.linkedin.com/in/fritzngkaasheng" target="_blank">{t("LinkedIn")}</a>
           </div>
         </div>
       </div>
