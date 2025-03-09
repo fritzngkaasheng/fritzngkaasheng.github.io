@@ -151,7 +151,7 @@ const AcademicCV = () => {
       <A4Container>
         <ContactSection
           fullName={profile.data.contact.fullName}
-          country={profile.data.contact.country}
+          location={profile.data.contact.country}
           linkedInURLSlug={profile.data.contact.linkedInURLSlug}
         />
         <SummarySection

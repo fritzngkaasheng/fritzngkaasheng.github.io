@@ -454,7 +454,7 @@ const DynamicResume = () => {
       <A4Container>
         <ContactSection
           fullName={profile.data.contact.fullName}
-          country={profile.data.contact.country}
+          location={profile.data.contact.location}
           linkedInURLSlug={profile.data.contact.linkedInURLSlug}
         />
         <SummarySection
