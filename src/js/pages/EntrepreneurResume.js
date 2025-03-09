@@ -60,7 +60,7 @@ const EntrepreneurResume = () => {
     roleName: filteredData.roleName
   }), /*#__PURE__*/React.createElement(A4Container, null, /*#__PURE__*/React.createElement(ContactSection, {
     fullName: profile.data.contact.fullName,
-    country: profile.data.contact.country,
+    location: profile.data.contact.country,
     linkedInURLSlug: profile.data.contact.linkedInURLSlug
   }), /*#__PURE__*/React.createElement(SummarySection, {
     summary: profile.entrepreneurPreset.entrepreneur.summary

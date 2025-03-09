@@ -4,7 +4,8 @@
     "contact": {
       "fullName": "Fritz Ng",
       "linkedInURLSlug": "fritzngkaasheng",
-      "country": "Malaysia"
+      "country": "Malaysia",
+      "location": "Kajang, Malaysia"
     },
     "experience": {
       "sandwichSeller": {
@@ -104,7 +105,7 @@
         "location": "Seri Kembangan, Selangor, Malaysia"
       },
       "intern": {
-        "role": "Intern | WordPress, WooCommerce",
+        "role": "Intern",
         "company": "Ideaone System Solutions Sdn. Bhd.",
         "date": {
           "start": {
@@ -128,7 +129,7 @@
         }
       },
       "webDeveloper": {
-        "role": "Web Developer | WordPress, WooCommerce, PHP",
+        "role": "Web Developer",
         "company": "Ideaone System Solutions Sdn. Bhd.",
         "date": {
           "start": {
@@ -151,7 +152,7 @@
         }
       },
       "internii": {
-        "role": "Intern | Laravel, CodeIgniter, PHP",
+        "role": "Intern",
         "company": "B2BE",
         "date": {
           "start": {

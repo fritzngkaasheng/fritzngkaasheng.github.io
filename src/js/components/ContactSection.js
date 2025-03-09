@@ -9,7 +9,7 @@ const {
 } = React;
 const ContactSection = ({
   fullName,
-  country,
+  location,
   linkedInURLSlug
 }) => {
   const {
@@ -39,9 +39,7 @@ const ContactSection = ({
     id: "full-name"
   }, t(fullName)), /*#__PURE__*/React.createElement("div", {
     className: "d-flex flex-column justify-content-center align-items-center flex-sm-row gap-sm-3"
-  }, /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(Icon, {
-    name: "countryLocation"
-  }), " ", /*#__PURE__*/React.createElement("span", null, t(country))), contactNum && /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(Icon, {
+  }, contactNum && /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(Icon, {
     name: "phone"
   }), " ", /*#__PURE__*/React.createElement("span", null, t(contactNum))), email && /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(Icon, {
     name: "email"
@@ -50,6 +48,8 @@ const ContactSection = ({
   }), " ", /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("a", {
     href: `https://www.linkedin.com/in/${linkedInURLSlug}`,
     target: "_blank"
-  }, "in/", linkedInURLSlug)))));
+  }, "in/", linkedInURLSlug))), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(Icon, {
+    name: "location"
+  }), " ", /*#__PURE__*/React.createElement("span", null, t(location)))));
 };
 export default ContactSection; 
