@@ -3,12 +3,13 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-2oKDIEUlghP5TBGCiOQ5SrGNHXLDGwCbhQ3IXsW6URY=' 'sha256-tyMoK4RCEjodhuPOWNwrys+OVXRsmiG7knpOXG+wLEY=' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self'; img-src 'self' data:; connect-src 'self' https://open.er-api.com; form-action 'self'">
 		<title></title>
 
 		<script>
-			const isProduction = true;
+			const isProduction = false;
 
-			const appVersion = "0.6.3";
+			const appVersion = "1.0.0";
 
 			const cssPath = "./" + (isProduction ? "dist" : "src") + "/css/";
 
