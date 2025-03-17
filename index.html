@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-LUZ1vJVaKPRiE28SdZvLG9hm3kofOEY0l52nXepyRZg=' 'sha256-tyMoK4RCEjodhuPOWNwrys+OVXRsmiG7knpOXG+wLEY=' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self'; img-src 'self' data:; connect-src 'self' https://open.er-api.com; form-action 'self'">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://challenges.cloudflare.com; script-src 'self' 'sha256-LUZ1vJVaKPRiE28SdZvLG9hm3kofOEY0l52nXepyRZg=' 'sha256-tyMoK4RCEjodhuPOWNwrys+OVXRsmiG7knpOXG+wLEY=' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data:; connect-src 'self' https://open.er-api.com; form-action 'self'">
 		<meta name="google-adsense-account" content="ca-pub-4939335163695681">
 		<link rel="manifest" href="./assets/favicon/site.webmanifest">
 		<link rel="icon" href="./assets/favicon/favicon.ico" type="image/x-icon">
@@ -24,8 +24,15 @@
 			link.href = cssFile;
 			document.head.appendChild(link);
 		</script>
+		<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 	</head>
 	<body>
+		<div
+			class="cf-turnstile d-none"
+			data-sitekey="0x4AAAAAAA_PAt1S-rfOkW7g"
+			data-callback="javascriptCallback"
+		></div>
+		
 		<div id="root"></div>
 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha256-CDOy6cOibCWEdsRiZuaHf8dSGGJRYuBGC+mjoJimHGw=" crossorigin="anonymous"></script>

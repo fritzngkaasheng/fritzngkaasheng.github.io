@@ -1,6 +1,6 @@
 # My Personal Website
 
-Welcome to my personal website hosted on **GitHub Pages**! This site features semi-customizable resumes and CVs, along with tools and resources for showcasing my personal and professional details.
+Welcome to my personal website hosted on **GitHub Pages**! This site features partially customizable resumes and CVs, along with tools and resources for showcasing my personal and professional details.
 
 ## About the Challenge
 Setting up this website was an exciting challenge. Since GitHub Pages does not support server-side languages, I built the entire site using HTML, CSS, and JavaScript. This process allowed me to explore static site solutions and creative ways to deliver dynamic content. Additionally, I used Java and Selenium for testing, drawing inspiration from Laravel's principles of efficient design.
