@@ -1,2 +1,2 @@
-const isProduction = true;
-const appVersion = "1.0.2";
+const isProduction = false;
+const appVersion = "1.0.3";
