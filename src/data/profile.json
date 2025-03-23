@@ -439,10 +439,10 @@
       "experience": [
         "intern",
         "webDeveloper",
-        "internii"
+        "internii",
+        "associateTechnicalSupport"
       ],
       "education": [
-        "diploma",
         "bachelorsDegree",
         "bachelorsDegreeii"
       ],
@@ -474,6 +474,7 @@
           "html",
           "java",
           "nETFramwork",
+          "activeDirectory",
           "microsoftExcel"
         ]
       },
@@ -709,10 +710,10 @@
       "experience": [
         "intern",
         "webDeveloper",
-        "internii"
+        "internii",
+        "associateTechnicalSupport"
       ],
       "education": [
-        "diploma",
         "bachelorsDegree",
         "bachelorsDegreeii"
       ],
@@ -744,6 +745,7 @@
           "html",
           "java",
           "nETFramwork",
+          "activeDirectory",
           "microsoftExcel"
         ]
       },
@@ -754,10 +756,10 @@
       "experience": [
         "intern",
         "webDeveloper",
-        "internii"
+        "internii",
+        "associateTechnicalSupport"
       ],
       "education": [
-        "diploma",
         "bachelorsDegree",
         "bachelorsDegreeii"
       ],
@@ -789,6 +791,7 @@
           "html",
           "java",
           "nETFramwork",
+          "activeDirectory",
           "microsoftExcel"
         ]
       },
@@ -799,10 +802,10 @@
       "experience": [
         "intern",
         "webDeveloper",
-        "internii"
+        "internii",
+        "associateTechnicalSupport"
       ],
       "education": [
-        "diploma",
         "bachelorsDegree",
         "bachelorsDegreeii"
       ],
@@ -834,6 +837,7 @@
           "html",
           "java",
           "nETFramwork",
+          "activeDirectory",
           "microsoftExcel"
         ]
       },
@@ -844,10 +848,10 @@
       "experience": [
         "intern",
         "webDeveloper",
-        "internii"
+        "internii",
+        "associateTechnicalSupport"
       ],
       "education": [
-        "diploma",
         "bachelorsDegree",
         "bachelorsDegreeii"
       ],
@@ -879,6 +883,7 @@
           "html",
           "java",
           "nETFramwork",
+          "activeDirectory",
           "microsoftExcel"
         ]
       },
@@ -912,7 +917,8 @@
       "experience": [
         "intern",
         "webDeveloper",
-        "internii"
+        "internii",
+        "associateTechnicalSupport"
       ],
       "awards": [
         "taylorsExcellenceAward202i",

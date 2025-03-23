@@ -41,13 +41,13 @@ const ContactSection = ({ fullName, location, linkedInURLSlug }) => {
     <div className="contact-section container d-flex flex-column align-items-center pb-3">
       <h2 id="full-name">{t(fullName)}</h2>
       <div className="d-flex flex-column justify-content-center align-items-center flex-sm-row gap-sm-3">
-        {contactNum && (
-          <span><Icon name="phone"/> <span>{t(contactNum)}</span></span>
-        )}
+        <span><Icon name="linkedIn"/> <span><a href={`https://www.linkedin.com/in/${linkedInURLSlug}`} target="_blank">in/{linkedInURLSlug}</a></span></span>
         {email && (
           <span><Icon name="email"/> <span>{t(email)}</span></span>
         )}
-        <span><Icon name="linkedIn"/> <span><a href={`https://www.linkedin.com/in/${linkedInURLSlug}`} target="_blank">in/{linkedInURLSlug}</a></span></span>
+        {contactNum && (
+          <span><Icon name="phone"/> <span>{t(contactNum)}</span></span>
+        )}
         <span><Icon name="location"/> <span>{t(location)}</span></span>
       </div>
     </div>
