@@ -18,8 +18,34 @@ const ContactSection = ({
   const [contactNum, setContactNum] = useState("");
   const [email, setEmail] = useState("");
   const updateContactDetails = () => {
-    const contactNum = prompt(t("Please enter contact number"), "+60 12-345 6789");
-    const email = prompt(t("Please enter email"), "email@email.com");
+    function isValidPhone(num) {
+      return /^\+60[\s]\d{1,2}[-]\d{2,4}[\s]\d{3,4}$/.test(num.trim());
+    }
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    }
+    function escapeHTML(str) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      };
+      return str.replace(/[&<>"']/g, m => map[m]);
+    }
+    let contactNum = escapeHTML(prompt(t("Please enter contact number"), "+60 12-345 6789"));
+    contactNum = contactNum.replace(/[^\d+\- ]/g, '');
+    if (!isValidPhone(contactNum)) {
+      alert("Invalid contact number");
+      contactNum = "";
+    }
+    let email = escapeHTML(prompt(t("Please enter email"), "email@email.com"));
+    email = email.trim().toLowerCase();
+    if (!isValidEmail(email)) {
+      alert("Invalid email");
+      email = "";
+    }
     setContactNum(contactNum);
     setEmail(email);
   };
