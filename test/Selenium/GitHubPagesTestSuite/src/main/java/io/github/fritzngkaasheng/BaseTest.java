@@ -20,6 +20,8 @@ public abstract class BaseTest {
 
     private String url = "https://localhost";
 
+    public static boolean checkAllPagesTranslation = false;
+
     @BeforeTest
     @Parameters("browser")
     public void setUp(String browser) throws InterruptedException {
