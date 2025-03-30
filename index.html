@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://challenges.cloudflare.com; script-src 'self' 'sha256-LUZ1vJVaKPRiE28SdZvLG9hm3kofOEY0l52nXepyRZg=' 'sha256-tyMoK4RCEjodhuPOWNwrys+OVXRsmiG7knpOXG+wLEY=' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data:; connect-src 'self' https://open.er-api.com; form-action 'self'">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://challenges.cloudflare.com; script-src 'self' 'sha256-LUZ1vJVaKPRiE28SdZvLG9hm3kofOEY0l52nXepyRZg=' 'sha256-tyMoK4RCEjodhuPOWNwrys+OVXRsmiG7knpOXG+wLEY=' 'sha256-Z401BT607AFcrQJD/G1aB4U8Z5SMT6LXaNC/4FQ340s=' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://challenges.cloudflare.com https://www.googletagmanager.com; style-src 'self'; img-src 'self' data:; connect-src 'self' https://open.er-api.com; form-action 'self'">
 		<meta name="google-adsense-account" content="ca-pub-4939335163695681">
 		<link rel="manifest" href="./assets/favicon/site.webmanifest">
 		<link rel="icon" href="./assets/favicon/favicon.ico" type="image/x-icon">
@@ -11,6 +11,14 @@
 		<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">		
 		<title>Fritz Ng</title>
+		<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','GTM-M7N8RF84');</script>
+		<!-- End Google Tag Manager -->
 		<script src="./config.js"></script>
 		<script>
 			const cssPath = "./" + (isProduction ? "dist" : "src") + "/css/";
@@ -24,7 +32,6 @@
 			link.href = cssFile;
 			document.head.appendChild(link);
 		</script>
-		<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 	</head>
 	<body>
 		<div
@@ -32,6 +39,11 @@
 			data-sitekey="0x4AAAAAAA_PAt1S-rfOkW7g"
 			data-callback="javascriptCallback"
 		></div>
+
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M7N8RF84"
+			height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
 		
 		<div id="root"></div>
 
