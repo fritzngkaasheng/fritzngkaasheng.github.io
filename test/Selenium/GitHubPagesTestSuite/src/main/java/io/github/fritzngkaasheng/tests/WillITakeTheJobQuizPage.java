@@ -1,5 +1,6 @@
 package io.github.fritzngkaasheng.tests;
 
+import io.github.fritzngkaasheng.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class WillITakeTheJobQuizPage {
+    private final boolean checkAllPagesTranslation = BaseTest.checkAllPagesTranslation;
+    // if true, all pages will be checked for translation
+    // if false, only the first 3 tests will be checked for translation
+
     private void selectDropdown(WebDriver driver, String dropdownId, String targetText) throws InterruptedException {
         WebElement originDropdownElement = driver.findElement(By.id(dropdownId));
 
@@ -191,7 +196,9 @@ public class WillITakeTheJobQuizPage {
 
         compareAnswers(answer1, answer2);
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         answer1 = getAnswerByFillOutForm(
                 driver,
@@ -217,7 +224,9 @@ public class WillITakeTheJobQuizPage {
 
         compareAnswers(answer1, answer2);
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         fillOutForm(
                 driver,
@@ -229,7 +238,9 @@ public class WillITakeTheJobQuizPage {
 
         checkAnswer(driver, "0");
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         answer1 = getAnswerByFillOutForm(
                 driver,
@@ -255,7 +266,9 @@ public class WillITakeTheJobQuizPage {
 
         compareAnswers(answer1, answer2);
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         fillOutForm(
                 driver,
@@ -267,7 +280,9 @@ public class WillITakeTheJobQuizPage {
 
         checkAnswer(driver, "0");
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         answer1 = getAnswerByFillOutForm(
                 driver,
@@ -293,7 +308,9 @@ public class WillITakeTheJobQuizPage {
 
         compareAnswers(answer1, answer2);
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         answer1 = getAnswerByFillOutForm(
                 driver,
@@ -319,7 +336,9 @@ public class WillITakeTheJobQuizPage {
 
         compareAnswers(answer1, answer2);
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         fillOutForm(
                 driver,
@@ -331,7 +350,9 @@ public class WillITakeTheJobQuizPage {
 
         checkAnswer(driver, "0");
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         fillOutForm(
                 driver,
@@ -344,7 +365,9 @@ public class WillITakeTheJobQuizPage {
 
         checkAnswer(driver, "0");
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         answer1 = getAnswerByFillOutForm(
                 driver,
@@ -370,7 +393,9 @@ public class WillITakeTheJobQuizPage {
 
         compareAnswers(answer1, answer2);
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         answer1 = getAnswerByFillOutForm(
                 driver,
@@ -396,7 +421,9 @@ public class WillITakeTheJobQuizPage {
 
         compareAnswers(answer1, answer2);
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         answer1 = getAnswerByFillOutForm(
                 driver,
@@ -422,7 +449,9 @@ public class WillITakeTheJobQuizPage {
 
         compareAnswers(answer1, answer2);
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         answer1 = getAnswerByFillOutForm(
                 driver,
@@ -448,7 +477,9 @@ public class WillITakeTheJobQuizPage {
 
         compareAnswers(answer1, answer2);
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         answer1 = getAnswerByFillOutForm(
                 driver,
@@ -474,7 +505,9 @@ public class WillITakeTheJobQuizPage {
 
         compareAnswers(answer1, answer2);
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         answer1 = getAnswerByFillOutForm(
                 driver,
@@ -500,7 +533,9 @@ public class WillITakeTheJobQuizPage {
 
         compareAnswers(answer1, answer2);
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
 
         answer1 = getAnswerByFillOutForm(
                 driver,
@@ -526,6 +561,8 @@ public class WillITakeTheJobQuizPage {
 
         compareAnswers(answer1, answer2);
 
-        translation(driver);
+        if (checkAllPagesTranslation) {
+            translation(driver);
+        }
     }
 }
