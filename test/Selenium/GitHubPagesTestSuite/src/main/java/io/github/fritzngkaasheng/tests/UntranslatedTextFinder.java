@@ -208,7 +208,8 @@ public class UntranslatedTextFinder {
         "CSS",
         "HTML",
         "Java",
-        ".NET Framework"
+        ".NET Framework",
+        "XCG"
     ));
 
     // For more details, refer: https://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-numeric-in-java
