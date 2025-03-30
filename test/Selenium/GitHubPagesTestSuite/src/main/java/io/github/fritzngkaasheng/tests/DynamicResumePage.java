@@ -1,5 +1,6 @@
 package io.github.fritzngkaasheng.tests;
 
+import io.github.fritzngkaasheng.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class DynamicResumePage {
+    private final boolean checkAllPagesTranslation = BaseTest.checkAllPagesTranslation;
+    // if true, all pages will be checked for translation
+    // if false, only All Details page, Resume Editor page and error pages will be checked for translation
+
     private final int jsScrollDuration = 1000;
 
     private void navigateAndVerifyDynamicResumePage(WebDriver driver, String href) throws InterruptedException {
@@ -56,7 +61,23 @@ public class DynamicResumePage {
 
     public void dynamicResumePages(WebDriver driver, String url) throws InterruptedException {
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume");
+
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/all-details");
+
+        if (!checkAllPagesTranslation) {
+            final LanguageSwitcher languageSwitcher = new LanguageSwitcher();
+
+            languageSwitcher.switchToChinese(driver);
+
+            new UntranslatedTextFinder().findUntranslatedText(driver);
+
+            new DownloadDropstart().downloadDropstart(driver);
+
+            new Header().header(driver);
+
+            languageSwitcher.switchToEnglish(driver);
+        }
+
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/software-engineer");
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/cyber-security-engineer");
         navigateAndVerifyDynamicResumePage(driver, "#/dynamic-resume/application-developer");
@@ -137,6 +158,18 @@ public class DynamicResumePage {
 
         dynamicResumePage(driver, false);
 
+        if (!checkAllPagesTranslation) {
+            final LanguageSwitcher languageSwitcher = new LanguageSwitcher();
+
+            languageSwitcher.switchToChinese(driver);
+
+            new UntranslatedTextFinder().findUntranslatedText(driver);
+
+            new Header().header(driver);
+
+            languageSwitcher.switchToEnglish(driver);
+        }
+
         checkCheckbox(driver, "experience-internii");
         checkCheckbox(driver, "education-bachelorsDegree");
         checkCheckbox(driver, "certification-frontEndDevelopmentLibraries");
@@ -151,39 +184,55 @@ public class DynamicResumePage {
         doneBtn.click();
 
         dynamicResumePage(driver, true);
+
+        if (!checkAllPagesTranslation) {
+            final LanguageSwitcher languageSwitcher = new LanguageSwitcher();
+
+            languageSwitcher.switchToChinese(driver);
+
+            new UntranslatedTextFinder().findUntranslatedText(driver);
+
+            new Header().header(driver);
+
+            languageSwitcher.switchToEnglish(driver);
+        }
     }
 
     public void dynamicResumePage(WebDriver driver) throws InterruptedException {
         new SummarySection().findSummarySection(driver);
 
-        final LanguageSwitcher languageSwitcher = new LanguageSwitcher();
+        if (checkAllPagesTranslation) {
+            final LanguageSwitcher languageSwitcher = new LanguageSwitcher();
 
-        languageSwitcher.switchToChinese(driver);
+            languageSwitcher.switchToChinese(driver);
 
-        new UntranslatedTextFinder().findUntranslatedText(driver);
+            new UntranslatedTextFinder().findUntranslatedText(driver);
 
-        new DownloadDropstart().downloadDropstart(driver);
+            new DownloadDropstart().downloadDropstart(driver);
 
-        new Header().header(driver);
+            new Header().header(driver);
 
-        languageSwitcher.switchToEnglish(driver);
+            languageSwitcher.switchToEnglish(driver);
+        }
     }
 
     public void dynamicResumePage(WebDriver driver, Boolean flagCheckDownloadBtns) throws InterruptedException {
         new SummarySection().findSummarySection(driver);
 
-        final LanguageSwitcher languageSwitcher = new LanguageSwitcher();
+        if (checkAllPagesTranslation) {
+            final LanguageSwitcher languageSwitcher = new LanguageSwitcher();
 
-        languageSwitcher.switchToChinese(driver);
+            languageSwitcher.switchToChinese(driver);
 
-        new UntranslatedTextFinder().findUntranslatedText(driver);
+            new UntranslatedTextFinder().findUntranslatedText(driver);
 
-        if (flagCheckDownloadBtns) {
-            new DownloadDropstart().downloadDropstart(driver);
+            if (flagCheckDownloadBtns) {
+                new DownloadDropstart().downloadDropstart(driver);
+            }
+
+            new Header().header(driver);
+
+            languageSwitcher.switchToEnglish(driver);
         }
-
-        new Header().header(driver);
-
-        languageSwitcher.switchToEnglish(driver);
     }
 }
