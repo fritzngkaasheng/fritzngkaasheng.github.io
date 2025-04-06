@@ -184,7 +184,15 @@
             "month": "12"
           }
         },
-        "location": "Malaysia"
+        "location": "Malaysia",
+        "description": {
+          "type": "bullet",
+          "data": [
+            "Provided technical support services to clients as a contractor via Tech Mahindra, including a dedicated assignment at Baker Hughes.",
+            "Resolved 30+ incidents related to cloud, VDI, cybersecurity, and server maintenance, significantly reducing system downtime.",
+            "Managed 200+ offshore, rig, remote and office users, implementing SSO, MFA and role-based access controls (RBAC) to align with ISO 27001 compliance."
+          ]
+        }
       },
       "associateTechnicalSupportii": {
         "role": "Associate Technical Support",
@@ -195,7 +203,17 @@
             "month": "12"
           }
         },
-        "location": "Federal Territory of Kuala Lumpur, Malaysia"
+        "location": "Federal Territory of Kuala Lumpur, Malaysia",
+        "description": {
+          "type": "bullet",
+          "data": [
+            "Resolved 30+ incidents related to cloud, VDI, cybersecurity, and server maintenance, significantly reducing system downtime.",
+            "Utilised web development skills to troubleshoot and resolve user issues on web applications, enhancing user satisfaction.",
+            "Diagnosed and addressed issues in Java applications, Oracle, and SAP systems, achieving a 98% system uptime and ensuring seamless operations.",
+            "Coordinated software deployments, streamlining processes for seamless implementation.",
+            "Managed 200+ offshore, rig, remote and office users, implementing SSO, MFA and role-based access controls (RBAC) to align with ISO 27001 compliance."
+          ]
+        }
       }
     },
     "education": {
@@ -374,7 +392,7 @@
         "description": {
           "type": "bullet",
           "data": [
-            "Analyzed complex datasets using tools like Python and Jupyter Notebook.",
+            "Analysed complex datasets using tools like Python and Jupyter Notebook.",
             "Collaborated in a team of 3, enhanced teamwork and communication skills.",
             "Received constrictive feedback from industry experts, which helped refine my analytical approach."
           ]
@@ -400,7 +418,8 @@
           "incidentHandling": "Incident Handling",
           "threatAnalysis": "Threat Analysis",
           "webDevelopment": "Web Development",
-          "softwareDevelopment": "Software Development"
+          "softwareDevelopment": "Software Development",
+          "iSO2700i": "ISO 27001"
         }
       },
       "toolsTechnologies": {
@@ -420,6 +439,7 @@
           "java": "Java",
           "nETFramwork": ".NET Framework",
           "activeDirectory": "Active Directory",
+          "serviceNow": "ServiceNow",
           "microsoftExcel": "Microsoft Excel"
         }
       },
@@ -433,7 +453,7 @@
     }
   },
   "preset": {
-    "default": "softwareEngineer",
+    "default": "cyberSecurityEngineer",
     "softwareEngineer": {
       "roleName": "Software Engineer",
       "experience": [
@@ -447,7 +467,6 @@
         "bachelorsDegreeii"
       ],
       "certifications": [
-        "lightningExperienceReportsDashboardsSpecialist",
         "apsaraClouderGeneralSkillJAVACodingStandardsInAlibabaGroup",
         "aWSCloudQuestCloudPractitioner"
       ],
@@ -458,7 +477,8 @@
           "incidentHandling",
           "threatAnalysis",
           "webDevelopment",
-          "softwareDevelopment"
+          "softwareDevelopment",
+          "iSO2700i"
         ],
         "toolsTechnologies": [
           "contentManagementSystemsCMs",
@@ -475,10 +495,10 @@
           "java",
           "nETFramwork",
           "activeDirectory",
+          "serviceNow",
           "microsoftExcel"
         ]
-      },
-      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+      }
     },
     "integrationEngineer": {
       "roleName": "Integration Engineer",
@@ -504,7 +524,8 @@
           "incidentHandling",
           "threatAnalysis",
           "webDevelopment",
-          "softwareDevelopment"
+          "softwareDevelopment",
+          "iSO2700i"
         ],
         "toolsTechnologies": [
           "contentManagementSystemsCMs",
@@ -520,10 +541,11 @@
           "html",
           "java",
           "nETFramwork",
+          "activeDirectory",
+          "serviceNow",
           "microsoftExcel"
         ]
-      },
-      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+      }
     },
     "cyberSecurityAnalyst": {
       "roleName": "Cyber Security Analyst",
@@ -549,7 +571,8 @@
           "incidentHandling",
           "threatAnalysis",
           "webDevelopment",
-          "softwareDevelopment"
+          "softwareDevelopment",
+          "iSO2700i"
         ],
         "toolsTechnologies": [
           "contentManagementSystemsCMs",
@@ -565,10 +588,11 @@
           "html",
           "java",
           "nETFramwork",
+          "activeDirectory",
+          "serviceNow",
           "microsoftExcel"
         ]
-      },
-      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+      }
     },
     "systemAnalyst": {
       "roleName": "System Analyst",
@@ -594,7 +618,8 @@
           "incidentHandling",
           "threatAnalysis",
           "webDevelopment",
-          "softwareDevelopment"
+          "softwareDevelopment",
+          "iSO2700i"
         ],
         "toolsTechnologies": [
           "contentManagementSystemsCMs",
@@ -610,10 +635,11 @@
           "html",
           "java",
           "nETFramwork",
+          "activeDirectory",
+          "serviceNow",
           "microsoftExcel"
         ]
-      },
-      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+      }
     },
     "technicalSupportEngineer": {
       "roleName": "Technical Support Engineer",
@@ -639,7 +665,8 @@
           "incidentHandling",
           "threatAnalysis",
           "webDevelopment",
-          "softwareDevelopment"
+          "softwareDevelopment",
+          "iSO2700i"
         ],
         "toolsTechnologies": [
           "contentManagementSystemsCMs",
@@ -655,10 +682,11 @@
           "html",
           "java",
           "nETFramwork",
+          "activeDirectory",
+          "serviceNow",
           "microsoftExcel"
         ]
-      },
-      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+      }
     },
     "iTConsultant": {
       "roleName": "IT Consultant",
@@ -684,52 +712,8 @@
           "incidentHandling",
           "threatAnalysis",
           "webDevelopment",
-          "softwareDevelopment"
-        ],
-        "toolsTechnologies": [
-          "contentManagementSystemsCMs",
-          "rESTAPIs",
-          "git",
-          "laravel",
-          "codeIgniter",
-          "php",
-          "sql",
-          "javaScript",
-          "jQuery",
-          "cascadingStyleSheetsCSs",
-          "html",
-          "java",
-          "nETFramwork",
-          "microsoftExcel"
-        ]
-      },
-      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
-    },
-    "cyberSecurityEngineer": {
-      "roleName": "Cyber Security Engineer",
-      "experience": [
-        "intern",
-        "webDeveloper",
-        "internii",
-        "associateTechnicalSupport"
-      ],
-      "education": [
-        "bachelorsDegree",
-        "bachelorsDegreeii"
-      ],
-      "certifications": [
-        "compTIACySAPreparationPathCertification",
-        "sOCAnalystLearningPathCertification",
-        "aWSCloudQuestCloudPractitioner"
-      ],
-      "skills": {
-        "industryKnowledge": [
-          "softwareDevelopmentLifeCycleSDLc",
-          "logAnalysis",
-          "incidentHandling",
-          "threatAnalysis",
-          "webDevelopment",
-          "softwareDevelopment"
+          "softwareDevelopment",
+          "iSO2700i"
         ],
         "toolsTechnologies": [
           "contentManagementSystemsCMs",
@@ -746,10 +730,56 @@
           "java",
           "nETFramwork",
           "activeDirectory",
+          "serviceNow",
+          "microsoftExcel"
+        ]
+      }
+    },
+    "cyberSecurityEngineer": {
+      "roleName": "Cyber Security Engineer",
+      "experience": [
+        "webDeveloper",
+        "internii",
+        "associateTechnicalSupportii",
+        "associateTechnicalSupport"
+      ],
+      "education": [
+        "bachelorsDegree",
+        "bachelorsDegreeii"
+      ],
+      "certifications": [
+        "compTIACySAPreparationPathCertification"
+      ],
+      "skills": {
+        "industryKnowledge": [
+          "softwareDevelopmentLifeCycleSDLc",
+          "logAnalysis",
+          "incidentHandling",
+          "threatAnalysis",
+          "webDevelopment",
+          "softwareDevelopment",
+          "iSO2700i"
+        ],
+        "toolsTechnologies": [
+          "contentManagementSystemsCMs",
+          "rESTAPIs",
+          "git",
+          "laravel",
+          "codeIgniter",
+          "php",
+          "sql",
+          "javaScript",
+          "jQuery",
+          "cascadingStyleSheetsCSs",
+          "html",
+          "java",
+          "nETFramwork",
+          "activeDirectory",
+          "serviceNow",
           "microsoftExcel"
         ]
       },
-      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+      "summary": "IT professional with 1 year of experience in web application development, including Laravel, PHP, and CodeIgniter. Demonstrated ability to deploy successful updates and implement new features, improving user experience for over 100 users. Open to remote opportunities globally."
     },
     "applicationDeveloper": {
       "roleName": "Application Developer",
@@ -764,7 +794,6 @@
         "bachelorsDegreeii"
       ],
       "certifications": [
-        "lightningExperienceReportsDashboardsSpecialist",
         "apsaraClouderGeneralSkillJAVACodingStandardsInAlibabaGroup",
         "aWSCloudQuestCloudPractitioner"
       ],
@@ -775,7 +804,8 @@
           "incidentHandling",
           "threatAnalysis",
           "webDevelopment",
-          "softwareDevelopment"
+          "softwareDevelopment",
+          "iSO2700i"
         ],
         "toolsTechnologies": [
           "contentManagementSystemsCMs",
@@ -792,17 +822,17 @@
           "java",
           "nETFramwork",
           "activeDirectory",
+          "serviceNow",
           "microsoftExcel"
         ]
-      },
-      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+      }
     },
     "penetrationTester": {
       "roleName": "Penetration Tester",
       "experience": [
-        "intern",
         "webDeveloper",
         "internii",
+        "associateTechnicalSupportii",
         "associateTechnicalSupport"
       ],
       "education": [
@@ -810,8 +840,51 @@
         "bachelorsDegreeii"
       ],
       "certifications": [
-        "compTIACySAPreparationPathCertification",
-        "sOCAnalystLearningPathCertification",
+        "compTIACySAPreparationPathCertification"
+      ],
+      "skills": {
+        "industryKnowledge": [
+          "softwareDevelopmentLifeCycleSDLc",
+          "logAnalysis",
+          "incidentHandling",
+          "threatAnalysis",
+          "webDevelopment",
+          "softwareDevelopment",
+          "iSO2700i"
+        ],
+        "toolsTechnologies": [
+          "contentManagementSystemsCMs",
+          "rESTAPIs",
+          "git",
+          "laravel",
+          "codeIgniter",
+          "php",
+          "sql",
+          "javaScript",
+          "jQuery",
+          "cascadingStyleSheetsCSs",
+          "html",
+          "java",
+          "nETFramwork",
+          "activeDirectory",
+          "serviceNow",
+          "microsoftExcel"
+        ]
+      }
+    },
+    "cloudEngineer": {
+      "roleName": "Cloud Engineer",
+      "experience": [
+        "webDeveloper",
+        "internii",
+        "associateTechnicalSupportii",
+        "associateTechnicalSupport"
+      ],
+      "education": [
+        "bachelorsDegree",
+        "bachelorsDegreeii"
+      ],
+      "certifications": [
         "aWSCloudQuestCloudPractitioner"
       ],
       "skills": {
@@ -821,7 +894,8 @@
           "incidentHandling",
           "threatAnalysis",
           "webDevelopment",
-          "softwareDevelopment"
+          "softwareDevelopment",
+          "iSO2700i"
         ],
         "toolsTechnologies": [
           "contentManagementSystemsCMs",
@@ -838,56 +912,10 @@
           "java",
           "nETFramwork",
           "activeDirectory",
+          "serviceNow",
           "microsoftExcel"
         ]
-      },
-      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
-    },
-    "cloudEngineer": {
-      "roleName": "Cloud Engineer",
-      "experience": [
-        "intern",
-        "webDeveloper",
-        "internii",
-        "associateTechnicalSupport"
-      ],
-      "education": [
-        "bachelorsDegree",
-        "bachelorsDegreeii"
-      ],
-      "certifications": [
-        "aWSCloudQuestCloudPractitioner",
-        "iBMMQOnAWSCloudDeveloperEssentials",
-        "apsaraClouderGeneralSkillJAVACodingStandardsInAlibabaGroup"
-      ],
-      "skills": {
-        "industryKnowledge": [
-          "softwareDevelopmentLifeCycleSDLc",
-          "logAnalysis",
-          "incidentHandling",
-          "threatAnalysis",
-          "webDevelopment",
-          "softwareDevelopment"
-        ],
-        "toolsTechnologies": [
-          "contentManagementSystemsCMs",
-          "rESTAPIs",
-          "git",
-          "laravel",
-          "codeIgniter",
-          "php",
-          "sql",
-          "javaScript",
-          "jQuery",
-          "cascadingStyleSheetsCSs",
-          "html",
-          "java",
-          "nETFramwork",
-          "activeDirectory",
-          "microsoftExcel"
-        ]
-      },
-      "summary": "Software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally."
+      }
     }
   },
   "entrepreneurPreset": {
@@ -903,7 +931,7 @@
         "bachelorsDegree",
         "bachelorsDegreeii"
       ],
-      "summary": "Software Engineer with 1 year of experience and a total of 2 years of work experience. Demonstrated entrepreneurial skills through involvement in three activities. Open to business and entrepreneurship opportunities that comply with Singapore EntrePass requirements."
+      "summary": "IT professional with 1 year of experience and a total of 2 years of work experience. Demonstrated entrepreneurial skills through involvement in three activities. Open to business and entrepreneurship opportunities that comply with Singapore EntrePass requirements."
     }
   },
   "academicPreset": {
@@ -918,7 +946,8 @@
         "intern",
         "webDeveloper",
         "internii",
-        "associateTechnicalSupport"
+        "associateTechnicalSupport",
+        "associateTechnicalSupportii"
       ],
       "awards": [
         "taylorsExcellenceAward202i",
@@ -946,6 +975,8 @@
           "html",
           "java",
           "nETFramwork",
+          "activeDirectory",
+          "serviceNow",
           "microsoftExcel"
         ],
         "industryKnowledge": [
@@ -954,10 +985,11 @@
           "incidentHandling",
           "threatAnalysis",
           "webDevelopment",
-          "softwareDevelopment"
+          "softwareDevelopment",
+          "iSO2700i"
         ]
       },
-      "summary": "Software Engineer with 1 year of experience and a total of 2 years of professional work experience. Graduated from Taylor's University with a strong foundation in IT, achieving a CGPA of 3.40. Seeking opportunities at top universities, institutions, or colleges offering a Master's program in IT with full scholarship support."
+      "summary": "IT professional with 1 year of experience and a total of 2 years of professional work experience. Graduated from Taylor's University with a strong foundation in IT, achieving a CGPA of 3.40. Seeking opportunities at top universities, institutions, or colleges offering a Master's program in IT with full scholarship support."
     }
   }
 }
