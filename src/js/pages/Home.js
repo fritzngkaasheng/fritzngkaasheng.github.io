@@ -29,7 +29,7 @@ const Home = () => {
     className: "col w-md-container"
   }, /*#__PURE__*/React.createElement("h2", {
     className: "fw-bold"
-  }, t("About Me")), /*#__PURE__*/React.createElement("p", null, t("I am a software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally.")))), /*#__PURE__*/React.createElement("div", {
+  }, t("About Me")), /*#__PURE__*/React.createElement("p", null, t("I am an IT professional with 1 year of experience in web application development, including Laravel, PHP, and CodeIgniter. Demonstrated ability to deploy successful updates and implement new features, improving user experience for over 100 users. Open to remote opportunities globally.")))), /*#__PURE__*/React.createElement("div", {
     id: "skills-section",
     className: "row vh-100 justify-content-center align-items-center text-center custom-bg-color-1"
   }, /*#__PURE__*/React.createElement("div", {
