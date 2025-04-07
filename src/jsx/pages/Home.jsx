@@ -20,7 +20,7 @@ const Home = () => {
       <div id="about-me-section" className="row vh-100 justify-content-center align-items-center text-center custom-bg-color-2">
         <div className="col w-md-container">
           <h2 className="fw-bold">{t("About Me")}</h2>
-          <p>{t("I am a software Engineer with 1 year of experience in Laravel, PHP, and CodeIgniter. Successfully deployed over 25 updates and added more than 8 new features to enhance user experience for over 100 users. Open to remote opportunities globally.")}</p>
+          <p>{t("I am an IT professional with 1 year of experience in web application development, including Laravel, PHP, and CodeIgniter. Demonstrated ability to deploy successful updates and implement new features, improving user experience for over 100 users. Open to remote opportunities globally.")}</p>
         </div>
       </div>
       <div id="skills-section" className="row vh-100 justify-content-center align-items-center text-center custom-bg-color-1">
