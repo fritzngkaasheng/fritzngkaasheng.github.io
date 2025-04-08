@@ -9,100 +9,124 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-public abstract class BaseTest {
-    protected WebDriver driver;
+public class BaseTest {
+    private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+
     private String browserName = "";
 
     private String url = "https://localhost";
 
     public static boolean checkAllPagesTranslation = false;
 
-    @BeforeTest
-    @Parameters("browser")
     public void setUp(String browser) throws InterruptedException {
-        if (browser.equalsIgnoreCase("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            ChromeOptions options = new ChromeOptions();
-            options.setAcceptInsecureCerts(true);
-            driver = new ChromeDriver(options);
-            browserName = "Chrome";
-        } else if (browser.equalsIgnoreCase("firefox")) {
-            WebDriverManager.firefoxdriver().setup();
-            FirefoxOptions options = new FirefoxOptions();
-            options.setAcceptInsecureCerts(true);
-            driver = new FirefoxDriver(options);
-            browserName = "Firefox";
-        } else if (browser.equalsIgnoreCase("edge")) {
-            WebDriverManager.edgedriver().setup();
-            EdgeOptions options = new EdgeOptions();
-            options.setAcceptInsecureCerts(true);
-            driver = new EdgeDriver(options);
-            browserName = "Edge";
-        } else {
-            throw new IllegalArgumentException("Invalid browser type: " + browser);
+        WebDriver driver = driverThreadLocal.get();
+        if (driver == null) {
+            if (browser.equalsIgnoreCase("chrome")) {
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.setAcceptInsecureCerts(true);
+                driver = new ChromeDriver(options);
+                browserName = "Chrome";
+            } else if (browser.equalsIgnoreCase("firefox")) {
+                WebDriverManager.firefoxdriver().setup();
+                FirefoxOptions options = new FirefoxOptions();
+                options.setAcceptInsecureCerts(true);
+                driver = new FirefoxDriver(options);
+                browserName = "Firefox";
+            } else if (browser.equalsIgnoreCase("edge")) {
+                WebDriverManager.edgedriver().setup();
+                EdgeOptions options = new EdgeOptions();
+                options.setAcceptInsecureCerts(true);
+                driver = new EdgeDriver(options);
+                browserName = "Edge";
+            } else {
+                throw new IllegalArgumentException("Invalid browser type: " + browser);
+            }
+            driverThreadLocal.set(driver);
         }
         driver.get(url);
         driver.manage().window().maximize();
-
         driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(500));
-
         new UntranslatedTextFinder().addAppVersionToIgnoredTextsList(driver);
     }
 
-    @Test(priority = 1)
-    public void homePage() throws InterruptedException {
-        new HomePage().homePage(driver);
+    public WebDriver getDriver() {
+        return driverThreadLocal.get();
     }
 
-    @Test(priority = 2)
-    public void error404Page() throws InterruptedException {
-        driver.get(url + "#/summon/404/error");
-
-        new Error404Page().error404Page(driver);
+    @DataProvider(name = "browserProvider", parallel = true)
+    public Object[][] browserProvider() {
+        return new Object[][]{
+                {"chrome"},
+                {"firefox"},
+                {"edge"}
+        };
     }
 
-    @Test(priority = 3)
-    public void dynamicResumePage() throws InterruptedException {
-        new DynamicResumePage().dynamicResumePages(driver, url);
+    @Test(priority = 1, dataProvider = "browserProvider")
+    public void homePage(String browser) throws InterruptedException {
+        setUp(browser);
+        new HomePage().homePage(getDriver());
     }
 
-    @Test(priority = 4)
-    public void willITakeTheJobQuizPage() throws InterruptedException {
-        new Header().navigateTo(driver, "#/will-i-take-the-job-quiz");
+    @Test(priority = 2, dataProvider = "browserProvider")
+    public void error404Page(String browser) throws InterruptedException {
+        setUp(browser);
 
-        new WillITakeTheJobQuizPage().willITakeTheJobQuizPage(driver);
+        getDriver().get(url + "#/summon/404/error");
+
+        new Error404Page().error404Page(getDriver());
     }
 
-    @Test(priority = 5)
-    public void entrepreneurResumePage() throws InterruptedException {
-        new Header().navigateTo(driver, "#/entrepreneur-resume");
-
-        new EntrepreneurResumePage().entrepreneurResumePage(driver);
+    @Test(priority = 3, dataProvider = "browserProvider")
+    public void dynamicResumePage(String browser) throws InterruptedException {
+        setUp(browser);
+        new DynamicResumePage().dynamicResumePages(getDriver(), url);
     }
 
-    @Test(priority = 6)
-    public void academicCVPage() throws InterruptedException {
-        new Header().navigateTo(driver, "#/academic-cv");
+    @Test(priority = 4, dataProvider = "browserProvider")
+    public void willITakeTheJobQuizPage(String browser) throws InterruptedException {
+        setUp(browser);
 
-        new AcademicCVPage().academicCVPage(driver);
+        new Header().navigateTo(getDriver(), "#/will-i-take-the-job-quiz");
+
+        new WillITakeTheJobQuizPage().willITakeTheJobQuizPage(getDriver());
     }
 
-    @Test(priority = 7)
-    public void datingProfilePage() throws InterruptedException {
-        new Header().navigateTo(driver, "#/dating-profile");
+    @Test(priority = 5, dataProvider = "browserProvider")
+    public void entrepreneurResumePage(String browser) throws InterruptedException {
+        setUp(browser);
 
-        new DatingProfilePage().datingProfilePage(driver);
+        new Header().navigateTo(getDriver(), "#/entrepreneur-resume");
+
+        new EntrepreneurResumePage().entrepreneurResumePage(getDriver());
     }
 
-    @AfterTest
+    @Test(priority = 6, dataProvider = "browserProvider")
+    public void academicCVPage(String browser) throws InterruptedException {
+        setUp(browser);
+
+        new Header().navigateTo(getDriver(), "#/academic-cv");
+
+        new AcademicCVPage().academicCVPage(getDriver());
+    }
+
+    @Test(priority = 7, dataProvider = "browserProvider")
+    public void datingProfilePage(String browser) throws InterruptedException {
+        setUp(browser);
+
+        new Header().navigateTo(getDriver(), "#/dating-profile");
+
+        new DatingProfilePage().datingProfilePage(getDriver());
+    }
+
+    @AfterMethod
     public void tearDown() {
-        if (driver != null) {
-            driver.quit();
+        if (driverThreadLocal.get() != null) {
+            driverThreadLocal.get().quit();
+            driverThreadLocal.remove();
         }
     }
 }
