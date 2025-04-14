@@ -238,14 +238,21 @@ public class UntranslatedTextFinder {
         new NavBar().closeNavBar(driver);
     }
 
+    private List<String> splitLongText(String text) {
+        if (text == null || text.isEmpty()) {
+            return List.of();
+        }
+        return List.of(text.split("\\r?\\n")); // Split by newline, supporting both \n and \r\n
+    }
+
     public void findUntranslatedText(WebDriver driver) throws InterruptedException {
-        List<WebElement> textElements = driver.findElements(By.xpath("//*[text()]"));
+        List<WebElement> textElements = driver.findElements(By.tagName("body"));
 
-        List<String> texts = textElements.stream()
-                .map(element -> element.getText().trim()) // Extract text
-                .collect(Collectors.toList());
+        Set<String> uniqueTexts = textElements.stream()
+                .flatMap(element -> splitLongText(element.getText().trim()).stream()) // Split long texts
+                .collect(Collectors.toSet());
 
-        List<String> untranslatedTexts = texts.parallelStream()
+        List<String> untranslatedTexts = uniqueTexts.parallelStream()
                 .filter(text -> !text.isEmpty()) // Remove empty texts
                 .filter(text -> !ignoredTexts.contains(text)) // Exclude ignored texts
                 .filter(text -> !isNumeric(text)) // Exclude numeric texts
