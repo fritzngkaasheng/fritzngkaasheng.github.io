@@ -15,14 +15,26 @@ public class WillITakeTheJobQuizPage {
     // if false, only the first 3 tests will be checked for translation
 
     private void selectDropdown(WebDriver driver, String dropdownId, String targetText) throws InterruptedException {
+        new WebDriverWait(
+                driver,
+                java.time.Duration.ofMillis(2000)
+        ).until(ExpectedConditions.visibilityOfElementLocated(By.id(dropdownId)));
+
         WebElement originDropdownElement = driver.findElement(By.id(dropdownId));
 
         Select originDropdown = new Select(originDropdownElement);
 
         originDropdown.selectByVisibleText(targetText);
+
+        Thread.sleep(500);
     }
 
     private void fillTextBox(WebDriver driver, String textBoxId, String value) throws InterruptedException {
+        new WebDriverWait(
+                driver,
+                java.time.Duration.ofMillis(60000)
+        ).until(ExpectedConditions.visibilityOfElementLocated(By.id(textBoxId)));
+
         WebElement textBox = driver.findElement(By.id(textBoxId));
         textBox.clear();
         textBox.sendKeys(value);
@@ -50,6 +62,8 @@ public class WillITakeTheJobQuizPage {
     }
 
     private void fillOutForm(WebDriver driver, String origin) throws InterruptedException {
+        selectDropdown(driver, "quizOrigin", "Choose...");
+
         selectDropdown(driver, "quizOrigin", origin);
     }
 
@@ -61,6 +75,14 @@ public class WillITakeTheJobQuizPage {
             String salaryCurrency
     ) throws InterruptedException {
         fillOutForm(driver, origin);
+
+        selectDropdown(driver, "quizLocationType", "Choose...");
+
+        selectDropdown(driver, "quizLocationType", locationType);
+
+        fillOutForm(driver, origin);
+
+        selectDropdown(driver, "quizLocationType", "Choose...");
 
         selectDropdown(driver, "quizLocationType", locationType);
 

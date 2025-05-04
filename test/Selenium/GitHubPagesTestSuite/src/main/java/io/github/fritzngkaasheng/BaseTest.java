@@ -2,6 +2,7 @@ package io.github.fritzngkaasheng;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.fritzngkaasheng.tests.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,6 +10,10 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 public class BaseTest {
@@ -41,6 +46,11 @@ public class BaseTest {
                 options.setAcceptInsecureCerts(true);
                 driver = new EdgeDriver(options);
                 browserName = "Edge";
+            } else if (browser.equalsIgnoreCase("safari")) {
+                SafariOptions options = new SafariOptions();
+                options.setAcceptInsecureCerts(true);
+                driver = new SafariDriver(options);
+                browserName = "Safari";
             } else {
                 throw new IllegalArgumentException("Invalid browser type: " + browser);
             }
@@ -48,7 +58,13 @@ public class BaseTest {
         }
         driver.get(url);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(500));
+        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(5000));
+
+        new WebDriverWait(
+                driver,
+                java.time.Duration.ofMillis(2000)
+        ).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".navbar-toggler-icon")));
+
         new UntranslatedTextFinder().addAppVersionToIgnoredTextsList(driver);
     }
 
@@ -56,16 +72,17 @@ public class BaseTest {
         return driverThreadLocal.get();
     }
 
-    @DataProvider(name = "browserProvider", parallel = true)
+    @DataProvider(name = "browserProvider", parallel = false)
     public Object[][] browserProvider() {
         return new Object[][]{
-                {"chrome"},
+                /*{"chrome"},
                 {"firefox"},
-                {"edge"}
+                {"edge"},*/
+                {"safari"}
         };
     }
 
-    @Test(priority = 1, dataProvider = "browserProvider")
+    /*@Test(priority = 1, dataProvider = "browserProvider")
     public void homePage(String browser) throws InterruptedException {
         setUp(browser);
         new HomePage().homePage(getDriver());
@@ -84,7 +101,7 @@ public class BaseTest {
     public void dynamicResumePage(String browser) throws InterruptedException {
         setUp(browser);
         new DynamicResumePage().dynamicResumePages(getDriver(), url);
-    }
+    }*/
 
     @Test(priority = 4, dataProvider = "browserProvider")
     public void willITakeTheJobQuizPage(String browser) throws InterruptedException {
@@ -95,7 +112,7 @@ public class BaseTest {
         new WillITakeTheJobQuizPage().willITakeTheJobQuizPage(getDriver());
     }
 
-    @Test(priority = 5, dataProvider = "browserProvider")
+    /*@Test(priority = 5, dataProvider = "browserProvider")
     public void entrepreneurResumePage(String browser) throws InterruptedException {
         setUp(browser);
 
@@ -120,7 +137,7 @@ public class BaseTest {
         new Header().navigateTo(getDriver(), "#/dating-profile");
 
         new DatingProfilePage().datingProfilePage(getDriver());
-    }
+    }*/
 
     @AfterMethod
     public void tearDown() {

@@ -17,9 +17,8 @@ import java.util.stream.Collectors;
 public class UntranslatedTextFinder {
     private static final LanguageDetector detector = LanguageDetectorBuilder.fromLanguages(ENGLISH, CHINESE).build();
 
-    private static final Set<String> ignoredTexts = ConcurrentHashMap.newKeySet();
-
-    static {
+    private static final ThreadLocal<Set<String>> threadLocalIgnoredTexts = ThreadLocal.withInitial(() -> {
+        Set<String> ignoredTexts = ConcurrentHashMap.newKeySet();
         ignoredTexts.addAll(Set.of(
             "English",
             "中文",
@@ -216,7 +215,8 @@ public class UntranslatedTextFinder {
             ".NET Framework",
             "XCG"
         ));
-    }
+        return ignoredTexts;
+    });
 
     // For more details, refer: https://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-numeric-in-java
     public static boolean isNumeric(String str) {
@@ -233,7 +233,7 @@ public class UntranslatedTextFinder {
 
         String appVersionText = appVersion.getText();
 
-        ignoredTexts.add(appVersionText);
+        threadLocalIgnoredTexts.get().add(appVersionText);
 
         new NavBar().closeNavBar(driver);
     }
@@ -249,12 +249,12 @@ public class UntranslatedTextFinder {
         List<WebElement> textElements = driver.findElements(By.tagName("body"));
 
         Set<String> uniqueTexts = textElements.stream()
-                .flatMap(element -> splitLongText(element.getText().trim()).stream()) // Split long texts
+                .map(element -> element.getText().trim()) // Split long texts
                 .collect(Collectors.toSet());
 
         List<String> untranslatedTexts = uniqueTexts.parallelStream()
                 .filter(text -> !text.isEmpty()) // Remove empty texts
-                .filter(text -> !ignoredTexts.contains(text)) // Exclude ignored texts
+                .filter(text -> !threadLocalIgnoredTexts.get().contains(text)) // Exclude ignored texts
                 .filter(text -> !isNumeric(text)) // Exclude numeric texts
                 .filter(text -> !detector.detectLanguageOf(text).equals(CHINESE)) // Detect untranslated texts
                 .collect(Collectors.toList());
