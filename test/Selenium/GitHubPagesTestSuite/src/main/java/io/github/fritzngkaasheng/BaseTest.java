@@ -75,14 +75,14 @@ public class BaseTest {
     @DataProvider(name = "browserProvider", parallel = false)
     public Object[][] browserProvider() {
         return new Object[][]{
-                /*{"chrome"},
+                {"chrome"},
                 {"firefox"},
-                {"edge"},*/
+                {"edge"},
                 {"safari"}
         };
     }
 
-    /*@Test(priority = 1, dataProvider = "browserProvider")
+    @Test(priority = 1, dataProvider = "browserProvider")
     public void homePage(String browser) throws InterruptedException {
         setUp(browser);
         new HomePage().homePage(getDriver());
@@ -101,7 +101,7 @@ public class BaseTest {
     public void dynamicResumePage(String browser) throws InterruptedException {
         setUp(browser);
         new DynamicResumePage().dynamicResumePages(getDriver(), url);
-    }*/
+    }
 
     @Test(priority = 4, dataProvider = "browserProvider")
     public void willITakeTheJobQuizPage(String browser) throws InterruptedException {
@@ -112,7 +112,7 @@ public class BaseTest {
         new WillITakeTheJobQuizPage().willITakeTheJobQuizPage(getDriver());
     }
 
-    /*@Test(priority = 5, dataProvider = "browserProvider")
+    @Test(priority = 5, dataProvider = "browserProvider")
     public void entrepreneurResumePage(String browser) throws InterruptedException {
         setUp(browser);
 
@@ -137,7 +137,7 @@ public class BaseTest {
         new Header().navigateTo(getDriver(), "#/dating-profile");
 
         new DatingProfilePage().datingProfilePage(getDriver());
-    }*/
+    }
 
     @AfterMethod
     public void tearDown() {
