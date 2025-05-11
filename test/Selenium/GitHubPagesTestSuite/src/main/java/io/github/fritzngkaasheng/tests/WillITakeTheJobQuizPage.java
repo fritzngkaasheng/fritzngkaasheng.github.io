@@ -2,6 +2,7 @@ package io.github.fritzngkaasheng.tests;
 
 import io.github.fritzngkaasheng.BaseTest;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,18 +15,34 @@ public class WillITakeTheJobQuizPage {
     // if true, all pages will be checked for translation
     // if false, only the first 3 tests will be checked for translation
 
+    private void triggerOnChange(WebDriver driver, WebElement element) {
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));",
+                element
+        );
+    }
+
     private void selectDropdown(WebDriver driver, String dropdownId, String targetText) throws InterruptedException {
-        WebElement originDropdownElement = driver.findElement(By.id(dropdownId));
+        WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofMillis(2000));
+        WebElement dropdownElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(dropdownId)));
 
-        Select originDropdown = new Select(originDropdownElement);
+        Select dropdown = new Select(dropdownElement);
+        dropdown.selectByVisibleText(targetText);
 
-        originDropdown.selectByVisibleText(targetText);
+        triggerOnChange(driver, dropdownElement);
     }
 
     private void fillTextBox(WebDriver driver, String textBoxId, String value) throws InterruptedException {
+        new WebDriverWait(
+                driver,
+                java.time.Duration.ofMillis(2000)
+        ).until(ExpectedConditions.visibilityOfElementLocated(By.id(textBoxId)));
+
         WebElement textBox = driver.findElement(By.id(textBoxId));
         textBox.clear();
         textBox.sendKeys(value);
+
+        triggerOnChange(driver, textBox);
     }
 
     private void translation(WebDriver driver) throws InterruptedException {
