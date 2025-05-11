@@ -74,12 +74,26 @@ public class BaseTest {
 
     @DataProvider(name = "browserProvider", parallel = false)
     public Object[][] browserProvider() {
-        return new Object[][]{
-                {"chrome"},
-                {"firefox"},
-                {"edge"},
-                {"safari"}
-        };
+        String osName = System.getProperty("os.name").toLowerCase();
+
+        if(osName.contains("mac")) {
+            return new Object[][]{
+                    {"chrome"},
+                    {"firefox"},
+                    {"edge"},
+                    {"safari"}
+            };
+        } else if(osName.contains("windows") || osName.contains("linux")) {
+            return new Object[][]{
+                    {"chrome"},
+                    {"firefox"},
+                    {"edge"}
+            };
+        } else {
+            System.out.println("Operating system not recognized!");
+
+            return new Object[][]{};
+        }
     }
 
     @Test(priority = 1, dataProvider = "browserProvider")
