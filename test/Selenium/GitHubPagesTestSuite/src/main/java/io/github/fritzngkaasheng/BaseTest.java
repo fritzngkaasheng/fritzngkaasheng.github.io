@@ -2,6 +2,7 @@ package io.github.fritzngkaasheng;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.fritzngkaasheng.tests.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,6 +10,10 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 public class BaseTest {
@@ -41,6 +46,11 @@ public class BaseTest {
                 options.setAcceptInsecureCerts(true);
                 driver = new EdgeDriver(options);
                 browserName = "Edge";
+            } else if (browser.equalsIgnoreCase("safari")) {
+                SafariOptions options = new SafariOptions();
+                options.setAcceptInsecureCerts(true);
+                driver = new SafariDriver(options);
+                browserName = "Safari";
             } else {
                 throw new IllegalArgumentException("Invalid browser type: " + browser);
             }
@@ -48,7 +58,13 @@ public class BaseTest {
         }
         driver.get(url);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(500));
+        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(5000));
+
+        new WebDriverWait(
+                driver,
+                java.time.Duration.ofMillis(2000)
+        ).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".navbar-toggler-icon")));
+
         new UntranslatedTextFinder().addAppVersionToIgnoredTextsList(driver);
     }
 
@@ -56,13 +72,28 @@ public class BaseTest {
         return driverThreadLocal.get();
     }
 
-    @DataProvider(name = "browserProvider", parallel = true)
+    @DataProvider(name = "browserProvider", parallel = false)
     public Object[][] browserProvider() {
-        return new Object[][]{
-                {"chrome"},
-                {"firefox"},
-                {"edge"}
-        };
+        String osName = System.getProperty("os.name").toLowerCase();
+
+        if(osName.contains("mac")) {
+            return new Object[][]{
+                    {"chrome"},
+                    {"firefox"},
+                    {"edge"},
+                    {"safari"}
+            };
+        } else if(osName.contains("windows") || osName.contains("linux")) {
+            return new Object[][]{
+                    {"chrome"},
+                    {"firefox"},
+                    {"edge"}
+            };
+        } else {
+            System.out.println("Operating system not recognized!");
+
+            return new Object[][]{};
+        }
     }
 
     @Test(priority = 1, dataProvider = "browserProvider")

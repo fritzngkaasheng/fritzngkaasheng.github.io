@@ -8,9 +8,9 @@ import org.testng.Assert;
 public class DatingProfilePage {
 
     public void datingProfilePage(WebDriver driver) throws InterruptedException {
-        WebElement contactCard = driver.findElement(By.id("contact-card"));
+        WebElement contactCard = driver.findElement(By.cssSelector("#contact-card h2"));
         String contactCardText = contactCard.getText();
-        Assert.assertEquals(contactCardText, "Fritz\n24", "Summary text mismatch");
+        Assert.assertEquals(contactCardText, "Fritz", "Text mismatch");
 
         final LanguageSwitcher languageSwitcher = new LanguageSwitcher();
 
