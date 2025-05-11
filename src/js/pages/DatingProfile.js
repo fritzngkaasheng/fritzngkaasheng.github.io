@@ -125,7 +125,13 @@ const DatingProfile = () => {
     target: "_blank"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "omi"
-  }))))), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React.createElement("a", {
+    className: "d-inline align-content-center m-0 text-decoration-none",
+    href: "https://www.linkedin.com/in/fritzngkaasheng",
+    target: "_blank"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "linkedIn24"
+  }), " ", /*#__PURE__*/React.createElement("span", null, t("(For verification)")))))), /*#__PURE__*/React.createElement("div", {
     className: "col-12"
   }, /*#__PURE__*/React.createElement("div", {
     className: "card",
