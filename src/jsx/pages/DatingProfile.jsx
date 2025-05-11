@@ -83,6 +83,7 @@ const DatingProfile = () => {
                   <h2 className="d-inline align-content-end m-0">{t(data.name)}</h2>
                   <h3 className="d-inline align-content-end m-0">{t(data.age)}</h3>
                   <a className="d-inline align-content-center m-0" href="https://omi.sg/" target="_blank"><Icon name="omi"/></a>
+                  <a className="d-inline align-content-center m-0 text-decoration-none" href="https://www.linkedin.com/in/fritzngkaasheng" target="_blank"><Icon name="linkedIn24"/> <span>{t("(For verification)")}</span></a>
                 </div>
               </div>
             </div>
