@@ -26,53 +26,71 @@ public class BaseTest {
     public static boolean checkAllPagesTranslation = false;
 
     public void setUp(String browser) throws InterruptedException {
-        WebDriver driver = driverThreadLocal.get();
-        if (driver == null) {
-            if (browser.equalsIgnoreCase("chrome")) {
-                WebDriverManager.chromedriver().setup();
-                ChromeOptions options = new ChromeOptions();
-                options.setAcceptInsecureCerts(true);
-                driver = new ChromeDriver(options);
-                browserName = "Chrome";
-            } else if (browser.equalsIgnoreCase("firefox")) {
-                WebDriverManager.firefoxdriver().setup();
-                FirefoxOptions options = new FirefoxOptions();
-                options.setAcceptInsecureCerts(true);
-                driver = new FirefoxDriver(options);
-                browserName = "Firefox";
-            } else if (browser.equalsIgnoreCase("edge")) {
-                WebDriverManager.edgedriver().setup();
-                EdgeOptions options = new EdgeOptions();
-                options.setAcceptInsecureCerts(true);
-                driver = new EdgeDriver(options);
-                browserName = "Edge";
-            } else if (browser.equalsIgnoreCase("safari")) {
-                SafariOptions options = new SafariOptions();
-                options.setAcceptInsecureCerts(true);
-                driver = new SafariDriver(options);
-                browserName = "Safari";
-            } else {
-                throw new IllegalArgumentException("Invalid browser type: " + browser);
+        if (browser.equalsIgnoreCase("safari")) {
+            synchronized (BaseTest.class) {
+                if (driverThreadLocal.get() == null) {
+                    SafariOptions options = new SafariOptions();
+                    options.setAcceptInsecureCerts(true);
+                    WebDriver driver = new SafariDriver(options);
+                    browserName = "Safari";
+                    driverThreadLocal.set(driver);
+                    driver.get(url);
+                    driver.manage().window().maximize();
+                    driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(5000));
+                    new WebDriverWait(driver, java.time.Duration.ofMillis(2000))
+                            .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".navbar-toggler-icon")));
+                    new UntranslatedTextFinder().addAppVersionToIgnoredTextsList(driver);
+                }
             }
-            driverThreadLocal.set(driver);
+        } else {
+            WebDriver driver = driverThreadLocal.get();
+            if (driver == null) {
+                if (browser.equalsIgnoreCase("chrome")) {
+                    WebDriverManager.chromedriver().setup();
+                    ChromeOptions options = new ChromeOptions();
+                    options.setAcceptInsecureCerts(true);
+                    driver = new ChromeDriver(options);
+                    browserName = "Chrome";
+                } else if (browser.equalsIgnoreCase("firefox")) {
+                    WebDriverManager.firefoxdriver().setup();
+                    FirefoxOptions options = new FirefoxOptions();
+                    options.setAcceptInsecureCerts(true);
+                    driver = new FirefoxDriver(options);
+                    browserName = "Firefox";
+                } else if (browser.equalsIgnoreCase("edge")) {
+                    WebDriverManager.edgedriver().setup();
+                    EdgeOptions options = new EdgeOptions();
+                    options.setAcceptInsecureCerts(true);
+                    driver = new EdgeDriver(options);
+                    browserName = "Edge";
+                /*} else if (browser.equalsIgnoreCase("safari")) {
+                    SafariOptions options = new SafariOptions();
+                    options.setAcceptInsecureCerts(true);
+                    driver = new SafariDriver(options);
+                    browserName = "Safari";*/
+                } else {
+                    throw new IllegalArgumentException("Invalid browser type: " + browser);
+                }
+                driverThreadLocal.set(driver);
+            }
+            driver.get(url);
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(5000));
+
+            new WebDriverWait(
+                    driver,
+                    java.time.Duration.ofMillis(2000)
+            ).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".navbar-toggler-icon")));
+
+            new UntranslatedTextFinder().addAppVersionToIgnoredTextsList(driver);
         }
-        driver.get(url);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(5000));
-
-        new WebDriverWait(
-                driver,
-                java.time.Duration.ofMillis(2000)
-        ).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".navbar-toggler-icon")));
-
-        new UntranslatedTextFinder().addAppVersionToIgnoredTextsList(driver);
     }
 
     public WebDriver getDriver() {
         return driverThreadLocal.get();
     }
 
-    @DataProvider(name = "browserProvider", parallel = false)
+    @DataProvider(name = "browserProvider", parallel = true)
     public Object[][] browserProvider() {
         String osName = System.getProperty("os.name").toLowerCase();
 
@@ -91,7 +109,6 @@ public class BaseTest {
             };
         } else {
             System.out.println("Operating system not recognized!");
-
             return new Object[][]{};
         }
     }
