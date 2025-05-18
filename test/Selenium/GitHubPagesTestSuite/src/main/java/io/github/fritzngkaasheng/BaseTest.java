@@ -10,11 +10,15 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class BaseTest {
     private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
@@ -25,8 +29,8 @@ public class BaseTest {
 
     public static boolean checkAllPagesTranslation = false;
 
-    public void setUp(String browser) throws InterruptedException {
-        if (browser.equalsIgnoreCase("safari")) {
+    public void setUp(String browser) throws InterruptedException, MalformedURLException {
+        /*if (browser.equalsIgnoreCase("safari")) {
             synchronized (BaseTest.class) {
                 if (driverThreadLocal.get() == null) {
                     SafariOptions options = new SafariOptions();
@@ -42,37 +46,41 @@ public class BaseTest {
                     new UntranslatedTextFinder().addAppVersionToIgnoredTextsList(driver);
                 }
             }
-        } else {
-            WebDriver driver = driverThreadLocal.get();
-            if (driver == null) {
-                if (browser.equalsIgnoreCase("chrome")) {
-                    WebDriverManager.chromedriver().setup();
-                    ChromeOptions options = new ChromeOptions();
-                    options.setAcceptInsecureCerts(true);
-                    driver = new ChromeDriver(options);
-                    browserName = "Chrome";
-                } else if (browser.equalsIgnoreCase("firefox")) {
-                    WebDriverManager.firefoxdriver().setup();
-                    FirefoxOptions options = new FirefoxOptions();
-                    options.setAcceptInsecureCerts(true);
-                    driver = new FirefoxDriver(options);
-                    browserName = "Firefox";
-                } else if (browser.equalsIgnoreCase("edge")) {
-                    WebDriverManager.edgedriver().setup();
-                    EdgeOptions options = new EdgeOptions();
-                    options.setAcceptInsecureCerts(true);
-                    driver = new EdgeDriver(options);
-                    browserName = "Edge";
-                /*} else if (browser.equalsIgnoreCase("safari")) {
-                    SafariOptions options = new SafariOptions();
-                    options.setAcceptInsecureCerts(true);
-                    driver = new SafariDriver(options);
-                    browserName = "Safari";*/
-                } else {
-                    throw new IllegalArgumentException("Invalid browser type: " + browser);
-                }
-                driverThreadLocal.set(driver);
+        } else {*/
+        String remoteUrl = "http://localhost:4444/wd/hub";
+        WebDriver driver = null;
+
+        try {
+            if (browser.equalsIgnoreCase("chrome")) {
+                ChromeOptions options = new ChromeOptions();
+                options.setAcceptInsecureCerts(true);
+                driver = new RemoteWebDriver(new URL(remoteUrl), options);
+                browserName = "Chrome";
+            } else if (browser.equalsIgnoreCase("firefox")) {
+                FirefoxOptions options = new FirefoxOptions();
+                options.setAcceptInsecureCerts(true);
+                driver = new RemoteWebDriver(new URL(remoteUrl), options);
+                browserName = "Firefox";
+            } else if (browser.equalsIgnoreCase("edge")) {
+                EdgeOptions options = new EdgeOptions();
+                options.setAcceptInsecureCerts(true);
+                driver = new RemoteWebDriver(new URL(remoteUrl), options);
+                browserName = "Edge";
+            } else if (browser.equalsIgnoreCase("safari")) {
+                SafariOptions options = new SafariOptions();
+                options.setAcceptInsecureCerts(true);
+                driver = new RemoteWebDriver(new URL(remoteUrl), options);
+                browserName = "Safari";
+
+                /*SafariOptions options = new SafariOptions();
+                options.setAcceptInsecureCerts(true);
+                driver = new SafariDriver(options);
+                browserName = "Safari";*/
+            } else {
+                throw new IllegalArgumentException("Invalid browser type: " + browser);
             }
+            driverThreadLocal.set(driver);
+
             driver.get(url);
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(5000));
@@ -83,7 +91,11 @@ public class BaseTest {
             ).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".navbar-toggler-icon")));
 
             new UntranslatedTextFinder().addAppVersionToIgnoredTextsList(driver);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to initialize remote WebDriver", e);
         }
+        //}
     }
 
     public WebDriver getDriver() {
@@ -114,13 +126,13 @@ public class BaseTest {
     }
 
     @Test(priority = 1, dataProvider = "browserProvider")
-    public void homePage(String browser) throws InterruptedException {
+    public void homePage(String browser) throws InterruptedException, MalformedURLException {
         setUp(browser);
         new HomePage().homePage(getDriver());
     }
 
     @Test(priority = 2, dataProvider = "browserProvider")
-    public void error404Page(String browser) throws InterruptedException {
+    public void error404Page(String browser) throws InterruptedException, MalformedURLException {
         setUp(browser);
 
         getDriver().get(url + "#/summon/404/error");
@@ -129,13 +141,13 @@ public class BaseTest {
     }
 
     @Test(priority = 3, dataProvider = "browserProvider")
-    public void dynamicResumePage(String browser) throws InterruptedException {
+    public void dynamicResumePage(String browser) throws InterruptedException, MalformedURLException {
         setUp(browser);
         new DynamicResumePage().dynamicResumePages(getDriver(), url);
     }
 
     @Test(priority = 4, dataProvider = "browserProvider")
-    public void willITakeTheJobQuizPage(String browser) throws InterruptedException {
+    public void willITakeTheJobQuizPage(String browser) throws InterruptedException, MalformedURLException {
         setUp(browser);
 
         new Header().navigateTo(getDriver(), "#/will-i-take-the-job-quiz");
@@ -144,7 +156,7 @@ public class BaseTest {
     }
 
     @Test(priority = 5, dataProvider = "browserProvider")
-    public void entrepreneurResumePage(String browser) throws InterruptedException {
+    public void entrepreneurResumePage(String browser) throws InterruptedException, MalformedURLException {
         setUp(browser);
 
         new Header().navigateTo(getDriver(), "#/entrepreneur-resume");
@@ -153,7 +165,7 @@ public class BaseTest {
     }
 
     @Test(priority = 6, dataProvider = "browserProvider")
-    public void academicCVPage(String browser) throws InterruptedException {
+    public void academicCVPage(String browser) throws InterruptedException, MalformedURLException {
         setUp(browser);
 
         new Header().navigateTo(getDriver(), "#/academic-cv");
@@ -162,7 +174,7 @@ public class BaseTest {
     }
 
     @Test(priority = 7, dataProvider = "browserProvider")
-    public void datingProfilePage(String browser) throws InterruptedException {
+    public void datingProfilePage(String browser) throws InterruptedException, MalformedURLException {
         setUp(browser);
 
         new Header().navigateTo(getDriver(), "#/dating-profile");
