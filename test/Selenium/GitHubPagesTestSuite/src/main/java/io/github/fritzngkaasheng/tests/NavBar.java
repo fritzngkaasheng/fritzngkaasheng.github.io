@@ -1,6 +1,7 @@
 package io.github.fritzngkaasheng.tests;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,11 +13,6 @@ public class NavBar {
                 driver,
                 java.time.Duration.ofMillis(60000)
         ).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#offcanvasNavbar .btn-close")));
-
-        /*WebElement appVersion = new WebDriverWait(
-                driver,
-                java.time.Duration.ofMillis(2000)
-        ).until(ExpectedConditions.visibilityOfElementLocated(By.id("app-version")));*/
     }
 
     public void waitUntilNavBarClosed(WebDriver driver) throws InterruptedException {
@@ -57,7 +53,9 @@ public class NavBar {
         ).until(ExpectedConditions.visibilityOfElementLocated(By.className("navbar-toggler")));
 
         WebElement navBarToggler = driver.findElement(By.className("navbar-toggler"));
-        navBarToggler.click();
+        //navBarToggler.click();
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", navBarToggler);
 
         waitUntilNavBarOpened(driver);
     }
@@ -69,7 +67,9 @@ public class NavBar {
         ).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#offcanvasNavbar .btn-close")));
 
         WebElement closeNavBarBtn = driver.findElement(By.cssSelector("#offcanvasNavbar .btn-close"));
-        closeNavBarBtn.click();
+        //closeNavBarBtn.click();
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", closeNavBarBtn);
 
         waitUntilNavBarClosed(driver);
     }

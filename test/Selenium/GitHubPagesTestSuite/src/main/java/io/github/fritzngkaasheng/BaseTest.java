@@ -30,23 +30,6 @@ public class BaseTest {
     public static boolean checkAllPagesTranslation = false;
 
     public void setUp(String browser) throws InterruptedException, MalformedURLException {
-        /*if (browser.equalsIgnoreCase("safari")) {
-            synchronized (BaseTest.class) {
-                if (driverThreadLocal.get() == null) {
-                    SafariOptions options = new SafariOptions();
-                    options.setAcceptInsecureCerts(true);
-                    WebDriver driver = new SafariDriver(options);
-                    browserName = "Safari";
-                    driverThreadLocal.set(driver);
-                    driver.get(url);
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMillis(5000));
-                    new WebDriverWait(driver, java.time.Duration.ofMillis(2000))
-                            .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".navbar-toggler-icon")));
-                    new UntranslatedTextFinder().addAppVersionToIgnoredTextsList(driver);
-                }
-            }
-        } else {*/
         String remoteUrl = "http://localhost:4444/wd/hub";
         WebDriver driver = null;
 
@@ -71,11 +54,6 @@ public class BaseTest {
                 options.setAcceptInsecureCerts(true);
                 driver = new RemoteWebDriver(new URL(remoteUrl), options);
                 browserName = "Safari";
-
-                /*SafariOptions options = new SafariOptions();
-                options.setAcceptInsecureCerts(true);
-                driver = new SafariDriver(options);
-                browserName = "Safari";*/
             } else {
                 throw new IllegalArgumentException("Invalid browser type: " + browser);
             }
@@ -95,7 +73,6 @@ public class BaseTest {
             e.printStackTrace();
             throw new RuntimeException("Failed to initialize remote WebDriver", e);
         }
-        //}
     }
 
     public WebDriver getDriver() {
