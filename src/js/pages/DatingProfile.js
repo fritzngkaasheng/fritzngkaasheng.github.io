@@ -60,6 +60,11 @@ const DatingProfile = () => {
     "data-bs-target": "#image-carousel",
     "data-bs-slide-to": "3",
     "aria-label": "Slide 4"
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    "data-bs-target": "#image-carousel",
+    "data-bs-slide-to": "4",
+    "aria-label": "Slide 5"
   })), /*#__PURE__*/React.createElement("div", {
     className: "carousel-inner ratio ratio-1x1"
   }, /*#__PURE__*/React.createElement("div", {
@@ -90,6 +95,13 @@ const DatingProfile = () => {
     src: "/assets/images/D4.jpg",
     className: "d-block w-100 h-100 object-fit-contain",
     alt: "Selfie with ETS"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "carousel-item"
+  }, /*#__PURE__*/React.createElement("img", {
+    loading: "lazy",
+    src: "/assets/images/D5.jpg",
+    className: "d-block w-100 h-100 object-fit-contain",
+    alt: "Taiwan Trip"
   }))), /*#__PURE__*/React.createElement("button", {
     className: "carousel-control-prev",
     type: "button",
