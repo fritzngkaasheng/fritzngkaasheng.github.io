@@ -52,6 +52,7 @@ const DatingProfile = () => {
               <button type="button" data-bs-target="#image-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
               <button type="button" data-bs-target="#image-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
               <button type="button" data-bs-target="#image-carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+              <button type="button" data-bs-target="#image-carousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
             </div>
             <div className="carousel-inner ratio ratio-1x1">
               <div className="carousel-item active">
@@ -65,6 +66,9 @@ const DatingProfile = () => {
               </div>
               <div className="carousel-item">
                 <img loading="lazy" src="/assets/images/D4.jpg" className="d-block w-100 h-100 object-fit-contain" alt="Selfie with ETS"/>
+              </div>
+              <div className="carousel-item">
+                <img loading="lazy" src="/assets/images/D5.jpg" className="d-block w-100 h-100 object-fit-contain" alt="Taiwan Trip"/>
               </div>
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#image-carousel" data-bs-slide="prev">
