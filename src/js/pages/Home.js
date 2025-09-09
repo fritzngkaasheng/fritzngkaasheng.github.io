@@ -19,7 +19,7 @@ const Home = () => {
     className: "mb-4"
   }, t("Remote IT Professional")), /*#__PURE__*/React.createElement("h4", {
     className: "mb-4"
-  }, t("Specializing in Software Development, Cybersecurity")), /*#__PURE__*/React.createElement("a", {
+  }, t("Specializing in Cybersecurity, Software Development")), /*#__PURE__*/React.createElement("a", {
     className: "btn btn-primary btn-lg",
     href: "#/dynamic-resume"
   }, t("Learn More")))), /*#__PURE__*/React.createElement("div", {
@@ -29,7 +29,7 @@ const Home = () => {
     className: "col w-md-container"
   }, /*#__PURE__*/React.createElement("h2", {
     className: "fw-bold"
-  }, t("About Me")), /*#__PURE__*/React.createElement("p", null, t("I am an IT professional with 1 year of experience in web application development, including Laravel, PHP, and CodeIgniter. Demonstrated ability to deploy successful updates and implement new features, improving user experience for over 100 users. Open to remote opportunities globally.")))), /*#__PURE__*/React.createElement("div", {
+  }, t("About Me")), /*#__PURE__*/React.createElement("p", null, t("I am an IT professional with 2 years in system development and support, delivering 25+ updates and 8+ features for 100+ users. Supported 200+ offshore, rig, remote, and office users with secure access (SSO, MFA, RBAC) under ISO 27001 standards; open to global remote roles.")))), /*#__PURE__*/React.createElement("div", {
     id: "skills-section",
     className: "row vh-100 justify-content-center align-items-center text-center custom-bg-color-1"
   }, /*#__PURE__*/React.createElement("div", {
@@ -74,7 +74,10 @@ const Home = () => {
   }, t("Java")), /*#__PURE__*/React.createElement("button", {
     type: "button",
     class: "btn btn-info"
-  }, t(".NET Framework"))))), /*#__PURE__*/React.createElement("div", {
+  }, t(".NET Framework")), /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    class: "btn btn-info"
+  }, t("ServiceNow"))))), /*#__PURE__*/React.createElement("div", {
     id: "experience-section",
     className: "row vh-100 justify-content-center align-items-center text-center custom-bg-color-2"
   }, /*#__PURE__*/React.createElement("div", {
@@ -85,11 +88,11 @@ const Home = () => {
     className: "job"
   }, /*#__PURE__*/React.createElement("h3", {
     className: "fw-bold"
-  }, t("Intern"), " - ", t("B2BE")), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("span", {
+  }, t("Associate Technical Support"), " - ", t("Tech Mahindra")), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("span", {
     className: "fw-bold"
-  }, t("Duration"), ":"), " ", t("April 2023"), " - ", t("July 2023")), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("span", {
+  }, t("Duration"), ":"), " ", t("December 2024"), " - ", t("Present")), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("span", {
     className: "fw-bold"
-  }, t("Responsibilities"), ":"), " ", t("Enhanced CodeIgniter and Laravel by implementing client-requested features, resolving critical bugs, and deploying numerous updates, improving the experience for over 100 users. Conducted impact analysis to ensure system efficiency and stability."))))), /*#__PURE__*/React.createElement("div", {
+  }, t("Responsibilities"), ":"), " ", t("Provided technical support as a contractor via Tech Mahindra, including a dedicated assignment at Baker Hughes. Resolved 30+ incidents across cloud, VDI, cybersecurity, and server maintenance, reducing system downtime. Managed 200+ offshore, rig, remote, and office users by implementing SSO, MFA, and RBAC to meet ISO 27001 compliance."))))), /*#__PURE__*/React.createElement("div", {
     id: "contact-me-section",
     className: "row vh-100 justify-content-center align-items-center text-center custom-bg-color-1"
   }, /*#__PURE__*/React.createElement("div", {
