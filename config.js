@@ -1,2 +1,2 @@
 const isProduction = true;
-const appVersion = "1.1.5";
+const appVersion = "1.1.6";
